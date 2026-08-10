@@ -1,0 +1,212 @@
+<!-- Main variables *content* -->
+
+{% include 'header.twig' %}
+
+  		<div class="hiddenTitle">
+  <div id="appTt">Account</div>
+  <div id="appTx">We're the best!</div>
+</div>
+<div class="appContent">
+  <section class="pt-4">
+    <div class="container">{% if error %}
+        <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ errorText }}
+        </div>
+      {% endif %}
+      {% if success %}
+        <div class="alert alert-dismissible alert-success">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ successText }}
+        </div>
+      {% endif %}
+                    <div class="row">
+        <div class="col-lg-5 col-md-6 col-12 mb-4">
+          <div class="card">
+            <div class="card-body">
+             
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <img src="https://cdn.smmspot.net/snfollows/assets/img/avatar.png" alt="Avatar">
+                 
+                </div>
+                <div class="col">
+                  <div class="acc-username">
+                    <span class="txt">{{ user['username'] }}</span>
+                    <i class="ri-checkbox-circle-fill ms-2 primary-color"></i>
+                  </div>
+                  <div class="acc-email">{{ user['email'] }}</div>
+                </div>
+                <div class="col-md-auto col-12 mt-3 mt-md-0">
+                  <button id="gender-switch" class="acc-switch gs-male">
+                    <div class="acc-switch-bg"></div>
+                    <div class="btn-gender">
+                      <i class="ri-men-line"></i>
+                    </div>
+                    <div class="btn-gender">
+                      <i class="ri-women-line"></i>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7 col-md-6 col-12 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <div class="acc-icon">
+                    <i class="ri-inbox-unarchive-line"></i>
+                  </div>
+                </div>
+                <div class="col">  
+                  <div class="acc-username">
+                  
+                    <span class="txt">API key</span>
+                  </div>
+                  <div class="acc-email">Change your API here.</div>
+                </div>
+                <div class="col-md-auto col-12 mt-3 mt-md-0">
+                  <form action="/account/newapikey" method="post">
+                   <input type="hidden" name="_csrf" value="WcTHAGHCuQUKh6WRZ_KxNhWwYRIZjilB7qbTimoKuDcOlYZGE4HuX2v-8LxRuN90Qt4yV1TianSZzJb8CEj2Vg==">
+                  <button class="form-control" type="submit">
+                    <div class="row">
+                      
+                      <div class="col">********************************</div>
+                      
+                      
+                      <div class="col-auto"><i class="ri-refresh-line"></i></div>
+                    </div>
+                  </button> </form>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+      
+<section class="d-none d-md-block">
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1">
+            <div class="col">
+              <div class="acc-item row align-items-center">
+                <div class="col-auto">
+                  <div class="acc-icon"><i class="ri-user-line"></i></div>
+                </div>
+                <div class="col">
+                  <div class="acc-item-title">First Name & Last Name</div>
+                  <div class="acc-item-text">{{ user['username'] }}</div>
+                </div>
+              </div>
+            </div><!-- ./col -->
+            <div class="col">
+              <div class="acc-item row align-items-center">
+                <div class="col-auto">
+                  <div class="acc-icon i-1"><i class="ri-mail-line"></i></div>
+                </div>
+                <div class="col">
+                  <div class="acc-item-title">Email</div>
+                  <div class="acc-item-text">{{ user['email'] }}</div>
+                </div>
+              </div>
+            </div><!-- ./col -->
+            <div class="col">
+              <div class="acc-item row align-items-center">
+                <div class="col-auto">
+                  <div class="acc-icon i-2"><i class="ri-whatsapp-line"></i></div>
+                </div>
+                <div class="col">
+                  <div class="acc-item-title">Whatsapp</div>
+                  <div class="acc-item-text">8700162891</div>
+                </div>
+              </div>
+            </div><!-- ./col -->
+            <div class="col">
+              <div class="acc-item row align-items-center">
+                <div class="col-auto">
+                  <div class="acc-icon"><i class="ri-skype-line"></i></div>
+                </div>
+                <div class="col">
+                  <div class="acc-item-title">Skype</div>
+                  <div class="acc-item-text">8700162891</div>
+                 </div>
+              </div>
+            </div><!-- ./col -->
+          </div><!-- ./row -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="pt-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Current password</h3>
+              <p class="card-h-text">Change Your Password To Secure And Stronger One</p>
+            </div>
+            <div class="card-body">
+              <form  method="post" action="account">
+                <div class="row">
+                  <div class="col-12 mb-4">
+                    <label for="form-password" class="form-label">Current password</label>
+                    <input type="password" id="current" name="current_password" class="form-control" >
+                  </div>
+                  <div class="col-12 col-md-6 mb-4">
+                    <label for="form-new-password" class="form-label">New password</label>
+                    <input type="password" name="password" class="form-control" id="new">
+                  </div>
+                  <div class="col-12 col-md-6 mb-4">
+                    <label for="form-confirm-password" class="form-label">Confirm new password</label>
+                    <input type="password" name="confirm_password" class="form-control" id="confirm">
+                  </div>
+                
+                    <button type="submit" class="btn btn-primary btn-100">Change password</button></div>
+               </form>
+            
+          </div>
+        </div>  
+          </div>
+    
+      
+          
+        <div class="col-lg-6 mb-4">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Other Settings</h3>
+              <p class="card-h-text">Set Your Language</p>
+            </div>
+            
+           {% if site['languages']|length > 1 %} 
+            <div class="card-body">
+                <form  method="post" action="account/change_lang">
+                  
+     
+          <div class="form-group">
+            <label for="timezone" class="control-label">Language</label>
+            <select name="lang" class="form-control" data-select="true" data-select-search="true" data-select-search-placeholder="Search">
+                               {% for language in site['languages'] %}
+                  <option {% if language["code"] == user["lang"] %} selected {% endif %} value="{{ language["code"] }}">{{ language["name"] }}</option>
+                  {% endfor %}
+                              
+                          </select>
+          </div>
+          <button type="submit" class="btn btn-primary btn-100 mt-3">Save</button>
+        </form>
+            </div> {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% include 'footer.twig' %}

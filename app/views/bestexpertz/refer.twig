@@ -1,0 +1,77 @@
+{% include 'header.twig' %}
+
+
+
+
+
+
+
+<div class="app-container">
+    <div class="page-content">
+        <div class="card_wrap ">
+            <div class="row">
+                <span class="page-title"><i class="fi fi-rr-piggy-bank"></i></span>
+                <div class="col-md-12">
+                    <div class="affiliates-box">
+                        <div class="affiliates-top">
+                            <img src="https://res.cloudinary.com/sol-0123456789/image/upload/v1688997405/usermlk/gradient-bg_nrrxlk.png" />
+                            <span>Available Earnings</span>
+                            <b> {{ ref['referral_total_commision']}}</b>
+                        </div>
+                        <div class="affiliates-center">
+                            <span>Commission Rate: {{settings["referral_commision"]}}%</span>
+                            <span>Minimum Payout: {{ settings["referral_payout"] }}</span>
+                            <span>Total Earnings: {{ ref['referral_earned_commision'] }}</span>
+                        </div>
+                        <div class="affiliates-bottom">
+                            <div class="affiliates-link" onclick="copyLink();">
+                                <span>Referral Link</span>
+                                <b><i class="far fa-copy"></i> <span class="copytext">{{ site["url"] }}/affiliates?ref={{ user['ref_code'] }}</span> </b>
+                                <div id="notification" class="notification">
+                                    <i class="fas fa-check"></i>
+                                    Link copied</div>
+                            </div>
+                            <div class="affiliates-group">
+                                <span class="affiliates-stats">Visits <b>{{ ref['referral_clicks'] }}</b></span>
+                                <span class="affiliates-stats">Unpaid Referrals <b>0</b></span>
+                                <span class="affiliates-stats">Paid Referrals <b>0</b></span>
+                                <span class="affiliates-stats">Conversion Rate <b>0%</b></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="affiliates-payment"></div>
+                </div>
+                <script>
+                    function copyLink() {
+                        let val = $('.copytext').text();
+                        window.navigator.clipboard.writeText(val);
+                        $('#notification').addClass('show');
+                        setTimeout(() => {
+                            $('#notification').removeClass('show');
+                        }, 4000)
+                    }
+
+                    $('#notification.show').mouseenter(function () {
+                        $('#notification').removeClass('show');
+                    })
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ <div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container">
+		{% if contentText2 %}
+<div class="card mt-3 mb-4">
+{{ contentText2 }}
+</div>
+{% endif %}
+</div>
+
+
+{% include 'footer.twig' %}
+
+

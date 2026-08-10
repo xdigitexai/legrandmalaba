@@ -1,0 +1,403 @@
+{% include 'header.twig' %}
+
+<main id="notLogin">
+            <style>
+   #notLogin {
+      padding-top: 0px;
+   }
+</style>
+<section id="hero_v3">
+            <div class="hero__dott__1">
+               <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707733425/Rental-Panel/smmpanelbdlab/growfollows-v2/img/wle434rkr36grmr2_y2adql.webp" class="dot_icon" alt="" loading="lazy">
+            </div>
+            <div class="hero_nion">
+              <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707733461/Rental-Panel/smmpanelbdlab/growfollows-v2/img/5s35ykq2y8buurip_rrgjtt.webp" class="img-fluid" alt="" loading="lazy">
+            </div>
+            <div class="container">
+               <div class="row d-flex align-items-center">
+                  <div class="col-lg-6 col-md-6 col-12 hero____content">
+                      <marquee scrollamount="1" scrolldelay="10" truespeed="" style="text-align: start; color: #201f21; font-family: " lucida="" sans="" unicode";"="" bgcolor="#ffc107"><span style="font-weight: 700;">{{ site["site_marqueen"] }}
+</span></marquee>
+                     <div class="hero_content_v3">
+                        <h4> {{ site["site_name"] }} - N°1</h4>
+                        <h1>
+                           Panel SMM pas cher
+                        </h1>
+                        <p>
+                           Boostez votre présence en ligne dès aujourd'hui avec notre Panel SMM abordable – la solution ultime pour réussir sur les réseaux sociaux ! {{ site["site_name"] }} est un Panel SMM avec plus de 3 ans sur le marché et plus de 900 000 commandes traitées avec succès !
+                        </p>
+                        <div class="hero_login">
+                        
+                          <form  method="post" action="">
+                                
+                                
+                                                    {% if errorText %}
+                                                                                        <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+                                                                                          <button type="button" class="close" data-dismiss="alert">×</button>
+                                                                                          {{ errorText }}
+                                                                                        </div>
+                                                                                  {% endif %}
+
+                                                                                  {% if successText %}
+                                                                                        <div class="alert alert-success alert-dismissible" role="alert">
+                                                                                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                                                          {{ successText }}
+                                                                                        </div>
+                                                                                  {% endif %}
+                                                                                  
+                                                                                  <div class="row">
+                                 <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="login_group">
+                                       <input type="text" class="form-control" placeholder="Nom d'utilisateur" name="username" >
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="login_group">
+                                       <input type="password" class="form-control" placeholder="Mot de passe" name="password">
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="row">
+                                 <div class="col-lg-6 col-md-6 col-12">
+                                    <label for="rememberme" class="rememberme">
+                                       <input type="checkbox" class="form-check-input" id="rememberme"  name="remember">
+                                       Se souvenir de moi
+                                    </label>
+                                 </div>
+                                 <div class="col-lg-6 col-md-6 col-12 hide_phone">
+                                    <div class="restpassword">
+                                       Mot de passe oublié ? <a href="/resetpassword" class="">Réinitialiser</a>
+                                    </div>
+                                 </div>
+                              </div>
+                              
+                                {% if captcha %}
+                                                        <div class="form-group">
+                                                          <div class="g-recaptcha" data-sitekey="{{ captchaKey }}"></div>
+                                                        </div>
+                                                  {% endif %}
+                               
+                              <div class="row my-3 d-flex align-items-center">
+                                 <div class="row">
+                                 <div class="col-lg-6 col-md-6 col-12">
+                                    <button type="submit" class="btn btn__signin">
+                                       <div class="icon">
+                                          <i class="fas fa-user"></i>
+                                       </div>
+                                       <div class="text">
+                                          Se connecter
+                                       </div>
+                                    </button>
+                                    
+                                 </div>
+                                 <div class="col-lg-6 col-md-6 col-12">
+                                     {{ google_login_content }} 
+                                 </div>
+                              </div>
+                                 
+                                  
+                                 <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="forgot__pass_phone show_phone">
+                                       Mot de passe oublié ?  <a href="/resetpassword" class="">Réinitialiser</a>
+                                    </div>
+
+                                    <div class="dont_have_an_acc">
+                                       Pas encore de compte ? <a href="/signup">S'inscrire</a>
+                                    </div>
+                                   
+                                 </div>
+                              </div>
+                             
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-12 banner___Images">
+                     <div class="hero__image">
+                        <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707733486/Rental-Panel/smmpanelbdlab/growfollows-v2/img/mb2iti26j7ygbk1r_gg1dev.webp" alt="" class="pos_absoulte icon_tw " loading="lazy">
+                        <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707733510/Rental-Panel/smmpanelbdlab/growfollows-v2/img/15ltswmkq3z1mq7q_wrxmib.webp" alt="" class="pos_absoulte icon_fb" loading="lazy">
+                        <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707733533/Rental-Panel/smmpanelbdlab/growfollows-v2/img/r8naydmc7qqwna4h_rxnb6r.webp" alt="" class="pos_absoulte icon_ig" loading="lazy">
+                        <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707733565/Rental-Panel/smmpanelbdlab/growfollows-v2/img/m15u8uz0s58ytmcz_qyeypn.webp" alt="" class="pos_absoulte icon_lv" loading="lazy">
+                        <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707733565/Rental-Panel/smmpanelbdlab/growfollows-v2/img/m15u8uz0s58ytmcz_qyeypn.webp" alt="" class="main_image" loading="lazy"
+                        <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707733584/Rental-Panel/smmpanelbdlab/growfollows-v2/img/wle434rkr36grmr2_ibj2to.webp" class="dot_icon2" alt="" loading="lazy">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section id="top_smm">
+            <div class="container">
+               <div class="row">
+                  <div class="col-lg-12 col-md-12 col-12">
+                     <div class="section__v3__tts">
+                        <h2 class="website-title text-center">Nos meilleurs services SMM</h2>
+                        <p class="website-descriptions text-center">
+                           Nous proposons une grande variété de services SMM très abordables sur <a href="/" class="text-home-primary"> {{ site["site_name"] }}</a>. Vous pouvez <a href="/services" class="text-home-primary">consulter nos services ici.</a>
+                        </p>
+                     </div>
+                     <div class="top_smm_services_group">
+                        <div class="service_groups services_group1">
+                           <div class="service__item item1">
+                              <div class="icon">
+                                 <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734327/Rental-Panel/smmpanelbdlab/growfollows-v2/img/uw9ehhaptg0zfit1_ekqemb.webp" alt="" loading="lazy">
+                              </div>
+                              <div class="txt">
+                                 Facebook
+                              </div>
+                           </div>
+                           <div class="service__item item2">
+                              <div class="icon">
+                                 <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734339/Rental-Panel/smmpanelbdlab/growfollows-v2/img/7t7wfsawd1ilyk44_ctcwxz.webp" alt="" loading="lazy">
+                              </div>
+                              <div class="txt">
+                                 Instagram
+                              </div>
+                           </div>
+                           <div class="service__item item3">
+                              <div class="icon">
+                                 <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734359/Rental-Panel/smmpanelbdlab/growfollows-v2/img/zprs2n3xrhg8o3o3_n90zno.webp" alt="" loading="lazy">
+                              </div>
+                              <div class="txt">
+                                 Twitter / X
+                              </div>
+                           </div>
+                        </div>
+                        <div class="service_groups services_group2">
+                           <div class="service__item item4">
+                              <div class="icon">
+                                 <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734379/Rental-Panel/smmpanelbdlab/growfollows-v2/img/rh2io599epgi0ek5_jafure.webp" alt="" loading="lazy">
+                              </div>
+                              <div class="txt">
+                                 TikTok
+                              </div>
+                           </div>
+                           <div class="service__item item5">
+                              <div class="icon">
+                                 <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734399/Rental-Panel/smmpanelbdlab/growfollows-v2/img/j2ll0ou1obd4c3i1_gelzgh.webp" alt="" loading="lazy">
+                              </div>
+                              <div class="txt">
+                                 Spotify
+                              </div>
+                           </div>
+                           <div class="service__item item6">
+                              <div class="icon">
+                                 <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734509/Rental-Panel/smmpanelbdlab/growfollows-v2/img/ai350phdh2ztlxe1_kwdfhi.webp" alt="" loading="lazy">
+                              </div>
+                              <div class="txt">
+                                 YouTube
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section id="statistics">
+            <div class="dotted_img">
+               <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734530/Rental-Panel/smmpanelbdlab/growfollows-v2/img/wle434rkr36grmr2_m9dplw.webp" class="img-fluid" alt="" loading="lazy">
+            </div>
+            <div class="statis_bg">
+               <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734548/Rental-Panel/smmpanelbdlab/growfollows-v2/img/mw9w8qosw7oohj7j_sowcy7.webp" class="img-fluid" alt="" loading="lazy">
+            </div>
+            <div class="container">
+               <div class="row">
+                  <div class="col-lg-12 col-md-12 col-12">
+                     <div class="statistics_wraper">
+                        <div class="row">
+                           <div class="col-lg-8 col-md-12 col-12">
+                              <div class="statistic_content">
+                                 <h2 class="website-title">Statistiques de {{ site["site_name"] }}</h2>
+                                 <p class="website-descriptions" >
+                                 Les clients de {{ site["site_name"] }} sont présents partout dans le monde. Nous comptons plus de 50 millions de clients actifs avec plus de 5 000 services actifs. Nos clients nous font confiance grâce à la qualité que nous offrons. {{ site["site_name"] }} propose les services les moins chers du marché tout en maintenant une qualité irréprochable.
+                                 </p>
+                                 <a href="/signup" class="btn btn__home">Commencer maintenant</a>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-md-12 col-12">
+                              <div class="stastics_wraper">
+                                 <div class="statics__item">
+                                    <div class="ss_icon">
+                                       <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734596/Rental-Panel/smmpanelbdlab/growfollows-v2/img/xrgh987t2rp28cqf_jnl4wq.webp" class="img-fluid" alt="" loading="lazy">
+                                    </div>
+                                    <div class="ss_text">
+                                       <h6>Prix à partir de</h6>
+                                       <h4>0.001$/1k</h4>
+                                    </div>
+                                 </div>
+                                 <div class="statics__item">
+                                    <div class="ss_icon">
+                                       <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734614/Rental-Panel/smmpanelbdlab/growfollows-v2/img/opqq84bcorp4cyeq_ijlmak.webp" class="img-fluid" alt="" loading="lazy">
+                                    </div>
+                                    <div class="ss_text">
+                                       <h6>Commandes traitées</h6>
+                                       <h4>900 439</h4>
+                                    </div>
+                                 </div>
+                                 <div class="statics__item">
+                                    <div class="ss_icon">
+                                       <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734635/Rental-Panel/smmpanelbdlab/growfollows-v2/img/eieuwouwkem5f1o5_hlezbw.png" class="img-fluid" alt="" loading="lazy">
+                                    </div>
+                                    <div class="ss_text">
+                                       <h6>Total des services</h6>
+                                       <h4>
+                                          2417
+                                       </h4>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+         <section id="whyChooseUs">
+            <div class="bg__nion">
+               <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734664/Rental-Panel/smmpanelbdlab/growfollows-v2/img/bw5or0ntg4jqzequ_yivakv.webp" class="whybg1 img-fluid" alt="" loading="lazy">
+               <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734694/Rental-Panel/smmpanelbdlab/growfollows-v2/img/yh5pqg4arro3ta8w_obdoqh.webp" class="whybg2 img-fluid" alt="" loading="lazy">
+               <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734712/Rental-Panel/smmpanelbdlab/growfollows-v2/img/32hix325dbbeag6i_c5mlgj.webp" alt="" class="why_rign" loading="lazy">
+               <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734728/Rental-Panel/smmpanelbdlab/growfollows-v2/img/wle434rkr36grmr2_b0ibby.webp" alt="" class="dotted_img" loading="lazy">
+            </div>
+            <div class="container">
+               <div class="row">
+                  <div class="col-lg-12 col-12">
+                     <h2 class="website-title text-center">Pourquoi acheter des services SMM <br> sur {{ site["site_name"] }} ?
+                     </h2>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-4 col-md-12 col-12">
+                     <div class="why-item why_first_item">
+                        <div class="why-item-inner">
+                           <div class="why-item-content">
+                              <h2 class="why-item-title">Tableau de bord <br> convivial</h2>
+                              <p>
+                                    Le tableau de bord de {{ site["site_name"] }} est très intuitif et vous y trouverez toutes les informations nécessaires. Nous ne vendons que des activités réelles et actives qui durent. Nos services sur les réseaux sociaux sont rapides et à jour.
+                              </p>
+                              <a href="/signup" class="btn btn_outline btn__home">S'inscrire maintenant</a>
+                           </div>
+                           <div class="why-item-img">
+                              <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734762/Rental-Panel/smmpanelbdlab/growfollows-v2/img/4gxekf8lntbzysl8_w7yhdz.webp" class="img-fluid" alt="" loading="lazy">
+                           </div>
+                        </div>
+
+                     </div>
+                  </div>
+                  <div class="col-lg-8 col-md-12 col-12">
+                     <div class="row">
+                        <div class="col-lg-6 col-md-6 col-12">
+                           <div class="why-item">
+                              <h2 class="why-item-title">Panel enfant gratuit</h2>
+                              <p>
+                              {{ site["site_name"] }} offre un panel enfant gratuit (design différent) aux membres Élite, VIP ou Master à vie.
+                              </p>
+                              <a href="/signup" class="btn btn__home btn_fill">S'inscrire maintenant</a>
+                              <div class="why_itme_imggss">
+                                 <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734783/Rental-Panel/smmpanelbdlab/growfollows-v2/img/ip9to7hb9a4ipitn_gkh1ej.webp" class="img-fluid" alt="" loading="lazy">
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                           <div class="why-item">
+                              <h2 class="why-item-title">Prix les plus bas</h2>
+                              <p>
+                              {{ site["site_name"] }} propose les services les moins chers du marché. Nous pouvons battre n'importe quel revendeur SMM.
+                              </p>
+                              <a href="/signup" class="btn btn__home btn_outline">S'inscrire maintenant</a>
+                              <div class="why_itme_imggss">
+                                 <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734802/Rental-Panel/smmpanelbdlab/growfollows-v2/img/2amsl172sbdcn3pb_qqx0r8.webp" class="img-fluid" alt="" loading="lazy">
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-12">
+                           <div class="why-item fourth_item">
+                              <h2 class="why-item-title">Boostez votre activité en ligne ou <br> votre compte sur les réseaux sociaux</h2>
+                              <p class="w-50">
+                              {{ site["site_name"] }} construit des relations solides avec ses clients grâce à des services de qualité. Nous proposons des services SMM abordables avec un support 24h/24 et 7j/7.
+                              </p>
+                              <a href="/signup" class="btn btn__home btn_fill">S'inscrire maintenant</a>
+                              <div class="why_itme_imggss">
+                                 <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734825/Rental-Panel/smmpanelbdlab/growfollows-v2/img/ya59ajgybwollht7_wrvqwa.webp" class="img-fluid" alt="" loading="lazy">
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+
+         <section id="faq">
+            <div class="faq__effect__img">
+               <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734854/Rental-Panel/smmpanelbdlab/growfollows-v2/img/kdq110grt23m1fr4_egdgvh.webp" alt="" class="ploygon2__faq" loading="lazy">
+               <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734872/Rental-Panel/smmpanelbdlab/growfollows-v2/img/5yyhhnq5d3u9c1bn_r68sn1.webp" alt="" class="ploygon1__faq" loading="lazy">
+               <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707734894/Rental-Panel/smmpanelbdlab/growfollows-v2/img/jkjjyt3s80t2gs9l_eelsza.webp" alt="" class="ring__faq" loading="lazy">
+            </div>
+            <div class="container">
+               <div class="row d-flex align-items-center">
+                  <div class="col-lg-6 col-md-12 col-12">
+                     <h2 class="website-title">Questions <br> fréquemment posées</h2>
+                     <p class="website-descriptions">
+                        Un panel SMM est essentiellement un panel de marketing sur les réseaux sociaux où vous pouvez acheter des actions ciblées (abonnés, likes, abonnés, vues, tweets, partages, etc.). Nous comprenons que nos clients peuvent avoir de nombreuses questions. Nous avons préparé les questions les plus importantes pour clarifier tout malentendu concernant le but et le fonctionnement du panel SMM {{ site["site_name"] }}.
+                     </p>
+                     <a href="/" class="btn btn__home">Nous contacter</a>
+                  </div>
+                  <div class="col-lg-6 col-md-12 col-12">
+                     <div id="faq-acc">
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                           <div class="accordion-item">
+                              <h2 class="accordion-header" id="flush-headingOne">
+                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                 <h4>Qu'est-ce qu'un panel SMM ?</h4>
+                                 </button>
+                              </h2>
+                              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                 <div class="accordion-body">Un panel SMM est une boutique en ligne proposant des services de marketing sur les réseaux sociaux de différents types.</div>
+                              </div>
+                           </div>
+                           <div class="accordion-item">
+                              <h2 class="accordion-header" id="flush-headingTwo">
+                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                 <h4>Quels types de services SMM proposez-vous ?</h4>
+                                 </button>
+                              </h2>
+                              <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                 <div class="accordion-body">Notre panel propose différents types de services SMM tels que les likes, les vues, les abonnés, les commentaires, etc.</div>
+                              </div>
+                           </div>
+                           <div class="accordion-item">
+                              <h2 class="accordion-header" id="flush-headingThree">
+                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                 <h4>Les services SMM sont-ils sûrs ?</h4>
+                                 </button>
+                              </h2>
+                              <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                 <div class="accordion-body">Utiliser nos services SMM est totalement sûr, vous ne perdrez pas vos comptes.</div>
+                              </div>
+                           </div>
+                           <div class="accordion-item">
+                              <h2 class="accordion-header" id="flush-headingFour">
+                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                 <h4>Comment fonctionne le fil goutte-à-goutte ?</h4>
+                                 </button>
+                              </h2>
+                              <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                                 <div class="accordion-body">Le fil goutte-à-goutte vous permet de construire l'engagement à votre propre rythme. Par exemple, au lieu de recevoir 1000 likes d'un coup, vous pouvez en recevoir 100 par jour pendant 10 jours.</div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+</main>
+
+{% include 'footer.twig' %}

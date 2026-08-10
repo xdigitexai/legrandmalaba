@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+html {
+  height: 100%;
+}
+body {
+  color: #fff;
+  background-color: #ccc;
+  display: flex;
+  font-size: 1em;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-height: 100%;
+  position: relative;
+}
+main {
+}
+article {
+  padding: 6vmin 2vmin;
+  text-align: center;
+}
+figure {
+  margin: 0 auto 6vmin;
+  width: 20vmax;
+}
+svg {
+  max-width: 100%;
+}
+h1 {
+  font-family: "Oswald", sans-serif;
+  font-size: 5vmax;
+  letter-spacing: 0.1vmin;
+  line-height: 6.5vmax;
+  margin: 0 0 2.5vmax;
+  text-transform: uppercase;
+}
+p {
+  font-family: "Roboto", sans-serif;
+  font-size: 3vmax;
+  margin: 0;
+}

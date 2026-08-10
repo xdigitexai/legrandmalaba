@@ -1,0 +1,210 @@
+{% include 'header.twig' %}
+
+
+ <div class="def_wraper">
+    <div class="container-fluid">
+       <div class="row">
+
+          <div class="col-md-6">
+             <div class="card card_v2">
+              <div class="card-header v2_header">
+                <div class="new_order_tabs has_justify_mob">
+                   <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                      <li class="nav-item" role="presentation">
+                         <button class="nav-link active" id="pills-order-tab" data-bs-toggle="pill" data-bs-target="#pills-order" type="button" role="tab" aria-controls="pills-order" aria-selected="true"> 
+                            <span class="icon"><i class="far fa-credit-card"></i></span>
+                            <span class="text_name  d-inline"> Recharger </span>
+                         </button>
+                      </li>
+                     
+                   </ul>
+                  </div>
+             </div>
+                <div class="card-body">
+                   <div class="tab-content tab_wrap" id="pills-tabContent">
+                                          <div class="tab-pane fade show active" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab">
+                                              
+                          
+              	{% if error %}
+			  <div class="alert alert-dismissible alert-danger">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				{{ errorText }}
+			  </div>
+			{% endif %}
+			{% if success %}
+			  <div class="alert alert-dismissible alert-success">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				{{ successText }}
+			  </div>
+			{% endif %}
+				<form method="post" id="addfundsForm" action="/addfunds">
+              
+         <div class="form-group">
+                              <label for="method" class="control-label">Méthode de paiement</label>
+               <select class="form-control" id="payment_method" name="payment_type">
+													{% for method in site["paymentMethods"] %}
+														<option value="{{ method['id'] }}">{{ method['name'] }}</option>
+													{% endfor %}
+												</select>
+											</div>
+											<div id="addfunds_fields"></div>
+										</form>
+										<div id="formSubmitResponseMessage"></div>
+										<div id="formSubmitResponseContent"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					
+					 </div>
+					 <div class="col-md-6">
+             <div class="card card_v2">
+                <div class="card-header v2_header">
+                  <div id="def_side_title">
+                      <div class="icon">
+                        <i class="fas fa-comment-dots"></i>
+                      </div>
+                      <div class="name">
+                        Informations sur les passerelles de paiement
+                      </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="methodName">
+                    <h5 class="mb-3" id="methodName"> {% if contentText %}
+					
+					
+ 
+{{ contentText }}
+{% endif %}</h5>
+                  </div>
+                 
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
+
+<div class="col-md-6">
+             <div class="card card_v2">
+                <div class="card-header v2_header">
+								<div class="component_content_card component_content_button component_content_headers">
+									<div class="table-wr table-responsive">
+										<table class="table">
+											<thead>
+												<tr>
+													<th><font size="3" color="red"><b>ID</b></font></th>
+													<th><font size="3" color="red"><b>Date</b></font></th>
+													<th><font size="3" color="red"><b>Méthode</b></font></th>
+													<th><font size="3" color="red"><b>Montant</b></font></th>
+												</tr>
+											</thead>
+											<tbody>
+											    
+												{% for payment in payments %}
+													<tr>
+														<td>{{ payment['id'] }}</td>
+														<td>{{ payment['date'] }}
+														</td>
+														<td>{{ payment['name'] }}</td>
+														<td>
+															{{ payment['amount'] }}
+														</td>
+													</tr>
+
+												{% endfor %}
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+  <!-- // New Orders Part -->
+
+
+	<script>
+				var paymentMethods = {{ site["paymentMethodsJSON"] }};
+			</script>
+			<script>
+				const addfundsRoute = "/addfunds";
+function addfundsInit() {
+var addfundsForm = $("#addfundsForm");
+var fields = $("#addfunds_fields");
+var selectedMethod = $("#payment_method").val();
+var instructions = paymentMethods[selectedMethod][0].instructions;
+$.ajax({
+url: addfundsRoute,
+data: "action=getForm&selectedMethod=" + selectedMethod,
+type: "POST",
+success: function (json) {
+if (json.success == true) {
+if (instructions.length > 0) {
+var methodInstruction = '<div class="form-group"><label class="control-label">Instructions</label><div class="panel-body border-solid border-rounded">' + instructions + '</div></div>';
+} else {
+var methodInstruction = "";
+} fields.html(methodInstruction + json.content);
+extraFeeInit(selectedMethod);
+}
+}
+});
+}
+
+function extraFeeInit(method) {
+var fee = parseFloat(paymentMethods[method][0].fee).toFixed(2);
+var fields = $("#fee_fields");
+if (fee > 0) {
+fields.html('<div class="form-group"><label class="control-label">Frais supplémentaires</label><input type="text" class="form-control" id="methodExtraFee" disabled value="0.00"/></div><div class="form-group"><label class="control-label">Montant total</label><input type="text" id="totalAmount" class="form-control" disabled value="0.00" /></div>');
+}
+}
+function preparePrice(t) {
+n = 2;
+var r = (t = $.trim(t.toString().replace(",", "."))).split(".");
+return void 0 !== r[1] && (r[1] = r[1].replace(/0+$/g, ""), r[1].length > n && (n = 2 < r[1].length ? 2 : r[1].length)),
+1e3 <= (t =( t = parseFloat(t)).toFixed(n)) && (t = t.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, "$1" + "")),
+t = t.toString().replace(/\.(\d+)$/g, "." + "$1");
+return t.toFixed(n)
+}
+$(document).ready(function () {
+$(document).on("keyup", "#paymentAmount", function () {
+var selectedMethod = $("#payment_method").val();
+var amount = parseFloat($(this).val());
+var feePercentage = parseFloat(paymentMethods[selectedMethod][0].fee);
+var feeInput = $("#methodExtraFee");
+var totalAmountInput = $("#totalAmount");
+var fee = amount * (feePercentage / 100);
+feeInput.val(preparePrice(fee));
+totalAmountInput.val(preparePrice(amount + fee));
+});
+addfundsInit();
+});
+$("#payment_method").change(function () {
+addfundsInit();
+});
+
+$("#addfundsForm").submit(function (e) {
+e.preventDefault();
+var data = $(this).serialize();
+
+$.ajax({
+url: addfundsRoute,
+data: data,
+type: "POST",
+success: function (json) {
+if (json.success == true) {
+var msgDiv = $("#formSubmitResponseMessage");
+msgDiv.html('<div class="alert alert-success alert-dismissible fade show mt-2" role="alert">' + json.message + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
+var contentDiv = $("#formSubmitResponseContent");
+contentDiv.html(json.content);
+} else {
+var msgDiv = $("#formSubmitResponseMessage");
+msgDiv.html('<div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">' + json.message + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
+}
+}
+
+});
+});
+			</script>
+	{% include 'footer.twig' %}

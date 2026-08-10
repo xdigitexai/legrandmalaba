@@ -1,0 +1,361 @@
+{% include 'header.twig' %}
+<main>
+	<div class="container-fluid">
+			 <div class="row">
+				<div class="col-lg-12">
+					 <div class="page overflow-hidden">
+						<div class="page-body pb-4 pb-xl-6 mt-4">
+
+        <section class="cp-top">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-bg">
+                        <div class="card-body p-4">
+                            <h3 class="cp-sns-title">Please change nameservers to:</h3>
+                            <div class="row">
+                                <div class="col-md-6 col-12">
+                                    <div class="cp-sns-dns">
+                                        <span>ns1.hostlyphdns.site</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="cp-sns-dns">
+                                        <span>ns2.hostlyphdns.site</span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                  <a href="https://who.is/" target="_blank">
+                                    <button class="btn btn-primary btn-100">
+                                        What is my NS Records domain?
+                                    </button>
+                                  </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- ./col  -->
+                <div class="col-md-6 mt-4 mt-md-0">
+                    <div class="card card-bg cp-right-box">
+                        <div class="cp-r-img"></div>
+                        <div class="card-body">
+                            <h3 class="cp-r-title">Get your own dashboard today!</h3>
+                            <div class="cp-r-text">Here you can order your panel with the same functions as ours, to resell our services.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="cp-main">
+            <div class="row">
+                <div class="col-lg-6">
+                  <div class="card mb-4">
+					<div class="card-head d-flex align-items-center justify-content-between">
+                        <div class="card-head-title">
+                           <div class="row align-items-center">
+                                 <div class="col-auto">
+                                    <div class="card-head-icon">
+                                       <i class="ri-store-line"></i>
+                                    </div>
+                                 </div>
+                                 <div class="col">
+                                    <h4>Child panel</h4>
+                                 </div>
+                           </div>
+                        </div>
+                     </div>
+                        <div class="card-body">
+   <form action="/child-panel" method="post">
+                                                        <div class="row">
+                                    <div class="col-12 col-md-6 mb-4">
+                                        <label for="mb-2" class="form-label">
+                                            <div class="d-flex align-items-center">
+                                                <span>Domain</span>
+                                            </div>
+                                        </label>
+                                <input type="text" class="form-control" id="domain" name="CreateOrderForm[domain]"
+                                       value="">
+                                    </div><!-- col -->
+                                    <div class="col-12 col-md-6 mb-4">
+                                        <label for="mb-2" class="form-label">
+                                            <div class="d-flex align-items-center">
+                                                <span>Currency</span>
+                                            </div>
+                                        </label>
+                                        <select id="createorderform-currency" class="form-select" name="CreateOrderForm[currency]"
+                                    aria-required="true">
+                                                                    <option value="USD" >
+                                        United States Dollars (USD)
+                                    </option>
+                                                                    <option value="RUB" >
+                                        Russian Rubles (RUB)
+                                    </option>
+                                                                    <option value="THB" >
+                                        Thai Baht (THB)
+                                    </option>
+                                                                    <option value="TRY" >
+                                        Turkish Lira (TRY)
+                                    </option>
+                                                                    <option value="EUR" >
+                                        Euro (EUR)
+                                    </option>
+                                                                    <option value="IDR" >
+                                        Indonesian Rupiah (IDR)
+                                    </option>
+                                                                    <option value="BRL" >
+                                        Brazilian Real (BRL)
+                                    </option>
+                                                                    <option value="CNY" >
+                                        Chinese Yuan (CNY)
+                                    </option>
+                                                                    <option value="KRW" >
+                                        South Korean Won (KRW)
+                                    </option>
+                                                                    <option value="INR" >
+                                        Indian Rupee (INR)
+                                    </option>
+                                                                    <option value="IRR" >
+                                        Iranian Rial (IRR)
+                                    </option>
+                                                                    <option value="SAR" >
+                                        Saudi Arabia Riyal (SAR)
+                                    </option>
+                                                                    <option value="PLN" >
+                                        Polish złoty (PLN)
+                                    </option>
+                                                                    <option value="MYR" >
+                                        Malaysian Ringgit (MYR)
+                                    </option>
+                                                                    <option value="GBP" >
+                                        Pound sterling (GBP)
+                                    </option>
+                                                                    <option value="KWD" >
+                                        Kuwaiti dinar (KWD)
+                                    </option>
+                                                                    <option value="SEK" >
+                                        Swedish krona (SEK)
+                                    </option>
+                                                                    <option value="ILS" >
+                                        Israeli shekel (ILS)
+                                    </option>
+                                                                    <option value="HKD" >
+                                        Hong Kong dollar (HKD)
+                                    </option>
+                                                                    <option value="NGN" >
+                                        Nigerian naira (NGN)
+                                    </option>
+                                                                    <option value="KES" >
+                                        Kenyan shilling (KES)
+                                    </option>
+                                                                    <option value="JPY" >
+                                        Japanese Yen (JPY)
+                                    </option>
+                                                                    <option value="ARS" >
+                                        Argentine peso (ARS)
+                                    </option>
+                                                                    <option value="VND" >
+                                        Vietnamese đồng (VND)
+                                    </option>
+                                                                    <option value="CAD" >
+                                        Canadian dollar (CAD)
+                                    </option>
+                                                                    <option value="IQD" >
+                                        Iraqi dinar (IQD)
+                                    </option>
+                                                                    <option value="TWD" >
+                                        New Taiwan Dollar (TWD)
+                                    </option>
+                                                                    <option value="AZN" >
+                                        Azerbaijani manat (AZN)
+                                    </option>
+                                                                    <option value="BYN" >
+                                        Belarusian ruble (BYN)
+                                    </option>
+                                                                    <option value="KZT" >
+                                        Kazakhstani tenge (KZT)
+                                    </option>
+                                                                    <option value="UAH" >
+                                        Ukrainian hryvnia (UAH)
+                                    </option>
+                                                                    <option value="RON" >
+                                        Romanian leu (RON)
+                                    </option>
+                                                                    <option value="AED" >
+                                        United Arab Emirates dirham (AED)
+                                    </option>
+                                                                    <option value="COP" >
+                                        Colombian peso (COP)
+                                    </option>
+                                                                    <option value="PKR" >
+                                        Pakistan Rupee (PKR)
+                                    </option>
+                                                                    <option value="EGP" >
+                                        Egyptian Pound (EGP)
+                                    </option>
+                                                                    <option value="PHP" >
+                                        Philippine peso (PHP)
+                                    </option>
+                                                                    <option value="GHS" >
+                                        Ghanaian Cedi (GHS)
+                                    </option>
+                                                                    <option value="BDT" >
+                                        Bangladeshi taka (BDT)
+                                    </option>
+                                                                    <option value="MAD" >
+                                        Moroccan dirham (MAD)
+                                    </option>
+                                                                    <option value="NPR" >
+                                        Nepalese Rupee (NPR)
+                                    </option>
+                                                                    <option value="TND" >
+                                        Tunisian Dinar (TND)
+                                    </option>
+                                                                    <option value="CLP" >
+                                        Chilean Peso (CLP)
+                                    </option>
+                                                                    <option value="XOF" >
+                                        CFA Franc BCEAO (XOF)
+                                    </option>
+                                                                    <option value="LYD" >
+                                        Libyan Dinar (LYD)
+                                    </option>
+                                                                    <option value="TZS" >
+                                        Tanzanian shilling (TZS)
+                                    </option>
+                                                                    <option value="MXN" >
+                                        Mexican peso (MXN)
+                                    </option>
+                                                                    <option value="UGX" >
+                                        Ugandan shilling (UGX)
+                                    </option>
+                                                                    <option value="ZAR" >
+                                        South African rand (ZAR)
+                                    </option>
+                                                                    <option value="PGK" >
+                                        Papua New Guinean kina (PGK)
+                                    </option>
+                                                                    <option value="RWF" >
+                                        Rwandan franc (RWF)
+                                    </option>
+                                                                    <option value="XAF" >
+                                        Central African CFA franc (XAF)
+                                    </option>
+                                                                    <option value="OMR" >
+                                        Omani rial (OMR)
+                                    </option>
+                                                                    <option value="LAK" >
+                                        Laotian kip (LAK)
+                                    </option>
+                                                                    <option value="UZS" >
+                                        Uzbekistan Sum (UZS)
+                                    </option>
+                                                                    <option value="SDG" >
+                                        Sudanese pound (SDG)
+                                    </option>
+                                                                    <option value="CZK" >
+                                        Czech koruna (CZK)
+                                    </option>
+                                                                    <option value="SYP" >
+                                        Syrian pound (SYP)
+                                    </option>
+                                                                    <option value="DKK" >
+                                        Danish krone (DKK)
+                                    </option>
+                                                                    <option value="PEN" >
+                                        Peruvian sol (PEN)
+                                    </option>
+                                                                    <option value="HUF" >
+                                        Hungarian forint (HUF)
+                                    </option>
+                                                                    <option value="NOK" >
+                                        Norwegian krone (NOK)
+                                    </option>
+                                                                    <option value="MZN" >
+                                        Mozambican metical (MZN)
+                                    </option>
+                                                                    <option value="AOA" >
+                                        Angolan kwanza (AOA)
+                                    </option>
+                                                                    <option value="YER" >
+                                        Yemeni Rial (YER)
+                                    </option>
+                                                                    <option value="JOD" >
+                                        Jordanian dinar (JOD)
+                                    </option>
+                                                                    <option value="MMK" >
+                                        Myanmar kyat (MMK)
+                                    </option>
+                                                            </select>
+                                    </div><!-- col -->
+                                    <div class="col-12 col-md-12 mb-4">
+                                        <label for="mb-2" class="form-label">
+                                            <div class="d-flex align-items-center">
+                                                <span>Admin username</span>
+                                            </div>
+                                        </label>
+                            <input
+                                    type="text" id="createorderform-username" class="form-control"
+                                    name="CreateOrderForm[username]" aria-required="true"
+                                    value="">
+                                    </div><!-- col -->
+                                    <div class="col-12 col-md-6 mb-4">
+                                        <label for="mb-2" class="form-label">
+                                            <div class="d-flex align-items-center">
+                                                <span>Admin password</span>
+                                            </div>
+                                        </label>
+                            <input
+                                    type="password" id="createorderform-password" class="form-control"
+                                    name="CreateOrderForm[password]" aria-required="true">
+
+                                    </div><!-- col -->
+                                    <div class="col-12 col-md-6 mb-4">
+                                        <label for="mb-2" class="form-label">
+                                            <div class="d-flex align-items-center">
+                                                <span>Confirm password</span>
+                                            </div>
+                                        </label>
+                            <input
+                                    type="password" id="createorderform-password_confirm" class="form-control"
+                                    name="CreateOrderForm[password_confirm]" aria-required="true">
+                                    </div><!-- col -->
+                                </div><!-- ./row -->
+                             <input type="hidden" name="_csrf" value="0gKsw8O0WVLpQAKbHCcnCevMHJ7iZZFYo7rhHwBkpSO0RdbzifsgBI0KM8pkbUR9jbRT1I0c5xfJ_tNzQS-Xdg==">
+
+                                <button type="submit" class="btn btn-primary btn-block btn-border">Buy (₱500.00)</button>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- ./col -->
+                <div class="col-lg-6">
+                  <div class="card mb-4">
+					<div class="card-head d-flex align-items-center justify-content-between">
+                        <div class="card-head-title">
+                           <div class="row align-items-center">
+                                 <div class="col-auto">
+                                    <div class="card-head-icon">
+                                       <i class="ri-folder-info-line"></i>
+                                    </div>
+                                 </div>
+                                 <div class="col">
+                                    <h4>Child panel information</h4>
+                                 </div>
+                           </div>
+                        </div>
+                     </div>
+                        <div class="card-body">
+                            ✅ Available Features of Child Panel<br><br> Import all 1xpanel.com Services via API<br><br> Set Your Prices with Profit Percentage<br><br> All kinds of Currency Support<br><br> add, edit, remove, enable, disable services, etc<br><br> Activate Own Payment Gateway<br><br> Receive payment directly from customers<br><br> All admin Panel features and more<br><br> Free HTTPS/SSL certificate<br><br> Free themes<br><br> Huge Unique Features
+<br><br>❌ The following features are Not Available in Child Panel<br><br> Affiliate system<br><br>Child panels selling<br><br>Updates<br><br>Assignment<br><br>Average time<br><br>Multi-currency<br><br>Free balance<br><br>Multi-Providers<br><br>You can make a lot of money :)
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </section>
+
+						</div>
+					 </div>
+				</div>
+			 </div>
+         </div>
+      </main>
+{% include 'footer.twig' %}

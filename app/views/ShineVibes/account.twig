@@ -1,0 +1,168 @@
+{% include 'header.twig' %}
+
+    
+<div class="wrapper-content__body">
+  <!-- Main variables *content* -->
+  <div id="block_api" class="pt-5 mt-2 ">
+  <div class="block-api">
+  <div class="container-fluid">
+  <div class="row justify-content-center">
+  <div class="col-lg-8">
+         
+  <div class="col-md-12g">
+  <div class="well "></br></br>
+  <div class="dashboard-content">
+  <div class="head clearfix">
+      <div class="card">
+  <div class="content">
+  {% if error %}
+        <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ errorText }}
+        </div>
+      {% endif %}
+      {% if success %}
+        <div class="alert alert-dismissible alert-success">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ successText }}
+        </div>
+      {% endif %}
+      
+      <h4 class="mb-3"><i class="fad fa-user-alt"></i> Account Details</h4>
+      <div class="form-group">
+          <label for="charge" class="control-label">{{ lang['account.username'] }}</label>
+          <input type="text" class="form-control" value="{{ user['username'] }}" readonly>
+        </div>
+
+        
+
+        <div class="form-group">
+          <label for="charge" class="control-label">{{ lang['account.email'] }}</label>
+          <input type="text" class="form-control" value="{{ user['email'] }}" readonly>
+        </div>
+
+{% if site['languages']|length > 1 %}
+        <div class="well">
+          <form method="post" action="account/change_lang">
+
+            <div class="form-group">
+              <label for="charge" class="control-label">{{ lang['account.changelang.title'] }}</label>
+              <select class="form-control" name="lang">
+                  {% for language in site['languages'] %}
+                  <option {% if language["code"] == user["lang"] %} selected {% endif %} value="{{ language["code"] }}">{{ language["name"] }}</option>
+                  {% endfor %}
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-block btn-big-primary">{{ lang['account.changelang.button'] }}</button>
+          </div>
+                                </div>
+                            </form>
+                       </div>
+  </div>
+  </div>
+{% endif %}
+
+
+  </div>
+  </div>
+  </div>
+  </div>
+  </div> 
+  </div></div>
+  
+  
+    <!---Copun Code---->
+<div class="wrapper-content__body">
+  <!-- Main variables *content* -->
+  <div id="block_api" class="mt-3">
+  <div class="block-api">
+  <div class="container-fluid">
+  <div class="row justify-content-center">
+  <div class="col-lg-8">
+         
+  <div class="col-md-12g">
+  <div class="well ">
+  <div class="dashboard-content">
+  <div class="head clearfix">
+      <div class="card">
+  <h4 class="mb-3"><i class="fad fa-key"></i> Change Password </h4>
+    
+  
+  <div class="content">
+  
+
+
+ <form method="post" action="account">
+
+          <div class="form-group">
+            <label for="charge" class="control-label">{{ lang['account.password.current'] }}</label>
+            <input type="password" class="form-control" value="" name="current_password">
+          </div>
+
+          <div class="form-group">
+            <label for="charge" class="control-label">{{ lang['account.password.new'] }}</label>
+            <input type="password" class="form-control" value="" name="password">
+          </div>
+
+          <div class="form-group">
+            <label for="charge" class="control-label">{{ lang['account.password.confirm'] }}</label>
+            <input type="password" class="form-control" value="" name="confirm_password">
+          </div>
+          <button type="submit" class="btn btn-block btn-big-primary">{{ lang['account.password.button'] }}</button>
+        
+      </div></div>
+</form>
+</div></div>
+  </div>
+  </div>
+  </div>
+  </div>  
+                                </div>
+                            
+  
+    <!---Copun Code---->
+<div class="wrapper-content__body">
+  <!-- Main variables *content* -->
+  <div id="block_api" class="mt-3 mb-5">
+  <div class="block-api">
+  <div class="container-fluid">
+  <div class="row justify-content-center">
+  <div class="col-lg-8">
+  <div class="col-md-12g">
+  <div class="well ">
+  <div class="dashboard-content">
+  <div class="head clearfix">
+      <div class="card">
+           
+
+  <h4 class="mb-3"><i class="fad fa-link"></i> Generate New API</h4>
+  <div class="content">
+ <form  action="/account/newapikey" method="post">
+								 <div class="form-group mb-4">
+<label>Api Key</label>
+	<div class="d-flex form-group__line">								
+
+<input  class="form-control mb-3 "style="width:100%;" type="text" id="api_key"  value="⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆" readonly>
+								 </div>
+								 	<div class="account-button-right">
+																<div class="component_button_save">
+																	<div class="">
+								<button type="submit" style="margin-bottom:-20px;" class="btn btn-block btn-big-primary">Generate New</button>
+										
+								 </form>
+</div>
+  </div>
+  </div>
+  </div>
+  </div>  
+  </div>
+  </div>
+  </div>
+  </div>  </div>
+  </div>  </div>
+  </div>  
+ 
+{% include 'footer.twig' %}
+
+    

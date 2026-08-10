@@ -1,0 +1,219 @@
+{% include 'header.twig' %}
+<style>.body{background-image: url('app/views/xblur/image/Background.png');background-position: 0px 0px;background-repeat: repeat;background-size: 250%;width: 100%;}</style>
+<div class="wrapper-content">
+    <div class="wrapper-content__header">
+          </div>
+    <div class="wrapper-content__body">
+      <!-- Main variables *content* -->
+      <div id="block_16"  style=" margin-top:35px;">
+    <div class="addfunds-block ">
+        <div class="bg"></div>
+        <div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container">
+            {% if contentText %}
+<div class="super-lud mt-2 mb-2">
+{{ contentText }}
+</div>
+{% endif %}
+            
+            <div class="row addfunds-form">
+                <div class="col-lg-12"style="margin-top:-30px;">
+                   <div class="component_form_group component_card component_radio_button">
+                     
+
+				<br>
+
+				{% if error %}
+					<div class="alert alert-dismissible alert-danger">
+						{{ errorText }}
+					</div>
+					<br>
+				{% endif %}
+
+				{% if success %}
+					<div class="alert alert-dismissible alert-success">
+						{{ successText }}
+					</div>
+					<br>
+				{% endif %}
+
+                        
+<div class="row affiliates-info__alignment">
+                <div class="col-lg-12 mt-3">
+                    <div class="table-bg component_table_statistics ">
+                        <div class="table-wr table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+
+                                    <th>Referral link</th>
+                                    <th>Commission rate</th>
+                                    <th>Minimum payout</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="affiliates-table-border-none">
+<tr>
+                                    <td data-label="Referral link" nowrap>
+                                        <span id="link-1" class="mr-1">{{ site["url"] }}/affiliates?ref={{ user['ref_code'] }}</span>
+                                        <a>
+                                            <span
+                                                data-clip="true"
+                                                title="Link copied"
+                                                data-clipboard-action="copy"
+                                                data-clipboard-target="#link-1"
+                                                class="fas fa-clone"></span>
+                                        </a>
+                                    </td>
+                                    <td data-label="Commission rate">{{settings["referral_commision"]}}%</td>
+                                    <td data-label="Minimum payout">{{ settings["referral_payout"] }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<br>
+            <div class="row affiliates-info__alignment">
+                <div class="col-lg-12">
+                    <div class="table-bg component_table_statistics ">
+                        <div class="table-wr table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Total visits</th>
+                                    <th>Successful referrals</th>
+                                    <th>Conversion rate</th>
+                                    <th>Total earnings</th>
+<th>Paid earnings</th>
+                                    <th>Available earnings</th>
+                    <th>Rejected earnings</th>
+
+<th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="affiliates-table-border-none">
+<tr>
+                                   
+
+	{% for ref in ref_content %}																
+<td>{{ ref['referral_clicks'] }}</td>
+<td>{{ ref['referral_sign_up'] }}</td>
+<td>
+    {% if ref["referral_clicks"] %}
+ {{ ( ref['referral_sign_up'] / ref['referral_clicks']) * 100 }}%</td>
+  {% else %}
+  {{ "NaN" }}%
+  {% endif %}
+<td>
+    {{ ref['referral_total_commision']}}
+</td>
+
+<td>{{ ref['referral_earned_commision'] }}</td>
+
+<td>{{ (ref['referral_total_commision'] - (ref['referral_earned_commision']  +  ref['referral_requested_commision'] +  ref['referral_rejected_commision'])) }}</td>
+
+
+<td>{{ ref['referral_rejected_commision'] }}</td>
+<td><form method="post" action="">
+
+																				<input type="hidden" name="ref_code" value="{{ user['ref_code'] }}">
+																				<input type="hidden" name="ref_amt" value="{{ ref['referral_total_commision'] - (ref['referral_earned_commision'] + ref['referral_requested_commision'] ) }}">
+																				<a href="javascript:void(0)">
+																				{% if (ref['referral_total_commision'] - (ref['referral_earned_commision'] + ref['referral_requested_commision'] + ref['referral_rejected_commision'] )) >= settings["referral_payout"] %} <button type="submit" style="margin-left:2px;" class="btn btn-actions">Request Paid Out</button>
+															 {% endif %} 						</a>
+
+																			</form>
+																		</td>
+																	</tr>
+																</td>
+															</tbody>
+													
+													{% endfor %}
+	</tr>
+
+												</tbody> 
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></div>
+<br>
+<div id="block_14">
+    <div class="affiliates-list">
+        <div class="bg"></div>
+        <div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container-fluid">
+            <div class="row affiliate-list__alignment">
+                <div class="col-lg-12">
+                    <div class="table-bg affiliate-block__table-payments component_table ">
+                        <div class="table-wr table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Payout date</th>
+                                    <th>Payout amount</th>
+<th>Last Updated</th>
+                                    <th>Payout status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+	{% for ref_payout in ref_payouts %}
+														<tr>
+<td>{{ ref_payout['r_p_requested_at'] }}</td>
+<td>{{ currency['symbol'] }}{{ ref_payout['r_p_amount_requested'] }}</td>
+<td>{{ ref_payout['r_p_updated_at'] }}</td>
+<td>
+																{% if (ref_payout['r_p_status'] == 0)  %}
+																	{{ "Pending" }}
+																{% elseif (ref_payout['r_p_status'] == 1)  %}
+																	{{ "Disapproved" }}
+																{% elseif (ref_payout['r_p_status'] == 2)  %}
+																	{{ "Approved" }}
+																{% elseif (ref_payout['r_p_status'] == 3)  %}
+																	{{ "Rejected" }}
+																{% endif %}
+															</td>
+
+														</tr>
+													{% endfor %}
+												</tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row affiliate-list__alignment">
+                <div class="col-lg-12">
+                    <nav class="component_pagination">
+                        <div class="">
+                                                    </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div></div>
+</div>
+ <div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container">
+		{% if contentText2 %}
+<div class="super-lud mt-3 mb-4">
+{{ contentText2 }}
+</div>
+{% endif %}
+</div>
+
+
+{% include 'footer.twig' %}
+
+

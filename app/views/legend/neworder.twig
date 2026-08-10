@@ -1,0 +1,439 @@
+{% include 'header.twig' %}
+<style>
+#service_descriptions {
+   padding: 13px;
+    border-radius: 12px;
+    color: #393e46;
+    box-shadow: none;
+    background-color: #F1F7FC;
+     overflow-y: auto;
+    height: 150px; 
+}
+</style>
+
+  <style>
+.service-dashboard {
+    background-color: #f9f9f9; /* Light background */
+    border: 1px solid #e0e0e0; /* Softer border */
+    padding: 1rem; /* Use rem for better scalability */
+    margin-top: 1.25rem; /* Use rem for better scalability */
+    border-radius: 0.5rem; /* Rounded corners */
+    box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-height: 250px; /* Set a max height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.service-dashboard h4 {
+    font-size: 1.125rem; /* Use rem for better scalability */
+    color: #333; /* Dark text */
+    margin-bottom: 0.625rem; /* Use rem for better scalability */
+    border-bottom: 2px solid #000; /* Bottom border */
+    padding-bottom: 0.3125rem; /* Use rem for better scalability */
+}
+
+.service-dashboard ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+.service-dashboard li {
+    background-color: #fff; /* White background */
+    border: 1px solid #e0e0e0; /* Border for items */
+    border-radius: 0.3125rem; /* Rounded corners */
+    padding: 0.5rem; /* Use rem for better scalability */
+    margin: 0.3125rem 0; /* Use rem for better scalability */
+    transition: background-color 0.2s; /* Smooth background color change */
+}
+
+.service-dashboard li:hover {
+    background-color: #f0f0f0; /* Change background on hover */
+}
+
+.service-dashboard li::before {
+    content: "✔️"; /* Checkmark */
+    margin-right: 0.3125rem; /* Space between icon and text */
+    color: #007bff; /* Checkmark color */
+}
+</style>
+
+<style>
+		#service_description,
+		#service_avg_time {
+			padding: 13px;
+			border: solid 1px rgba(232, 13, 13, 1);
+			border-radius: 12px;
+			color: #ffffff;
+			box-shadow:none;
+}
+</style>
+  
+  <div class="wrapper-content">
+    <div class="wrapper-content__header">
+          </div>
+    <div class="wrapper-content__body">
+      <!-- Main variables *content* -->
+      <br>
+      <br>
+      <marquee scrollamount="1" scrolldelay="10" truespeed="" style="text-align: start; color: #201f21; font-family: " lucida="" sans="" unicode";"="" bgcolor="#ffc107"><span style="font-weight: 700;">{{ site["site_marqueens"] }}
+</span></marquee>
+      
+        {% if settings['video_feilds']  ==  1 %} 
+               <div id="block_134">
+        <div class="block-bg"></div>
+        <div class="container">
+            <div class="video">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="video-container">
+                            <div class="video-block">
+                                <div class="video-frame">
+                                    <iframe src="{{ site['site_video'] }}?controls=1&autoplay=1&mute=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+<style>
+  #block_134 {
+    position: relative;
+    z-index: auto;
+    width: 100%;
+    display: flex;
+    min-height: auto;
+    align-items: flex-start;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: var(--text-dark);
+}
+
+#block_134 .block-bg {
+    background: var(--color-id-131);
+}
+
+#block_134 .video-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#block_134 .video-block {
+    max-width: 800px; /* Maximum width for larger screens */
+    width: 100%; /* Full width for smaller screens */
+    height: 0; /* Set height to 0 for aspect ratio */
+    padding-top: 30%; /* 16:9 Aspect Ratio */
+    position: relative; /* Position relative for absolute children */
+    overflow: hidden; /* Hide overflow */
+}
+
+#block_134 .video-block .video-frame {
+    position: absolute; /* Position absolute to fill the parent */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: none;
+    border-radius: 4px; /* Rounded corners */
+    border: 3px solid var(--color-id-158); /* Border color */
+}
+
+#block_134 .video-block iframe {
+    position: absolute; /* Position absolute to fill the frame */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    border: none; /* Remove default border */
+}
+
+/* Responsive styles */
+@media (max-width: 499px) {
+    #block_134 .video-block {
+        padding-top: 56.25%; /* Maintain aspect ratio */
+    }
+}
+</style>
+
+      <div id="block_139"><div class="block-bg"></div><div class="container-fluid"><div class="totals ">
+  <div class="row align-items-start justify-content-start">
+                  <div class="col-lg-3 col-md-6 col-sm-12 mb-2 mt-2">
+          <div class="card h-100"
+               style="
+                background: var(--color-id-234);                                  color: var(--text-white);                                                                  border-color: var(--color-id-239);                                  padding-top: 24px;                                  padding-bottom: 24px;                                                                                                  border-top-left-radius: 30px;                                  border-bottom-left-radius: 30px;                                  border-top-right-radius: 30px;                                  border-bottom-right-radius: 30px;                                  border-left-width: 1px;                                  border-right-width: 1px;                                  border-bottom-width: 1px;                                  border-top-width: 1px;                                  box-shadow: 0px 4px 8px 0px var(--color-id-215);                                  border-style: solid; ">
+            <div class="totals-block__card">
+                              <div class="totals-block__card-left">
+                  <div
+                          class="totals-block__icon-preview style-bg-primary-alpha-10 style-border-radius-default style-text-primary"
+                          style="
+                           background: var(--color-id-260);                                          border-top-left-radius: 30px;                                          border-bottom-left-radius: 30px;                                          border-top-right-radius: 30px;                                          border-bottom-right-radius: 30px;                                   ">
+                        <span class="totals-block__icon style-text-primary fas fa-badge-check" style="
+                                font-size: 38px;
+                                transform: rotate(0deg);
+                                color: var(--color-id-225);
+                                text-shadow: Array;
+                                border-radius: 0px;
+                                "></span>
+                  </div>
+                </div>
+                            <div class="totals-block__card-right">
+                                  <style>
+                    #block_139 .totals-block__count a {
+                      color: var(--color-id-224) !important;
+                    }
+                  </style>
+                                <div class="totals-block__count">
+                  <h2 class="totals-block__count-value style-text-primary"
+                      style=" color: var(--color-id-224); ">
+                                                                  {{ user['username'] }}
+                                                                                </h2>
+                </div>
+                <div class="totals-block__card-name">
+                                      <p>Welcome to Our Site!</p>
+                                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 mb-2 mt-2">
+          <div class="card h-100"
+               style="
+                background: var(--color-id-234);                                  color: var(--text-white);                                                                  border-color: var(--color-id-239);                                  padding-top: 24px;                                  padding-bottom: 24px;                                                                                                  border-top-left-radius: 30px;                                  border-bottom-left-radius: 30px;                                  border-top-right-radius: 30px;                                  border-bottom-right-radius: 30px;                                  border-left-width: 1px;                                  border-right-width: 1px;                                  border-bottom-width: 1px;                                  border-top-width: 1px;                                  box-shadow: 0px 4px 8px 0px var(--color-id-215);                                  border-style: solid; ">
+            <div class="totals-block__card">
+                              <div class="totals-block__card-left">
+                  <div
+                          class="totals-block__icon-preview style-bg-primary-alpha-10 style-border-radius-default style-text-primary"
+                          style="
+                           background: var(--color-id-260);                                          border-top-left-radius: 30px;                                          border-bottom-left-radius: 30px;                                          border-top-right-radius: 30px;                                          border-bottom-right-radius: 30px;                                   ">
+                        <span class="totals-block__icon style-text-primary fas fa-sack-dollar" style="
+                                font-size: 38px;
+                                transform: rotate(0deg);
+                                color: var(--color-id-225);
+                                text-shadow: Array;
+                                border-radius: 0px;
+                                "></span>
+                  </div>
+                </div>
+                            <div class="totals-block__card-right">
+                                  <style>
+                    #block_139 .totals-block__count a {
+                      color: var(--color-id-224) !important;
+                    }
+                  </style>
+                                <div class="totals-block__count">
+                  <h2 class="totals-block__count-value style-text-primary"
+                      style=" color: var(--color-id-224); ">
+                                                                  {{ user["spent"] }}
+                                                                                </h2>
+                </div>
+                <div class="totals-block__card-name">
+                                      <p>Spent balance</p>
+                                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 mb-2 mt-2">
+          <div class="card h-100"
+               style="
+                background: var(--color-id-234);                                  color: var(--text-white);                                                                  border-color: var(--color-id-239);                                  padding-top: 24px;                                  padding-bottom: 24px;                                                                                                  border-top-left-radius: 30px;                                  border-bottom-left-radius: 30px;                                  border-top-right-radius: 30px;                                  border-bottom-right-radius: 30px;                                  border-left-width: 1px;                                  border-right-width: 1px;                                  border-bottom-width: 1px;                                  border-top-width: 1px;                                  box-shadow: 0px 4px 8px 0px var(--color-id-215);                                  border-style: solid; ">
+            <div class="totals-block__card">
+                              <div class="totals-block__card-left">
+                  <div
+                          class="totals-block__icon-preview style-bg-primary-alpha-10 style-border-radius-default style-text-primary"
+                          style="
+                           background: var(--color-id-260);                                          border-top-left-radius: 30px;                                          border-bottom-left-radius: 30px;                                          border-top-right-radius: 30px;                                          border-bottom-right-radius: 30px;                                   ">
+                        <span class="totals-block__icon style-text-primary fas fa-analytics" style="
+                                font-size: 38px;
+                                transform: rotate(0deg);
+                                color: var(--color-id-225);
+                                text-shadow: Array;
+                                border-radius: 0px;
+                                "></span>
+                  </div>
+                </div>
+                            <div class="totals-block__card-right">
+                                  <style>
+                    #block_139 .totals-block__count a {
+                      color: var(--color-id-224) !important;
+                    }
+                  </style>
+                                <div class="totals-block__count">
+                  <h2 class="totals-block__count-value style-text-primary"
+                      style=" color: var(--color-id-224); ">
+                                                              {{totalorders}}
+                                      </h2>
+                </div>
+                <div class="totals-block__card-name">
+                                      <p>Panel orders Completed</p>
+                                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 mb-2 mt-2">
+          <div class="card h-100"
+               style="
+                background: var(--color-id-234);                                  color: var(--text-white);                                                                  border-color: var(--color-id-239);                                  padding-top: 24px;                                  padding-bottom: 24px;                                                                                                  border-top-left-radius: 30px;                                  border-bottom-left-radius: 30px;                                  border-top-right-radius: 30px;                                  border-bottom-right-radius: 30px;                                  border-left-width: 1px;                                  border-right-width: 1px;                                  border-bottom-width: 1px;                                  border-top-width: 1px;                                  box-shadow: 0px 4px 8px 0px var(--color-id-215);                                  border-style: solid; ">
+            <div class="totals-block__card">
+                              <div class="totals-block__card-left">
+                  <div
+                          class="totals-block__icon-preview style-bg-primary-alpha-10 style-border-radius-default style-text-primary"
+                          style="
+                           background: var(--color-id-260);                                          border-top-left-radius: 30px;                                          border-bottom-left-radius: 30px;                                          border-top-right-radius: 30px;                                          border-bottom-right-radius: 30px;                                   ">
+                        <span class="totals-block__icon style-text-primary fad fa-dollar-sign" style="
+                                font-size: 38px;
+                                transform: rotate(0deg);
+                                color: var(--color-id-225);
+                                text-shadow: Array;
+                                border-radius: 0px;
+                                "></span>
+                  </div>
+                </div>
+                            <div class="totals-block__card-right">
+                                  <style>
+                    #block_139 .totals-block__count a {
+                      color: var(--color-id-224) !important;
+                    }
+                  </style>
+                                <div class="totals-block__count">
+                  <h2 class="totals-block__count-value style-text-primary"
+                      style=" color: var(--color-id-224); ">
+                                                                  {{ user["balance"] }}
+                                                                                </h2>
+                </div>
+                <div class="totals-block__card-name">
+                                      <p>Account balance</p>
+                                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+                                </div>
+</div></div></div><div id="block_122"><div class="block-bg"></div><div class="container-fluid"><div class="new_order-block ">
+  <div class="row">
+    <div class="col-lg-7 mb-3 mb-lg-0">
+      <div class="component_form_group component_card component_radio_button">
+        <div class="card ">
+            
+             {% if error %}
+      <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">✖</button>
+{{ errorText }}
+      </div>
+    {% endif %}
+
+     {% if data["order"]["success"] == 1 %}
+      <div class="alert alert-dismissible alert-success">
+          <strong> {{ lang["neworder.success.id"] }}: </strong> {{ data['order']['id'] }} <br>
+          <strong> {{ lang["neworder.success.service"] }}: </strong> {{ data['order']['service'] }} <br>
+          <strong> {{ lang["neworder.success.link"] }}: </strong> {{ data['order']['link'] }} <br>
+          <strong> {{ lang["neworder.success.quantity"] }}: </strong> {{ data['order']['quantity'] }} <br>
+          <strong> {{ lang["neworder.success.charge"] }}: </strong> {{ data['order']['price'] }} <br>
+          <strong> {{ lang["neworder.success.balance"] }}: </strong>{{ data['order']['balance'] }} <br>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">âœ•</span></button>
+
+      </div>
+    {% endif %}
+    
+    
+    {% if data["order"]["success"] == 2 %}
+      <div class="alert alert-dismissible alert-success">
+ <strong> {{ lang["neworder.success.id"] }}: </strong> {{ data['order']['id'] }} <br>
+ <strong> {{ lang["neworder.success.service"] }}: </strong> {{ data['order']['service'] }} <br>
+ <strong> {{ lang["neworder.success.username"] }}: </strong> {{ data['order']['link'] }} <br>
+ <strong> {{ lang["neworder.success.quantity"] }}: </strong> {{ data['order']['min'] }} - {{ data['order']['max'] }} <br>
+ <strong> {{ lang["neworder.success.posts"] }}: </strong> {{ data['order']['posts'] }} <br>
+ <strong> {{ lang["neworder.success.delay"] }}: </strong>{{ data['order']['delay'] }} <br>
+       </div>
+    {% endif %}
+                     
+            <form method="post" action="">
+            <div class="component_button_forms">
+                  <style>
+#unique-dropdown{max-height: 300px;border-radius: 8px;margin-top:8px;border-left-width: 0px;border-right-width: 0px;border-top-width: 0px;border-bottom-width: 0px;border-color: transparent;border-style: solid;box-shadow: 0 12px 24px 12px rgba(0, 0, 0, 0.2);overflow-y: auto;display: block;position: absolute;left:auto;max-width:100%;width: 86%;background:white;z-index: 1;}@media(min-width:776px){ #unique-dropdown{width: 93%;}}@media(min-width:991px){ #unique-dropdown{width: 92.4%;}}.selectme {padding: 3px 10px;cursor: pointer;list-style-type: none; }.selectme:hover {background-color: #f2f2f2;}.highlight {font-weight: bold; }.form-group .search-dropdown .input-wrapper .input-wrapper__prepend, .form-group .search-dropdown .input-wrapper .input-wrapper__append {position: absolute;background: none;border: none;top: 50%;transform: translateY(-50%);padding: 0px 15px;color: var(--form_group_icon_color);}.form-group .search-dropdown .input-wrapper .input-wrapper__prepend:hover, .form-group .search-dropdown .input-wrapper .input-wrapper__append:hover {opacity: 0.5;}.form-group .search-dropdown .input-wrapper .input-wrapper__prepend:hover, .form-group .search-dropdown .input-wrapper .input-wrapper__append:focus {outline:none;}.form-group .search-dropdown .input-wrapper .input-wrapper__append {font-size: 12px;right: 3px;display: none;}
+</style>
+
+
+ <div class="form-group">
+        <div class="search-dropdown" id="new-order-search" style="position: relative;" data-lang-placeholder="Search">
+            <div class="input-wrapper" style="position: relative;">
+                <button type="button" class="input-wrapper__prepend" onclick="focusInputField()"><span class="fas fa-search"></span></button>
+             <input style="padding-left:41px" type="text" class="form-control" id="unique-input" value="" placeholder="Search">
+             <button type="button" class="input-wrapper__append" onclick="clearInput()"><span class="fas fa-times"></span></button>
+            </div>
+        </div>
+        <div class="search-results" id="unique-dropdown" style="display: none;"></div>
+    </div>
+                                                                                          
+                                <div class="form-group">
+                  <label for="orderform-category" class="control-label">Category</label>
+                  <select class="form-control" id="neworder_category" name="categories" data-select="true" data-select-search="true" data-select-search-placeholder="Search" data-select-container="#select-category-container" tabindex="-1" aria-hidden="true">
+{{ category_html_simplify }}
+
+</select>
+                  <div id="select-category-container" class="position-relative"></div>
+                </div>
+                            <div class="form-group">
+                <label for="orderform-service" class="control-label">Service</label>
+                <select class="form-control" id="neworder_services" name="services" data-select="true" data-select-search="true" data-select-search-placeholder="Search" data-select-container="#select-service-container" tabindex="-1" aria-hidden="true">
+<option value="1">No services found in this category</option>
+</select>
+                <div id="select-service-container" class="position-relative"></div>
+              </div>
+              <!-- <div class="form-group hidden fields component_service_description" id="service_description">
+                <label for="service_description" class="control-label">Description</label>
+                <div class="panel-description">
+                  
+                </div>
+              </div> -->
+               <div id="neworder_fields"></div>
+
+  
+  <div class="form-group" id="charge_div">
+      <label for="charge" class="control-label">Charge</label>
+      <input type="text" class="form-control" id="charge" readonly>
+    </div>
+            <input type="hidden" name="_csrf" value="e-B2-m0EVjzaM1brdj6rivi9UPELhQyZ8q_zd1OsjvA_uDSfI0piC5VyGYEFD_3_ytgkoW7oNN6j3KcQMMvohg==">
+            <div class="new-order-button-submit component_button_submit ">
+              <button type="submit" class="btn btn-block btn-big-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+      </div>
+    </div>
+  </div>
+</div></div></div>
+    </div>
+    
+
+{% if contentText2 %}
+<div class="card mt-3 mb-4">
+{{ contentText2 }}
+</div>
+{% endif %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollArea = document.getElementById('service_descriptions');
+    
+    // Example content to ensure scrolling
+    for (let i = 0; i < 20; i++) {
+        const p = document.createElement('p');
+        p.textContent = 'Item ' + (i + 1);
+        scrollArea.appendChild(p);
+    }
+
+    // Check if scrolling works
+    scrollArea.addEventListener('scroll', function() {
+        console.log('Scrolling...');
+    });
+});
+</script>
+{% include 'new.twig' %}

@@ -1,0 +1,123 @@
+{% include 'header.twig' %}
+
+
+	 <!-- Main variables *content* -->
+			 <main  id="content" >
+				 <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card custom__card mb-3">
+                <div class="card-body">
+                    <div class="info_card_title_wrap mb-3">
+                        <div class="info_icon">
+                            <i class="far fa-info-circle"></i>
+                        </div>
+                        <div class="info_title">
+                           {{ messageList['ticket']['subject'] }}
+                        </div>
+                    </div>
+                        <hr>
+                         <div id="ticketsMessages">
+
+				
+      {% if error %}
+        <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ errorText }}
+        </div>
+      {% endif %}
+      {% if success %}
+        <div class="alert alert-dismissible alert-success">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ successText }}
+        </div>
+      {% endif %}
+
+      
+
+              {% if messageList %}
+                {% for message in messageList %}
+                  {% if message["support"] == 1 %}
+                  
+                                                                                                                    <div class="row ticket-message-block ticket-message-right user_messages">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-11">
+                                    <div class="ticket-message">
+                                      <div class="message">{{ message["message"] }}</div>
+                                      </div>
+                
+                                    <div class="info text-right user_user">
+                                        <div class="icons">
+                                            <img src="https://smmengage.com/cdn/theme/SmmEngage/img/user.png" class="img-fluid" alt="">
+                                        </div>
+                                        <div>
+                                                <strong>{{ user["username"] }}</strong>
+                                                  <small class="text-muted">{{ message["time"] }} </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+                  {% elseif message["subject"] %}
+                  {% else %}
+                    
+                                                                                                           <div class="col-md-1"></div>
+                                </div>
+                                  <div class="row ticket-message-block ticket-message-left admin_messages">
+                                    <div class="col-md-11">
+                                    <div class="ticket-message">
+                                      <div class="message">{{ message["message"] }}</div>
+                                    </div>
+                                    <div class="info admin_user">
+                                        <div class="icon">
+                                            <img style="max-width:50px;" src="https://smmengage.com/cdn/theme/SmmEngage/img/supportteam.png" class="img-fluid" alt="">
+                                        </div>
+                                        <div>
+                                            <strong>Support Team</strong>
+                                            <small class="text-muted">{{ message["time"] }} </small>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                </div>
+                            
+                  {% endif %}
+
+                {% endfor %}
+              {% endif %}
+            
+
+
+  
+                        <div class="row">
+              <div class="col-md-12">
+                <form  method="post" action="">
+                                    <div class="form-group panel-border-top">	
+                    <form method="post" action="tickets/{{ messageList['ticket']['ticket_id'] }}">
+								      
+																		  <div class="schat-msg-input">
+										<textarea id="message" rows="5" class="form-control" name="message"></textarea>
+										</div>
+										                  <div class="form-group">
+                    <div class="tickets-uploader" data-rtl="false"
+                      data-lang-button-attach="Attach files"
+                      data-lang-file-format-incorrect="Invalid file format"
+                      data-lang-file-size-incorrect="File is too large (limit 5 MB)">
+                          </div>
+                  </div>
+										<button type="submit" class="btn btn-primary w-100">Submit</button>
+                </form>
+              </div>
+            </div>
+                      </div>
+        </div>
+      </div>
+
+
+				
+				
+	
+				
+
+
+{% include 'footer.twig' %}

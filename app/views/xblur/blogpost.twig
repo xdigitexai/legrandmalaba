@@ -1,0 +1,37 @@
+{% include 'header.twig' %}
+<style>.body{background-image: url('app/views/xblur/image/Background.png');background-position: 0px 0px;background-repeat: repeat;background-size: 250%;width: 100%;}</style>
+   <div class="component_navbar" style="margin-top: 3.1rem"></div>
+    <div class="component_navbar_sub "></div>
+    <div class="wrapper-content">
+
+    <div class="wrapper-content__header">
+          </div>
+    <div class="wrapper-content__body">
+      <div id="block_93">
+    <div class="new_order-block ">
+        <div class="bg"></div>
+        <div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container">
+            <div class="row new-order-form">
+                <div class="col-lg-8 offset-lg-2">
+                   <div class="component_form_group component_card component_radio_button">
+                      <div class="super-lud mt-2">
+    <div class="col-md-12">
+<h4>{{ blogtitle }}</h4>
+{% if blogimage %}
+<div style="display:flex;justify-content: center;">
+<img src="{{blogimage}}" alt="{{ blogtitle }}" class="img-responsive"></div>                 
+{% endif %} 
+<div style="padding:15px 0px;">{{ blogcontent }} </div>
+<a href="blog"><button class="btn btn-big-primary" style="width:100%;">Go Back </button></a>
+</div>
+    </div>
+  </div>  </div>
+ </div> </div>
+
+</div> </div>
+  </div>
+</div>
+
+{% include 'footer.twig' %}

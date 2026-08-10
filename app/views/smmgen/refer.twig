@@ -1,0 +1,110 @@
+{% include 'header.twig' %}
+			 <!-- Main variables *content* -->
+			 <main  id="content" >
+				 <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="affiliates_top">
+                <div class="card custom__card mb-3">
+                    <div class="card-body">
+                        <div class="affiliates_top_data">
+                            <div class="items">
+                                <div class="icon">
+                                    <i class="fas fa-user-astronaut"></i>
+                                </div>
+                          
+                                				{% if error %}
+					<div class="alert alert-dismissible alert-danger">
+						{{ errorText }}
+					</div>
+					<br>
+				{% endif %}
+
+				{% if success %}
+					<div class="alert alert-dismissible alert-success">
+						{{ successText }}
+					</div>
+					<br>
+				{% endif %}
+                                <div class="info">
+                                    <h5>Username</h5>
+                                 <h4>{{ user["username"]  }}</h4>
+                                </div>
+                            </div>
+
+                            <div class="items">
+                                <div class="icon">
+                                   <i class="fas fa-share-alt"></i>
+                                </div>
+                                <div class="info">
+                                    <h5>Referral link</h5>
+                                    <h4>{{ site["url"] }}/affiliates?ref={{ user['ref_code'] }}</h4>
+                                </div>
+                            </div>
+                            <div class="items">
+                                <div class="icon">
+                                    <i class="fas fa-percentage"></i>
+                                </div>
+                                <div class="info">
+                                    <h5>Commission rate</h5>
+                                    <h4>{{settings["referral_commision"]}}%</h4>
+                                </div>
+                            </div>
+                            <div class="items">
+                                <div class="icon">
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                </div>
+                                <div class="info">
+                                    <h5>Minimum payout</h5>
+                                    <h4>{{ settings["referral_payout"] }}</h4>
+
+                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            	{% for ref in ref_content %}
+            <div class="affiliates_bottom">
+                <div class="bottom_item">
+                    <h5>Visits</h5>
+                    <h4>{{ ref['referral_clicks'] }}</h4>
+                </div>
+                <div class="bottom_item">
+                    <h5>Registrations</h5>
+                    <h4>---------</h4>
+                </div>
+                <div class="bottom_item">
+                    <h5>Referrals</h5>
+                    <h4>{{ ref['referral_sign_up'] }}</h4>
+                </div>
+                <div class="bottom_item">
+                    <h5>Conversion rate</h5>
+                    <h4>    {% if ref["referral_clicks"] %}
+ {{ ( ref['referral_sign_up'] / ref['referral_clicks']) * 100 }}%</td>
+  {% else %}
+  {{ "NaN" }}%
+  {% endif %}</h4>
+                </div>
+                <div class="bottom_item">
+                    <h5>Total earnings</h5>
+                    <h4>{{ ref['referral_total_commision']}}</h4>
+                </div>
+                <div class="bottom_item">
+                    <h5>Available earnings</h5>
+                    <h4>{{ (ref['referral_total_commision'] - (ref['referral_earned_commision']  +  ref['referral_requested_commision'] +  ref['referral_rejected_commision'])) }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+			 </main>
+			 		 </div>
+	 </section>
+{% endfor %}
+
+
+
+{% include 'footer.twig' %}
+
+

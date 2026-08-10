@@ -1,0 +1,17 @@
+<?php
+define("PATH", dirname(__DIR__));
+define("SUBFOLDER", false);
+define("URL", "https://" . ($_SERVER["HTTP_HOST"] ?? "cdvrsbooster.site"));
+define("STYLESHEETS_URL", "//" . ($_SERVER["HTTP_HOST"] ?? "cdvrsbooster.site"));
+date_default_timezone_set("Africa/Kinshasa");
+error_reporting(0);
+ini_set("display_errors", 0);
+return [
+  "db" => [
+    "name"    => "tipmrnhl_ssdboost",
+    "host"    => "localhost",
+    "user"    => "tipmrnhl_ssdboost",
+    "pass"    => "Ssd@Boost2026",
+    "charset" => "utf8mb4",
+  ]
+];

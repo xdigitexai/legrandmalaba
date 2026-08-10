@@ -1,0 +1,149 @@
+{% include 'header.twig' %}
+
+ <!-- Main variables *content* -->
+        <main class="auth">
+                    <div class="about_us_effect">
+            <img
+              src="https://smmxz.sacloud.site/images/about-us-page-left-image.png"
+              class="img-fluid about_us_img_left"
+              alt=""
+            />
+            <img
+              src="https://smmxz.sacloud.site/images/about-us-page-right-image.png"
+              class="img-fluid about_us_img_right"
+              alt=""
+            />
+          </div>
+
+
+<div class="content">
+        <!-- page and other top info -->
+        <div id="page_info">
+
+        </div>
+        <!-- // page and other top info -->
+        <section id="viewTicket">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card card_v2">
+                    <div class="card-body">
+                        <div id="def_side_title">
+                            <div class="icon">
+                              <i class="fas fa-question"></i>
+                            </div>
+                            <div class="name">
+                               {{ messageList['ticket']['subject'] }}
+                            </div>{% if messageList["ticket"]["canmessage"] == 1 %} <span class="badge"> This request has been closed by the administrator</span></div> {% endif %} 
+                        </div>
+                        <hr>
+                        
+                        
+                        {% if messageList %}
+                {% for message in messageList %}
+                  {% if message["support"] == 1 %}
+                       
+                        
+                                                                                                                      <div class="row ticket-message-block ticket-message-right msg_user">
+                                  <div class="col-md-2"></div>
+                                  <div class="col-md-10">
+                                    <div class="ticket-message">
+                                      <div class="message">{{ message["message"] }}</div>
+                                    </div>
+                                    <div class="info text-end">
+                                      <strong>{{ user["username"] }}</strong>
+                                      <small class="text-muted">{{ message["time"] }}</small>
+                                    </div>
+                                  </div>
+                                </div>
+                                                                                      
+                                
+                                 
+                     {% elseif message["subject"] %}
+                  {% else %}
+                  <div class="row ticket-message-block ticket-message-left msg_admin">
+                                  <div class="col-md-10">
+                                    <div class="ticket-message">
+                                      <div class="message">{{ message["message"] }}</div>
+                                    </div>
+                                    <div class="info">
+                                      <strong>support</strong>
+                                      <small class="text-muted">{{ message["time"] }}</small>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2"></div>
+                                </div>
+                 
+                                                                    
+                                      
+                                    {% endif %}
+
+                {% endfor %}
+              {% endif %}      <hr>  
+                                    {% if messageList['ticket']['canmessage'] == 2 %}
+                                       <div class="row">
+                                <div class="col-md-12">
+                                    <form method="post" action="tickets/{{ messageList['ticket']['ticket_id'] }}" enctype="multipart/form-data">
+                                                                                                                    <div class="form-group panel-border-top">
+                                          <label for="message" class="control-label">Message</label>
+                                          <textarea id="message" rows="5" class="form-control" style="height: 200px;" name="message"></textarea>
+                                          
+                                          
+                                        </div>
+                    
+                                      
+                                                                                <button type="submit" class="btn btn-primary d-block w-100" id="submitButton">Submit</button>
+                                      </form>
+                                                                      </div>
+                                <div class="col-md-4">
+                    
+                                </div>
+                            </div>                             
+                                {% endif %}                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                            
+                      
+                                 
+                                 
+                                 
+                                 
+                                 
+    </div></div>
+  </div></div></div></div></section>
+
+
+  
+      </div>
+      
+
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/libs/jquery/1.12.4/jquery.min.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/6lea6p5h1se0ydlc.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/lpckws4jmmcjpzoh.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/41oyxac8gg4eoke6.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/dmabhtcke4de93dz.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/ob5eq3/t05xwla9gwo8usgw.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/ob5eq3/9kqdad0glwb7ykdp.js" >
+							</script>
+					<script type="text/javascript" >
+				                window.modules.layouts = {"theme_id":1,"auth":1,"live":true,"csrftoken":"o8f1nkALGrgBtcv82dXnfNjIdKt1Yn_xelCaowfZtivlvc3OODws0GzX84nuoIYGk5A2xjYaRsMwHs6TTbvQfw=="};
+                			</script>
+					<script type="text/javascript" >
+				                window.modules.alerts = {"alerts":[]};
+                			</script>
+					<script type="text/javascript" >
+							</script>
+		
+        <!-- Footer Scripts -->
+                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+                <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

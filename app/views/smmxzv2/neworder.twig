@@ -1,0 +1,902 @@
+ {% include 'header.twig' %}
+
+<style>
+#service_descriptions {
+   padding: 13px;
+    border-radius: 12px;
+    color: #393e46;
+    box-shadow: none;
+    background-color: #F1F7FC;
+     overflow-y: auto;
+    height: 150px; 
+}
+</style>
+           
+           <style>
+.service-dashboard {
+    background-color: #f9f9f9; /* Light background */
+    border: 1px solid #e0e0e0; /* Softer border */
+    padding: 15px; /* Reduced padding */
+    margin-top: 20px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-height: 250px; /* Set a max height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.service-dashboard h4 {
+    font-size: 1.12rem; /* Slightly smaller font size */
+    color: #333; /* Dark text */
+    margin-bottom: 10px; /* Reduced margin */
+    border-bottom: 2px solid #000000; /* Bottom border */
+    padding-bottom: 5px; /* Reduced padding */
+}
+
+.service-dashboard ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+.service-dashboard li {
+    background-color: #fff; /* White background */
+    border: 1px solid #e0e0e0; /* Border for items */
+    border-radius: 5px; /* Rounded corners */
+    padding: 8px; /* Reduced padding */
+    margin: 5px 0; /* Margin for spacing */
+    transition: background-color 0.2s; /* Smooth background color change */
+}
+
+.service-dashboard li::before {
+    content: "✔️"; /* Checkmark */
+    margin-right: 5px; /* Space between icon and text */
+    color: #007bff; /* Checkmark color */
+}
+</style>
+
+
+
+<!-- Main variables *content* -->
+        <main class="auth">
+                    <div class="about_us_effect">
+            <img
+              src="https://smmxz.sacloud.site/images/about-us-page-left-image.png"
+              class="img-fluid about_us_img_left"
+              alt=""
+            />
+            <img
+              src="https://smmxz.sacloud.site/images/about-us-page-right-image.png"
+              class="img-fluid about_us_img_right"
+              alt=""
+            />
+          </div>
+          	<marquee scrollamount="1" scrolldelay="10" truespeed="" style="text-align: start; color: #201f21; font-family: " lucida="" sans="" unicode";"="" bgcolor="#ffc107"><span style="font-weight: 700;">{{ site["site_marqueens"] }}
+</span></marquee>	    
+<!-- Top Part -->
+<div class="container-fluid">
+    <div class="row">
+     
+      <div class="col-lg-9 col-md-8 col-12">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="user_data_info">
+              <a href="/account" class="settings_icon_btn">
+                <iconify-icon icon="vaadin:cog"></iconify-icon>
+              </a>
+              <div class="user_d_left">
+                <div class="icon">
+                  <img src="https://smmxz.sacloud.site/dashboard/hand.png" alt="" />
+                </div>
+                <div class="text">
+                  <h6>Hey</h6>
+                  <h3>{{ user["username"]  }}!</h3>
+                </div>
+              </div>
+              <div class="user_d_right">
+                <h4>Have A Good Day</h4>
+                <h6> <a href="/tickets">{{ ticketCount }} Notifications</a></h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+  <!-- Top Part -->
+
+  <!-- User Statistic Area -->
+  <div class="container-fluid">
+    <div class="row neworder_statistics_row">
+      <div class="col-lg-3 col-md-3 col-6">
+        <div class="card mb-3 statics_card" onclick="window.location.href='/addfunds'" style="cursor: pointer;">
+          <div class="card-body">
+            <div class="statics_card_inner">
+              <div class="icon">
+                <img
+                  src="https://smmxz.sacloud.site/dashboard/current-balance.png"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="text">
+                <h6>Current Balance</h6>
+                <h3>{{ user["balance"] }}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-6">
+        <div class="card mb-3 statics_card" onclick="window.location.href='/dashboard'" style="cursor: pointer;">
+          <div class="card-body">
+            <div class="statics_card_inner">
+              <div class="icon">
+                <img
+                  src="https://smmxz.sacloud.site/dashboard/spending-icon.png"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="text">
+                <h6>Spending</h6>
+                <h3>{{ user["spent"] }}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-6">
+        <div class="card mb-3 statics_card">
+          <div class="card-body">
+            <div class="statics_card_inner" >
+              <div class="icon">
+                <img
+                  src="https://smmxz.sacloud.site/dashboard/total-orders.png"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="text">
+                <h6>Total Orders</h6>
+                <h3>{{totalorders}}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-6">
+        <div class="card mb-3 statics_card" data-bs-toggle="modal" data-bs-target="#levelModal" style="cursor: pointer;">
+          <div class="info_icon_box">
+            <iconify-icon icon="fontisto:info"></iconify-icon>
+          </div>
+          <div class="card-body">
+            <div class="statics_card_inner">
+              <div class="icon iconify_icon">
+               <iconify-icon icon="material-symbols:star"></iconify-icon>
+              </div>
+              <div class="text">
+                <h6>Status</h6>
+                <h3>NEW</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- User Statistic Area -->
+
+   <!-- Social Media filter -->
+   <div class="container-fluid">
+    <div class="row mb-3">
+      <div class="col-lg-12">
+        <div class="cat_filter_wrap" id="categoryFIlterWraper">
+          <a
+            href="javascript:void(0)"
+            onclick="filterStarted('instagram')"
+            class="filter_item brand-category"
+            data-id="instagram"
+          >
+            <span class="icons">
+              <img
+                src="https://smmxz.sacloud.site/dashboard/instagram-icon.png"
+                alt=""
+                class="img-fluid s_icon"
+              />
+            </span>
+            <span class="text">Instagram </span>
+          </a>
+
+          <a
+            href="javascript:void(0)"
+            onclick="filterStarted('facebook')"
+            class="filter_item brand-category"
+          >
+            <span class="icons" data-id="facebook">
+              <img
+                src="https://smmxz.sacloud.site/dashboard/facebook-icon.png"
+                alt=""
+                class="img-fluid s_icon"
+              />
+            </span>
+            <span class="text">Facebook</span>
+          </a>
+
+          <a
+            href="javascript:void(0)"
+            onclick="filterStarted('youtube')"
+            class="filter_item brand-category"
+          >
+            <span class="icons" data-id="youtube">
+              <img
+                src="https://smmxz.sacloud.site/dashboard/youtube-icon.png"
+                alt=""
+                class="img-fluid s_icon"
+              />
+            </span>
+            <span class="text">Youtube</span>
+          </a>
+
+          <a
+            href="javascript:void(0)"
+            onclick="filterStarted('twitter')"
+            class="filter_item brand-category"
+          >
+            <span class="icons" data-id="twitter">
+              <img
+                src="https://smmxz.sacloud.site/dashboard/x-icon.png"
+                alt=""
+                class="img-fluid s_icon"
+              />
+            </span>
+            <span class="text">Twitter</span>
+          </a>
+
+          <a
+            href="javascript:void(0)"
+            onclick="filterStarted('spotify')"
+            class="filter_item brand-category"
+            data-id="spotify"
+          >
+            <span class="icons">
+              <img
+                src="https://smmxz.sacloud.site/dashboard/spotify-icon.png"
+                alt=""
+                class="img-fluid s_icon"
+              />
+            </span>
+            <span class="text">Spotify</span>
+          </a>
+
+          <a
+            href="javascript:void(0)"
+            onclick="filterStarted('tiktok')"
+            class="filter_item brand-category"
+          >
+            <span class="icons" data-id="tiktok">
+              <img
+                src="https://smmxz.sacloud.site/dashboard/tiktok-icon.png"
+                alt=""
+                class="img-fluid s_icon"
+              />
+            </span>
+            <span class="text">Tiktok</span>
+          </a>
+
+          <a
+            href="javascript:void(0)"
+            onclick="filterStarted('linkedin')"
+            class="filter_item brand-category"
+            data-id="linkedin"
+          >
+            <span class="icons">
+              <img
+                src="https://smmxz.sacloud.site/dashboard/linkedin-icon.png"
+                alt=""
+                class="img-fluid s_icon"
+              />
+            </span>
+            <span class="text">Linkedin</span>
+          </a>
+
+          <!-- Sound Cloud -->
+
+          <a
+            href="javascript:void(0)"
+            onclick="filterStarted('soundcloud')"
+            class="filter_item brand-category"
+            data-id="soundcloud"
+          >
+            <span class="icons">
+              <img
+                src="https://smmxz.sacloud.site/dashboard/soundcloud-icon.png"
+                alt=""
+                class="img-fluid s_icon"
+              />
+            </span>
+            <span class="text">SoundCloud</span>
+          </a>
+
+          <a
+            href="javascript:void(0)"
+            onclick="filterStarted('telegram')"
+            class="filter_item brand-category"
+            data-id="telegram"
+          >
+            <span class="icons">
+              <img
+                src="https://smmxz.sacloud.site/dashboard/telegram-icon.png"
+                alt=""
+                class="img-fluid s_icon"
+              />
+            </span>
+            <span class="text">Telegram</span>
+          </a>
+
+          <a
+            href="javascript:void(0)"
+            onclick="filterStarted('website')"
+            class="filter_item brand-category"
+            data-id="telegram"
+          >
+            <span class="icons">
+              <img
+                src="https://smmxz.sacloud.site/dashboard/website-traffic-icon.png"
+                alt=""
+                class="img-fluid s_icon"
+              />
+            </span>
+            <span class="text">Web Traffic</span>
+          </a>
+
+          <a
+            href="javascript:void(0)"
+            onclick="filterStarted('snapchat')"
+            class="filter_item brand-category"
+            data-id="telegram"
+          >
+            <span class="icons">
+              <img
+                src="https://smmxz.sacloud.site/dashboard/snapchat-icon.png"
+                alt=""
+                class="img-fluid s_icon"
+              />
+            </span>
+            <span class="text">Snapchat</span>
+          </a>
+
+          <a
+            href="javascript:void(0)"
+            onclick="filterStarted('discord')"
+            class="filter_item brand-category"
+            data-id="discord"
+          >
+            <span class="icons">
+              <img
+                src="https://smmxz.sacloud.site/dashboard/discord-icon.png"
+                alt=""
+                class="img-fluid s_icon"
+              />
+            </span>
+            <span class="text">Discord</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Social Media filter -->
+
+  
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-12">
+        <!-- Card Type 1 -->
+        <div class="card card_auth_1 mb-3">
+          <div class="card-header">
+            <div class="header_buttons py-2">
+              <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link active"
+                    id="pills-home-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#pills-home"
+                    type="button"
+                    role="tab"
+                    aria-controls="pills-home"
+                    aria-selected="true"
+                  >
+                    <div class="icon">
+                      <iconify-icon
+                        icon="mdi:cart-check"
+                      ></iconify-icon>
+                    </div>
+                    <div class="text">New Order</div>
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="pills-profile-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#pills-profile"
+                    type="button"
+                    role="tab"
+                    aria-controls="pills-profile"
+                    aria-selected="false"
+                    onclick="window.location.href='/massorder'"
+                  >
+                    <div class="icon">
+                      <iconify-icon icon="el:list-alt"></iconify-icon>
+                    </div>
+                    <div class="text">Mass Order</div>
+                  </button>
+                </li>
+                <!-- <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="pills-contact-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#pills-contact"
+                    type="button"
+                    role="tab"
+                    aria-controls="pills-contact"
+                    aria-selected="false"
+                  >
+                    <div class="icon">
+                      <iconify-icon
+                        icon="material-symbols:star"
+                      ></iconify-icon>
+                    </div>
+                    <div class="text">Favourites</div>
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="pills-forder-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#pills-forder"
+                    type="button"
+                    role="tab"
+                    aria-controls="pills-forder"
+                    aria-selected="false"
+                  >
+                    <div class="icon">
+                      <iconify-icon
+                        icon="gridicons:cart"
+                      ></iconify-icon>
+                    </div>
+                    <div class="text">Frequent Orders</div>
+                  </button>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+
+ <div class="card-body">
+            <div class="tab-content" id="pills-tabContent">
+              <div
+                class="tab-pane fade show active"
+                id="pills-home"
+                role="tabpanel"
+                aria-labelledby="pills-home-tab"
+                tabindex="0"
+              >
+              <form  action="/" method="post" id="order-form">
+                                                       
+                         {% if error %}
+                     <div class="alert alert-dismissible alert-danger">
+                        {{ errorText }}
+                     </div>
+                     {% endif %}
+                     {% if data["order"]["success"] == 1 %}
+      <div class="alert alert-dismissible alert-success">
+          <strong> {{ lang["neworder.success.id"] }}: </strong> {{ data['order']['id'] }} <br>
+          <strong> {{ lang["neworder.success.service"] }}: </strong> {{ data['order']['service'] }} <br>
+          <strong> {{ lang["neworder.success.link"] }}: </strong> {{ data['order']['link'] }} <br>
+          <strong> {{ lang["neworder.success.quantity"] }}: </strong> {{ data['order']['quantity'] }} <br>
+          <strong> {{ lang["neworder.success.charge"] }}: </strong> {{ data['order']['price'] }} <br>
+          <strong> {{ lang["neworder.success.balance"] }}: </strong>{{ data['order']['balance'] }} <br>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">✕</span></button>
+
+      </div>
+    {% endif %}
+    
+    
+    {% if data["order"]["success"] == 2 %}
+      <div class="alert alert-dismissible alert-success">
+ <strong> {{ lang["neworder.success.id"] }}: </strong> {{ data['order']['id'] }} <br>
+ <strong> {{ lang["neworder.success.service"] }}: </strong> {{ data['order']['service'] }} <br>
+ <strong> {{ lang["neworder.success.username"] }}: </strong> {{ data['order']['link'] }} <br>
+ <strong> {{ lang["neworder.success.quantity"] }}: </strong> {{ data['order']['min'] }} - {{ data['order']['max'] }} <br>
+ <strong> {{ lang["neworder.success.posts"] }}: </strong> {{ data['order']['posts'] }} <br>
+ <strong> {{ lang["neworder.success.delay"] }}: </strong>{{ data['order']['delay'] }} <br>
+       </div>
+    {% endif %}
+
+                         
+                         
+                           
+                         
+                        <style>
+#unique-dropdown{max-height: 300px;border-radius: 8px;margin-top:8px;border-left-width: 0px;border-right-width: 0px;border-top-width: 0px;border-bottom-width: 0px;border-color: transparent;border-style: solid;box-shadow: 0 12px 24px 12px rgba(0, 0, 0, 0.2);overflow-y: auto;display: block;position: absolute;left:auto;max-width:100%;width: 94.5%;background:white;z-index: 1;}@media(min-width:776px){ #unique-dropdown{width: 93%;}}@media(min-width:991px){ #unique-dropdown{width: 92.4%;}}.selectme {padding: 3px 10px;cursor: pointer;list-style-type: none; }.selectme:hover {background-color: #f2f2f2;}.highlight {font-weight: bold; }.form-group .search-dropdown .input-wrapper .input-wrapper__prepend, .form-group .search-dropdown .input-wrapper .input-wrapper__append {position: absolute;background: none;border: none;top: 50%;transform: translateY(-50%);padding: 0px 15px;color: var(--form_group_icon_color);}.form-group .search-dropdown .input-wrapper .input-wrapper__prepend:hover, .form-group .search-dropdown .input-wrapper .input-wrapper__append:hover {opacity: 0.5;}.form-group .search-dropdown .input-wrapper .input-wrapper__prepend:hover, .form-group .search-dropdown .input-wrapper .input-wrapper__append:focus {outline:none;}.form-group .search-dropdown .input-wrapper .input-wrapper__append {font-size: 12px;right: 3px;display: none;}
+</style>
+
+
+ <div class="form-group">
+        <div class="search-dropdown" id="new-order-search" style="position: relative;" data-lang-placeholder="Search">
+            <div class="input-wrapper" style="position: relative;">
+                <button style="margin-left:-11px" type="button" class="input-wrapper__prepend" onclick="focusInputField()"><span class="fas fa-search"></span></button>
+             <input style="padding-left:41px" type="text" class="form-control" id="unique-input" value="" placeholder="Search">
+             <button type="button" class="input-wrapper__append" onclick="clearInput()"><span class="fas fa-times"></span></button>
+            </div>
+        </div>
+        <div class="search-results" id="unique-dropdown" style="display: none;"></div>
+    </div> 
+                         
+                    <div class="mb-3">
+                 <label for="orderform-category" class="control-label">Category</label>
+                     
+<select class="form-control" id="neworder_category" name="categories" data-select="true" data-select-search="true" data-select-search-placeholder="Search" data-select-container="#select-category-container" tabindex="-1" aria-hidden="true">
+{{ category_html_simplify }}
+
+</select>
+<div id="select-category-container" class="position-relative"></div>
+</div>
+                                     
+                      
+                              <div class="mb-3">
+                                 <label for="orderform-service" class="control-label">Service</label>
+                                 	<select class="form-control" id="neworder_services" name="services" data-select="true" data-select-search="true" data-select-search-placeholder="Search" data-select-container="#select-service-container" tabindex="-1" aria-hidden="true">
+<option value="1">No services found in this category</option>
+</select>
+<div id="select-service-container" class="position-relative"></div>
+    </div>
+       
+          
+                      <div id="neworder_fields"></div>
+
+
+
+
+
+
+           <div class="mb-3">
+                                 <label for="charge" class="control-label">Charge</label>
+                                 <input type="text" class="form-control" id="charge" value="" readonly>
+                              </div>
+                                  <button type="submit" class="btn btn-primary w-100">Place order</button>
+              </form>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="pills-profile"
+                role="tabpanel"
+                aria-labelledby="pills-profile-tab"
+                tabindex="0"
+              >
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Redirecting To MassOrder Page...
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+              
+              </div>
+              <div
+                class="tab-pane fade"
+                id="pills-contact"
+                role="tabpanel"
+                aria-labelledby="pills-contact-tab"
+                tabindex="0"
+              >
+                ...
+              </div>
+              <div
+                class="tab-pane fade"
+                id="pills-forder"
+                role="tabpanel"
+                aria-labelledby="pills-forder-tab"
+                tabindex="0"
+              >
+                ...
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card Type 1 -->
+      </div>
+        
+        
+        <div class="col-lg-6 col-md-6 col-12">
+        <!-- Card Type 1 -->
+        <div class="card card_auth_1 mb-3">
+          <div class="card-header">
+            <div class="card_text py-2">
+              <h4>
+                <span id="new_services_name">-</span>
+              </h4>
+            </div>
+          </div>
+          <div class="card-body">
+            <!-- <div class="example_link mb-3">
+                <div class="lebel">Link</div>
+                <div class="example_set">
+                   <span class="text" data-id="serviceLink" >-</span> 
+                    <span class="text" data-key="Example link">-</span>
+                    <span class="icon" id="copyBtn">
+                      <img
+                        src="https://smmxz.sacloud.site/dashboard/copy-btn.png"
+                        alt=""
+                        class="img-fluid"
+                      />
+                </div>
+              </span>
+            </div> -->
+            <div class="infos_item mb-2">
+              <div class="lebel">Example Link</div>
+              <div class="info_box">
+                <div class="icon">
+                  <img
+                    src="https://storage.perfectcdn.com/ob5eq3/d9ectrk6upnnk4yc.png"
+                    class="img-fluid"
+                    alt=""
+                  />
+                </div>
+                <!-- <div class="text" data-id="serviceStart">-</div> -->
+                <div class="text" data-key="Example link">-</div>
+              </div>
+            </div>
+
+            <div class="service_infos mb-3">
+              <div class="infos_item">
+                <div class="lebel">Start Time</div>
+                <div class="info_box">
+                  <div class="icon">
+                    <img
+                      src="https://smmxz.sacloud.site/dashboard/start-time-icon.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <!-- <div class="text" data-id="serviceStart">-</div> -->
+                  <div class="text" data-key="Start">-</div>
+                </div>
+              </div>
+              <div class="infos_item">
+                <div class="lebel">Speed</div>
+                <div class="info_box">
+                  <div class="icon">
+                    <img
+                      src="https://smmxz.sacloud.site/dashboard/speed-icon.png"
+                      alt=""
+                      class="img-fluid"
+                    />
+                  </div>
+                  <!-- <div class="text" data-id="serviceSpeed">-</div> -->
+                  <div class="text" data-key="Speed">-</div>
+                </div>
+              </div>
+              <div class="infos_item">
+                <div class="lebel">Guarantee</div>
+                <div class="info_box">
+                  <div class="icon">
+                    <img
+                      src="https://smmxz.sacloud.site/dashboard/guarantee-icon.png"
+                      alt=""
+                      class="img-fluid"
+                    />
+                  </div>
+                  <!-- <div class="text" data-id="serviceRefill">Satisfaction Guarantee</div> -->
+                  <div class="text" data-key="Refill">-</div>
+                </div>
+              </div>
+              <div class="infos_item">
+                <div class="lebel">Quality</div>
+                <div class="info_box">
+                  <div class="icon">
+                    <img
+                      src="https://smmxz.sacloud.site/dashboard/quality-icon.png"
+                      alt=""
+                      class="img-fluid"
+                    />
+                  </div>
+                  <!-- <div class="text" data-id="serviceQuality">-</div> -->
+                  <div class="text" data-key="Quality">-</div>
+                </div>
+              </div>
+              <div class="infos_item">
+                <div class="lebel">Refill Button</div>
+                <div class="info_box">
+                  <div class="icon">
+                    <img
+                      src="https://smmxz.sacloud.site/dashboard/refill-icon.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <!-- <div class="text" data-id="serviceRefill">-</div> -->
+                  <div class="text" data-key="Refill Button">-</div>
+                </div>
+              </div>
+              <div class="infos_item">
+                <div class="lebel">Cancel Button</div>
+                <div class="info_box">
+                  <div class="icon">
+                    <img
+                      src="https://smmxz.sacloud.site/dashboard/cancel-icon.png"
+                      alt=""
+                      class="img-fluid"
+                    />
+                  </div>
+                  <!-- <div class="text" data-id="serviceCancel">-</div> -->
+                  <div class="text" data-key="Cancel Button">-</div>
+                </div>
+              </div>
+              <div class="infos_item">
+                <div class="lebel">Drop</div>
+                <div class="info_box">
+                  <div class="icon">
+                    <img
+                      src="https://smmxz.sacloud.site/dashboard/drop-icon.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <!-- <div class="text" data-id="serviceDrop">-</div> -->
+                  <div class="text" data-key="Drop Ratio">-</div>
+                </div>
+              </div>
+              <div class="infos_item">
+                <div class="lebel">Quantity</div>
+                <div class="info_box">
+                  <div class="icon">
+                    <img
+                      src="https://smmxz.sacloud.site/dashboard/quality-icon.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="text" id="minMax"><i class="fas fa-spinner fa-spin"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="service_descriptions">
+              <label for="service_description">Description</label>
+              <!-- <div id="service_descriptions"  data-id="serviceDesc"> -->
+              <div id="description"  data-key="Rest of the description">
+               
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card Type 1 -->
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+  const allCurrentCat = [ ];
+
+
+  function filterNow(name) {
+      let result = [];
+      let resultHtml = '';
+      let necesItem = name.toLowerCase();
+
+      for (const item of allCurrentCat) {
+          const itemName = item.name.toLowerCase();
+          const itemIsTrue = itemName.includes(necesItem);
+          if (itemIsTrue == true) {
+              result.push(item);
+          }
+      }
+      if (result.length == 0) {
+          for (const item of allCurrentCat) {
+              resultHtml = resultHtml + `<option data-icon="${item.icon}" value="${item.id}">${item.name}</option>`;
+          }
+      } else {
+          for (const item of result) {
+              resultHtml = resultHtml + `<option data-icon="${item.icon}" value="${item.id}">${item.name}</option>`;
+          }
+      }
+      return resultHtml;
+  }
+
+  function filterEverything() {
+      let resultHtml;
+      let result = [];
+      for (const item of allCurrentCat) {
+          result.push(item);
+      }
+
+      for (const item of result) {
+          resultHtml = resultHtml + `<option data-icon="${item.icon}" value="${item.id}">${item.name}</option>`;
+      }
+
+      const getCatSelect = document.getElementById('orderform-category');
+      getCatSelect.innerHTML = resultHtml;
+      $('#orderform-category').trigger('change');
+  }
+
+  function filterStarted(targetName) {
+      const getResults = filterNow(targetName);
+      const getCatSelect = document.getElementById('orderform-category');
+      getCatSelect.innerHTML = getResults;
+      $('#orderform-category').trigger('change');
+  }
+
+
+  var getFilterWrap = document.getElementById('categoryFIlterWraper');
+
+  getFilterWrap.addEventListener('click', function (e) {
+      var getallActive = document.getElementsByClassName('activeItem');
+      if (getallActive.length > 0) {
+          for (item of getallActive) {
+              item.classList.remove('activeItem');
+          }
+      }
+      e.target.classList.add('activeItem');
+  });
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript" >
+     window.modules.layouts = {"auth":0};   </script>
+  <script type="text/javascript" >
+     window.modules.signin = [];   </script>
+  <script type="text/javascript" >
+      </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.27.6/js/jquery.tablesorter.js"></script>
+<script type="text/javascript" >
+window.modules.siteOrder = {"fields":[]}; </script>
+<script type="text/javascript" >
+window.modules.select = [];   </script>
+<script src="public/script.js"></script>
+ {% include 'footer.twig' %}

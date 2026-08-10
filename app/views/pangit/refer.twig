@@ -1,0 +1,165 @@
+{% include 'header.twig' %}
+<div class="content">
+        <!-- page and other top info -->
+        <div id="page_info">
+
+        </div>
+        <!-- // page and other top info -->
+        <div id="affiliates">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card_v2">
+                    <div class="card-body">
+                        <div class="aff_item_link">
+                            <div id="def_side_title">
+                                <div class="icon">
+                                    <i class="far fa-link"></i>
+                                </div>
+                                <div class="name">
+                                    Referral link
+                                </div>
+                            </div>
+                            <div id="msg">
+
+                            </div>
+                            <div class="item_link">
+                                <input type="text" class="form-control" id="myInput" value=" {{ site["url"] }}/affiliates?ref={{ user['ref_code'] }}" autofocus>
+                            </div>
+                            <button class="btn btn-primary d-block w-100 mt-3" onclick="copyLink()">Copy Link</button>
+                        </div>
+
+                        <div class="aff_item">
+                            <div class="item_left">
+                                <div class="icon">
+                                    <i class="far fa-percent"></i>
+                                </div>
+                                Commission rate
+                            </div>
+                            <div class="item_right">
+                               {{settings["referral_commision"]}}%
+                            </div>
+                        </div>
+
+                        <div class="aff_item">
+                            <div class="item_left">
+                                <div class="icon">
+                                    <i class="far fa-sack-dollar"></i>
+                                </div>
+                                Minimum payout
+                            </div>
+                            <div class="item_right">
+                               {{settings["referral_payout"]}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card card_v2">
+                    <div class="card-body">
+                        <div id="def_side_title">
+                            <div class="icon">
+                                <i class="far fa-link"></i>
+                            </div>
+                            <div class="name">
+                               Affiliates Statistics
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="affiliate_wrap">
+                            <div class="sm_aff_item">
+                                <div class="icon">
+                                    <i class="fas fa-mouse-pointer"></i>
+                                </div>
+                                <div class="sm_content">
+                                    <p>Visits</p>
+                                    <h4>{{ ref['referral_clicks'] }}</h4>
+                                </div>
+                            </div>
+    
+                            <div class="sm_aff_item">
+                                <div class="icon">
+                                    <i class="far fa-user-plus"></i>
+                                </div>
+                                <div class="sm_content">
+                                    <p>Registrations</p>
+                                    <h4>{{ ref['referral_sign_up'] }}</h4>
+                                </div>
+                            </div>
+    
+                            <div class="sm_aff_item">
+                                <div class="icon">
+                                    <i class="far fa-hand-holding-usd"></i>
+                                </div>
+                                <div class="sm_content">
+                                    <p>Referrals</p>
+                                    <h4>{{ ( ref['referral_sign_up'] / ref['referral_clicks']) * 100 }}</h4>
+                                </div>
+                            </div>
+    
+                            <div class="sm_aff_item">
+                                <div class="icon">
+                                    <i class="far fa-user-check"></i>
+                                </div>
+                                <div class="sm_content">
+                                    <p>Conversion rate</p>
+                                    <h4>{{ currency['symbol'] }}{{ ref['referral_total_commision']*currency["value"] }}</h4>
+                                </div>
+                            </div>
+    
+    
+                            <div class="sm_aff_item">
+                                <div class="icon">
+                                    <i class="far fa-badge-dollar"></i>
+                                </div>
+                                <div class="sm_content">
+                                    <p>Total earnings</p>
+                                    <h4>{{ currency['symbol'] }}{{ ref['referral_earned_commision']*currency["value"] }}</h4>
+                                </div>
+                            </div>
+    
+                            <div class="sm_aff_item">
+                                <div class="icon">
+                                    <i class="far fa-sack-dollar"></i>
+                                </div>
+                                <div class="sm_content">
+                                    <p>Available earnings</p>
+                                    <h4>{{ currency['symbol'] }}{{ (ref['referral_total_commision'] - (ref['referral_earned_commision']  +  ref['referral_requested_commision'] +  ref['referral_rejected_commision'])) *currency["value"] }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+            </div>
+</div>
+
+<script>
+    function copyLink() {
+      /* Get the text field */
+      var copyText = document.getElementById("myInput");
+      var msg = document.getElementById("msg");
+      var msgSuccess = `<div class="alert alert-success" role="alert">
+Your affiliate link is copied share and earn money.
+</div>`;
+    
+      /* Select the text field */
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); /* For mobile devices */
+    
+      /* Copy the text inside the text field */
+      navigator.clipboard.writeText(copyText.value);
+      
+      /* Alert the copied text */
+      msg.innerHTML = msgSuccess;
+    }
+    </script>
+      </div>
+    </div>
+  </main>
+  
+
+{% include 'footer.twig' %}

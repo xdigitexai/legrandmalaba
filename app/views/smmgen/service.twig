@@ -1,0 +1,209 @@
+{% include 'header.twig' %}
+{% if user['auth'] %}
+{% else %}
+<style>body {background: var(--primary-color)}</style>
+{% endif %}
+</div>
+</div>
+{% if user['auth'] %}
+<div class="app-content mb-4">
+{% else %}
+<div class="page-content mb-4">
+{%endif%}
+    <div class="container-fluid text-white text-center">
+        <div class="p-4 rounded bg-pattern text-white">
+            <div class="h3 mb-3">{{lang["services.title"]}}</div>
+        </div>
+        <div class="mt-4 bg-lighter p-4 rounded text-left">
+            <div class="row mb-2">
+                <div class="col-lg-4 mb-4">
+                    <div class="dropdown">
+                        <button class="btn btn-white dropdown-toggle shadow-0" type="button" id="filterButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{lang["smmspot.services.filter.button.title"]}}
+                        </button>
+                        <div class="dropdown-menu filter-items" aria-labelledby="filterButton">
+                          <a class="dropdown-item" href="javascript:void(0);" onclick="javascript:filterService('All')">{{lang["smmspot.services.filter.item.1"]}}</a>
+                            {% for category in serviceCategory %}
+                            <a class="dropdown-item" href="javascript:void(0);" onclick="javascript:filterService('{{ category["category_name"] }}')">{{ category["category_name"] }}</a>
+                            {% endfor%}     
+                        </div>
+                        </div>
+                        </div>
+                        
+                        
+            
+        {% if user['auth'] == 0 %}
+                                       <div class="mt-4 bg-lighter p-4 rounded text-left">
+            <div class="row mb-2">
+                <div class="col-lg-4 mb-4">
+                    <div class="dropdown">
+                        <button class="btn btn-white dropdown-toggle shadow-0" type="button" id="filterButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <span class="services-filter__active-currency" data-filter-active-category="true">Select Currency</span> 
+                        </button>
+                        <div class="dropdown-menu filter-items" aria-labelledby="filterButton">
+                       
+                            {% for curr in site['currencies'] %}
+<a class="dropdown-item"  href="/fspcur/{{ curr["name"]}}" >{{curr['name']}} </a>
+{% endfor %}
+                        </div>
+                    </div>
+                </div>{% endif %}
+                <div class="col-lg-8 mb-lg-4">
+                    <div class="input-group input-style">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ri-search-line icon-24"></i></span>
+                        </div>
+                        <input type="text" class="form-control input-style" id="serv-inp" placeholder="{{lang["smmspot.services.search"]}}">
+                    </div>
+                </div>
+            </div>
+            <table id="serv-table" class="table services text-white table-borderless">
+                <thead>
+                     <th class="width-service-name">{{ lang['services.name'] }}</th>
+                     <th class="nowrap">{{ lang['services.price'] }}</th>
+                     <th class="nowrap">Min/Max</th>
+                     {% if avarageTime %}
+                     <th class="nowrap">{{ lang['services.avarage'] }} <i class="fa fa-exclamation-circle"></i></th>
+                     {% endif %}
+                     <th class="nowrap t-r">{{ lang['neworder.description'] }}</th>
+                </thead>
+                <tbody>
+                {% for category in serviceCategory %}
+                    <tr class="service-category" data-category="{{ category["category_name"] }}">
+                        <td colspan="5">
+                            {{ category["category_name"] }}
+                        </td>
+                    </tr>
+                    {% for service in category['services'] %}
+                    <tr class="service serviceData" data-category="{{ category["category_name"] }}">
+                        <td data-title="Service Name" class="pm-ikon">#{{ service["service_id"] }} - {{ service["service_name"] }}</td>
+                        <td data-title="1000 Piece Price">  {% if user['auth'] == 0 %}{{ service["service_price"] }}{% endif %}{% if user['auth'] %}{{ currency['symbol'] }}{{ (service["service_price"]*currency["value"]) }}{% endif %}</td>
+                        
+                        <td data-title="Min/Max">{{ service["service_min"] }} - {{ service["service_max"] }}</td>
+                      {% if avarageTime %}
+                        <td data-title="Average Duration">{{ service["service_speed"] }}</td>
+                        {% endif %}
+                        <td data-title="Explanation"><a data-toggle="modal" data-target="#service_desc-{{ service['service_id'] }}"><i class="ri-search-line icon-details"></i></a>
+                        <div class="modal fade" id="service_desc-{{ service['service_id'] }}" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content border-0 bg-gray shadow">
+                                    <div class="modal-header d-flex align-items-center">
+                                        <h5 class="modal-title" id="detailsModalLabel">{{ service["service_name"] }}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Kapat"><i class="ri-close-line icon-24"></i></button>
+                                    </div>
+                                    <div class="modal-body text-left">{{ service["service_description"] }}</div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </td>
+                    </tr>
+                  {% endfor %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+function ikon(opt) {
+    var ikon = "";
+    if (opt.indexOf("Instagram") >= 0) {
+        ikon = "<span class=\"fs-ig\"><i class=\"fab fa-instagram\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("YouTube") >= 0) {
+        ikon = "<span class=\"fs-yt\"><i class=\"fab fa-youtube\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Facebook") >= 0) {
+        ikon = "<span class=\"fs-fb\"><i class=\"fab fa-facebook-square\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Youtube") >= 0) {
+        ikon = "<span class=\"fs-yt\"><i class=\"fab fa-youtube\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Twitter") >= 0) {
+        ikon = "<span class=\"fs-tw\"><i class=\"fab fa-twitter\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Google") >= 0) {
+        ikon = "<span class=\"fs-gp\"><i class=\"fab fa-google-plus\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Swarm") >= 0) {
+        ikon = "<span class=\"fs-fsq\"><i class=\"fab fa-forumbee\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Dailymotion") >= 0) {
+        ikon = "<span class=\"fs-dm\"><i class=\"fab fa-hospital-o\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Periscope") >= 0) {
+        ikon = "<span class=\"fs-pc\"><i class=\"fab fa-map-marker\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Soundcloud") >= 0) {
+        ikon = "<span class=\"fs-sc\"><i class=\"fab fa-soundcloud\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Vine") >= 0) {
+        ikon = "<span class=\"fs-vn\"><i class=\"fab fa-vine\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Spotify") >= 0) {
+        ikon = "<span class=\"fs-sp\"><i class=\"fab fa-spotify\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Snapchat") >= 0) {
+        ikon = "<span class=\"fs-snap\"><i class=\"fab fa-snapchat-square\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Pinterest") >= 0) {
+        ikon = "<span class=\"fs-pt\"><i class=\"fab fa-pinterest-p\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("iTunes") >= 0) {
+        ikon = "<span class=\"fs-apple\"><i class=\"fab fa-apple\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Müzik") >= 0) {
+        ikon = "<span class=\"fs-music\"><i class=\"fab fa-music\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Vimeo") >= 0) {
+        ikon = "<span class=\"fs-videmo\"><i class=\"fab fa-vimeo\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Ekşi") >= 0) {
+        ikon = "<span class=\"fs-eksi\"><i class=\"fab fa-tint\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Telegram") >= 0) {
+        ikon = "<span class=\"fs-telegram\"><i class=\"fab fa-telegram\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Twitch") >= 0) {
+        ikon = "<span class=\"fs-twc\"><i class=\"fab fa-twitch\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Zomato") >= 0) {
+        ikon = "<span class=\"fs-zom\"><i class=\"fab fa-cutlery\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Amazon") >= 0) {
+        ikon = "<span class=\"fs-amaz\"><i class=\"fab fa-amazon\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Tumblr") >= 0) {
+        ikon = "<span class=\"fs-tumb\"><i class=\"fab fa-tumblr-square\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Yandex") >= 0) {
+        ikon = "<span class=\"fs-yndx\"><i class=\"fab fa-yoast\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Linkedin") >= 0) {
+        ikon = "<span class=\"fs-lnk\"><i class=\"fab fa-linkedin\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("Yahoo") >= 0) {
+        ikon = "<span class=\"fs-yahoo\"><i class=\"fab fa-yahoo\" aria-hidden=\"true\"></i> </span>";
+    } else if (opt.indexOf("TikTok") >= 0) {
+        ikon = "<span class=\"fs-tiktok\"><i class=\"fa fa-music\" aria-hidden=\"true\"></i> </span>";
+    } else {
+        ikon = "<span class=\"\"><i class=\"far fa-star\" aria-hidden=\"true\"></i> </span>  ";
+    }
+    return ikon;
+}
+  
+$(document).ready(function() {
+
+    $(".pm-ikon").each(function() {
+                var ico = ikon($(this).text());
+                $(this).html(ico + $(this).text() );
+                console.log($(this).text());
+        }); 
+});
+
+</script>
+<script>
+      function filterService(category) {
+        if (category == 'All')
+          $('tbody tr.hidden').removeClass('hidden');
+        else {
+          $('tbody tr').addClass('hidden');
+          $('tbody tr[data-category="' + category + '"]').removeClass('hidden');
+        }
+        removeEmptyCategory();
+      }
+
+      function removeEmptyCategory() {
+        $('.service-category').each(function () {
+            var next = $(this).next();
+            var services = $(this).nextUntil('.service-category');
+            var empty = true;
+            services.each(function() {
+              if (!$(this).hasClass('hidden')) empty = false;
+            });
+            if (empty) $(this).addClass('hidden');
+        })
+      }
+</script>
+{% include 'footer.twig' %}

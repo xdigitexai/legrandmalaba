@@ -1,0 +1,204 @@
+{% include 'header.twig' %}
+
+    
+<div class="wrapper-content">
+    <div class="wrapper-content__header">
+          </div>
+    <div class="wrapper-content__body">
+      <!-- Main variables *content* -->
+
+<br>
+<div id="block_45"><div class="block-bg"></div><div class="container"><div class="account ">
+    <div class="row">
+        <div class="col-lg-12">
+                                    <div class="component_card">
+                <div class="card account-card">
+                    <div class="component_form_group">
+                        
+                        <div class="">
+                            
+                            
+                                                                                    <div class="form-group">
+                                                                                        {% if error %}
+        <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ errorText }}
+        </div>
+      {% endif %}
+      {% if success %}
+        <div class="alert alert-dismissible alert-success">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ successText }}
+        </div>
+      {% endif %}
+                                                                                        
+                                <label>Username</label>
+                                <input type="text" class="form-control" id="username" value="{{ user['username'] }}" disabled="disabled">
+                            </div>
+                            <div class="component_button_save">
+                                <div class="form-group">
+                                    <label for="email" class="control-label">Email</label>
+                                    <input type="text" class="form-control" id="email" value="{{ user['email'] }}" readonly="">
+                                </div>
+                                <button class="btn btn-block btn-big-primary" id="changeEmailLink">
+                                    Change email
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="component_card">
+                <div class="card account-card">
+                    <form class="component_form_group" method="post" action="account/change_lang">
+                        <div class="">
+                            <div class="form-group">
+                                <label>Language</label>
+                                <div class="d-flex">
+                                    <div class="w-100">
+                                        <select class="form-control" id="language" name="SettingsFrom[lang]">
+                                                                                            <option value="en" selected="">English</option>
+                                                                                    </select>
+                                    </div>
+                                    <div class="account-button-right">
+                                        <div class="component_button_save">
+                                            <input type="hidden" name="_csrf" value="0JApHqF08z9uBjdC0NlwF-ESwkIE4H2W-Y5qyPyjwtnlx3lp7BuGcCY0eiaFtkZGjWj3b0e0S8GA_AeFtJaAtg==">
+                                            <button type="submit" class="btn btn-block btn-big-primary">
+                                                Save
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <br>
+            <div class="component_card">
+                <div class="card account-card">
+                    <form class="component_form_group" method="post" action="account">
+                        <div class="">
+                                                        <div class="form-group">
+                                <label>Current password</label>
+                                <input type="password" class="form-control" id="current" name="current_password">
+                            </div>
+                            <div class="form-group">
+                                <label>New password</label>
+                                <input type="password" class="form-control" id="new" name="password">
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm new password</label>
+                                <input type="password" class="form-control" id="confirm" name="confirm_password">
+                            </div>
+                        </div>
+                        <div class="component_button_save">
+                            <div class="">
+                                <input type="hidden" name="_csrf" value="0JApHqF08z9uBjdC0NlwF-ESwkIE4H2W-Y5qyPyjwtnlx3lp7BuGcCY0eiaFtkZGjWj3b0e0S8GA_AeFtJaAtg==">
+                                <button class="btn btn-block btn-big-primary" type="submit">
+                                    Change password
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+           <br>
+            <div class="component_card">
+                <div class="card account-card">
+                    <form class="component_form_group" method="post" action="">
+                        <div class="">
+                            <div class="form-group">
+                                <label>Timezone</label>
+                                <div class="d-flex">
+                                    <div class="w-100">
+                                        <select name="SettingsFrom[timezone]" id="timezone" class="form-control">
+                                                                                            <option value="-43200">(UTC -12:00) Baker/Howland Island</option>
+                                                                                            <option value="-39600">(UTC -11:00) Niue</option>
+                                                                                            <option value="-36000">(UTC -10:00) Hawaii-Aleutian Standard Time, Cook Islands, Tahiti</option>
+                                                                                            <option value="-34200">(UTC -9:30) Marquesas Islands</option>
+                                                                                            <option value="-32400">(UTC -9:00) Alaska Standard Time, Gambier Islands</option>
+                                                                                            <option value="-28800">(UTC -8:00) Pacific Standard Time, Clipperton Island</option>
+                                                                                            <option value="-25200">(UTC -7:00) Mountain Standard Time</option>
+                                                                                            <option value="-21600">(UTC -6:00) Central Standard Time</option>
+                                                                                            <option value="-18000">(UTC -5:00) Eastern Standard Time, Western Caribbean Standard Time</option>
+                                                                                            <option value="-16200">(UTC -4:30) Venezuelan Standard Time</option>
+                                                                                            <option value="-14400">(UTC -4:00) Atlantic Standard Time, Eastern Caribbean Standard Time</option>
+                                                                                            <option value="-12600">(UTC -3:30) Newfoundland Standard Time</option>
+                                                                                            <option value="-10800">(UTC -3:00) Argentina, Brazil, French Guiana, Uruguay</option>
+                                                                                            <option value="-7200">(UTC -2:00) South Georgia/South Sandwich Islands</option>
+                                                                                            <option value="-3600">(UTC -1:00) Azores, Cape Verde Islands</option>
+                                                                                            <option value="0" selected="">(UTC) Greenwich Mean Time, Western European Time</option>
+                                                                                            <option value="3600">(UTC +1:00) Central European Time, West Africa Time</option>
+                                                                                            <option value="7200">(UTC +2:00) Central Africa Time, Eastern European Time, Kaliningrad Time</option>
+                                                                                            <option value="10800">(UTC +3:00) Moscow Time, East Africa Time, Arabia Standard Time</option>
+                                                                                            <option value="12600">(UTC +3:30) Iran Standard Time</option>
+                                                                                            <option value="14400">(UTC +4:00) Azerbaijan Standard Time, Samara Time</option>
+                                                                                            <option value="16200">(UTC +4:30) Afghanistan</option>
+                                                                                            <option value="18000">(UTC +5:00) Pakistan Standard Time, Yekaterinburg Time</option>
+                                                                                            <option value="19800">(UTC +5:30) Indian Standard Time, Sri Lanka Time</option>
+                                                                                            <option value="20700">(UTC +5:45) Nepal Time</option>
+                                                                                            <option value="21600">(UTC +6:00) Bangladesh Standard Time, Bhutan Time, Omsk Time</option>
+                                                                                            <option value="23400">(UTC +6:30) Cocos Islands, Myanmar</option>
+                                                                                            <option value="25200">(UTC +7:00) Krasnoyarsk Time, Cambodia, Laos, Thailand, Vietnam</option>
+                                                                                            <option value="28800">(UTC +8:00) Australian Western Standard Time, Beijing Time, Irkutsk Time</option>
+                                                                                            <option value="31500">(UTC +8:45) Australian Central Western Standard Time</option>
+                                                                                            <option value="32400">(UTC +9:00) Japan Standard Time, Korea Standard Time, Yakutsk Time</option>
+                                                                                            <option value="34200">(UTC +9:30) Australian Central Standard Time</option>
+                                                                                            <option value="36000">(UTC +10:00) Australian Eastern Standard Time, Vladivostok Time</option>
+                                                                                            <option value="37800">(UTC +10:30) Lord Howe Island</option>
+                                                                                            <option value="39600">(UTC +11:00) Srednekolymsk Time, Solomon Islands, Vanuatu</option>
+                                                                                            <option value="41400">(UTC +11:30) Norfolk Island</option>
+                                                                                            <option value="43200">(UTC +12:00) Fiji, Gilbert Islands, Kamchatka Time, New Zealand Standard Time</option>
+                                                                                            <option value="45900">(UTC +12:45) Chatham Islands Standard Time</option>
+                                                                                            <option value="46800">(UTC +13:00) Samoa Time Zone, Phoenix Islands Time, Tonga</option>
+                                                                                            <option value="50400">(UTC +14:00) Line Islands</option>
+                                                                                    </select>
+                                    </div>
+                                    <div class="account-button-right">
+                                        <div class="component_button_save">
+                                            <div class="">
+                                                <input type="hidden" name="_csrf" value="0JApHqF08z9uBjdC0NlwF-ESwkIE4H2W-Y5qyPyjwtnlx3lp7BuGcCY0eiaFtkZGjWj3b0e0S8GA_AeFtJaAtg==">
+                                                <button class="btn btn-block btn-big-primary" type="submit">
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <br>
+            <div class="component_card">
+                <div class="card account-card">
+                    <form class="component_form_group" action="/account/newapikey" method="post">
+                        <div class="">
+                            <div class="form-group">
+                                <label>API key</label>
+                                <div class="d-flex">
+                                                                            <div class="w-100">
+                                            <input type="text" class="form-control" id="api_key" value="{{ masked_api_key }}" readonly>
+                                        </div>
+                                                                        <div class="account-button-right">
+                                        <div class="component_button_save">
+                                            <div class="">
+                                                
+                                                <button type="submit" style="margin-bottom:-20px;" class="btn btn-block btn-big-primary">Generate New</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                    <small class="help-block">Created: 2024-04-24 23:35:57</small>
+                                                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'footer.twig' %}

@@ -1,0 +1,403 @@
+{% include 'header.twig' %}
+
+
+{% if settings['ticket_system'] == 1 %}
+
+<main id="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card custom__card mb-3">
+                    <div class="card-body">
+                        <div id="tabSwiter">
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="pills-order-tab" data-bs-toggle="pill" data-bs-target="#pills-order" type="button" role="tab" aria-controls="pills-order" aria-selected="true">
+                                        <i class="fas fa-ticket-alt"></i> New Ticket
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-favorite-tab" data-bs-toggle="pill" data-bs-target="#pills-favorite" type="button" role="tab" aria-controls="pills-favorite" aria-selected="false">
+                                        <i class="fas fa-history"></i> Ticket History
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+      {% if error %}
+        <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ errorText }}
+        </div>
+      {% elseif success %}
+        <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ successText }}
+        </div>
+      {% endif %}
+
+
+<div class="tab-content tab_wrap" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab">
+                               <form method="post" action="" id="ticketsend" onSubmit="form_submit()">
+                                    <div class="alert alert-dismissible alert-danger ticket-danger " style="display: none">
+                                        <button type="button" class="close">×</button>
+                                        </div>
+                                       
+                                    <div class="form-group">
+												<label for="subject" class="control-label">Subject</label>
+												<select class="form-control" id="subject" name="subject" onchange="handleOrderType(this)">
+													<option value="Order" selected="">Order</option>
+													<option value="Discount">Discount</option>
+													<option value="Payment">Payment</option>
+													<option value="Api">API</option>
+													<option value="Child Panel">Child Panel</option>
+													<option value="Request">Request</option>
+													<option value="Real Followers">Real Followers</option>
+													<option value="Blue Badge Verification">Blue Badge Verification</option>
+													<option value="Other">Other</option>
+												</select>
+											</div>
+											<div class="form-group" id="order-group" style="display: block;">
+												<label>Order ID: [For multiple orders, please separate them using comma. (example: 31851525,31851511,31851509)]</label>
+												<input type="text" class="form-control" id="orderid">
+												<label style="margin-top:15px">Request</label>
+												<select class="form-control" name="want" id="want">
+													<option value="Refill">Refill</option>
+													<option value="Cancel">Cancel</option>
+													<option value="Speed-up">Speed Up</option>
+													<option value="Restart">Restart</option>
+													<option value="Not-Started">Not Started</option>
+													<option value="Mark-as-completed-without-done">Mark as completed without done</option>
+													<option value="Other">Other</option>
+												</select>
+											</div>
+											
+											
+											<div class="form-group" id="payment-group" style="display: none;">
+												<label>Payment</label>
+												<select class="form-control" name="payment" id="payment">
+													<option value="🇧🇩 BKASH | NAGAD | ROCKET | BANGLADESH 🇧🇩">🇧🇩 BKASH | NAGAD | ROCKET | BANGLADESH 🇧🇩</option>
+													<option value="Binance | USDT | International ⭐">Binance | USDT | International ⭐</option>
+													<option value="🇵🇭 Gcash Payment | PHP | PHILIPPINES 🇵🇭">🇵🇭 Gcash Payment | PHP | PHILIPPINES 🇵🇭</option>
+													<option value="Perfect Money | USD | International ⭐">Perfect Money | USD | International ⭐</option>
+													<option value="Other">Other</option>
+												</select>
+												<label style="margin-top:15px">Account  / Transaction ID(s):</label>
+												<input type="text" class="form-control" name="transaction_id" id="PaymentID">
+												<label style="margin-top:15px">Number  / Email ID(s):</label>
+												<input type="text" class="form-control" name="payment_email" id="emailID">
+												<label style="margin-top:15px">Add Amount</label>
+												<input type="number" class="form-control" name="payment_amount" id="addamount">
+											</div>
+											</select><div class="form-group">
+<label for="message" class="control-label">Message</label>
+<textarea class="form-control" rows="7" id="message" name="message">{{ data['message'] }}</textarea>
+											</div>
+											<input id="hmessage" name="message" type="hidden"  />
+											
+											<input type="hidden" name="_csrf"  value="07a69d634e4772a579aecb927beba0c3_d8e3983c9212a0ceca0b7963aec78bac" />
+											<input type="hidden" name="add_ticket" value="add_ticket" />
+											<button type="submit" class="btn btn-primary">Submit ticket</button>
+										</form>
+									</div>
+							
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                        <!-- Ticket History tab -->
+              
+                                                            
+                                                            <div class="tab-pane fade" id="pills-favorite" role="tabpanel" aria-labelledby="pills-favorite-tab">
+                                <div class="btn-group w-100 gap-2" role="group" id="ticket_filter_wrap">
+                                    
+                                    
+                                    
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                              
+                                                <th>ID</th>
+                                                <th>Subject</th>
+                                                <th>Status</th>
+                                                <th class="nowrap">Last update</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+              {% for ticket in ticketList %}
+                <tr>
+                  <td>{{ ticket['ticket_id'] }}</td>
+                  {% if ticket["support_new"] == 2 %}
+                    <td><a href="tickets/{{ ticket['ticket_id'] }}"><strong>{{ ticket['subject'] }}</strong></a></td>
+                  {% else %}
+                    <td><a href="tickets/{{ ticket['ticket_id'] }}">{{ ticket['subject'] }}</a></td>
+                  {% endif %}
+                                    <td>
+                      
+                      
+                      
+                      
+                      {% if ticket['status'] == lang['tickets.status.answered'] %}
+								<div class="ordStatus align-items-center" style="background: #28a745; color:#000; border-radius: 15px; padding: 5px 15px; font-size: 12px; text-align: center;">
+								   <i class="ri-checkbox-line"></i>
+								   <span style="color:#ffffff">{{ticket['status']}}</span>
+								</div>
+								{% endif %}
+								
+              {% if ticket['status'] == lang['tickets.status.all'] %}
+								<div class="ordStatus align-items-center" style="background: #ff870b; color:#000; border-radius: 15px; padding: 5px 15px; font-size: 12px; text-align: center;">
+								   <i class="ri-loader-2-line"></i>
+								   <span style="color:#ffffff">{{ticket['status']}}</span>
+								</div>
+								{% endif %}
+                
+                {% if ticket['status'] == lang['tickets.status.pending'] %}
+								<div class="ordStatus align-items-center" style="background: #0000ff; color:#000; border-radius: 15px; padding: 5px 15px; font-size: 12px; text-align: center;">
+								   <i class="ri-file-damage-line"></i>
+								   <span style="color:#ffffff">{{ticket['status']}}</span>
+								</div>
+								{% endif %}
+								
+								{% if ticket['status'] == lang['tickets.status.expired'] %}
+								<div class="ordStatus align-items-center" style="background: #11698e; color:#000; border-radius: 15px; padding: 5px 15px; font-size: 12px; text-align: center;">
+								   <i class="ri-star-half-line"></i>
+								   <span style="color:#ffffff">{{ticket['status']}}</span>
+								</div>
+								{% endif %}
+								
+									{% if ticket['status'] == lang['tickets.status.paused'] %}
+								<div class="ordStatus align-items-center" style="background: #61c0bf; color:#000; border-radius: 15px; padding: 5px 15px; font-size: 12px; text-align: center;">
+								   <i class="ri-remote-control-line"></i>
+								   <span style="color:#000">{{ticket['status']}}</span>
+								</div>
+								{% endif %}
+								
+								
+									{% if ticket['status'] == lang['tickets.status.closed'] %}
+								<div class="ordStatus align-items-center" style="background: #ec4646; color:#000; border-radius: 15px; padding: 5px 15px; font-size: 12px; text-align: center;">
+								   <i class="ri-qr-scan-line"></i>
+								   <span style="color:#ffffff">{{ticket['status']}}</span>
+								</div>
+								{% endif %}
+                      
+                      
+                      
+                      
+                      
+                    </td>
+                  <td><span class="nowrap">{{ ticket['lastupdate_time'] }}</span></td>
+                </tr>
+              {% endfor %}
+</td>
+            </tbody>
+            </table>
+            
+                            </div>
+                            
+                                                    </div>
+                        <!-- ## Ticket History tab -->
+    
+                       
+                       
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-body custom__card">
+                    <div class="info_card_title_wrap">
+                        <div class="info_icon">
+                            <i class="far fa-info-circle"></i>
+                        </div>
+                        <div class="info_title">
+                          Read before create tickets: Best way for get quick reply!
+                        </div>
+                    </div>
+                    <div class="default__accoridions">
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <!-- Tickets Information 1. -->
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                  <span class="icon"><i class="far fa-credit-card"></i></span> Discount
+                                </button>
+                              </h2>
+                              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    Message: Website Url | Whatsapp/Skype/Calling Details | On which service Id do you need discount' [(example 123,453,999,998,1023,564)] | Message
+                                </div>
+                              </div>
+                            </div>
+                            <!-- ### Tickets Information 1. -->
+                            
+
+                            <!-- Tickets Information 2. -->
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="flush-headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                    <span class="icon"><i class="far fa-credit-card"></i></span> Ticket Information
+                                </button>
+                              </h2>
+                              <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                 Ticket Information
+                                </div>
+                              </div>
+                            </div>
+                            <!-- ### Tickets Information 2. -->
+
+
+                            <!-- Tickets Information 3. -->
+
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="flush-headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                    <span class="icon"><i class="far fa-credit-card"></i></span> Ticket Information
+                                </button>
+                              </h2>
+                              <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    Ticket Information
+                                </div>
+                              </div>
+                            </div>
+                            <!-- ### Tickets Information 3. -->
+
+
+                            <!-- Tickets Information 4. -->
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingFour">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                      <span class="icon"><i class="far fa-credit-card"></i></span> Ticket Information
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                                  <div class="accordion-body">
+                                   Ticket Information
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- ### Tickets Information 4. -->
+
+
+                               <!-- Tickets Information 5. -->
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingFive">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                                      <span class="icon"><i class="far fa-credit-card"></i></span> Ticket Information
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                                  <div class="accordion-body">
+                                    Ticket Information
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- ### Tickets Information 5. -->
+
+                               <!-- Tickets Information 6. -->
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingSix">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                                      <span class="icon"><i class="far fa-credit-card"></i></span> Ticket Information
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
+                                  <div class="accordion-body">
+                                   Ticket Information
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- ### Tickets Information 6. -->
+                              
+                             
+
+
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+      {% endif %}
+
+<script>
+		document.getElementById("payment-group").style.display = "none";
+
+		function handleOrderType(selectObject) {
+			var element = document.getElementById("order-group");
+			var element2 = document.getElementById("payment-group");
+			var optional = document.getElementById("optional");
+
+			if (selectObject.value == "Order" || selectObject.value == "VIP-Order") {
+				element.style.display = "block";
+				element2.style.display = "none";
+				optional.style.display = "block";
+	
+			} else if (selectObject.value == "Payment" || selectObject.value == "VIP-Payment") {
+				element.style.display = "none";
+				element2.style.display = "block";
+				optional.style.display = "none";
+			} else if (selectObject.value == "Other" || selectObject.value == "VIP-Other") {
+				element.style.display = "none";
+				element2.style.display = "none";
+				optional.style.display = "none";
+			}else{
+				element.style.display = "none";
+				element2.style.display = "none";
+				optional.style.display = "none";
+			}
+		}
+
+		function createTicket(e) {
+			if (e.preventDefault) e.preventDefault();
+
+			var subject = document.getElementById("subject").value;
+			var message = "";
+			if (subject == "Order" || subject == "VIP-Order") {
+				message = "Order ID: " + document.getElementById("orderid").value + " " + "Request: " + document.getElementById("want").value + " " + document.getElementById("message").value;
+				
+		
+				
+			} else if (subject == "Payment" || subject == "VIP-Payment") {
+				message = "Payment Method : " + document.getElementById("payment").value + " " + "Transaction ID / Account  : " + document.getElementById("PaymentID").value + " " + "Payment Email ID / Number : " + document.getElementById("emailID").value + " " + "Amount : " + document.getElementById("addamount").value + " " + document.getElementById("message").value;
+			} else {
+				message = document.getElementById("message").value;
+			}
+			
+			document.getElementById("hmessage").value = message;
+
+			return true;
+		}
+		
+		function form_submit(){
+			var form = document.getElementById("ticketsend");
+			createTicket(form);
+			form.submit();
+		}
+		</script>
+
+
+
+
+{% include 'footer.twig' %}

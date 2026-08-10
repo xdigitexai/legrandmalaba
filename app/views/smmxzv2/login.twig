@@ -1,0 +1,2356 @@
+
+{% include 'header.twig' %}
+
+            <!-- #### Without Login Header -->
+			
+		
+		<!-- Main variables *content* -->
+        <main class="no_auth">
+          		     <!-- Banner Section -->
+ <section id="banner">
+  <div class="banner_bg_effect">
+    <img
+      src="https://smmxz.sacloud.site/images/login-left-shadows.png"
+      class="img-fluid bg_banner_left_effect"
+      alt=""
+    />
+    <img
+      src="https://smmxz.sacloud.site/images/login-right-shadows.png"
+      class="img-fluid bg_banner_right_effect"
+      alt=""
+    />
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="text-center">
+          <div class="banner_content">
+            <h1>
+             <small> Welcome to <span class="text-primary">{{ site["site_name"] }}</span> </small> <br>
+              Cheapest SMM Panel since <span class="text-primary">2020</span>
+            </h1>
+            <p>
+              We provide the best SMM panel to create fame and brand identity for your business. <br> We have the cheapest and most authentic SMM panels which will take your business to new heights. .
+            </p>
+          </div>
+          <div class="login_box_area">
+            <span class="login_top_image">
+              <div class="login_image_left">
+                <img
+                  src="https://smmxz.sacloud.site/images/login-effect.png"
+                  class="img-fluid main_effect"
+                  alt=""
+                />
+                <img
+                  src="https://smmxz.sacloud.site/images/login-mail-charecters.png"
+                  class="img-fluid main_image"
+                  alt=""
+                />
+              </div>
+              <div class="login_image_right">
+                <img
+                  src="https://smmxz.sacloud.site/images/login-female-charecters.png"
+                  class="img-fluid main_image"
+                  alt=""
+                />
+                <img
+                  src="https://smmxz.sacloud.site/images/login-effect.png"
+                  class="img-fluid main_effect"
+                  alt=""
+                />
+              </div>
+            </span>
+            <div class="banner_login_part" id="login">
+              <h2>Account Sign In</h2>
+              <form  method="post" action="/" id="loginForm">
+                  
+                  
+                <div class="form-group has_icon mb-3">
+                  <div class="icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/username-icon.png"
+                      class="img-fluid"
+                      alt="Username"
+                    />
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Username"
+                    id="" 
+                    name="username"
+                  />
+                </div>
+                <div class="form-group has_icon">
+                  <div class="icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/password-icon.png"
+                      class="img-fluid"
+                      alt="Password"
+                    />
+                  </div>
+
+                  <input
+                    type="password"
+                    name="password"
+                    class="form-control"
+                    placeholder="Password"
+                    id=""
+                  />
+                  <div class="pass_eye">
+                    <button
+                      class="pss-btn-sh"
+                      id="pwdBtn"
+                      type="button"
+                      onclick="passwordShowHide('pwdBtn','password')"
+                    >
+                      <span class="eye-open">
+                        <iconify-icon icon="ph:eye"></iconify-icon>
+                      </span>
+                      <div class="eye-close">
+                        <iconify-icon
+                          icon="ph:eye-slash-duotone"
+                        ></iconify-icon>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+                
+                <div class="py-3 d-flex justify-content-between">
+                  <div class="f_group">
+                    <label for="remember">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="remember"
+                        name="LoginForm[remember]" value="1" 
+                      />
+                      Remember Me
+                    </label>
+                  </div>
+                  <div class="f_group">
+                                                <a href="/resetpassword" class="form_link text-white"
+                              >Forgot password?</a
+                          >
+                                        </div>
+                </div>
+                                <input type="hidden" name="_csrf" value="HpVMy7w3nQ6ONnZP023wIfn95vnvHua2jfzvobr8p2FI1zX9yALHd7ZcFTWEGZQWy5_Ty4Zmlo_ayJ_X_LT1UA==">
+                <button class="w-100 btn btn-primary btn_has_icon mb-3" type="submit">
+                  <span class="btn_text">Sign in</span>
+                  <div class="btn_icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/arrow-right-primary.png"
+                      class="img-fluid"
+                      alt="Sign in Arrow"
+                    />
+                  </div>
+                </button>
+
+                                <div class="separator mb-2">OR</div>
+               {{ google_login_content }} 
+              
+                <div class="text-center text-white">
+                                    Do not have an account?
+                  <a href="/signup" class="text-white">Sign up</a>
+                                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #### Banner Section -->
+
+<!-- Insights Section -->
+<section id="insights">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-6">
+        <div class="insight_item">
+          <div class="icon">
+            <img
+              src="https://smmxz.sacloud.site/images/cheapest-smm-panel.png"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="text_content">
+            <h4>Cheapest</h4>
+            <p>SMM Panel</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-6">
+        <div class="insight_item">
+          <div class="icon">
+            <img
+              src="https://smmxz.sacloud.site/images/lowest-reseller-price-guarantee.png"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="text_content">
+            <h4>Lowest</h4>
+            <p>Reseller Price Guarantee</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-6">
+        <div class="insight_item">
+          <div class="icon">
+            <img
+              src="https://smmxz.sacloud.site/images/fastest-support.png"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="text_content">
+            <h4>24/7</h4>
+            <p>Fastest Support</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-6">
+        <div class="insight_item">
+          <div class="icon">
+            <img
+              src="https://smmxz.sacloud.site/images/money-back-gurantee.png"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="text_content">
+            <h4>100%</h4>
+            <p>Money Back Guarantee</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #### Insights Section -->
+
+<!-- About Us -->
+<section id="about_us">
+  <div class="about_us_effect">
+    <img
+      src="https://smmxz.sacloud.site/images/orange-left.png"
+      class="img-fluid effect_left"
+      alt=""
+    />
+    <img
+      src="https://smmxz.sacloud.site/images/orange-right.png"
+      class="img-fluid effect_right"
+      alt=""
+    />
+  </div>
+  <div class="container">
+    <div class="row d-flex align-items-center">
+      <div class="col-lg-6 col-md-12 col-12">
+        <div class="def_content">
+          <h2>About the Company - {{ site["site_name"] }}</h2>
+          <p>
+            {{ site["site_name"] }} is a US-based social media panel company. We are the one-stop solution for ensuring the success of your business. As a professional and experienced company, we aim to provide likes, comments, views, followers, and subscribers on all social media platforms.
+          </p>
+          <p>
+            We, {{ site["site_name"] }}, aim to make SMM panels affordable globally. Our diversified section of services gives you the option to explore. With our expertise and knowledge, we have established our company as one of the leading SMM panel-providing companies.
+            <br>
+            Customer satisfaction is our priority. We do not compromise in the case of giving quality service. Our work speaks for us!
+          </p>
+          <a href="/about-us/" class="btn btn-primary mt-3">About Us</a>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12 col-12">
+        <div class="def_image">
+          <img src="https://smmxz.sacloud.site/images/about-us-image.png" class="img-fluid" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #### About Us -->
+
+<!-- How Its Works -->
+<section id="howItWorks">
+  <div class="how_it_effect">
+    <img
+      src="https://smmxz.sacloud.site/images/how-it-works-right-effect.png"
+      class="img-fluid effect_it_img"
+      alt=""
+    />
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="def_content text-center">
+          <h2>How does our SMM Panel work?</h2>
+          <p>A few steps to promote your business or personal page</p>
+        </div>
+      </div>
+    </div>
+    <!-- How It Steps -->
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-12 mb-3">
+        <div class="how_it_item_wrap item_1">
+          <div class="icon">
+            <img src="https://smmxz.sacloud.site/images/signup-icon.png" class="img-fluid" alt="" />
+          </div>
+          <div class="how_it_content">
+            <h3>Sign Up</h3>
+            <p>
+              Start by creating your account. Once registered, log in to access our services.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-12 mb-3">
+        <div class="how_it_item_wrap item_2">
+          <div class="icon">
+            <img src="https://smmxz.sacloud.site/images/addfunds-icon.png" class="img-fluid" alt="" />
+          </div>
+          <div class="how_it_content">
+            <h3>Fund Your Account</h3>
+            <p>
+              Select your preferred payment method to add funds to your account.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-12 mb-3">
+        <div class="how_it_item_wrap item_3">
+          <div class="icon">
+            <img
+              src="https://smmxz.sacloud.site/images/select-services-icon.png"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="how_it_content">
+            <h3>Select a Service</h3>
+            <p>
+              Choose the SMM services you need and place your orders with ease.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-12 mb-3">
+        <div class="how_it_item_wrap item_4">
+          <div class="icon">
+            <img
+              src="https://smmxz.sacloud.site/images/see-result-icon.png"
+              alt=""
+              class="img-fluid"
+            />
+          </div>
+          <div class="how_it_content">
+            <h3>See the Results</h3>
+            <p>
+              We'll notify you as soon as your order is complete. Expect swift, impressive outcomes!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ### How It Steps -->
+  </div>
+</section>
+<!-- ### How Its Works -->
+
+<!-- Whole Sale Sections -->
+<section id="wholesale">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="def_content text-center">
+          <h2>
+            Our Wholesale SMM Panel: <br />
+            What Do We Offer?
+          </h2>
+          <p>
+            To increase the popularity of your business, you can place a wholesale SMM order with us. We are skilled in providing giant orders on time. <br> Our wholesale panel sector provides services in three different categories.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-12 mb-3">
+        <div class="box_item">
+          <div class="box_icon">
+            <img
+              src="https://smmxz.sacloud.site/images/wholesale-child-panel.png"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="box_content">
+            <h3>Wholesale Child Panel:</h3>
+            <p>
+              Through this, you can launch your project. It helps to do all the SMM-based marketing as you will become an SMM service vendor. 
+            </p>
+            <p>
+              Depending on the quantity, we provide an unbeatable customized price. In this package, you will get a huge number of SMM Child Panel Services. You can sell these at any time.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12 mb-3">
+        <div class="box_item">
+          <div class="box_icon">
+            <img
+              src="https://smmxz.sacloud.site/images/wholesale-price.png"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="box_content">
+            <h3>Wholesale Prices:</h3>
+            <p>
+              We cater to your needs in the most reasonable price range. To get the best wholesale package, contact {{ site["site_name"] }}. Tell us about the quantity and types of services you want to purchase. 
+            </p>
+            <p>
+              Our customer service representatives will come up with your customized package. We can guarantee that you will get the best deal at the best price. Our wholesale prices are the best in the town. 
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12 mb-3">
+        <div class="box_item">
+          <div class="box_icon">
+            <img
+              src="https://smmxz.sacloud.site/images/wholesale-order.png"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="box_content">
+            <h3>Wholesale Orders:</h3>
+            <p>
+              We have a separate team who are in charge of managing the wholesale orders. They specifically deal with giant orders of likes, followers, comments, and whatnot. 
+            </p>
+            <p>
+              That's why whenever you have a query, you can ask them directly. They are available 24/7 They will get back to you. <br>
+              We provide such a range because our goal is to spread the affordable price of SMM panels worldwide.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wholesale_effect">
+    <img
+      src="https://smmxz.sacloud.site/images/wholesale-background-effect.webp"
+      class="img-fluid effect-image"
+      alt=""
+    />
+  </div>
+</section>
+<!-- ### Whole Sale Sections -->
+
+<!-- Testimonials Sections -->
+<section id="testimonials">
+  <div class="testimonial_effect">
+    <img
+      src="https://smmxz.sacloud.site/images/testimonials-left-effect.png"
+      class="img-fluid test_effect"
+      alt=""
+    />
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="def_content text-center">
+          <h2>Testimonials</h2>
+          <p>
+            Praesent est tortor, ornare quis feugiat id, maximus sit amet
+            justo. Integer vestibulum egestas justo.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Slider main container -->
+      <div class="testimonialSlider swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide">
+            <div class="box_item testimonial_box">
+              <div class="box_icon text-center">
+                <img
+                  src="https://smmxz.sacloud.site/images/qoute-icon.png"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="box_content testimonial_content text-center">
+                <p>
+                  The {{ site["site_name"] }} dashboard is incredibly user-friendly and efficient. It allows me to easily monitor and manage all my social media accounts from a single place. It’s a fantastic tool that has streamlined my workflow.
+                </p>
+                <img src="https://smmxz.sacloud.site/images/star.png" alt="" class="img-fluid" />
+                <h3>Sofia Martinez</h3>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="box_item testimonial_box">
+              <div class="box_icon text-center">
+                <img
+                  src="https://smmxz.sacloud.site/images/qoute-icon.png"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="box_content testimonial_content text-center">
+                <p>
+                  {{ site["site_name"] }} SMM panel service is exceptional. The range of features available and the reliability of the service have significantly enhanced my social media presence. I appreciate the excellent support and consistent results.
+                </p>
+                <img src="https://smmxz.sacloud.site/images/star.png" alt="" class="img-fluid" />
+                <h3>Liam O'Connor</h3>
+              </div>
+            </div>
+          </div>
+          
+          <div class="swiper-slide">
+            <div class="box_item testimonial_box">
+              <div class="box_icon text-center">
+                <img
+                  src="https://smmxz.sacloud.site/images/qoute-icon.png"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="box_content testimonial_content text-center">
+                <p>
+                  I’m thoroughly impressed with {{ site["site_name"] }} Twitter service. The boost in engagement and follower growth has been noticeable. The service is efficient, and the support team is responsive and helpful. 
+                </p>
+                <img src="https://smmxz.sacloud.site/images/star.png" alt="" class="img-fluid" />
+                <h3>Ava Johansson</h3>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="swiper-slide">
+            <div class="box_item testimonial_box">
+              <div class="box_icon text-center">
+                <img
+                  src="https://smmxz.sacloud.site/images/qoute-icon.png"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="box_content testimonial_content text-center">
+                <p>
+                  {{ site["site_name"] }} Instagram service has exceeded my expectations. It has effectively increased my followers and engagement, and the results are visible. The process is straightforward, and the service is highly reliable.
+                </p>
+                <img src="https://smmxz.sacloud.site/images/star.png" alt="" class="img-fluid" />
+                <h3>Noah Brown</h3>
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="swiper-slide">
+            <div class="box_item testimonial_box">
+              <div class="box_icon text-center">
+                <img
+                  src="https://smmxz.sacloud.site/images/qoute-icon.png"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="box_content testimonial_content text-center">
+                <p>
+                  {{ site["site_name"] }} has been a great asset in optimizing my YouTube monetization efforts. Their expert advice and tools have improved my channel’s revenue and performance. The results are fantastic, and the support is top-notch.
+                </p>
+                <img src="https://smmxz.sacloud.site/images/star.png" alt="" class="img-fluid" />
+                <h3>Isabella Chen</h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="box_item testimonial_box">
+              <div class="box_icon text-center">
+                <img
+                  src="https://smmxz.sacloud.site/images/qoute-icon.png"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="box_content testimonial_content text-center">
+                <p>
+                  {{ site["site_name"] }} offers a variety of secure and convenient payment methods. The transaction process is smooth and efficient, making it easy to manage payments without any hassle.
+                </p>
+                <img src="https://smmxz.sacloud.site/images/star.png" alt="" class="img-fluid" />
+                <h3>Ethan Robinson</h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="box_item testimonial_box">
+              <div class="box_icon text-center">
+                <img
+                  src="https://smmxz.sacloud.site/images/qoute-icon.png"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="box_content testimonial_content text-center">
+                <p>
+                  I find the SMMXZ dashboard to be incredibly effective. It provides a comprehensive overview of all my social media metrics in one place, making it easier to track and optimize my campaigns.
+                </p>
+                <img src="https://smmxz.sacloud.site/images/star.png" alt="" class="img-fluid" />
+                <h3>Mia Wilson</h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="box_item testimonial_box">
+              <div class="box_icon text-center">
+                <img
+                  src="https://smmxz.sacloud.site/images/qoute-icon.png"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="box_content testimonial_content text-center">
+                <p>
+                  The {{ site["site_name"] }} SMM panel service is outstanding. It offers a wide range of features that have helped me enhance my social media strategy. The service is reliable and delivers impressive results.
+                </p>
+                <img src="https://smmxz.sacloud.site/images/star.png" alt="" class="img-fluid" />
+                <h3>Oliver Davis</h3>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <!-- If we need navigation buttons -->
+      </div>
+    </div>
+  </div>
+  <div class="testimonials_slider_button">
+    <div class="swiper-prev">
+      <img src="https://smmxz.sacloud.site/images/arrow_left_icon.png" class="img-fluid" alt="" />
+    </div>
+    <div class="swiper-next">
+      <img src="https://smmxz.sacloud.site/images/arrow_right_icon.png" alt="" class="img-fluid" />
+    </div>
+  </div>
+</section>
+<!-- ### Testimonials Sections -->
+
+<!-- Why Choose Us -->
+<section id="whyChooseUs">
+  <div class="why_choose_effect">
+    <img
+      src="https://smmxz.sacloud.site/images/why-choose-us-image-left.png"
+      class="img-fluid choose_effect_left"
+      alt=""
+    />
+    <img
+      src="https://smmxz.sacloud.site/images/why-choose-us-image-right.png"
+      class="img-fluid choose_effect_right"
+      alt=""
+    />
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-12 col-12">
+        <div class="def_content">
+          <h2>
+            Why Should You <br />
+            Choose Us?
+          </h2>
+          <p>
+            {{ site["site_name"] }} works to attain 100% customer satisfaction. Our SMM panel will make your business stand out. We have an all-in-one solution to fix your problem on every social media platform.
+          </p>
+          <a href="/signup" class="btn btn-primary mt-3"
+            >Create An Account</a
+          >
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12 col-12">
+        <div class="type_item_1 mb-4">
+          <div class="icon">
+            <img
+              src="https://smmxz.sacloud.site/images/we-are-affordable-icon.png"
+              alt=""
+              class="img-fluid"
+            />
+          </div>
+          <div class="type_content">
+            <h3>We are affordable</h3>
+            <p>
+              We provide fast and cheap SMM panels. The packages won’t take a huge toll on your pocket. We ensure rapid and quality delivery without any room for complaints.
+            </p>
+          </div>
+        </div>
+
+        <div class="type_item_1 mb-4">
+          <div class="icon">
+            <img
+              src="https://smmxz.sacloud.site/images/available-247-icon.png"
+              alt=""
+              class="img-fluid"
+            />
+          </div>
+          <div class="type_content">
+            <h3>{{ site["site_name"] }} is present 24/7 to serve you</h3>
+            <p>
+              We have a strong customer care service team. The live chat is open 24/7. You can shoot us anytime with your problems and queries. Our expert team will be there to help you out!
+            </p>
+          </div>
+        </div>
+
+        <div class="type_item_1 mb-4">
+          <div class="icon">
+            <img
+              src="https://smmxz.sacloud.site/images/place-bulk-order-easily-icon.png"
+              alt=""
+              class="img-fluid"
+            />
+          </div>
+          <div class="type_content">
+            <h3>You can place bulk orders with us easily</h3>
+            <p>
+              We are experts in providing mass delivery. If you are looking for a wholesale SMM panel, {{ site["site_name"] }} should be the perfect platform for you. We give the delivery of bulk orders without any extra hassle.
+            </p>
+          </div>
+        </div>
+
+        <div class="type_item_1 mb-4">
+          <div class="icon">
+            <img
+              src="https://smmxz.sacloud.site/images/api-integration-icon.png"
+              alt=""
+              class="img-fluid"
+            />
+          </div>
+          <div class="type_content">
+            <h3>API integration</h3>
+            <p>
+              The order placing and processing is completely automated at {{ site["site_name"] }}. It is because we use an API. The structured API integration makes you connected to your preferred social media marketing panel.
+            </p>
+          </div>
+        </div>
+
+        <div class="type_item_1 mb-4">
+          <div class="icon">
+            <img
+              src="https://smmxz.sacloud.site/images/secure-payment.png"
+              alt=""
+              class="img-fluid"
+            />
+          </div>
+          <div class="type_content">
+            <h3>Secure Payment</h3>
+            <p>
+              We take payment in all kinds of legal applications. After payment, you will be provided with the necessary documents and information. So, you won't have to worry about anything.
+            </p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ### Why Choose Us -->
+
+<!-- Easy and Accessible -->
+<section id="easyAndAccessible">
+  <div class="container">
+    <div class="row d-flex align-items-center">
+      <div class="col-lg-6 col-md-12 col-12">
+        <div class="def_image">
+          <img
+            src="https://smmxz.sacloud.site/images/easy-and-accessible-multiple-services-are-available.png"
+            class="img-fluid"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12 col-12">
+        <div class="def_content">
+          <h2>Easy & Accessible Multiple Services Are Available</h2>
+          <p>
+            {{ site["site_name"] }} always updates its dashboard. The panels are
+            user-friendly. Our service is automated. You will get clear
+            instructions. Thus, you won’t be confused when you reach out
+            to us.
+          </p>
+          <a href="/services" class="btn btn-primary mt-3"
+            >See All Our Services</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #### Easy and Accessible -->
+
+<!-- Features Of Our SMM Panel -->
+<section id="featuresOfSmmpanel">
+  <div class="feature_effect">
+    <img
+      src="https://smmxz.sacloud.site/images/features_effect_left.png"
+      class="img-fluid feature_effect_left"
+      alt=""
+    />
+    <img
+      src="https://smmxz.sacloud.site/images/features_effect_right.png"
+      class="img-fluid feature_effect_right"
+      alt=""
+    />
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="def_content text-center">
+          <h2>Features of our SMM Panel</h2>
+          <p>
+            Our SMM panel has its distinct features. We are built differently. Go through below to learn about our unique features.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-md-12 col-12">
+        <div class="box_item features_box_item mb-3">
+          <div class="type_item_1">
+            <div class="icon">
+              <img
+                src="https://smmxz.sacloud.site/images/secure-payment.png"
+                alt=""
+                class="img-fluid"
+              />
+            </div>
+            <div class="type_content">
+              <h3>Cheapest</h3>
+              <p>
+                The SMM panels that we provide are budget-friendly. All the packages are curated considering the affordability of all. That’s why you can’t compare our price range with any other companies in the market. 
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="box_item features_box_item mb-3">
+          <div class="type_item_1">
+            <div class="icon">
+              <img
+                src="https://smmxz.sacloud.site/images/easy-smm-panel-icon.png"
+                alt=""
+                class="img-fluid"
+              />
+            </div>
+            <div class="type_content">
+              <h3>Easy Interface</h3>
+              <p>
+                {{ site["site_name"] }} always updates its dashboard. The panels are user-friendly. Our service is automated. You will get clear instructions. Thus, you won’t be confused when you reach out to us.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="box_item features_box_item mb-3">
+          <div class="type_item_1">
+            <div class="icon">
+              <img
+                src="https://smmxz.sacloud.site/images/real-time-and-date-icon.png"
+                alt=""
+                class="img-fluid"
+              />
+            </div>
+            <div class="type_content">
+              <h3>Real-time and Data</h3>
+              <p>
+                We update our data constantly according to the updated algorithms of the social media platforms. That’s why we, {{ site["site_name"] }}, have the best deals. 
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12 col-12">
+        <div class="box_item features_box_item mb-3">
+          <div class="type_item_1">
+            <div class="icon">
+              <img
+                src="https://smmxz.sacloud.site/images/fastest-delivery-icon.png"
+                alt=""
+                class="img-fluid"
+              />
+            </div>
+            <div class="type_content">
+              <h3>Fastest Delivery</h3>
+              <p>
+               Our team is extremely skillful. We value your time. So, you will get the delivery within 24 hours of placing the order. You will get a return on your investment from day 1. 
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="box_item features_box_item mb-3">
+          <div class="type_item_1">
+            <div class="icon">
+              <img
+                src="https://smmxz.sacloud.site/images/a-multitude-of-services-icon.png"
+                alt=""
+                class="img-fluid"
+              />
+            </div>
+            <div class="type_content">
+              <h3>Comprehensive Services</h3>
+              <p>
+                We give different types of services based on different social media platforms. SMM and SEO, every relevant thing is available to us. So, there’s a wide range of services from which you can select.  
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="box_item features_box_item mb-3">
+          <div class="type_item_1">
+            <div class="icon">
+              <img
+                src="https://smmxz.sacloud.site/images/able-to-provide-bulk-orders.png"
+                alt=""
+                class="img-fluid"
+              />
+            </div>
+            <div class="type_content">
+              <h3>Able to Provide Bulk Orders</h3>
+              <p>
+                You can buy SMM panels from us in bulk. Our objective is
+                to ensure the selling of affordable and high-quality SMM
+                panels all over the world.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #### Features Of Our SMM Panel -->
+
+<!-- Services Section -->
+<section id="services">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="def_content text-center">
+          <h2>
+            Our Social Media Marketing <br />
+            Panel Services
+          </h2>
+          <p>
+            We provide SMM services on almost every social media platform. We have everything you would need to increase engagement. Check out our range of services. Choose the one you need!
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 mb-4">
+        <div class="box_item">
+          <div class="row">
+            <div class="col-lg-2 col-md-12 col-12">
+              <div
+                class="nav flex-column nav_services nav-pills me-3"
+                id="v-pills-tab"
+                role="tablist"
+                aria-orientation="vertical"
+              >
+                <button
+                  class="nav-link active"
+                  id="v-pills-instagram-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#v-pills-instagram"
+                  type="button"
+                  role="tab"
+                  aria-controls="v-pills-instagram"
+                  aria-selected="true"
+                >
+                  <div class="icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/instagram-logo-for-btn.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="text">Instagram</div>
+                </button>
+
+                <button
+                  class="nav-link"
+                  id="v-pills-Facebook-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#v-pills-Facebook"
+                  type="button"
+                  role="tab"
+                  aria-controls="v-pills-Facebook"
+                  aria-selected="false"
+                >
+                  <div class="icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/facebook-logo-for-btn.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="text">Facebook</div>
+                </button>
+
+                <button
+                  class="nav-link"
+                  id="v-pills-youtube-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#v-pills-youtube"
+                  type="button"
+                  role="tab"
+                  aria-controls="v-pills-youtube"
+                  aria-selected="false"
+                >
+                  <div class="icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/youtube-logo-for-btn.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="text">Youtube</div>
+                </button>
+
+                <button
+                class="nav-link"
+                id="v-pills-snapchat-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-snapchat"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-snapchat"
+                aria-selected="false"
+              >
+                <div class="icon">
+                  <img
+                    src="https://smmxz.sacloud.site/images/snapchat-logo-for-btn.png"
+                    class="img-fluid"
+                    alt=""
+                  />
+                </div>
+                <div class="text">Snapchat</div>
+              </button>
+
+              <button
+              class="nav-link"
+              id="v-pills-tiktok-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#v-pills-tiktok"
+              type="button"
+              role="tab"
+              aria-controls="v-pills-tiktok"
+              aria-selected="false"
+            >
+              <div class="icon">
+                <img
+                  src="https://smmxz.sacloud.site/images/tiktok-logo-for-btn.png"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="text">TikTok</div>
+            </button>
+
+                <button
+                  class="nav-link"
+                  id="v-pills-twitter-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#v-pills-twitter"
+                  type="button"
+                  role="tab"
+                  aria-controls="v-pills-twitter"
+                  aria-selected="false"
+                >
+                  <div class="icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/twitter-logo-for-btn.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="text">Twitter</div>
+                </button>
+
+                <button
+                  class="nav-link"
+                  id="v-pills-spotify-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#v-pills-spotify"
+                  type="button"
+                  role="tab"
+                  aria-controls="v-pills-spotify"
+                  aria-selected="false"
+                >
+                  <div class="icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/spotify-logo-for-btn.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="text">Spotify</div>
+                </button>
+
+                <button
+                class="nav-link"
+                id="v-pills-telegram-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-telegram"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-telegram"
+                aria-selected="false"
+              >
+                <div class="icon">
+                  <img
+                    src="https://smmxz.sacloud.site/images/telegram-logo-for-btn.png"
+                    class="img-fluid"
+                    alt=""
+                  />
+                </div>
+                <div class="text">Telegram</div>
+              </button>
+              
+              <button
+              class="nav-link"
+              id="v-pills-linkedin-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#v-pills-linkedin"
+              type="button"
+              role="tab"
+              aria-controls="v-pills-linkedin"
+              aria-selected="false"
+            >
+              <div class="icon">
+                <img
+                  src="https://smmxz.sacloud.site/images/linkedin-logo-for-btn.png"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="text">Linkedin</div>
+            </button>
+                <!-- <button
+                  class="nav-link"
+                  id="v-pills-others-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#v-pills-others"
+                  type="button"
+                  role="tab"
+                  aria-controls="v-pills-others"
+                  aria-selected="false"
+                >
+                  <div class="icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/others-btn-logo.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="text">Others</div>
+                </button> -->
+              </div>
+            </div>
+            <div class="col-lg-10 col-md-12 col-12">
+              <div class="tab-content" id="v-pills-tabContent">
+                <!-- Instagram SMM Panel -->
+                <div
+                  class="tab-pane fade show active"
+                  id="v-pills-instagram"
+                  role="tabpanel"
+                  aria-labelledby="v-pills-instagram-tab"
+                  tabindex="0"
+                >
+                  <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                      <div class="service_content">
+                        <h2>Instagram SMM Services</h2>
+                        <hr />
+                        <p>
+                          In Instagram, followers and like counts play a huge role. That’s why, to increase the visibility of your account, you can buy followers, likes, and views from us. 
+                        </p>
+                        <a href="/instagram-smm-panel" class="btn btn-primary btn-sm"
+                          >Our Services</a
+                        >
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                      <div class="service_icon">
+                        <img
+                          src="https://smmxz.sacloud.site/images/instagram-smm-panel.webp"
+                          class="img-fluid"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Facebook SMM Panel -->
+                <div
+                  class="tab-pane fade"
+                  id="v-pills-Facebook"
+                  role="tabpanel"
+                  aria-labelledby="v-pills-Facebook-tab"
+                  tabindex="0"
+                >
+                  <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                      <div class="service_content">
+                        <h2>Facebook SMM Services</h2>
+                        <hr />
+                        <p>
+                          We help you to buy friends, followers, likes, comments, shares, views, and other reactions on Facebook. Through this, your page will get a good reach.
+                        </p>
+                        <a href="/facebook-smm-panel" class="btn btn-primary btn-sm"
+                          >Our Services</a
+                        >
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                      <div class="service_icon">
+                        <img
+                          src="https://smmxz.sacloud.site/images/facebook-smm-panel.webp"
+                          class="img-fluid"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Youtube SMM Panel -->
+                <div
+                  class="tab-pane fade"
+                  id="v-pills-youtube"
+                  role="tabpanel"
+                  aria-labelledby="v-pills-youtube-tab"
+                  tabindex="0"
+                >
+                  <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                      <div class="service_content">
+                        <h2>Youtube SMM Services</h2>
+                        <hr />
+                        <p>
+                          You can get subscribers, views, and likes on your YouTube channel through us. It will help your channel to get recognition.
+                        </p>
+                        <a href="/youtube-smm-panel" class="btn btn-primary btn-sm">
+                          Our Services</a
+                        >
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                      <div class="service_icon">
+                        <img
+                          src="https://smmxz.sacloud.site/images/youtube-smm-panel.png"
+                          class="img-fluid"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SnapChat SMM Panel -->
+                <div
+                class="tab-pane fade"
+                id="v-pills-snapchat"
+                role="tabpanel"
+                aria-labelledby="v-pills-snapchat-tab"
+                tabindex="0"
+              >
+                <div class="row">
+                  <div class="col-lg-8 col-md-12">
+                    <div class="service_content">
+                      <h2>Snapchat SMM Services</h2>
+                      <hr />
+                      <p>
+                        {{ site["site_name"] }} provides you the chance to increase your Snapchat score, followers, views, and subscribers.  Hence, your page will catch the attention of millennials and Gen Z. 
+                      </p>
+                      <a href="/services" class="btn btn-primary btn-sm">
+                        Our Services</a
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-12">
+                    <div class="service_icon">
+                      <img
+                        src="https://smmxz.sacloud.site/images/snapchat-smm-panel.png"
+                        class="img-fluid"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+                <!-- TikTok SMM Panel -->
+                <div
+                class="tab-pane fade"
+                id="v-pills-tiktok"
+                role="tabpanel"
+                aria-labelledby="v-pills-tiktok-tab"
+                tabindex="0"
+              >
+                <div class="row">
+                  <div class="col-lg-8 col-md-12">
+                    <div class="service_content">
+                      <h2>TikTok SMM Services</h2>
+                      <hr />
+                      <p>
+                        Through our service, likes, reposting, and comments will be increased for your TikTok channel. You can also buy followers from us. Thus, your presence in TikTok will surely improve.
+                      </p>
+                      <a href="/tiktok-smm-panel" class="btn btn-primary btn-sm">
+                        Our Services</a
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-12">
+                    <div class="service_icon">
+                      <img
+                        src="https://smmxz.sacloud.site/images/tiktok-smm-panel.webp"
+                        class="img-fluid"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+                <!-- Twitter SMM Panel -->
+                <div
+                  class="tab-pane fade"
+                  id="v-pills-twitter"
+                  role="tabpanel"
+                  aria-labelledby="v-pills-twitter-tab"
+                  tabindex="0"
+                >
+                  <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                      <div class="service_content">
+                        <h2>Twitter SMM Services</h2>
+                        <hr />
+                        <p>
+                          You can buy followers, retweets, and likes through us. We guarantee that our service will boost the look of your business.
+                        </p>
+                        <a href="/services" class="btn btn-primary btn-sm">
+                          Our Services</a
+                        >
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                      <div class="service_icon">
+                        <img
+                          src="https://smmxz.sacloud.site/images/twitter-smm-panel.png"
+                          class="img-fluid"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Spotify SMM Panel -->
+                <div
+                  class="tab-pane fade"
+                  id="v-pills-spotify"
+                  role="tabpanel"
+                  aria-labelledby="v-pills-spotify-tab"
+                  tabindex="0"
+                >
+                  <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                      <div class="service_content">
+                        <h2>Spotify SMM Services</h2>
+                        <hr />
+                        <p>
+                          We provide a diverse section of services on Spotify like offering playlist plays, Monthly listeners, plays, artist saves, followers, and saves. 
+                        </p>
+                        <a href="/spotify-smm-panel" class="btn btn-primary btn-sm">
+                          Our Services</a
+                        >
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                      <div class="service_icon">
+                        <img
+                          src="https://smmxz.sacloud.site/images/spotify-smm-panel.png"
+                          class="img-fluid"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Telegram SMM Panel -->
+                <div
+                class="tab-pane fade"
+                id="v-pills-telegram"
+                role="tabpanel"
+                aria-labelledby="v-pills-telegram-tab"
+                tabindex="0"
+              >
+                <div class="row">
+                  <div class="col-lg-8 col-md-12">
+                    <div class="service_content">
+                      <h2>Telegram SMM Services</h2>
+                      <hr />
+                      <p>
+                        You can increase the number of members of your telegram groups. It is also possible to buy post views and reactions. 
+                      </p>
+                      <a href="/telegram-smm-panel" class="btn btn-primary btn-sm">
+                        Our Services</a
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-12">
+                    <div class="service_icon">
+                      <img
+                        src="https://smmxz.sacloud.site/images/telegram-smm-panel.webp"
+                        class="img-fluid"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+                <!-- Linkedin SMM Panel -->
+                <div
+                class="tab-pane fade"
+                id="v-pills-linkedin"
+                role="tabpanel"
+                aria-labelledby="v-pills-linkedin-tab"
+                tabindex="0"
+              >
+                <div class="row">
+                  <div class="col-lg-8 col-md-12">
+                    <div class="service_content">
+                      <h2>Linkedin SMM Services</h2>
+                      <hr />
+                      <p>
+                        For LinkedIn, we help to increase likes, followers, connections, and shares. When you have a good engagement, your image becomes more professional. 
+                      </p>
+                      <a href="/services" class="btn btn-primary btn-sm">
+                        Our Services</a
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-12">
+                    <div class="service_icon">
+                      <img
+                        src="https://smmxz.sacloud.site/images/linkedin-smm-panel.webp"
+                        class="img-fluid"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+                <!-- <div
+                  class="tab-pane fade"
+                  id="v-pills-others"
+                  role="tabpanel"
+                  aria-labelledby="v-pills-others-tab"
+                  tabindex="0"
+                >
+                  <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                      <div class="service_content">
+                        <h2>Others SMM Services</h2>
+                        <hr />
+                        <p>
+                          In Facebook, followers and like counts play a
+                          huge role. That’s why, to increase the
+                          visibility of your account, you can buy
+                          followers, likes, and views from us.
+                        </p>
+                        <a href="" class="btn btn-primary btn-sm">
+                          Our Services</a
+                        >
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                      <div class="service_icon">
+                        <img
+                          src="https://smmxz.sacloud.site/images/website-traffic-of-smm-panel-banner.webp"
+                          class="img-fluid"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <p class="text-center">
+          If you have an additional query about any other platforms or the listed ones, feel free to contact us. <br> Our live chat is open 24/7 for your support.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="service_effect">
+    <img
+      src="https://smmxz.sacloud.site/images/service_effect_left_img.png"
+      class="img-fluid services_effect_img"
+      alt=""
+    />
+  </div>
+</section>
+<!-- ### Services Section -->
+
+<!-- Payment methods -->
+<section id="payment_methods">
+  <div class="payment_methods_effect">
+    <img
+      src="https://smmxz.sacloud.site/images/payment-methods-right-effect.png"
+      class="img-fluid payment_effect"
+      alt=""
+    />
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="def_content text-center mb-2">
+          <h2>10+ Payment Methods Available</h2>
+        </div>
+        <div class="payment_methods_logo">
+          <img
+            src="https://smmxz.sacloud.site/images/master-card-logo.png"
+            alt=""
+            class="img-fluid payment_logo"
+          />
+          <img
+            src="https://smmxz.sacloud.site/images/visa-card-logo.png"
+            alt=""
+            class="img-fluid payment_logo"
+          />
+          <img
+            src="https://smmxz.sacloud.site/images/payoneer-logo.png"
+            alt=""
+            class="img-fluid payment_logo"
+          />
+          <img
+            src="https://smmxz.sacloud.site/images/binance-logo.png"
+            alt=""
+            class="img-fluid payment_logo"
+          />
+          <img
+            src="https://smmxz.sacloud.site/images/payeer-logo.png"
+            alt=""
+            class="img-fluid payment_logo"
+          />
+          <img
+            src="https://smmxz.sacloud.site/images/perfectmoney-logo.png"
+            alt=""
+            class="img-fluid payment_logo"
+          />
+          <img
+            src="https://smmxz.sacloud.site/images/paytm-logo.png"
+            alt=""
+            class="img-fluid payment_logo"
+          />
+          <img
+            src="https://smmxz.sacloud.site/images/airtm-logo.png"
+            alt=""
+            class="img-fluid payment_logo"
+          />
+          <img
+            src="https://smmxz.sacloud.site/images/g-cash-logo.png"
+            alt=""
+            class="img-fluid payment_logo"
+          />
+          <img
+            src="https://smmxz.sacloud.site/images/nagad-logo.png"
+            alt=""
+            class="img-fluid payment_logo"
+          />
+          <img
+            src="https://smmxz.sacloud.site/images/bkash-logo.png"
+            alt=""
+            class="img-fluid payment_logo"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ####### Payment methods -->
+
+<!-- Benefits of SMM Panel Services Section -->
+<section id="benifits">
+  <div class="benifits_effects">
+    <img
+      src="https://smmxz.sacloud.site/images/benifits-of-smm-panel-left.png"
+      class="img-fluid benifits_left_img"
+      alt=""
+    />
+    <img
+      src="https://smmxz.sacloud.site/images/benifits-of-smm-panel-right.png"
+      class="img-fluid benifits_right_img"
+      alt=""
+    />
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="def_content text-center">
+          <h2>Benefits of SMM Panel Services</h2>
+          <p>
+            The SMM panel changes the engagement pattern of your page on a large scale. Hence, it is highly recommended. There are lots of reasons behind why you should choose the SMM panel. Check these out!
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-12 mb-4">
+        <div class="box_item text-center box_benifits">
+          <div class="box_icon">
+            <img
+              src="https://smmxz.sacloud.site/images/increases-reach-icon.png"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="box_content">
+            <h3>Increases Reach:</h3>
+            <p>
+              SMM panels guarantee that your business gets a good reach. The network which is created by the increased reach will promote your business. Thus, your business will be scaled up online.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-12 mb-4">
+        <div class="box_item text-center box_benifits mid_box">
+          <div class="box_icon">
+            <img
+              src="https://smmxz.sacloud.site/images/competitive-edges-icon.png"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="box_content">
+            <h3 class="has_underline">
+              <span class="text">Competitive Edge:</span>
+            </h3>
+            <p>
+              Through SMM panels, your business will be exposed to the latest bandwagon, trends, tools, and algorithms. Thus, as a business, you will be able to adapt to the ever-changing online trends and make the best use of it. 
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-12 mb-4">
+        <div class="box_item text-center box_benifits">
+          <div class="box_icon">
+            <img
+              src="https://smmxz.sacloud.site/images/fast-response-icon.png"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="box_content">
+            <h3>Fast Response</h3>
+            <p>
+              The response you will be getting after buying SMM panels is super fast. The likes, views, followers, and other relevant requirements will increase rapidly. The purpose of the purchase will be served. 
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 col-12 mb-4">
+        <div class="box_item text-center box_benifits">
+          <div class="box_icon">
+            <img
+              src="https://smmxz.sacloud.site/images/cost-effective-icon.png"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="box_content">
+            <h3>Cost Effective</h3>
+            <p>
+              The money that you will spend on SMM panels will give you the highest output. It is the most cost-effective method for establishing and promoting the business and the products.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-12 mb-4">
+        <div class="box_item text-center box_benifits mid_box">
+          <div class="box_icon">
+            <img
+              src="https://smmxz.sacloud.site/images/targeted-marketing.png"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="box_content">
+            <h3 class="has_underline">
+              <span class="text">Targeted Marketing:</span>
+            </h3>
+            <p>
+              SMM panels do social media marketing by understanding the demographics and interests. As a result, the content always reaches the relevant audiences. This helps the business to strengthen its audience base.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-12 mb-4">
+        <div class="box_item text-center box_benifits">
+          <div class="box_icon">
+            <img
+              src="https://smmxz.sacloud.site/images/generating-traffic-growth.png"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="box_content">
+            <h3>Generating Traffic:</h3>
+            <p>
+              SMM panels can schedule your social media posts. They understand algorithms and analyze metrics. Thus, it brings a good amount of traffic to your social media.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ### Benefits of SMM Panel Services Section -->
+
+<!-- Frequently Asked Questions -->
+<section id="faq">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-12">
+        <div class="def_content">
+          <h2>Frequently Asked Questions</h2>
+          <p>
+            Here, we've compiled answers to some of the most common questions we receive. Whether you're new to {{ site["site_name"] }} or a long-time user, this section will help you find the information you need quickly and easily.
+          </p>
+          <a href="/faq" class="btn btn-primary mt-3">View All FAQ</a>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-12">
+        <div class="faq_accordion">
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                What is an SMM Panel?
+                </button>
+              </h3>
+              <div
+                id="collapseOne"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>
+                    SMM, Social Media Marketing Panel is a service where you can buy followers, like counts, website traffic, and views. This is highly cost-effective as it straightly boosts your online presence. Here, bots are used to generate followers and likes.                      
+                  </p>
+                  <p>
+                    It is done to showcase that your business has a good engagement on social media platforms. Hence, your customer finds your page authentic and reliable.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                >
+                Why should I choose {{ site["site_name"] }} over other SMM service providers?
+                </button>
+              </h3>
+              <div
+                id="collapseTwo"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>
+                    {{ site["site_name"] }} stands out as the cheapest SMM panel provider in the market, offering the lowest reseller prices. We have a strong commitment to customer satisfaction, providing 24/7 customer support, and a 100% money-back guarantee if you are not satisfied with our services. Additionally, our Dubai-based company has established a reputation for quality and reliability in the social media marketing industry.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                >
+                How can I trust the quality of your services?
+                </button>
+              </h3>
+              <div
+                id="collapseThree"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>
+                    Our company prioritizes quality over quantity. We ensure that all the social media services we provide, such as likes, comments, and followers, come from real and active accounts to maintain the authenticity and effectiveness of your social media campaigns. Our long-standing reputation and customer testimonials speak to the quality and reliability of our services.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFour"
+                  aria-expanded="false"
+                  aria-controls="collapseFour"
+                >
+                Are there any risks associated with using SMM services?
+                </button>
+              </h3>
+              <div
+                id="collapseFour"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>
+                    Using SMM services provided by a reputable and professional company like {{ site["site_name"] }} minimizes risks. We adhere to the best practices and guidelines of social media platforms to ensure that our services do not violate terms of service. However, it is always advisable to use SMM services wisely and to complement them with organic growth strategies for the best results.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFive"
+                  aria-expanded="false"
+                  aria-controls="collapseFive"
+                >
+                How do I get started with {{ site["site_name"] }}?
+                </button>
+              </h3>
+              <div
+                id="collapseFive"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>
+                    Getting started with {{ site["site_name"] }} is simple! Visit our website at {{ site["site_name"] }}.COM, create an account, and browse through our diverse range of social media services. You can compare our prices with other providers directly on our site and choose the services that best fit your needs. If you need any assistance, our 24/7 customer support team is ready to help you every step of the way.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseSix"
+                  aria-expanded="false"
+                  aria-controls="collapseSix"
+                >
+                How long would it take for my orders to be completed?
+                </button>
+              </h3>
+              <div
+                id="collapseSix"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>
+                    The completion time for orders depends on the size and type of service requested. Typically, smaller orders are completed within a few hours, while larger orders may take up to a few days. We strive to fulfill all orders as quickly as possible without compromising on quality.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseSeven"
+                  aria-expanded="false"
+                  aria-controls="collapseSeven"
+                >
+                What payment methods do you accept?
+                </button>
+              </h3>
+              <div
+                id="collapseSeven"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>
+                    {{ site["site_name"] }} accepts a variety of payment methods, including major credit cards, PayPal, and other secure online payment platforms. We are committed to providing convenient and secure payment options for all our customers globally.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseEight"
+                  aria-expanded="false"
+                  aria-controls="collapseEight"
+                >
+                Can SMM panels result in your account being banned?
+                </button>
+              </h3>
+              <div
+                id="collapseEight"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>
+                    While there is always a risk when using third-party services that manipulate social media metrics, {{ site["site_name"] }} uses the safest practices to minimize any risks. Our strategies are designed to comply with social media guidelines. However, we advise clients to use our services responsibly and in a manner that complements their organic social media growth.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseNine"
+                  aria-expanded="false"
+                  aria-controls="collapseNine"
+                >
+                If I am not satisfied with your services, am I eligible for a refund?
+                </button>
+              </h3>
+              <div
+                id="collapseNine"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>
+                    Yes, at {{ site["site_name"] }}, customer satisfaction is our priority. We offer a 100% money-back guarantee if you are not satisfied with our services. To be eligible for a refund, please contact our customer support within a specified timeframe, typically within 24 hours of the service delivery, detailing your concerns.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ### Frequently Asked Questions -->
+
+<!-- What we do -->
+<section id="whatWeDo">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="def_content text-center">
+          <h2>How to Be Our SMM Panel Reseller?</h2>
+          <p>
+            {{ site["site_name"] }} is the cheapest SMM Panel Reseller existing in the market. We have a presence on all the social media platforms. To ensure that a high-quality SMM panel reaches everyone, we allow individuals to become our resellers. If you want to become our SMM Panel Reseller, you have to follow a few steps.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-12">
+        <div class="box_item">
+          <div class="box_content">
+            <h3>
+              1.Go to our platform. You will find the ‘Child SMM Panel’. Choose that.
+            </h3>
+            <p>
+              If you are starting a new business, a child panel can be beneficial for you. It could be used as a white label. You will get a lot of opportunities. 
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-12">
+        <div class="box_item">
+          <div class="box_content">
+            <h3>2.You have to link your domain name with {{ site["site_name"] }}. Now, you can create your subscription and order the refill options.</h3>
+            <p>
+              After doing this, you will become our SMM panel reseller. So, you can sell our services under your label. 
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center">
+          <a href="/signup" class="btn btn-primary mt-4">
+            Create An Account</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ### What we do -->
+
+<!-- Happy Image Sections -->
+<section id="happy">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <img src="https://smmxz.sacloud.site/images/happy-image.webp" class="img-fluid" alt="" />
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ### Happy Image Sections -->
+
+        </main>
+
+      
+
+
+                <!-- Footer -->
+        <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-12">
+              <div class="footer_info">
+                <div class="logo">
+                    <a href="/">
+                                              <img src="{{ site["logo"] }}" class="img-fluid" alt="{{ site["site_name"] }}" />
+                                        </a>
+                </div>
+                <div class="footer_contact">
+                  <a href="tel:14155551234" class="footer_c_item">
+                    <div class="icon">
+                      <img src="https://smmxz.sacloud.site/images/phone-icon.png" class="img-fluid" alt="" />
+                    </div>
+                    <div class="text">Call Us: +1 (415) 555-1234</div>
+                  </a>
+                  <a href="mailto:info@{{ site["site_name"] }}.com" class="footer_c_item">
+                    <div class="icon">
+                      <img src="https://smmxz.sacloud.site/images/email-icon.png" class="img-fluid" alt="" />
+                    </div>
+                    <div class="text">info@{{ site["site_name"] }}.com</div>
+                  </a>
+                </div>
+                <div class="ss_media">
+                  <a href="https://www.facebook.com/{{ site["site_name"] }}" target="_blank" class="ss_btn_icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/facebook-footer-icon.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </a>
+                  <a href="https://x.com/smmxzweb" target="_blank" class="ss_btn_icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/twitter-footer-icon.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </a>
+                  <a href="https://www.pinterest.com/smmxzweb/" target="_blank" class="ss_btn_icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/pinterest-footer-icon.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </a>
+                  <a href="https://www.instagram.com/smmxzpanel" target="_blank" class="ss_btn_icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/instagram-footer-icon.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </a>
+                  <a href="https://www.youtube.com/@smmxz" target="_blank" class="ss_btn_icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/youtube-footer-icon.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </a>
+                  <a href="https://www.linkedin.com/company/smmxz/" target="_blank" class="ss_btn_icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/linkedin-footer-icon.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+              <div class="footer_links_wrap">
+                <h4>Quick Links</h4>
+                <ul class="footer_links">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/about-us">About Us</a></li>
+                  <li><a href="/services">Our Services</a></li>
+                  <li><a href="/blog">Read Our Blog</a></li>
+                  <li><a href="/api">API</a></li>
+                  <li><a href="/contact-us">Contact Us</a></li>
+                  <li><a href="/faq">FAQ</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+              <div class="footer_links_wrap">
+                <h4>Our Services</h4>
+                <ul class="footer_links">
+                  <li><a href="/facebook-smm-panel">Facebook SMM Panel</a></li>
+                  <li><a href="/instagram-smm-panel">Instagram Services</a></li>
+                  <li><a href="/youtube-smm-panel">YouTube Services</a></li>
+                  <li><a href="/spotify-smm-panel">Spotify Services</a></li>
+                  <li><a href="/telegram-smm-panel">Telegram Services</a></li>
+                  <li><a href="/tiktok-smm-panel">TikTok Services</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+              <div class="footer_links_wrap">
+                <h4>Our Service Area</h4>
+                <ul class="footer_links">
+                  <!-- <li><a href="/terms">Terms & Conditions</a></li> -->
+                  <!-- <li><a href="/privacy-policy">Privacy Policy</a></li>
+                  <li><a href="/refund-policy">Refund Policy</a></li>
+                   -->
+                   <li><a href="/smm-panel-bangladesh">SMM Panel in Bangladesh</a></li>
+                   <li><a href="/smm-panel-india">SMM Panel in india</a></li>
+                   <li><a href="/smm-panel-turkey">SMM Panel in Turkey</a></li>
+                   <li><a href="/smm-panel-pakistan">SMM Panel in Pakistan</a></li>
+                  <li><a href="/smm-panel-indonesia">SMM Panel in Indonesia</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <hr class="shades">
+          
+          <div class="row my-4">
+            <div class="col-lg-3 col-md-6 col-12">
+              <div class="footer_links_wrap">
+                <h4>Our Facebook Services</h4>
+                <ul class="footer_links">
+                  <li><a href="/buy-facebook-followers">Buy Facebook Followers</a></li>
+                  <li><a href="/buy-facebook-likes">Buy Facebook Likes</a></li>
+                  <li><a href="/buy-facebook-comments">Buy Facebook Comments</a></li>
+                  <li><a href="/buy-facebook-group-members">Buy Facebook Group Members</a></li>
+                  <li><a href="/buy-facebook-reviews">Buy Facebook Reviews</a></li>
+                  <li><a href="/buy-facebook-shares">Buy Facebook Share</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+              <div class="footer_links_wrap">
+                <h4>Our Instagram Services</h4>
+                <ul class="footer_links">
+                  <li><a href="/buy-instagram-followers">Buy Instagram Followers</a></li>
+                  <li><a href="/buy-instagram-likes">Buy Instagram Likes</a></li>
+                  <li><a href="/buy-instagram-comments">Buy Instagram Comments</a></li>
+                  <li><a href="/buy-instagram-reels-views">Buy Instagram Reels Views</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+              <div class="footer_links_wrap">
+                <h4>Our YouTube Services</h4>
+                <ul class="footer_links">
+                  <li><a href="/buy-youtube-subscribers">Buy YouTube Subscribers</a></li>
+                  <li><a href="/buy-youtube-likes">Buy YouTube Likes</a></li>
+                  <li><a href="/buy-youtube-video-comments">Buy YouTube Video Comments</a></li>
+                  <li><a href="/buy-youtube-views">Buy YouTube Views</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+              <div class="footer_links_wrap">
+                <h4>Our TikTok Services</h4>
+                <ul class="footer_links">
+                  <li><a href="/buy-tiktok-followers">Buy TikTok Followers</a></li>
+                  <li><a href="/buy-tiktok-likes">Buy TikTok Likes</a></li>
+                  <li><a href="/buy-tiktok-comments">Buy TikTok Comments</a></li>
+                  <li><a href="/buy-tiktok-views">Buy TikTok Views</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <hr />
+           <div class="footer_bottom_text d-flex flex-md-row justify-content-md-between flex-column justify-content-center">
+            <p class="copyright_text">
+              &copy; Copyright 2024 {{ site["site_name"] }} | All Rights Reserved
+            </p>
+            <div class="flex bottom_footer_links">
+              <a href="/terms">Terms & Conditions</a>
+              <a href="/privacy-policy">Privacy Policy</a>
+              <a href="/refund-policy">Refund Policy</a>
+            </div>
+           </div>
+          </div>
+        </div>
+        </footer>
+        <!-- #### Footer -->
+        		
+
+
+
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/libs/jquery/1.12.4/jquery.min.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/6lea6p5h1se0ydlc.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/lpckws4jmmcjpzoh.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/41oyxac8gg4eoke6.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/dmabhtcke4de93dz.js" >
+							</script>
+					<script type="text/javascript"  src="https://accounts.google.com/gsi/client" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/ob5eq3/t05xwla9gwo8usgw.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/ob5eq3/9kqdad0glwb7ykdp.js" >
+							</script>
+					<script type="text/javascript" >
+				                window.modules.layouts = {"theme_id":1,"auth":0,"live":true,"csrftoken":"HpVMy7w3nQ6ONnZP023wIfn95vnvHua2jfzvobr8p2FI1zX9yALHd7ZcFTWEGZQWy5_Ty4Zmlo_ayJ_X_LT1UA=="};
+                			</script>
+					<script type="text/javascript" >
+				                window.modules.signin = [];
+                			</script>
+					<script type="text/javascript" >
+							</script>
+		
+        <!-- Footer Scripts -->
+                   <!-- Jquery -->
+          <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+                <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+        
+        
+  <!-- Point system codes -->
+  
+               
+              <script>
+                  const swiper = new Swiper(".testimonialSlider", {
+                    // Default parameters
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                    autoplay: {
+                      delay: 3000,
+                    },
+                    // Navigation arrows
+                    navigation: {
+                      nextEl: ".swiper-next",
+                      prevEl: ".swiper-prev",
+                    },
+                    // Responsive breakpoints
+                    breakpoints: {
+                      // when window width is >= 320px
+                      320: {
+                        slidesPerView: 1,
+                        spaceBetween: 0,
+                      },
+                      // when window width is >= 480px
+                      480: {
+                        slidesPerView: 1,
+                        spaceBetween: 0,
+                      },
+                      // when window width is >= 1200px
+                      1200: {
+                        slidesPerView: 2,
+                        spaceBetween: 40,
+                      },
+                    },
+                  });
+
+                  
+      const swiperDifference = new Swiper(".differenceSlider", {
+        // Default parameters
+        slidesPerView: 3,
+        spaceBetween: 40,
+        autoplay: {
+          delay: 3000,
+        },
+        // Navigation arrows
+        navigation: {
+          nextEl: ".differenceSlider-next",
+          prevEl: ".differenceSlider-prev",
+        },
+        // Responsive breakpoints
+        breakpoints: {
+          // when window width is >= 320px (mobile)
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          // when window width is >= 768px (tablets)
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          // when window width is >= 1024px (large screens)
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 40,
+          },
+        },
+      });
+                </script>
+         
+
+                        
+            
+            
+
+            
+	</body>
+</html>

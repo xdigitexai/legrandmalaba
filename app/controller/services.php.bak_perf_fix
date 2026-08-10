@@ -1,0 +1,79 @@
+<?php
+if(!defined('BASEPATH')) {
+   die('Direct access to the script is not allowed');
+}
+$title .= $languageArray["services.title"];
+
+if( $settings["service_list"] == 2 && !$_SESSION["msmbilisim_userlogin"] ):
+  header("Location:".site_url('services'));
+endif;
+
+$categoriesRows = $conn->prepare("SELECT * FROM categories WHERE category_type='2' AND category_deleted='0' ORDER BY categories.category_line ASC");
+$categoriesRows->execute(array());
+$categoriesRows = $categoriesRows->fetchAll(PDO::FETCH_ASSOC);
+
+$query = $conn->query("SELECT * FROM settings", PDO::FETCH_ASSOC);
+if ( $query->rowCount() ):
+ foreach( $query as $row ):
+  $siraal = $row['servis_siralama'];
+ endforeach;
+endif;
+
+// Pre-fetch all services in one query to avoid N+1 (was 6000+ queries)
+$allServicesStmt = $conn->query("SELECT * FROM services WHERE service_type='2' AND service_deleted='0' ORDER BY service_line ".$siraal, PDO::FETCH_ASSOC);
+$servicesByCategory = [];
+foreach($allServicesStmt as $svc) {
+    $servicesByCategory[$svc["category_id"]][] = $svc;
+}
+
+// Pre-fetch client-specific access only if logged in
+$clientCategoryIds = [];
+$clientServiceIds = [];
+if( isset($user["client_id"]) && $user["client_id"] ) {
+    $cc = $conn->prepare("SELECT category_id FROM clients_category WHERE client_id=:c_id");
+    $cc->execute(["c_id"=>$user["client_id"]]);
+    foreach($cc as $r) $clientCategoryIds[$r["category_id"]] = true;
+    $cs = $conn->prepare("SELECT service_id FROM clients_service WHERE client_id=:c_id");
+    $cs->execute(["c_id"=>$user["client_id"]]);
+    foreach($cs as $r) $clientServiceIds[$r["service_id"]] = true;
+}
+
+// Pre-fetch client prices in ONE query to avoid N+1 (was 2 queries per service)
+$clientPrices = [];
+if( isset($user["client_id"]) && $user["client_id"] ) {
+    $cp = $conn->prepare("SELECT service_id, service_price FROM clients_price WHERE client_id=:c_id");
+    $cp->execute(["c_id"=>$user["client_id"]]);
+    foreach($cp as $r) $clientPrices[$r["service_id"]] = $r["service_price"];
+}
+// Pre-fetch currencies array once instead of per-service
+$_currencies = get_currencies_array("enabled");
+
+$categories = [];
+foreach ( $categoriesRows as $categoryRow ) {
+    $catId = $categoryRow["category_id"];
+    if( $categoryRow["category_secret"] == 2 || isset($clientCategoryIds[$catId]) ):
+      $rows = isset($servicesByCategory[$catId]) ? $servicesByCategory[$catId] : [];
+      $services = [];
+      foreach ( $rows as $row ) {
+          $svcId = $row["service_id"];
+          if( $row["service_secret"] == 2 || isset($clientServiceIds[$svcId]) ):
+              $_price = isset($clientPrices[$row["service_id"]]) ? $clientPrices[$row["service_id"]] : $row["service_price"];
+              $s["service_price"] = format_amount_string($user["currency_type"],from_to($_currencies,$settings["site_base_currency"],$user["currency_type"],$_price));
+              $s["without_login_service_price"] = format_amount_string($settings["site_base_currency"],from_to($_currencies,"","",$_price));
+              $name = $row["service_name"];
+              $s["service_id"]    = $row["service_id"];
+              $s["service_name"]  = $name;
+              $s["service_description"] = str_replace("\n", "<br />", $row["service_description"]);
+              $s["time"]  = $row["time"];
+              $s["service_min"]   = $row["service_min"];
+              $s["service_max"]   = $row["service_max"];
+              array_push($services,$s);
+          endif;
+      }
+      $c["category_name"]          = $categoryRow["category_name"];
+      $c["category_icon"]          = $categoryRow["category_icon"];
+      $c["category_id"]            = $categoryRow["category_id"];
+      $c["services"]               = $services;
+      array_push($categories,$c);
+    endif;
+}

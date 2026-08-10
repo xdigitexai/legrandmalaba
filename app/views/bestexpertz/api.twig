@@ -1,0 +1,267 @@
+{% include 'header.twig' %}
+
+		<div class="user-page-container">
+
+
+     <div class="page-container">
+          <div class="page-content">
+          <div class="container">
+               <div class="row">
+                    <span class="page-title"><i class="fi fi-rr-display-code"></i> API</span>
+                    <div class="col-md-12">
+                         <div class="api-box">
+                              <div class="api-top">
+                                   <span class="api-top-item">HTTP Method<b>POST</b></span>
+                                   <span class="api-top-item">
+                                        {{ site["url"] }}/api/v2 </b></span>
+
+                                   <span class="api-top-item">API Key <b><i class="fas fa-arrow-right"></i><b><a
+                                                       href="/account">Click Here</a></b></b></span><b>
+
+                                        <span class="api-top-item">Response format<b>JSON</b></span>
+                                   </b>
+                              </div><b>
+
+                                   <div class="api-code">
+                                        <span class="api-title">Service list</span>
+                                        <span class="api-item">Parameters<b>Description</b></span>
+                                        <div class="api-list">
+                                             <span class="api-item">key<b>Your API key</b></span>
+                                             <span class="api-item">action<b>services</b></span>
+                                        </div>
+                                        <span class="api-title">Example response</span>
+                                        <pre class=" language-css">
+<code class=" language-css">
+     {
+
+    "order": 23501
+
+}
+</code>
+</pre> <span class="api-title">Add order</span>
+<form class="form-inline">
+     <div class="form-group">
+          <select class="form-control input-sm" id="service_type">
+               <option value="0" selected="selected">Default</option>
+          </select>
+     </div>
+</form>
+                                        <div id="type_0" class="api-list" style="border-radius: 10px;">
+                                             <span class="api-item api-baslik">Parameters<b>Description</b></span>
+                                             <span class="api-item">key<b>Your API key</b></span>
+                                             <span class="api-item">action<b>add</b></span>
+                                             <span class="api-item">service<b>Service ID</b></span>
+                                             <span class="api-item">link<b>Link to page</b></span>
+                                             <span class="api-item">quantity<b>Needed quantity</b></span>
+                                             <span class="api-item">runs (optional)<b>Runs to deliver</b></span>
+                                             <span class="api-item">interval (optional)<b>Interval in minutes</b></span>
+                                        </div>
+                                        <div id="type_10" class="api-list" style="display:none; border-radius:10px;">
+                                             <span class="api-item api-baslik">Parameters<b>Description</b></span>
+                                             <span class="api-item">key<b>Your API key</b></span>
+                                             <span class="api-item">action<b>add</b></span>
+                                             <span class="api-item">service<b>Service ID</b></span>
+                                             <span class="api-item">link<b>Link to page</b></span>
+                                        </div>
+                                        <div id="type_2" class="api-list" style="display:none; border-radius:10px;">
+                                             <span class="api-item api-baslik">Parameters<b>Description</b></span>
+                                             <span class="api-item">key<b>Your API key</b></span>
+                                             <span class="api-item">action<b>add</b></span>
+                                             <span class="api-item">service<b>Service ID</b></span>
+                                             <span class="api-item">link<b>Link to page</b></span>
+                                             <span class="api-item">comments<b>Comments list separated by \r\n or
+                                                       \n</b></span>
+                                        </div>
+                                        <div id="type_100" class="api-list" style="display:none; border-radius:10px;">
+                                             <span class="api-item api-baslik">Parameters<b>Description</b></span>
+                                             <span class="api-item">key<b>Your API key</b></span>
+                                             <span class="api-item">action<b>add</b></span>
+                                             <span class="api-item">service<b>Service ID</b></span>
+                                             <span class="api-item">username<b>Username</b></span>
+                                             <span class="api-item">min<b>Quantity min</b></span>
+                                             <span class="api-item">max<b>Quantity max</b></span>
+                                             <span class="api-item">posts (optional)<b>Use this parameter if you want to
+                                                       limit the number of new (future) posts that will be parsed and
+                                                       for which orders will be created. If posts parameter is not set,
+                                                       the subscription will be created for an unlimited number of
+                                                       posts.</b></span>
+                                             <span class="api-item">old_posts (optional)<b>Number of existing posts that
+                                                       will be parsed and for which orders will be created, can be used
+                                                       if this option is available for the service.</b></span>
+                                             <span class="api-item">delay<b>Delay in minutes. Possible values: 0, 5, 10,
+                                                       15, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 360, 420, 480,
+                                                       540, 600</b></span>
+                                             <span class="api-item">expiry (optional)<b>Expiry date. Format
+                                                       d/m/Y</b></span>
+                                        </div>
+                                        <div id="type_15" class="api-list" style="display:none; border-radius:10px;">
+                                             <span class="api-item api-baslik">Parameters<b>Description</b></span>
+                                             <span class="api-item">key<b>Your API key</b></span>
+                                             <span class="api-item">action<b>add</b></span>
+                                             <span class="api-item">service<b>Service ID</b></span>
+                                             <span class="api-item">link<b>Link to page</b></span>
+                                             <span class="api-item">quantity<b>Needed quantity</b></span>
+                                             <span class="api-item">username<b>Username of the comment owner</b></span>
+                                        </div>
+                                        <div id="type_17" class="api-list" style="display:none; border-radius:10px;">
+                                             <span class="api-item api-baslik">Parameters<b>Description</b></span>
+                                             <span class="api-item">key<b>Your API key</b></span>
+                                             <span class="api-item">action<b>add</b></span>
+                                             <span class="api-item">service<b>Service ID</b></span>
+                                             <span class="api-item">link<b>Link to page</b></span>
+                                             <span class="api-item">quantity<b>Needed quantity</b></span>
+                                             <span class="api-item">answer_number<b>Answer number of the poll</b></span>
+                                        </div>
+                                        <span class="api-title">Example response</span>
+                                        <pre class=" language-css">
+<code class=" language-css">
+<span class="token punctuation">{</span>
+<span class="token string">"order"</span><span class="token punctuation">:</span> 23501
+<span class="token punctuation">}</span>
+</code>
+</pre> 
+
+<span class="api-title">Order status</span>
+                                        <span class="api-item">Parameters<b>Description</b></span>
+                                        <div class="api-list">
+                                             <span class="api-item">key<b>Your API key</b></span>
+                                             <span class="api-item">action<b>status</b></span>
+                                             <span class="api-item">order<b>Order ID</b></span>
+                                        </div>
+                                        <span class="api-title">Example response</span>
+                                        <pre class=" language-css">
+<code class=" language-css">
+     {
+
+    "charge": "0.27819",
+
+    "start_count": "3572",
+
+    "status": "Partial",
+
+    "remains": "157",
+
+    "currency": "USD"
+
+}
+</code>
+</pre> <span class="api-title">Multiple orders status</span>
+                                        <span class="api-item">Parameters<b>Description</b></span>
+                                        <div class="api-list">
+                                             <span class="api-item">key<b>key</b></span>
+                                             <span class="api-item">action<b>status</b></span>
+                                             <span class="api-item">orders<b>Order IDs separated by comma</b></span>
+                                        </div>
+                                        <span class="api-title">Example response</span>
+                                        <pre class=" language-css">
+<code class=" language-css">
+     {
+
+    "1": {
+
+        "charge": "0.27819",
+
+        "start_count": "3572",
+
+        "status": "Partial",
+
+        "remains": "157",
+
+        "currency": "USD"
+
+    },
+
+    "10": {
+
+        "error": "Incorrect order ID"
+
+    },
+
+    "100": {
+
+        "charge": "1.44219",
+
+        "start_count": "234",
+
+        "status": "In progress",
+
+        "remains": "10",
+
+        "currency": "USD"
+
+    }
+
+}
+</code>
+</pre>
+
+
+                       <span class="api-title">Create refill</span>
+                                        <span class="api-item">Parameters<b>Description</b></span>
+                                        <div class="api-list">
+                                             <span class="api-item">key<b>key</b></span>
+                                             <span class="api-item">
+                                                  action
+                                             </span>
+                                             <span class="api-item">order<b>Order ID</b></span>
+                                        </div>
+                                        <span class="api-title">Example response</span>
+                                        <pre class=" language-css">
+<code class=" language-css">
+     {
+          "status": Success,
+          "message": "Your order successfully added for refill. Thank you for patience."
+     }
+</code>
+</pre> <span class="api-title">Get refill status</span>
+                                        <span class="api-item">Parameters<b>Description</b></span>
+                                        <div class="api-list">
+                                             <span class="api-item">key<b>Your API key</b></span>
+                                             <span class="api-item">action<b>refill_status</b></span>
+                                             <span class="api-item">refill<b>Refill ID</b></span>
+                                        </div>
+                                        <span class="api-title">Example response</span>
+                                        <pre class=" language-css">
+<code class=" language-css">
+<span class="token punctuation">{</span>
+<span class="token string">"status"</span><span class="token punctuation">:</span> <span class="token string">"Completed"</span>
+<span class="token punctuation">}</span>
+</code>
+</pre> <span class="api-title">User balance</span>
+                                        <span class="api-item">Parameters<b>Description</b></span>
+                                        <div class="api-list">
+                                             <span class="api-item">key<b>key</b></span>
+                                             <span class="api-item">action<b>balance</b></span>
+                                        </div>
+                                        <span class="api-title">Example response</span>
+                                        <pre class=" language-css">
+<code class=" language-css">
+     {
+          "balance": 10000,
+          "currency": "USD",
+     }
+</code>
+</pre>
+                                   </div>
+                                   <a href="https://bestexpertz.com/api.zip" class="btn btn-blue" target="_blank">Example of PHP
+                                        code</a>
+                              </b>
+                         </div><b>
+                         </b>
+                    </div><b>
+                    </b>
+               </div><b>
+               </b>
+          </div>
+     </div><b>
+          </b>
+     </div><b>
+
+
+
+
+
+     </b>
+</div>
+   
+{% include 'footer.twig' %}

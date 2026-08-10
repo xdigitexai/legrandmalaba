@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /api/
+Disallow: /ajax/
+Disallow: /cdn/
+
+Sitemap: https://www.legrandmalaba.com/sitemap.xml

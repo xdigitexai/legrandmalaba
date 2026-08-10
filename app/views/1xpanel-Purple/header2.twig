@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+{% for lang in site['languages'] %}
+{% if lang['active'] %}
+<html lang="en" class="dark">
+{% endif %}
+{% endfor %}
+<head>
+  <base href="{{ site['url'] }}">
+  <title>{% if pagetitle %}  {{ pagetitle }}  {% else %} {{ title }} {% endif %} </title>
+  <meta property="og:title" content="{% if pagetitle %}  {{ pagetitle }}  {% else %} {{ title }} {% endif %}" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="{% if pagekeywords %} {{ pagekeywords }} {% else %} {{ site["keywords"]}}  {% endif %}">
+  <meta name="description" content="{% if pagedescription %} {{ pagedescription }} {% else %} {{ site['description'] }}  {% endif %}">
+  <meta property="og:description" content="{% if pagedescription %} {{ pagedescription }} {% else %} {{ site['description'] }}  {% endif %}" />
+  {% if site['favicon'] %}
+    <link rel="shortcut icon" type="image/ico" href="{{ site['favicon'] }}" />
+  {% endif %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <script>
+    // Prevent pinch zoom (iOS / Safari)
+    document.addEventListener('gesturestart', function (e) {
+      e.preventDefault();
+    });
+    document.addEventListener('gesturechange', function (e) {
+      e.preventDefault();
+    });
+    document.addEventListener('gestureend', function (e) {
+      e.preventDefault();
+    });
+
+    // Prevent double-tap zoom
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function (event) {
+      const now = new Date().getTime();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
+
+    // Prevent Ctrl + scroll zoom (desktop browsers)
+    document.addEventListener('wheel', function (event) {
+      if (event.ctrlKey) {
+        event.preventDefault();
+      }
+    }, { passive: false });
+
+    // Prevent keyboard zoom (Ctrl + '+' / '-')
+    document.addEventListener('keydown', function (event) {
+      if ((event.ctrlKey || event.metaKey) && 
+         (event.key === '+' || event.key === '-' || event.key === '=')) {
+        event.preventDefault();
+      }
+    });
+  </script>
+<link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/a3vltc/7j4kauifzjbbi8l2.css">
+					<link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/a3vltc/tuotf4yqdyiq3dnl.css">
+					<link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/libs/bootstrap-datetimepicker/4.17.47/bootstrap-datetimepicker.min.css">
+					<link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/css/font-awesome/css/all.min.css">
+					<link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/global/spcob4z2no8pa441.css">
+					<link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/global/rqjyyl9xtowtlhgu.css">
+		 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css" />
+      	
+</head>
+<body id="outside" class="dark">
+        <div id="header" class="headOut">
+            <div class="b-menu-wrapper">
+                <button class="b-menu-close" onclick="noAuthMenu()">
+                    <i class="ri-close-line"></i>
+                </button>
+                <div class="container">
+                    <div class="row row-btn align-items-center">
+                        <div class="col-lg-auto d-none d-lg-block">
+                            <div class="home-logo">
+                              <a href="/">
+																	<img src="{{ site["logo"] }}" alt="{{ site["site_name"] }}" title="">
+								                              </a>
+                            </div>
+                        </div>
+                        <div class="col text-center">
+                            <ul class="nmenu">
+							                                <li class="nmenu-item">
+                                    <a href="/services"   class="nmenu-link" >
+                                        Services
+                                    </a>
+                                </li>
+							                                <li class="nmenu-item">
+                                    <a href="/api"   class="nmenu-link" >
+                                        API
+                                    </a>
+                                </li>
+							                                
+							                            </ul>
+                        </div>
+						<div class="row align-items-center">
+							<div class="col-lg-auto col-6">
+							  <a href="/" class="header-btn btn-100 without-icon">
+								<span class="text">Sign in</span>
+								<span class="icon">
+								  <i class="ri-arrow-right-line icon-ri"></i>
+								</span>
+							  </a>
+							</div>
+							<div class="col-lg-auto col-6">
+							  <a href="/signup" class="header-btn btn-100">
+								<span class="text">Sign up</span>
+								<span class="icon">
+								  <i class="ri-arrow-right-line icon-ri"></i>
+								</span>
+							  </a>
+							</div>
+						  </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sm-header">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <a href="/">
+																	<img src="{{ site["logo"] }}" height="70" alt="{{ site["site_name"] }}" title="">
+								                            </a>
+                        </div>
+                                         
+                        <div class="col-auto">
+                            <button class="menu-btn" onclick="noAuthMenu()">
+                                <i class="ri-menu-line"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </body>

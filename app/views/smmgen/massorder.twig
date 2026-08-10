@@ -1,0 +1,151 @@
+
+{% include 'header.twig' %}
+
+			  
+			 <!-- Main variables *content* -->
+			 <main  id="content" >
+				 <!-- User Statistics -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+        <div class="user__data">
+          <div class="user__data__wrap">
+              <div class="user_data__item">
+                <div class="icon">
+                  <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="user__data">
+                  <h4>{{ user["username"]  }}</h4>
+                  <p>Username</p>
+                </div>
+              </div>
+              <div class="user_data__item">
+                <div class="icon">
+                  <i class="fas fa-badge-dollar"></i>
+                </div>
+                <div class="user__data">
+                  <h4>{{ user["balance"]  }}</h4>
+                  <p>Balance</p>
+                </div>
+              </div>
+              <div class="user_data__item">
+                <div class="icon">
+                  <i class="fas fa-hands-usd"></i>
+                </div>
+                <div class="user__data">
+                  <h4>{{ user["spent"]  }}</h4>
+                  <p>Total Spend</p>
+                </div>
+              </div>
+              <div class="user_data__item">
+                <div class="icon">
+                  <i class="fas fa-luggage-cart"></i>
+                </div>
+                <div class="user__data">
+                  <h4>{{totalorders}}</h4>
+                  <p>Orders</p>
+                </div>
+              </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+                         {% if error %}
+        <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ errorText }}
+        </div>
+      {% elseif success %}
+        <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ successText }}
+        </div>
+      {% endif %}
+
+
+                            						
+
+                            
+<!-- ## User Statistics -->
+<section id="massorder">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-6 col-sm-12 col-12">
+              <div class="card custom_card">
+                  <div class="card-body">
+                      <div id="tabSwiter">
+                          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                              <li class="nav-item" role="presentation">
+                                  <!-- Tabs For New Orders -->
+                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+                                  <i class="fas fa-luggage-cart"></i> Massorder
+                                </button>
+                              </li>
+                             
+                            </ul>
+                      </div>
+                </div>
+               <div class="card-body">
+                  <div class="tab-content tab_wrap" id="pills-tabContent">
+                     <div class="tab-pane fade show active" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab">
+                      
+                        
+
+                            <form  method="post" action="/massorder">
+                                <div class="form-group">
+                               <label for="links" class="control-label">One order per line in format</label>
+                                   <textarea type="text" class="form-control" id="mass" name="mass" value="{{ data['mass'] }}" placeholder="service_id | link | quantity" rows="15"></textarea>
+                               </div>
+                               <!-- form-group end -->
+
+                            
+                           <button type="submit" class="btn btn-primary d-block w-100">Submit</button>
+                       </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+<div class="col-md-6 col-sm-12 col-12">
+              <div class="card custom_card">
+                  <div class="card-body">
+                      <div class="info_card_title_wrap">
+                          <div class="info_icon">
+                              <i class="far fa-info-circle"></i>
+                          </div>
+                          <div class="info_title">
+                              How Mass Order works ?
+                          </div>
+                      </div>
+                      <div class="mass_info">
+                          <p>You put the service ID followed by | followed by the link followed by | followed by quantity on each line To get the service ID of a service please check here:</p> <a href="/services">https://{{ site["site_name"] }}.com/services</a>
+                          <p>Let’s say you want to use the Mass Order to add Instagram Followers to your 3 accounts: abcd, asdf, qwer</p>
+                          <p>From the Services List, the service ID for this service “[Instagram Followers [100% Real - 30 Days Guarantee- NEW SERVICE” is 3740</p>
+                          <p>Let’s say you want to add 1000 followers for each account, the output will be like this:
+                              ID|Link|Quantity</p>
+                                      <p>or in this example:</p>
+                                      <ul>
+                                          <li>3740|abcd|1000</li>
+                                          <li>3740|asdf|1000</li>
+                                          <li>3740|qwer|1000</li>
+                                          <li>3740|eoir|1000</li>
+                                      </ul>
+                                      <br>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+ <!-- // Mass Order Part -->
+                </div>
+            </div>
+        </main>
+
+
+{% include 'footer.twig' %}

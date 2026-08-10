@@ -1,0 +1,155 @@
+{% if settings['register_page']  ==  2 %} 
+{% include 'header.twig' %}
+  <main id="notLogin">
+    <section id="signUp">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="sigup_title">
+          <h1>Signup Now</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-3 mb-5">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <div class="card card_v2 mb-5">
+          <div class="card-body">
+    {% if errorText %}
+								<div class="alert alert-dismissible alert-danger">
+								  {{ errorText }}
+								</div>
+							  {% endif %}
+							  {% if successText %}
+								<div class="alert alert-dismissible alert-success">
+								  {{ successText }}
+								</div>
+							  {% endif %}				
+            <form  action="" method="post">
+                                          <div class="form-group mb-3">
+                <label for="username" class="control-label mb-1">
+                  <span class="icon">
+                    <i class="far fa-user-circle"></i>
+                  </span> 
+                  <span class="name">
+                    Username
+                  </span>
+                </label>
+                <input type="text" class="form-control" id="username" value="" name="username">
+              </div>
+              
+              <!---start-------- smmpanelbdlab.com  ------------>
+              {% if settings['name_fileds']  ==  1 %} 
+              <div class="form-group mb-3">
+                <label for="username" class="control-label mb-1">
+                  <span class="icon">
+                    <i class="far fa-user"></i>
+                  </span> 
+                  <span class="name">
+                    Name
+                  </span>
+                </label>
+                <input type="text" class="form-control" id="firstname" name="name" value="{{ data['name'] }}">
+              </div>{% endif %}
+              <!----------- smmpanelbdlab.com  ------end------>
+              
+                            <div class="form-group mb-3">
+                <label for="email" class="control-label mb-1">
+                  <span class="icon">
+                    <i class="fas fa-envelope"></i>
+                  </span> 
+                  <span class="name">
+                    Email
+                  </span>
+                  </label>
+                <input type="email" class="form-control" id="email" value="" name="email">
+              </div>
+              
+              <!-----start------ smmpanelbdlab.com  ------------>
+              {% if settings['skype_feilds']  ==  1 %} 
+               <div class="form-group mb-3">
+                <label for="skype" class="control-label mb-1">
+                  <span class="icon">
+                    <i class="far fa-phone"></i>
+                  </span> 
+                  <span class="name">
+                    Whatsapp
+                  </span>
+                  </label>
+                <input type="text" class="form-control" id="skype" name="telephone" value="{{ data['telephone'] }}">
+              </div>{% endif %}
+              <!----------- smmpanelbdlab.com  -------end----->
+              
+                            <div class="form-group mb-3">
+                <label for="password" class="control-label mb-1">
+                  <span class="icon">
+                    <i class="fas fa-lock"></i>
+                  </span> 
+                  <span class="name">
+                    Password
+                  </span>
+                 </label>
+                <input type="password" class="form-control" id="password" name="password">
+              </div>
+              <div class="form-group mb-3">
+                <label for="confirm" class="control-label mb-1">
+                  <span class="icon">
+                    <i class="fas fa-lock"></i>
+                  </span> 
+                  <span class="name">
+                    Confirm password
+                  </span>
+                  </label>
+                <input type="password" class="form-control" id="confirm" name="password_again">
+              </div>
+                             {% if captcha %}
+            <div class="form-group">
+              <div class="g-recaptcha" data-sitekey="{{ captchaKey }}"></div>
+            </div>
+          {% endif %}
+                                      <div class="checkbox">
+            <label>
+              <input type="checkbox" name="terms" value="1"> {{ lang['signup.accept_terms_text'] }}
+            </label>
+          </div>
+                                
+              <button type="submit" class="btn btn-primary btn-gradient w-100">Sign up</button>
+            </form>
+            <p class="text-center">
+              Already have an account? <a href="/">Sign in</a>
+            </p>
+  
+  
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+</section>
+  </main>
+
+ </div>
+<div class="container">
+<div class="row sign-up-center-alignment" style="justify-content: center;margin-top:-5px">
+<div class="col-lg-5">
+{% if contentText2 %}
+<div class="card mt- mb-5">
+{{ contentText2 }}
+</div>
+{% endif %}
+</div></div> </div>
+
+
+
+
+{% for lang in site['languages'] %}
+  {% if lang['active'] %}
+    <script src="https://www.google.com/recaptcha/api.js?hl={{ lang['code'] }}"></script>
+  {% endif %}
+{% endfor %}
+
+{% include 'footer.twig' %}
+{% endif %}

@@ -1,0 +1,571 @@
+<style>
+    .m-b-icon {
+
+        width: 40px;
+        height: 40px;
+        background-color: #4eb3eb;
+        border-radius: 8px;
+        display: flex;
+        margin-top: 5px;
+        justify-content: center;
+        align-items: center;
+    }
+    .m-b-i {
+        font-size: 1.45rem;
+    }
+    .m-b-txt1 {
+
+        color: black;
+        font-size: 1.67rem;
+        font-weight: 670;
+    }
+    .m-b-txt2 {
+        margin: 5px;
+        color: #3c4148;
+        font-size: 1.25rem;
+    }
+    .m-b-c1 {
+        font-size: 2.89rem;
+    }
+    .l-whatsappjoin {
+        width: 60%;
+        height: 50px;
+        border-radius: 30px;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 20px;
+        gap: 9px;
+        color: white;
+        background: green;
+        position: relative;
+        cursor: pointer;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.212);
+        font-weight: 650;
+    }
+    .signupBtn {
+        width: 45%;
+        height: 50px;
+        border-radius: 30px;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 20px;
+        gap: 9px;
+        color: white;
+        background: linear-gradient(to right,rgb(128, 128, 255),rgb(183, 128, 255));
+        position: relative;
+        cursor: pointer;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.212);
+        font-weight: 550;
+    }
+
+    .arrow {
+        position: absolute;
+        right: 7.5px;
+        background-color: rgb(255, 255, 255);
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    .signupBtn:hover .arrow {
+        animation: slide-in-left 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    }
+
+    @keyframes slide-in-left {
+        0% {
+            transform: translateX(-10px);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    .line {
+        width: 100%;
+        background-color: #c9c9c9;
+        height: 2px;
+        margin: auto;
+        margin-top: 8vh;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    }
+    .signuptext {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 5%;
+    }
+
+    .m-t-2 span {
+        font-weight: 590;
+    }
+    .m-t-2 a {
+        font-weight: 500;
+    }
+
+    .benefit-title:hover {
+        background-color: red;
+    }
+
+
+
+    img {
+        width: 100%;
+        height: auto;
+        margin: auto;
+    }
+    .l-text {
+        margin-top: 30%;
+        color: black;
+        font-size: 2.67rem;
+        font-weight: 900;
+    }
+    .l-2-text {
+        color: #6b6b6b;
+        margin-top: 2%;
+        font-size: 1.27rem;
+
+
+    }
+
+</style>
+
+{% include 'header.twig' %}
+
+<div class="container">
+    <div class="row">
+        {% if contentText is not empty %}
+        <div class="col-md-12">
+            <div class="Pagesc">
+                {{ contentText }}
+            </div>
+        </div>
+        {% endif %}
+        <div class="col-md-8 col-md-offset-2">
+
+            {% if errorText %}
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{ errorText }}
+            </div>
+            {% endif %}
+            {% if successText %}
+            <div class="alert alert-dismissible alert-success">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{ successText }}
+            </div>
+            {% endif %}
+
+            <div class="Wel1">
+                <form class="loginForm" method="post" action="">
+
+                    <div class="form-group">
+                        <label for="username" class="control-label">{{ lang['signin.username'] }}</label>
+                        <input type="text" class="form-control Inbox" name="username">
+                    </div>
+                    <div class="form-group  form-group__password">
+                        <label for="password" class="control-label">{{ lang['signin.password'] }}</label>
+                        <input type="password" class="form-control Inbox" name="password">
+                        {% if resetPage %}
+                        <a href="{{site["url"]}}/resetpassword" class="forgot-password">
+                            {{ lang['signin.password.lost'] }}</a>
+                        {% endif %}
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="remember" value="1">{{ lang['signin.remember'] }}
+                        </label>
+                    </div>
+
+                    {% if captcha %}
+                    <div class="form-group">
+                        <div class="g-recaptcha" data-sitekey="{{ captchaKey }}"></div>
+                    </div>
+                    {% endif %}
+                    <input type="hidden" name="crsf_token" value="{{ csrf_token() }}">
+                    <button id="loginButton" type="submit" class="mainbutton"><b>{{ lang['signin.button'] }}</button>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="text-center m-t-2">
+
+                                    <span>Do not have an account?</span>
+
+                                    <a href="signup" class="no">Create Account</a>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        {% if
+                        site["modules"]["google_login"] %}
+                        <div id="google_login">
+
+                            <a class="google-login-btn" href="/auth/google-login"><i aria-hidden="true">
+           <svg stroke="currentColor" fill="currentColor" stroke-width="0" version="1.1" x="0px" y="0px" class="google-icon" viewBox="0 0 48 48" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12
+	c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24
+	c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path>
+  <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657
+	C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"></path>
+  <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36
+	c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"></path>
+  <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571
+	c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"></path>
+</svg>             </i> Continue with Google</a>
+                        </p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if contentTextBottom is not empty %}
+    <div class="col-md-12">
+        <div class="Pagesc">
+            {{ contentTextBottom }}
+        </div>
+    </div>
+    <h7>‎ </h7>
+    <section id="same-sec">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="same- img-wrap">
+                        <img class="img-fluid" src="https://myinstahub.in/public/uploads/99c31044a0533e6aab3b421da5b9051e.png" alt="same">
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <p class="before-sec-title"></p>
+                    <h1 class="Box5"><b>Cheapest SMM Panel in India</h1>
+
+
+                        <p>
+                            <h7>‎ </h7>      <div class="Box6">
+                                <b>
+                                    MyInstaHub is the go-to <a href="/">Best SMM Panel</a> for Indiaian resellers and freelancers.
+                                    We provide budget-friendly rates for a range of social media services designed for the Indiaian
+                                    audience, such as likes, followers, views, and more. Our user-friendly platform makes it simple
+                                    for you to explore our diverse services. Whether you're looking to increase your Instagram
+                                    followers, enhance engagement on Facebook, or boost visibility on Twitter, we have the solutions
+                                    you're seeking. Additionally, we accept Expay for the convenience of our users in <a
+                                        href="#">India.</a>
+                                </p>
+                                <p>
+                                    <h3>‎ </h3>             <center>
+                                        <button class="signupBtn" type="button" onclick="location.href='signup'"> Register Now                       <span class="arrow">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512" fill="rgb(183, 128, 255)"><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"></path></svg>
+                                        </span>  </button></center>
+                                </div>
+                            </div>
+                            <!-- Repeat the structure for other sections -->
+                        </div>
+                    </section>
+
+                    <h1>‎ </h1>  <section class="work">
+                        <div class="container">
+                            <div class="row text-center justify-content-center">
+                                <div class="col-lg-10 col-xl-9">
+                                    <p class="before-sec-title pb-3">
+                                        <h4> <b> Best <b>SMM</b> Service Provider
+                                        </h4>
+                                        </p>
+                                        <h7>‎ </h7>                     <h1 class="box_section"><b>Our Work Process</h1>
+                                            <p class="Box7">
+                                                <h7>‎ </h7> We provide the world's best SMM services with the cheapest SMM rates in
+                                                the market. We have earned the trust of thousands of customers who rated our SMM PANEL services
+                                                5 stars.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="m-b-work">
+                                        <div class="Wel1">
+
+                                            <p class=" m-b-txt1">
+                                                Signup
+                                            </p>
+                                            <p class="m-b-txt2">
+                                                Register into our website, our rates are cheapest in the market
+                                            </p>
+                                            <div class="m-b-icon">
+                                                <i class="m-b-i fa-solid fa-1"></i>
+                                            </div>
+
+                                        </div>
+                                        <div class="Wel1">
+
+                                            <p class="m-b-txt1">
+                                                Add Funds
+                                            </p>
+                                            <p class="m-b-txt2">
+                                                Add funds to your account balance and be ready to rise like a star
+                                            </p>
+                                            <div class="m-b-icon">
+                                                <i class="m-b-i fa-solid fa-2"></i>
+                                            </div>
+
+                                        </div>
+                                        <div class="Wel1">
+
+                                            <p class="m-b-txt1">
+                                                Service Selection
+                                            </p>
+                                            <p class="m-b-txt2">
+                                                Select a service and start getting more and more fame and virality.
+
+
+                                            </p>
+                                            <div class="m-b-icon">
+                                                <i class="m-b-i fa-solid fa-3"></i>
+                                            </div>
+
+                                        </div>
+                                        <div class="Wel1">
+
+                                            <p class="m-b-txt1">
+                                                Enjoy
+
+                                            </p>
+                                            <p class="m-b-txt2">
+
+                                                Enjoy your popularity and keep up in the SMM world
+                                            </p>
+                                            <div class="m-b-icon">
+                                                <i class="m-b-i fa-solid fa-4"></i>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <h1>‎ </h1>
+
+                                    <div class="boss">
+
+                                        <div>
+                                            <img src="https://i.imgur.com/H9Rhjun.png" alt="https://i.imgur.com/H9Rhjun.png">
+                                            <p class="line1">
+                                                Our SMM team is doing an excellent job for our clients
+                                            </p>
+                                            <br>
+                                            <div class="Textbox24">
+                                                24/7 expert support We are here to answer all SMM panel questions, and ensure optimal results and smooth operation. Contact us anytime to receive personalized assistance! We are the most reliable SMM service with the lowest prices on the market. We have gained the trust of a large number of clients who have rated our SMM Panel services as five stars.
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="main-box-1">
+                                        <div class="box-m-2">
+                                            <img class="img-m1" src="https://i.imgur.com/c6tRbTS.png" alt="https://i.imgur.com/c6tRbTS.png">
+                                            <p class="first-m">
+                                                Support 24/7
+                                            </p>
+                                            <p class="second-m">
+                                                Customer satisfaction is our first goal. For this reason, our SMM Panel Support is open to consumers around the clock to help with any questions or issues you may have. We are available to assist you 24/7 with any issues you may be having, whether they are technical or service-related.
+                                            </p>
+                                        </div>
+                                        <div class="box-m3">
+                                        </div>
+
+                                        <div class="box-m-5">
+                                            <img class="img-m1" src="https://i.imgur.com/0uRtXWZ.png" alt="https://i.imgur.com/MUwpcR7.png">
+                                            <p class="first-m2">
+                                                Quick Response from Clients
+                                            </p>
+                                            <p class="second-m2">
+                                                We value the feedback of our clients. That's why we work hard to get back to our customers right away. In doing so, we can strengthen our bond with our clients and incorporate their suggestions into service enhancements.
+                                            </p>
+                                        </div>
+                                        <div class="box-m3">
+                                        </div>
+
+                                        <div class="box-m-3">
+                                            <img class="img-m1" src="https://i.imgur.com/MUwpcR7.png" alt="https://i.imgur.com/c6tRbTS.png">
+                                            <p class="first-m3">
+                                                Social Media Marketing
+                                            </p>
+                                            <p class="second-m3">
+                                                Welcome to the Best and Cheapest SMM Panel—your gateway to social media success in Russia, Nigeria, Turkey, Indonesia, Brazil, India, Korea, Bangladesh, the UK, and the USA. Best and Cheapest SMM Panel Russia Our innovative approach to social media marketing (SMM) has made us a globally recognized brand.
+                                            </p>
+                                        </div>
+                                        <div class="box-m3">
+                                        </div>
+
+                                    </div>
+                                    <center>                           <div class="l-text">
+                                        Benefit of using our Cheap SMM Services
+                                    </div>
+
+                                        <div class="l-2-text">
+                                            There are many advantages we offer, which makes us the most effective SMM panel . Our SMM solutions offer a variety of options, making us the cheapest panel available on the market. A lot of freelancers and agencies across the globe trust our service. We're also able to handle all of your inquiries at any time.
+                                        </div>
+                                    </center>
+                                    <br>
+                                    <div class="content1">
+                                        <div class="Lbb">
+                                            <div class="i1">
+                                                <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                                            </div>
+
+                                            <h2>Best smm panel with rates</h2>
+                                            <center> <h6> Our prices are the cheapest in the market, starting at 0.01$ </h6></center>
+                                        </div>
+                                        <div class="Lbb">
+                                            <div class="i1">
+                                                <i class="fa-brands fa-space-awesome"></i>
+                                            </div>
+
+                                            <h2>Fastest Smm panel In The World</h2>
+                                            <center> <h6> We guarantee a fast delivery of your order 24/7. </h6></center>
+                                        </div>
+
+                                        <div class="Lbb">
+                                            <div class="i1">
+                                                <i class="fa-regular fa-handshake"></i>
+                                            </div>
+
+                                            <h2>Easy Smm panel</h2>
+                                            <center> <h6> We offer a user-friendly and regularly updated SMM panel dashboard. </h6></center>
+                                        </div>
+
+                                        <div class="Lbb">
+                                            <div class="i1">
+                                                <i class="fa-regular fa-clock"></i>
+                                            </div>
+
+                                            <h2>myinstahub with real time and data</h2>
+                                            <center> <h6> Our data is updated instantly, so you'll always find the best deals on myinstahub. </h6></center>
+                                        </div>
+
+                                        <div class="Lbb">
+                                            <div class="i1">
+                                                <i class="fa-solid fa-bag-shopping"></i>
+                                            </div>
+
+                                            <h2>MyInstaHub is Reseller Panel</h2>
+                                            <center> <h6> We are also a provider. Our goal is to enable you to resell our SMM services worldwide at affordable prices. </h6></center>
+                                        </div>
+
+                                        <div class="Lbb">
+                                            <div class="i1">
+                                                <i class="fa-solid fa-medal"></i>
+                                            </div>
+
+                                            <h2>Highest Quality smm services In The Market!</h2>
+                                            <center> <h6> Our main goal is to provide quality SMM Reseller Panel all over the world at affordable prices. </h6></center>
+                                        </div>
+
+                                        <div class="Lbb">
+                                            <div class="i1">
+                                                <i class="fa-brands fa-cc-visa"></i>
+                                            </div>
+
+                                            <h2>MyInstaHub with Secure Payment</h2>
+                                            <center> <h6> Credit card / Debit card, PayTm, Cardlink USD, PayOp, Advcash, Gcash, Perfect Money, Cryptomous,Coinbase, Payeer, Wise, CashMaal / EasyPaisa / JazzCash, Stripe,Bank Transfer </h6></center>
+                                        </div>
+                                        <div class="Lbb">
+                                            <div class="i1">
+                                                <i class="fa-solid fa-gears"></i>
+                                            </div>
+
+                                            <h2>SMM Services</h2>
+                                            <center> <h6> Easy SMM Panel: We stand out as the top choice because we prioritize delivering quality results. Your success is our priority, and we make sure you get the best service in the market. </h6></center>
+                                        </div>
+                                        <div class="Lbb">
+                                            <div class="i1">
+                                                <i class="fa-solid fa-headphones"></i>
+                                            </div>
+
+                                            <h2>Support 24/7</h2>
+                                            <center> <h6> We are available 24/7 to answer all your questions about our SMM services </h6></center>
+                                        </div>
+
+
+
+
+                                    </div>
+                                    <img src="https://i.imgur.com/U45rrOz.png" alt="https://i.imgur.com/U45rrOz.png">          <br>
+
+                                    <img src="https://i.imgur.com/8MrYA8E.png" alt="https://i.imgur.com/8MrYA8E.png">
+                                    <style>
+                                        .G-o5 {
+                                            margin-top: 15px;
+                                        }
+                                    </style>
+                                    <center>
+                                        <div class="l-text G-o5">
+                                            Automate Your Social Media Services Using Our Smm Panel
+                                        </div>
+                                        <div class="l-2-text">
+                                            In the My Insta Hub, we offer remarkable features like automated services for views, likes, and different related services. All of this is automated by us, not only for personal use. The reason to put off? Register now and get started by using the best SMM panel in the world. With our low costs and top-quality products, there's no need to compromise on quality. Start today to experience the potential of marketing via social media unlike ever before! "We are the cheapest SMM panel worldwide.
+                                        </div>
+                                    </center>
+                                    <br>
+                                    <center>
+                                        <button class="signupBtn" type="button" onclick="location.href='signup'"> Register Now                         <span class="arrow">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512" fill="rgb(183, 128, 255)"><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"></path></svg>
+                                        </span>  </button></center>
+
+                                    <br> <br><br> <br><br> <br>
+                                    <div class="Wel1">
+                                        <center>
+                                            <div class="l-text G-o5">
+                                                Cheapest smm panel for Instagram
+                                                <div class="l-2-text">
+                                                    Instagram is among the most popular social media platforms. A perfect place that will allow you to reach the heights. We have an abundance of highly qualified promotional and other services, starting with followers to views, likes, and additional services that have the highest SMM prices available.
+                                                </div>
+                                            </center>
+                                            <br><br> <br>
+                                            <img src="https://i.imgur.com/OOqmkGh.png" alt="https://i.imgur.com/OOqmkGh.png">
+                                        </div>
+                                        <div class="Wel1">
+
+                                            <img src="https://i.imgur.com/LqVdBNC.png" alt="https://i.imgur.com/LqVdBNC.png">
+                                            <p class="l-text G-o5">
+                                                Join Our Premium WhatsApp Community
+                                            </p>
+                                            <br>            <p class="l-2-text">
+                                                <b>To</b> provide further assistance in reaching your social media marketing goals, we have a WhatsApp and Telegram group where all our customers can join.
+                                            </p>
+                                            <p>
+                                                <b>All</b> users in the groups will be notified about everything happening on the website:
+                                            </p>
+                                            <p>
+                                                <span style="font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);">-> </span><span style="text-align: var(--bs-body-text-align);"><b>Every</b></span><span style="font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);"> time we add a new category or service!</span><br>
+                                            </p>
+                                            <p>
+                                                -> <b>Every</b> time we are giving out deposit bonuses or discounts!
+                                            </p>
+                                            <p>
+                                                -> <b>Our</b> best-performing services!
+                                            </p>
+                                            <p>
+                                                <b>Excited</b> to become a member of our dynamic community? Just click the links below to join our groups!
+                                            </p>
+                                            <br> <center>
+                                                <button class="l-whatsappjoin" type="button" onclick="location.href='https://whatsapp.com/channel/0029VbATJTKCHDyqJYaahQ12'"> Join WhatsApp                 <span class="arrow">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512" fill="rgb(183, 128, 255)"><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"></path></svg>
+                                                </span>  </button></center>
+                                        </div>
+
+                                        {% endif %}
+
+
+
+
+
+                                        {% include 'footer.twig' %}

@@ -1,0 +1,1035 @@
+{% include 'header2.twig' %}
+
+<body id="outside" class="dark">
+<style>
+.google-login-wrap {
+	position: relative;
+	width: 100%;
+	height: 48px;
+	padding-top: 0;
+	padding-bottom: 0;
+	border-radius: 10px;
+	background-color: #7750f6;
+	border-color: #7750f6;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: space-around
+}
+  .google-login {
+	color: #FFF;
+	font-size: 14px;
+	font-weight: 500;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	align-content: center;
+}
+  .google-btn {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	height: 55px;
+	width: 100%;
+	overflow: hidden;
+	opacity: 0;
+}
+  .google-login svg {
+	width: 20px;
+	display: inline-block;
+	margin-left: 8px;
+}
+@media (max-width:991.98px) {
+    .google-login-wrap {
+        flex: 0 0 100%;
+        max-width: 100%;
+        width: 100%;
+        margin-bottom: 5px;
+	}
+    .google-btn iframe {
+      height: 42px !important;
+      width: 100% !important;
+      overflow: hidden;
+      margin: 0 !important;
+      border-radius: 100px;
+	}
+      .google-login-wrap {
+      height: 42px !important;
+	}
+      .google-login {
+      height: 42px;
+	}
+      .google-login-wrap {
+      margin-left: 0;
+	}
+}
+  
+@media (min-width: 991.98px) {
+.google-login-wrap {
+    position: absolute;
+    right: 15px;
+    width: 245px;
+    top: -135px;
+  }
+}
+</style>
+
+<section class="homeHeader">
+        <div class="homeBg">
+            <img src="https://storage.perfectcdn.com/a3vltc/9my58aizhkkah7zl.png">
+        </div>  
+        <div class="container">
+				<div class="hhSide">
+                  <div class="col-lg-12 col-xxl-12">
+                    <div class="nk-section-head text-center">
+                        <span class="nk-section-subtitle headtitle">NO.1 SMM Panel Provider</span>
+                        <h1 class="nk-section-title pt-3 pb-2">Hostly Philippines Main SMM Service Provider</h1>
+                        <p class="nk-section-text">Welcome to the world's most affordable SMM Services with top Quality Services </p>
+                        <div class="d-flex nk-btn-group align-items-center justify-content-center pt-5 pb-4 gap-5">
+							 <a href="/services" class="header-btn h-btn-blue">
+								<span class="icon">
+								  <i class="ri-star-line icon-ri"></i>
+								</span>
+								<span class="text">Price List</span>
+							  </a>                          
+							 <a href="/signup" class="header-btn">
+								<span class="icon">
+								  <i class="ri-user-line icon-ri"></i>
+								</span>
+								<span class="text">Sign Up</span>
+							  </a>    
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+	<section class="home-login">
+	  <div class="container">
+		<div class="card">
+		  <div class="card-body">
+            <form  method="post" action="/">
+              
+              					<div class="row">
+						<div class="col-lg-8">
+							<div class="row">
+								<div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-0">
+									<input type="text" class="form-control form-control-lg" id="username" name="username" placeholder="Username">
+								</div>
+								<div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-0 p-relative">
+								    <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Password">
+                                  									<a href="/resetpassword" class="f-pass p-absolute"><i class="ri-question-mark"></i></a>
+                                  								</div>
+							</div>
+						</div>            
+						<div class="col-lg-1 col-2">
+						  <label for="remember" class="hm-remember" data-toggle="tooltip" data-placement="top" title="" data-original-title="Beni hatırla">
+							<input type="checkbox" name="LoginForm[remember]" value="1" id="remember">
+							<span class="lgn-btn"></span>
+						  </label>
+						</div>
+						 <div class="col-lg-3 col-10">
+                          <input type="hidden" name="_csrf" value="wPWG7_UF48NQCVVcGMd4jkVwK1ufNcR7Z2mx8nice9uqp8uXkG6b9BRLNGtiiDfYNwNDCtdAkxwjGsnBDP0Ygg=="> 
+						  <button type="submit" class="btn btn-primary btn-lg btn-100 text-center">
+							<span class="text">Sign in</span>
+						  </button>
+						</div>
+					</div>
+              		<div class="row">
+                      	<div class="col-lg-12">
+                                          <div class="google-login-wrap">
+                                              <a class="google-login" id="login-with-google-btn" 
+   class="btn btn-block btn-primary btn-lg" 
+   href="?login-with-google"><span class="google-login"> Continue login with <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="LgbsSe-Bz112c"><g><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path><path fill="none" d="M0 0h48v48H0z"></path></g></svg>
+</a>
+
+                                            </div>
+                        </div>
+                    </div>
+				</form>
+			</div>
+		</div>
+	  </div>
+	</section>
+
+	  <section class="homeSection section-50">
+            <div class="container">
+               <div class="row align-items-center">
+                  <div class="col-lg-12">
+                <div class="hfs-content">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 align-self-center">
+                            <div class="hfs-item">
+                                <div class="hfs-count">
+								   				<span class="inline-block blob blob-red"></span> <span class="counter">36,657,189</span>
+                                </div>
+                                <div class="hfs-title">
+                                   Total order
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 align-self-center">
+                            <div class="hfs-item">
+                                <div class="hfs-count">
+								   0.09 SEC
+                                </div>
+                                <div class="hfs-title">
+                                    An Order is made every
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 align-self-center">
+                            <div class="hfs-item">
+                                <div class="hfs-count">
+								   $0.0001/1K
+                                </div>
+                                <div class="hfs-title">
+                                   Price starting from
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 align-self-center">
+                            <a href="/services" class="btn btn-lg btn-outline btn-100">
+                                See Services!
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                 </div>
+              </div>
+           </div>
+	    </section>
+
+    <section class="homeSection">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-5">
+            <div class="section-title__content">
+                <div class="section-title__badge">
+                    <div class="label label-home">
+                        <span class="label-icon">
+                            <i class="far fa-sparkles"></i>
+                        </span>
+                        <span class="label-text">
+                            The Best SMM Panel				
+                        </span>
+                    </div>
+                </div>
+                <h2 class="section-title_title">
+                    Get more <span>interaction !</span>
+                </h2>
+            </div>
+            <p class="hsText text-center mt-3">
+              Fast, reliable and fully automatic 'Social Media' panel where you can find all social media services. You can meet your social media needs in seconds with the most affordable prices in World without an intermediary, you can earn a fixed income by selling.<p class="text-center"><a href="https://1xpanel.com/">1xpanel</a> is the best smm panel in the world.</p>
+			<div class="row justify-content-center mt-5">
+				 <div class="col-lg-auto col-md-6 col-12 mb-4 mb-md-0">
+					<a href="/services" class="btn btn-primary btn-rounded btn-100">
+						<span>Services</span>
+						<i class="ri-arrow-right-up-line ms-3"></i>
+					</a>
+				</div>
+				<div class="col-lg-auto col-md-6 col-12">
+					<a href="/signup" class="btn btn-rounded btn-100">
+						<span>Sign up</span>
+						<i class="ri-arrow-right-up-line ms-3"></i>
+					</a>
+				</div>
+			</div>
+          </div>
+          <div class="col-lg-6 offset-lg-1">
+			<div id="infinite" class="brandSlider">
+				<div class="container bShadow">
+					<div class="productBox d-flex align-items-center justify-content-between">
+						<span class="pbLeft"><i class="fab fa-twitch pr-2"></i>Twitch</span>
+						<span>
+							<span class="pbRight">watch</span>
+						</span>
+					</div>
+					<div class="productBox d-flex align-items-center justify-content-between">
+						<span class="pbLeft"><i class="fab fa-instagram pr-2"></i>Instagram</span>
+						<span>
+							<span class="pbRight">follower</span>
+							<span class="pbRight">like</span>
+						</span>
+					</div>
+					<div class="productBox d-flex align-items-center justify-content-between">
+						<span class="pbLeft"><i class="fab fa-twitter pr-2"></i>Twitter</span>
+						<span>
+							<span class="pbRight">follower</span>
+							<span class="pbRight">retweet</span>
+						</span>
+					</div>
+					<div class="productBox d-flex align-items-center justify-content-between">
+						<span class="pbLeft"><i class="fab fa-youtube pr-2"></i>Youtube</span>
+						<span>
+							<span class="pbRight">subs</span>
+							<span class="pbRight">watch</span>
+						</span>
+					</div>
+					<div class="productBox d-flex align-items-center justify-content-between">
+						<span class="pbLeft"><i class="fab fa-facebook-square pr-2"></i>Facebook</span>
+						<span>
+							<span class="pbRight">like</span>
+							<span class="pbRight">comment</span>
+						</span>
+					</div>
+					<div class="productBox d-flex align-items-center justify-content-between">
+						<span class="pbLeft"><i class="fab fa-spotify pr-2"></i>Spotify</span>
+						<span>
+							<span class="pbRight">listen</span>
+							<span class="pbRight">follower</span>
+						</span>
+					</div>
+					<div class="productBox d-flex align-items-center justify-content-between">
+						<span class="pbLeft"><i class="fab fa-tiktok pr-2"></i>Tiktok</span>
+						<span class="pbRight">watch</span>
+					</div>
+					<div class="productBox d-flex align-items-center justify-content-between">
+						<span class="pbLeft"><i class="fab fa-telegram-plane pr-2"></i>Telegram</span>
+						<span>
+							<span class="pbRight">follower</span>
+							<span class="pbRight">reaction</span>
+						</span>
+					</div>
+					<div class="productBox d-flex align-items-center justify-content-between">
+						<span class="pbLeft"><i class="fab fa-discord pr-2"></i>Discord</span>
+						<span>
+							<span class="pbRight">group member</span>
+						</span>
+					</div>
+					<div class="productBox d-flex align-items-center justify-content-between">
+						<span class="pbLeft"><i class="fab fa-snapchat-ghost pr-2"></i>Snapchat</span>
+						<span>
+							<span class="pbRight">follower</span>
+						</span>
+					</div>
+					<div class="productBox d-flex align-items-center justify-content-between">
+						<span class="pbLeft"><i class="fab fa-soundcloud pr-2"></i>SoundCloud</span>
+						<span>
+							<span class="pbRight">like</span>
+							<span class="pbRight">follower</span>
+						</span>
+					</div>
+					<div class="productBox d-flex align-items-center justify-content-between">
+						<span class="pbLeft"><i class="fab fa-reddit pr-2"></i>Reddit</span>
+						<span>
+							<span class="pbRight">upvote</span>
+							<span class="pbRight">comment</span>
+						</span>
+					</div>
+					<div class="productBox d-flex align-items-center justify-content-between">
+						<span class="pbLeft"><i class="fab fa-linkedin pr-2"></i>LinkedIn</span>
+						<span>
+							<span class="pbRight">like</span>
+							<span class="pbRight">follower</span>
+						</span>
+					</div>				
+				</div>
+			</div>
+ 
+          </div>
+
+        </div>
+      </div>
+    </section>	
+
+	<section class="homeSection chfa-section">
+	  <div class="container">
+          <div class="section-title active">
+              <div class="section-title__content">
+                  <div style="position: relative; z-index:3" class="section-title__badge">
+                      <div class="label label-home">
+                          <span class="label-icon">
+                              <i class="far fa-sparkles"></i>
+                          </span>
+                          <span class="label-text">
+                              Features of 1xPanel
+                          </span>
+                      </div>
+                  </div>
+                  <h2 class="section-title_title">What makes us <span>different?</span></h2>
+                  <p class="section-title_text">Quality SMM Services and additional features that let you be ahead in the social media marketing game!</p>
+              </div>
+          </div>
+        
+		<div class="home-4-cover">
+			<div class="home-4-cover--image">
+				<img src="https://storage.perfectcdn.com/a3vltc/miipp18z6jyksugy.png">
+			</div>
+			<div class="home-4-cover--image-right">
+				<img src="https://storage.perfectcdn.com/a3vltc/fykig53c48no7gts.webp" class="floating">
+			</div>
+		</div>
+		
+
+		<div class="home-4-content">
+			
+				<div class="row row-cols-lg-3 row-cols-md-2 row-cols-1">
+					
+						<div class="col">
+							<div class="home-4-card">
+								<div class="icon-box">
+									<i class="far fa-check-circle"></i>
+								</div>
+                <h4 class="title">Mass Orders</h4>
+                <p class="text">Set them up for bulk delivery and start selling. That way, you can choose a large volume to fill your orders.</p>
+							</div>
+						</div>
+					
+						<div class="col">
+							<div class="home-4-card">
+								<div class="icon-box">
+									<i class="far fa-tint"></i>
+								</div>
+                <h4 class="title">Dripfeed Orders</h4>
+                <p class="text">Set them up for dripfeed delivery and start selling. That way, you can choose a large volume to fill your orders.</p>
+							</div>
+						</div>
+					
+						<div class="col">
+							<div class="home-4-card">
+								<div class="icon-box">
+									<i class="far fa-user-circle"></i>
+								</div>
+                <h4 class="title">Subscriptions</h4>
+                <p class="text">Subscribe to any of our services on offer. You decide how you want the service to work. You choose when you want this service to end.</p>
+							</div>
+						</div>
+					
+						<div class="col">
+							<div class="home-4-card">
+								<div class="icon-box">
+									<i class="fad fa-sync-alt"></i>
+								</div>
+                <h4 class="title">Automatic Payments</h4>
+                <p class="text">Most SMM Panels make you input payment information every time you make an order. Set up an automatic payment method with 1xPanel.</p>
+							</div>
+						</div>
+					
+						<div class="col">
+							<div class="home-4-card">
+								<div class="icon-box">
+									<i class="far fa-headset"></i>
+								</div>
+                <h4 class="title">Customer Support</h4>
+                <p class="text">Our support operators are waiting to help you as quickly as possible in our ticket and live support sections that we have specially prepared for you.</p>
+							</div>
+						</div>
+					
+						<div class="col">
+							<div class="home-4-card">
+								<div class="icon-box">
+									<i class="far fa-code"></i>
+								</div>
+                <h4 class="title">API</h4>
+                <p class="text">You can market our services on your own site using the API link on our panel. The system works completely automatically.</p>
+							</div>
+						</div>
+					
+				</div>
+			</div>
+	  </div>
+	</section>
+
+<section class="homeSection">
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-12">
+			<div class="section-title__content">
+				<div class="section-title__badge">
+					<div class="label label-home">
+						<span class="label-icon">
+							<i class="fab fa-bitcoin"></i>
+						</span>
+						<span class="label-text">
+							Payment Methods						
+                        </span>
+					</div>
+				</div>
+				<h2 class="section-title_title">We accept payments from <span>worldwide!</span></h2>
+				<p class="section-title_text">We provide all kinds of payment methods specific to your location worldwide.</p>
+			</div>				
+            <div class="row justify-content-between text-center">
+               <div class="col-lg-3 col-6 mb-lg-2 mb-3">
+                  <div class="login-pm">
+                     <img src="https://storage.perfectcdn.com/a3vltc/72l4ak5jzzcp2xcd.png" alt="Cryptomus">
+                  </div>
+               </div>
+               <div class="col-lg-3 col-6 mb-lg-2 mb-3">
+                  <div class="login-pm">
+                     <img src="https://storage.perfectcdn.com/a3vltc/o5aegoyli9yksqse.png" alt="Payeer">
+                  </div>
+               </div>
+               <div class="col-lg-3 col-6 mb-lg-2 mb-3">
+                  <div class="login-pm">
+                     <img src="https://storage.perfectcdn.com/j71eqe/5loc9oa45wa6rm0e.png" alt="Perfectmoney">
+                  </div>
+               </div>
+               <div class="col-lg-3 col-6 mb-lg-2 mb-3">
+                  <div class="login-pm">
+                     <img src="https://storage.perfectcdn.com/j71eqe/73rdmah7p3sdnoc2.png" alt="Coinbase">
+                  </div>
+               </div>
+               <div class="col-lg-3 col-6 mb-lg-2 mb-3">
+                  <div class="login-pm">
+                     <img src="https://storage.perfectcdn.com/j71eqe/uyjnj4ea730to2w0.png" alt="Mastercard">
+                  </div>
+               </div>
+               <div class="col-lg-3 col-6 mb-lg-2 mb-3">
+                  <div class="login-pm">
+                     <img src="https://storage.perfectcdn.com/j71eqe/dp8pd06dxxqty4lf.png" alt="Visa">
+                  </div>
+               </div>
+               <div class="col-lg-3 col-6 mb-lg-2 mb-3">
+                  <div class="login-pm">
+                     <img src="https://storage.perfectcdn.com/a3vltc/rh5dlerh0qnxz50d.png" alt="USDT">
+                  </div>
+               </div>
+               <div class="col-lg-3 col-6 mb-lg-2 mb-3">
+                  <div class="login-pm">
+                     <img src="https://storage.perfectcdn.com/a3vltc/ixwypo0rhyhq4aca.png" alt="Bitcoin">                  
+                 </div>
+               </div>
+			</div>
+		</div>
+     </div>
+   </div>
+</section>
+
+
+		<meta name="heleket" content="1c2600ea" />
+
+<script src="https://browser.sentry-cdn.com/9.12.0/bundle.min.js" crossorigin="anonymous" data-lazy="no"></script>
+
+<script>Sentry.init({ dsn: 'https://61b30ccdbd7bc003a750ee837c497280@sentry.io/4504813329711104' });</script>
+
+
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/libs/jquery/1.12.4/jquery.min.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/3wn3x2yo9a92g8rs.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/1auzlght1yugk7np.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/6p5ukubb1yqzpqmc.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/l7f4k8ebeocfr9tp.js" >
+							</script>
+					<script type="text/javascript"  src="https://accounts.google.com/gsi/client" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/a3vltc/e09b8mpi9bu61pie.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/a3vltc/efjlui4eziixm600.js" >
+							</script>
+					<script type="text/javascript" >
+				window.modules.layouts = {"theme_id":1,"auth":0,"live":true,"csrftoken":"wPWG7_UF48NQCVVcGMd4jkVwK1ufNcR7Z2mx8nice9uqp8uXkG6b9BRLNGtiiDfYNwNDCtdAkxwjGsnBDP0Ygg=="};
+			</script>
+					<script type="text/javascript" >
+				window.modules.signin = [];
+			</script>
+					<script type="text/javascript" >
+							</script>
+		<script>
+function updateTextarea() {
+  let combinedText = '';
+
+  $('.fast-mass').each(function() {
+    const massId = $(this).find('input[name="mass-id"]').val() || '';
+    const massLink = $(this).find('input[name="mass-link"]').val() || '';
+    const massQuantity = $(this).find('input[name="mass-quantity"]').val() || '';
+
+    if (massId || massLink || massQuantity) {
+      combinedText += `${massId} | ${massLink} | ${massQuantity}\n`;
+    }
+  });
+
+  $('#links').val(combinedText.trim());
+  toggleAddMoreButton();
+}
+
+function toggleAddMoreButton() {
+  if ($('.fast-mass').length === 1) {
+    $('.fast-mass').first().find('.add-more').show();
+  }
+}
+
+function bindInputs() {
+  $('.fast-mass input').off('input').on('input', updateTextarea);
+}
+
+function bindAddMore() {
+  $('.add-more').off('click').on('click', function() {
+    const currentFastMass = $(this).closest('.fast-mass');
+    const cloned = currentFastMass.clone();
+    cloned.find('input').val('');
+    currentFastMass.find('.add-more').hide();
+    if (cloned.find('.remove-more').length === 0) {
+      cloned.append('<button type="button" class="remove-more">Remove</button>');
+    }
+    cloned.find('.remove-more').removeClass('hidden');
+    currentFastMass.after(cloned);
+    bindInputs();
+    bindAddMore();
+    bindRemoveMore();
+    updateTextarea();
+  });
+}
+
+function bindRemoveMore() {
+  $('.remove-more').off('click').on('click', function() {
+    const removedDiv = $(this).closest('.fast-mass');
+    removedDiv.remove(); 
+    updateTextarea();
+    if ($('.fast-mass').length === 1) {
+      $('.fast-mass').first().find('.add-more').show();
+    }
+  });
+}
+
+$(document).ready(function() {
+  updateTextarea();
+  bindInputs();
+  bindAddMore();
+  bindRemoveMore();
+  toggleAddMoreButton();
+});  
+</script>
+<script>
+    function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1));
+        var sURLVariables = sPageURL.split('&');
+        var sParameterName;
+        var i;
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    }
+
+    var select_service_id = getUrlParameter("select_service_id");
+    if (select_service_id) {
+        var selectSerCatID = window.modules.siteOrder.services[select_service_id].cid;
+        let orderCat = document.getElementById('orderform-category');
+        let orderSer = document.getElementById('orderform-service');
+
+        $(function () {
+            orderCat.querySelector('[selected]').removeAttribute('selected');
+            console.log(selectSerCatID);
+            orderCat.querySelector('[value="'+ selectSerCatID +'"]').setAttribute('selected', 'selected');
+            orderCat.value = selectSerCatID;
+
+            var event = document.createEvent('HTMLEvents');
+            event.initEvent('change', true, false);
+            orderCat.dispatchEvent(event);
+
+            setTimeout(() => {
+                let controlSel = orderSer.querySelector('[selected]')
+                if (controlSel) {
+                    controlSel.removeAttribute('selected');
+                }
+                console.log(select_service_id);
+                orderSer.querySelector('[value="'+ select_service_id +'"]').setAttribute('selected', 'selected');
+                orderSer.value = select_service_id;
+                orderSer.dispatchEvent(event);
+
+            }, 500);
+        });
+    }
+</script>
+  
+  
+<script>
+let $categories = $('.services-category');
+let $currentSticky = null;
+
+$(window).on('scroll', function() {
+  let found = false;
+
+  $categories.each(function() {
+    let $category = $(this);
+    let rect = this.getBoundingClientRect();
+
+    if (rect.top <= 0 && rect.bottom > 0 && !found) {
+      let $title = $category.find('.services-title');
+
+      if ($currentSticky && !$currentSticky.is($title)) {
+        $currentSticky.removeClass('sticky');
+      }
+
+      $title.addClass('sticky');
+      $currentSticky = $title;
+      found = true;
+    }
+  });
+
+  if (!found && $currentSticky) {
+    $currentSticky.removeClass('sticky');
+    $currentSticky = null;
+  }
+});
+
+let $ordersList = $('.orders-wrapper');
+let $ordersSticky = null;
+
+$(window).on('scroll', function() {
+  let found = false;
+
+  $ordersList.each(function() {
+    let $ordersDate = $(this);
+    let rect = this.getBoundingClientRect();
+
+    if (rect.top <= 0 && rect.bottom > 0 && !found) {
+      let $title = $ordersDate.find('.order-date');
+
+      if ($ordersSticky && !$ordersSticky.is($title)) {
+        $ordersSticky.removeClass('sticky');
+      }
+
+      $title.addClass('sticky');
+      $ordersSticky = $title;
+      found = true;
+    }
+  });
+
+  if (!found && $ordersSticky) {
+    $ordersSticky.removeClass('sticky');
+    $ordersSticky = null;
+  }
+});
+
+$(document).ready(function() {
+  function getSelectedValues() {
+    return $('.oc-checkbox input:checked').map(function() {
+      return $(this).val();
+    }).get();
+  }
+
+  function updateDropdown() {
+    let values = getSelectedValues();
+    let joinedValues = values.join(',');
+
+    let $filterDropdown = $('.filter-dropdown');
+    let $copyLink = $filterDropdown.find('.dropdown-link[data-action="copy"]');
+    let $btnTxt = $filterDropdown.find('.dropdown-toggle .btn-txt, .dropdown-toggle .btn-text');
+
+    if (values.length > 0) {
+      $filterDropdown.removeClass('hidden');
+      $copyLink.attr('data-value', joinedValues);
+      $btnTxt.text(values.length + ' selected');
+    } else {
+      $filterDropdown.addClass('hidden');
+      $copyLink.attr('data-value', '');
+      $btnTxt.text('0 selected');
+    }
+  }
+
+  $(document).on('change', '.oc-checkbox input', function() {
+    updateDropdown();
+  });
+
+  $(document).on('click', '.filter-dropdown .dropdown-link', function() {
+    let $this = $(this);
+    let action = $this.data('action');
+
+    if (action === 'copy') {
+      let values = getSelectedValues();
+      let joinedValues = values.join(',');
+
+      navigator.clipboard.writeText(joinedValues).then(function() {
+        $('#notify').addClass('show');
+        $('#notifyText').find('i').attr('class', 'far fa-copy');
+        $('#notifyText').find('span.text').text('Copied');
+        $('.oc-checkbox input:checked').prop('checked', false);
+        updateDropdown();
+
+        setTimeout(function() {
+          $('#notify').removeClass('show');
+        }, 2000);
+      }).catch(function(err) {
+        console.error('Error:', err);
+      });
+
+      $('.filter-dropdown').addClass('hidden');
+    }
+
+    if (action === 'remove') {
+      $('.oc-checkbox input:checked').prop('checked', false);
+      $('.filter-dropdown').addClass('hidden');
+      updateDropdown();
+    }
+  });
+});
+
+</script>
+<script>
+var formEvents = {
+    init: function () {
+        formEvents.Loading();
+    },
+    Loading: function () {
+        $("#orderform-service").change(function () {
+            $('.lg-none-copy').html("");
+            let service_id = $(this).val();
+            let link = window.modules.siteOrder.services[service_id].link_type;
+            let service_name = window.modules.siteOrder.services[service_id].name;
+
+            $(".service-title").html("<span>" + service_name + "</span>");
+            $('#s_link').text("-");
+            $('[data-id="serviceRefill"]').html('<span class="fas fa-times text-danger"></span>');
+
+            setTimeout(function () {
+                $('[data-id="serviceDesc"]').html("");
+                var lines = $("#service_description>.panel-body").html().split("<br>");
+                $('[data-id="serviceSpeed"]').text("-");
+                $('[data-id="serviceRefill"]').text("-");
+                $('[data-id="serviceQuality"]').text("-");
+                $('[data-id="serviceStart"]').text("-");
+                $('[data-id="serviceLink"]').text("-");
+
+                for (var i = 0; i < lines.length; i++) {
+                    var item = lines[i].trim();
+
+                    if (item.startsWith("Speed:")) {
+                        var val = item.replace("Speed:", "").trim();
+                        $('[data-id="serviceSpeed"]').text(val !== "" ? val : "-");
+                    } else if (item.startsWith("Refill:")) {
+                        var val = item.replace("Refill:", "").trim();
+                        $('[data-id="serviceRefill"]').text(val !== "" ? val : "-");
+                    } else if (item.startsWith("Quality:")) {
+                        var val = item.replace("Quality:", "").trim();
+                        $('[data-id="serviceQuality"]').text(val !== "" ? val : "-");
+                    } else if (item.startsWith("Start:")) {
+                        var val = item.replace("Start:", "").trim();
+                        $('[data-id="serviceStart"]').text(val !== "" ? val : "-");
+                    } else if (item.startsWith("Link:")) {
+                        var val = item.replace("Link:", "").trim();
+                        $('[data-id="serviceLink"]').text(val !== "" ? val : "-");
+                    } else {
+                        $('[data-id="serviceDesc"]').append(item + "<br/>");
+                    }
+                }
+
+                var serviceDescText = $('[data-id="serviceDesc"]').html() + "";
+                if (serviceDescText.length == 0) {
+                    $('[data-id="serviceDesc"]').parent().hide("easy");
+                } else {
+                    $('[data-id="serviceDesc"]').parent().show("easy");
+                }
+
+            }, 150);
+        });
+    }
+};
+formEvents.init();
+</script>
+
+  <script>
+            if($('.order_page').length > 0 || $('.dripfeed_page').length > 0 ){
+                $(".check-all").on("click", function(e){
+                    if($(this).prop('checked') == true){
+                        $(".check-box input[type='checkbox']").prop('checked', true);
+                    }else {
+                        $(".check-box input[type='checkbox']").prop('checked', false);
+                    }
+
+                    copyIdsToClipboard(e);
+                })
+
+                
+                $(".check-box input[type='checkbox']").on("click", function(e){
+                    copyIdsToClipboard(e);
+                })
+
+                function copyIdsToClipboard(e){
+                    let selected_ids = "";
+                 
+                    $('.check-box input[type=checkbox]').each(function () {
+                        $(this).parents(".checkbox").find("path").css({display: "none"});
+                        if(this.checked){
+                            $(this).parents(".checkbox").find("path").css({display: "block"});
+                            selected_ids += $(this).attr('data-order_id') + ", ";
+                        }
+                    });
+                    if(selected_ids){
+                        selected_ids = selected_ids.substr(0, selected_ids.length-2);
+                    }
+
+                    navigator.clipboard.writeText(selected_ids);
+
+                    const el = document.getElementById('sparkling-txt');
+
+                    if( window.innerWidth <= 768){
+                        el.style.left = (e.clientX + 20) + 'px';
+                        el.style.top = (e.pageY - e.currentTarget.offsetTop - 70) + 'px';
+                    } else {
+                        el.style.left = (e.clientX - 215) + 'px';
+                        el.style.top = (e.pageY - e.currentTarget.offsetTop - 30) + 'px';
+                    }
+
+
+                    el.className      = 'glitter-star';
+                    el.style.display = 'block';
+                   
+                    setTimeout(function(){
+                        el.style.display = 'none';
+                    }, 4000);
+                }
+            }
+  </script>
+<script>
+	$("#orderform-service").on("change", function(){
+        let sel_service_id = $(this).val();
+            setTimeout(function() {
+                updateServiceTitleX();
+            }, 100)
+    });
+    function updateServiceTitleX(){
+        var valService = $("#orderform-service").find("option:selected").text();
+    
+        jQuery( "#serviceTitle" ).text(valService);
+        
+        if (jQuery( "#serviceTitle" ).is(':contains("⛔")')) {
+            jQuery('#cancel_text').html('<span style="color:#2FCD94 ">Yes</span>');
+            jQuery('#cancel_btn').removeClass().addClass('bg_green');
+        } else {
+            jQuery('#cancel_text').html('<span style="color:#E93E3E ">No</span>');
+            jQuery('#cancel_btn').removeClass().addClass('bg_red');
+        }
+        
+        if (jQuery( "#serviceTitle" ).is(':contains("♻")')) {
+            jQuery('#refill_text').html('<span style="color:#2FCD94">Yes</span>');
+            jQuery('#refill_btn').removeClass().addClass('bg_green');
+            
+        } else {
+            jQuery('#refill_text').html('<span style="color:#E93E3E ">No</span>');
+            jQuery('#refill_btn').removeClass().addClass('bg_red');
+          
+        }
+    }
+  </script>
+  <script>
+$(document).ready(function() {
+    updateServiceTitle();
+
+    $("#orderform-service").on("change", function(){
+        updateServiceTitle();
+    });
+
+    function updateServiceTitle(){
+        var valService = $("#orderform-service").find("option:selected").text();
+        $("#serviceTitle").text(valService);
+        $("#orderform-service option").removeClass('has-hit');
+
+        if ($("#orderform-service option:selected").text().includes("🔥")) {
+            $("#orderform-service option:selected").addClass('has-hit');
+        }
+    }
+});
+</script>
+
+<script>
+    const targetNode = document.getElementById('srv-desc');
+    const observer = new MutationObserver(function(mutationsList, observer) {
+        updateServiceTitles();
+    });
+
+    observer.observe(targetNode, { childList: true, characterData: true, subtree: true });
+
+    function updateServiceTitles(){
+        var str = $('#srv-desc').text();
+        var matches = str.split('~');
+        $("#desc-badges").empty();
+        if (matches.includes("support")) {
+            $('#desc-badges').append('<span style="background:var(--tp-color-orange);color:#000"><i class="fa fa-headset pr-1"></i>Full Support</span>');
+        }
+        if (matches.includes("recommended")) {
+            $('#desc-badges').append('<span style="background:var(--tp-color-green2);"><i class="fa fa-thumbs-up pr-1"></i>Recommended</span>');
+        }
+        if (matches.includes("bestseller")) {
+            $('#desc-badges').append('<span style="background:var(--tp-color-blue);"><i class="fas fa-stars pr-1"></i>Best seller</span>');
+        }
+        if (matches.includes("updated")) {
+            $('#desc-badges').append('<span style="background:var(--tp-color-yellow);"><i class="fas fa-waveform-path pr-1"></i>Updated</span>');
+        }
+        if (matches.includes("instant")) {
+            $('#desc-badges').append('<span style="background:var(--tp-color-red);"><i class="fas fa-shipping-fast pr-1"></i>Instant</span>');
+        }
+        if (matches.includes("fast")) {
+            $('#desc-badges').append('<span style="background:var(--tp-color-blue);"><i class="fa fa-clock pr-1"></i>Fast</span>');
+        }
+        if (matches.includes("favorite")) {
+            $('#desc-badges').append('<span style="background:var(--tp-color-gold);color:#171f2e"><i class="fa fa-star pr-1"></i>Most Favorite</span>');
+        }
+        if (matches.includes("drop")) {
+            $('#desc-badges').append('<span style="background:var(--tp-color-green2)"><i class="fa fa-arrow-down pr-1"></i>0% Drop</span>');
+        }
+        if (matches.includes("ultrafast")) {
+            $('#desc-badges').append('<span style="background:var(--tp-color-pink)"><i class="fa fa-rocket-launch pr-1"></i>Ultra Fast</span>');
+        }
+        if (matches.includes("always")) {
+            $('#desc-badges').append('<span style="background:var(--tp-color-green3)"><i class="fa fa-trophy pr-1"></i>Always Working</span>');
+        }
+        if (matches.includes("exclusive")) {
+            $('#desc-badges').append('<span style="background:var(--tp-color-red-2)"><i class="fa fa-sparkles pr-1"></i>Exclusive</span>');
+        }
+    }
+</script>
+
+<script>
+        $(document).on("change", "#sel_category",function() {
+            var filter = $(this).val(),
+                count = 0;
+            
+            $('.service-category').each(function() {
+                if(filter == "all"){
+                    $(this).show();
+                } else{
+                    if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                        $(this).hide();
+                    } else {
+                        $(this).show(); 
+                        count++;
+                    }
+                }
+            });
+        });
+  
+        $(document).ready(function(){
+          $("#searchService").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $(".service-category").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        }); 
+  
+        function filterService(category) {
+            if (category == 'all')
+                $('.service-category.hidden').removeClass('hidden');
+            else {
+                $('.service-category').addClass('hidden');
+                $('.service-category[data-category="' + category + '"]').removeClass('hidden');
+            }
+            removeEmptyCategory();
+        }
+  </script>
+  <script>
+    $(document).ready(function () {
+      function updateCategoryboxZIndex() {
+        if ($('.servicesmenu').hasClass('active')) {
+          $('.ctbx .categorybox').css('z-index', '1');
+        } else {
+          $('.ctbx .categorybox').css('z-index', '2');
+        }
+      }
+      updateCategoryboxZIndex();
+      setInterval(updateCategoryboxZIndex, 200);
+    });
+  </script>
+   </body>
+</html>
+   {% include 'footer.twig' %}

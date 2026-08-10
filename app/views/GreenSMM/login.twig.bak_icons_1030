@@ -1,0 +1,852 @@
+{% include 'header.twig' %}
+
+<main id="notConnexion">
+<section id="hero-login" style="
+  background: linear-gradient(135deg, #e0f2ff 0%, #f7eaff 50%, #ffffff 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  padding-top: 80px; /* extra space to prevent header overlap */
+  padding-bottom: 50px;
+">
+  <div class="container" style="max-width:1200px; margin:auto;">
+    <div class="row" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;">
+
+      <!-- LEFT CONTENT -->
+      <div class="col-left" style="flex:1 1 520px; max-width:520px; padding:15px;">
+        <div class="v2_banner_content">
+
+          <p style="font-size:15px; margin-bottom:5px;">
+            <span style="color:#ffc107; font-weight:600;">
+              <i class="fas fa-crown" style="margin-right:5px; color:#ffc107;"></i>Malabora Boostage
+            </span>
+            <span style="color:#5cb85c; font-weight:500;"> Le N°1 en RDC</span>
+          </p>
+
+          <h1 style="font-size:45px; font-weight:800; line-height:1.2; color:#111; margin-bottom:10px;">
+            Le <span style="color:#ff8c00;">Leader</span> du Boost des <span style="color:#00c853;">Réseaux Sociaux</span> en RDC
+          </h1>
+
+          <p style="font-size:16px; color:#444; margin-bottom:30px;">
+            Boostez votre visibilité sur Instagram, TikTok, Facebook, YouTube et Telegram. Livraison rapide, prix abordables et services fiables partout en République Démocratique du Congo.
+          </p>
+
+          <!-- LOGIN FORM -->
+          <form method="post" action="/" style="width:100%;">
+            <!-- Username -->
+            <div style="position:relative; margin-bottom:20px;">
+              <span style="position:absolute; left:0; top:0; bottom:0; width:55px; background:linear-gradient(135deg,#ff8c00,#00c853); border-radius:10px 0 0 10px; display:flex; align-items:center; justify-content:center; color:white;">
+                <i class="fas fa-user"></i>
+              </span>
+              <input type="text" name="username" placeholder="Nom d'utilisateur" style="width:100%; padding:15px 15px 15px 70px; border:none; border-radius:10px; background:#fff; font-size:15px; outline:none; box-shadow:0 2px 5px rgba(0,0,0,0.05);">
+            </div>
+
+            <!-- Password -->
+<div style="position:relative; margin-bottom:10px;">
+  <span style="position:absolute; left:0; top:0; bottom:0; width:55px; background:linear-gradient(135deg,#ff8c00,#00c853); border-radius:10px 0 0 10px; display:flex; align-items:center; justify-content:center; color:white;">
+    <i class="fas fa-lock"></i>
+  </span>
+  <input type="password" id="password" name="password" placeholder="Mot de passe" style="width:100%; padding:15px 45px 15px 70px; border:none; border-radius:10px; background:#fff; font-size:15px; outline:none; box-shadow:0 2px 5px rgba(0,0,0,0.05);">
+  <span id="togglePassword" style="position:absolute; right:15px; top:50%; transform:translateY(-50%); color:#888; cursor:pointer;">
+    <i class="fas fa-eye-slash"></i>
+  </span>
+</div>
+<!-- CAPTCHA -->
+  {% if captcha %}
+  <div class="form-group" style="margin-bottom:20px;">
+    <div class="g-recaptcha" data-sitekey="{{ captchaKey }}"></div>
+  </div>
+  {% endif %}
+          
+            <!-- Remember + Forgot -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin:10px 0 20px 0;">
+              <label style="display:flex; align-items:center; font-size:14px; color:#333;">
+                <input type="checkbox" style="margin-right:6px;"> Se souvenir
+              </label>
+              <a href="/resetpassword" style="font-size:14px; color:#007bff; text-decoration:none;">Mot de passe oublié ?</a>
+            </div>
+
+<!-- Buttons -->
+<div style="display:flex; flex-direction:column; gap:10px; align-items:stretch;">
+  <!-- Normal Sign in -->
+  <button type="submit" style="width:100%; padding:12px; background:linear-gradient(90deg,#ff8c00,#00c853); border:none; color:white; font-weight:600; border-radius:10px; font-size:16px; cursor:pointer; transition:0.3s;">
+    Se connecter
+  </button>
+
+  <!-- Google Sign in -->
+  <div style="width:100%; padding:12px; border-radius:10px; font-size:16px; font-weight:600; text-align:center; cursor:pointer;">
+    <center>{{ google_login_content }}</center>
+  </div>
+</div>
+
+            <!-- Sign up -->
+            <p style="text-align:center; font-size:14px; color:#333; margin-top:20px;">Pas encore de compte ?
+              <a href="/signup" style="color:#007bff; text-decoration:none;">S'inscrire</a>
+            </p>
+          </form>
+
+          <!-- Social Icons -->
+          <div style="display:flex; gap:15px; margin-top:25px; flex-wrap:wrap;">
+            <img src="https://cdn-icons-png.flaticon.com/512/145/145802.png" style="width:40px;">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" style="width:40px;">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" style="width:40px;">
+            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" style="width:40px;">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968804.png" style="width:40px;">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" style="width:40px;">
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT IMAGE -->
+      <div class="col-right" style="
+        flex: 1 1 500px; 
+        text-align: right; 
+        padding: 15px;
+        display: flex; 
+        justify-content: flex-end; 
+        align-items: center;
+      ">
+        <img 
+          src="https://i.postimg.cc/K8BV64zC/e4a7a2f5cc79df774388dbd0bf2c12a8-1.png" 
+          alt="Malabora Boostage République Démocratique du Congo" 
+          style="width: 100%; max-width: 480px; height: auto;"
+        >
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<script>
+document.getElementById("togglePassword").addEventListener("click", function() {
+  const passwordInput = document.getElementById("password");
+  const icon = this.querySelector("i");
+  
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    icon.classList.remove("fa-eye-slash");
+    icon.classList.add("fa-eye");
+  } else {
+    passwordInput.type = "password";
+    icon.classList.remove("fa-eye");
+    icon.classList.add("fa-eye-slash");
+  }
+});
+</script>
+
+<!-- ✅ Mobile Fix -->
+<style>
+@media (max-width: 768px) {
+  #hero-login {
+    flex-direction: column;
+    padding-top: 30px !important; /* adds extra space under navbar */
+    text-align: center;
+  }
+  #hero-login h1 {
+    font-size: 32px !important;
+  }
+  #hero-login .col-right {
+    margin-top: 30px;
+  }
+  header, .navbar, .header {
+  padding: 8px 25px !important; /* Reduced height */
+  height: auto !important;
+  transition: all 0.3s ease;
+}
+
+/* Adjust logo size */
+header img, .navbar img, .header img {
+  max-height: 45px !important;
+}
+
+/* Align items properly */
+header, .navbar, .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+}
+</style>
+</main>
+
+<!-- Counter Section -->
+<section id="CounterSections">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-12">
+                <div class="counter_item__wrap">
+                    <div class="count__icon">
+                        <img src="https://cdn.mypanel.link/hmz1fi/ij0jsmr0r6cfd0lg.png" class="img-fluid" alt="Instagram RDC - Boost abonnés et likes">
+                    </div>
+                    <div class="count__content">
+                        <h4>259597</h4>
+                        <p>
+                            Total Orders
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <div class="counter_item__wrap">
+                    <div class="count__icon">
+                        <img src="https://cdn.mypanel.link/hmz1fi/f8qp667lnyotwltx.png" class="img-fluid" alt="TikTok Congo - Augmenter vues TikTok">
+                    </div>
+                    <div class="count__content">
+                        <h4>$0.001/1K</h4>
+                        <p>
+                            Starting Price
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <div class="counter_item__wrap">
+                    <div class="count__icon">
+                        <img src="https://cdn.mypanel.link/hmz1fi/7iutnxj50kalhxth.png" class="img-fluid" alt="Facebook RDC - Likes et abonnés Facebook">
+                    </div>
+                    <div class="count__content">
+                        <h4>24/7</h4>
+                        <p>
+                            Le plus rapide Support
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <div class="counter_item__wrap">
+                    <div class="count__icon">
+                        <img src="https://cdn.mypanel.link/hmz1fi/gq7dshxbmyi1bz4d.png" class="img-fluid" alt="YouTube Congo - Abonnés et vues YouTube">
+                    </div>
+                    <div class="count__content">
+                        <h4>2091+</h4>
+                        <p>
+                            Happy Clients
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Top SMM Services -->
+<section id="top__smm">
+    <div class="container">
+        <div class="row d-flex align-items-center">
+            <div class="col-lg-6 col-md-6 col-12">
+                <h2 class="section__title">Services SMM <br> Que Nous Proposons</h2>
+                <p class="mb-3">
+                    At {{ site['site_name'] }}, we pride ourselves on delivering top-tier Social Media Marketing (SMM) services designed
+                    to elevate your online presence and drive unparalleled engagement. With our comprehensive suite of
+                    solutions, we empower businesses of all sizes to harness the full potential of social media
+                    platforms.
+                </p>
+                <a href="/services" class="btn btn-primary btn-gradient mb-md-0 mb-4">See All Our Services</a>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="top__smm__img text-end" bis_skin_checked="1">
+                    <img src="https://cdn.mypanel.link/hmz1fi/mirfysp3pqms7f4w.png" class="img-fluid img-icon-favs" alt="Services SMM RDC - Malabora Boostage">
+                    <img src="https://cdn.mypanel.link/hmz1fi/i4p565racyepdmkj.webp" class="img-fluid roateds" alt="Croissance réseaux sociaux Congo">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Le moins cher Le plus rapide -->
+<section id="cheapest">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <h2 class="section__title text-center mb-5">
+                    Le moins cher & Le plus rapide Services SMM pour tous les réseaux sociaux.
+                </h2>
+            </div>
+        </div>
+        <div class="row d-flex align-items-center cheap_content_wrapers">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="cheapest_img text-start">
+                    <img src="https://cdn.mypanel.link/hmz1fi/1ool5is2ww7qd78k.webp" class="img-fluid" alt="Plateforme SMM République Démocratique du Congo">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="cheapest__content__wrap">
+                    <p>
+                        At {{ site['site_name'] }}, we specialize in providing the most cost-effective and expeditious Social Media
+                        Marketing (SMM) services for all your social accounts. Our tailored solutions are designed to
+                        skyrocket your online presence without burning a hole in your pocket.
+                    </p>
+                    <p>
+                        Experience unparalleled speed and efficiency as we boost your visibility across various social
+                        media platforms.Trust {{ site['site_name'] }} to amplify your online reach promptly and affordably. Take the
+                        fast track to social media success with our budget-friendly and expedited services.
+                    </p>
+                    <a href="/services" class="btn btn-primary btn-gradient mb-4">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--  Best smm panel  -->
+<section id="bestsmmpanel">
+    <div class="best_bg_ring">
+        <img src="https://cdn.mypanel.link/hmz1fi/creb106gshxb02ql.png" class="img-fluid" alt="Marketing digital Kinshasa">
+    </div>
+    <div class="bestsmm__bg__animations">
+        <img src="https://cdn.mypanel.link/hmz1fi/gu3884er6wkbn75m.png" class="img-fluid" alt="Promotion réseaux sociaux RDC">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12">
+<h2 class="section__title text-white">Meilleure Plateforme SMM <br>
+                    Pour les Revendeurs</h2>
+                <p class="text-white">
+                    Discover unparalleled convenience and excellence in social media marketing with {{ site['site_name'] }}, the
+                    industry's foremost SMM panel for resellers. Our platform offers resellers a seamless experience,
+                    providing access to premium services and tools tailored to elevate your SMM ventures.
+                </p>
+                <div class="best__btn__wrap">
+                    <a href="" class="btn btn-primary btn-gradient btn__best bg__blck">Create Account</a>
+                    <a href="" class="btn btn-primary btn-gradient btn__best bg__white">Get Discounts</a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="best_smm_panel">
+                    <div class="best_smm_animations">
+                        <img src="https://cdn.mypanel.link/hmz1fi/hbkhxnhnztiycqge.png" class="img-fluid tw_bnn" alt="Twitter/X RDC">
+                        <img src="https://cdn.mypanel.link/hmz1fi/3yn7mnj1oy7ilbhn.png" class="img-fluid ig_bnn" alt="Instagram Congo">
+                        <img src="https://cdn.mypanel.link/hmz1fi/clbusy52y0mlrwb3.png" class="img-fluid fb_bnn" alt="Facebook Congo">
+                        <img src="https://cdn.mypanel.link/hmz1fi/xazr4z4mhqtxrnyb.png" class="img-fluid yt_bnn" alt="YouTube RDC">
+                        <img src="https://cdn.mypanel.link/hmz1fi/mr4rirebm7j6208h.png" class="img-fluid tik_bnn" alt="TikTok RDC">
+                        <img src="https://cdn.mypanel.link/hmz1fi/ypy7wnlqj1zbcj3x.png" class="img-fluid sp_bnn" alt="Spotify Congo">
+                    </div>
+                    <img src="https://cdn.mypanel.link/hmz1fi/pr4akiso37645w4p.webp" class="img-fluid smmpanel_best_main__image" alt="Plateforme SMM RDC - Malabora Boostage">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="howItWorksSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <h2 class="section__title text-center mb-5">Comment Ça Marche</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="how-its-items">
+                    <div class="how_icon_up">
+                        <img src="https://cdn.mypanel.link/hmz1fi/366oxz0z7m7g1xxc.png" alt="Étape 1 - Créer un compte Malabora Boostage">
+                    </div>
+                    <div class="how-icons">
+                        <iconify-icon icon="iconamoon:profile-fill"></iconify-icon>
+                    </div>
+                    <div class="how-its-content">
+                        <h4>Create An Account <br>
+                            & Add Balance</h4>
+                        <p>
+                            Begin your journey with us by signing up and creating your account. Once registered, access
+                            your account by logging in. To get started, deposit funds.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="how-its-items">
+                    <div class="how_icon_up">
+                        <img src="https://cdn.mypanel.link/hmz1fi/i8ektby0f9pf9n63.png" alt="Étape 2 - Choisir un service de boost">
+                    </div>
+                    <div class="how-icons">
+                        <iconify-icon icon="ic:round-home-repair-service"></iconify-icon>
+                    </div>
+                    <div class="how-its-content">
+                        <h4>
+                            Select Your <br>
+                            Targeted Service
+                        </h4>
+                        <p>
+                            Select the services you need from either the Services page or the New Order section. Easily
+                            find and choose the desired services to fulfill your requirements.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="how-its-items">
+                    <div class="how-icons">
+                        <iconify-icon icon="fa-solid:link"></iconify-icon>
+                    </div>
+                    <div class="how-its-content">
+                        <h4>
+                            Provide Link, Quantity <br>
+                            & Watch Results!
+                        </h4>
+                        <p>
+                            Providing the correct links and quantities. Instantly view
+                            the total cost of your order before finalizing. After Place an order just wait few hours
+                            then you will see tha magic of {{ site['site_name'] }}.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- faq -->
+<section id="faqSection">
+    <div class="container">
+        <div class="row d-flex align-items-center">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="faq__conetent__wrap">
+                    <h2 class="section__title">
+                        Frequently Asked Questions
+                    </h2>
+                    <p>
+                        The SMM panel is basically a social media marketing panel where you can buy targeted actions
+                        like (followers, likes, subscribers, views, tweets, shares, etc.) but we also understand that
+                        our clients may have many questions, and we have prepared some of the most important and
+                        frequently asked questions in order to clear up any confusion regarding the Purpose and Process
+                        of the {{ site['site_name'] }} Panel. After viewing the FAQ, it will be easy for you to place an order
+                        with us.
+                    </p>
+                    <a href="/faq" class="btn btn-primary btn-gradient">View All FAQ</a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="accordion__wraper">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                    aria-controls="flush-collapseOne">
+                                    What is SMM PANEL?
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <a href="/" tabindex="0"> Smm panel</a> is a panel where you can
+                                    buy social media ( Facebook, Twitter, Instagram, YouTube, Spotify, Tiktok, and other
+                                    social media ) likes, followers, views, Comments, Subscribers, and as well as
+                                    Website
+                                    traffic. Customers choose the <a href="/" tabindex="0">cheapest
+                                        smm
+                                        panel</a> because of its cheap price, faster delivery, and all social media
+                                    services
+                                    available on 1 website.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                    aria-controls="flush-collapseTwo">
+                                    Is SMM Panel Safe?
+                                </button>
+                            </h2>
+                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    The SMM panels on our platform are extremely safe, protected against DDoS assaults,
+                                    and
+                                    updated frequently. Additionally, each and every one of them possesses a
+                                    certificate,
+                                    which is crucial for protecting the privacy of your clients' and your own personal
+                                    information.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                    aria-controls="flush-collapseThree">
+                                    How does {{ site['site_name'] }} Work?
+                                </button>
+                            </h2>
+                            <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    {{ site['site_name'] }} assist you in connecting and interacting with a bigger base of current and
+                                    potential customers. SMM panels assist you in spreading fresh updates about your
+                                    company
+                                    to a larger audience when you post about a product. We work with you as a Facebook
+                                    or
+                                    Instagram business to enhance your engagement and conversion.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseFour" aria-expanded="false"
+                                    aria-controls="flush-collapseFour">
+                                    Which is the best SMM Panel?
+                                </button>
+                            </h2>
+                            <div id="flush-collapseFour" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    {{ site['site_name'] }} is the best SMM panel as they provide smm services in cheap and is the best
+                                    <a href="/blog/">SMM reseller
+                                        panel</a> in the market as well.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose US Section -->
+<section id="whyChooseUs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <h2 class="text-white section__title text-center mb-5">
+                    Why Choose Us
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="why__item__wrap">
+                    <div class="why__item__top">
+                        <div class="why__icon">
+                            <img src="https://cdn.mypanel.link/hmz1fi/lf1o9wn7mttabpd3.png" alt="" class="img-fluid">
+                        </div>
+                        <h3>
+                            High Quality <br>
+                            Service
+                        </h3>
+                    </div>
+                    <p>
+                        Experience excellence with our high-quality SMM services. At {{ site['site_name'] }}, we're committed to
+                        delivering top-tier solutions that elevate your online presence and engagement, ensuring
+                        exceptional results for your brand.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="why__item__wrap">
+                    <div class="why__item__top">
+                        <div class="why__icon">
+                            <img src="https://cdn.mypanel.link/hmz1fi/022qgl198xqcwbbs.png" alt="" class="img-fluid">
+                        </div>
+                        <h3>
+                            Starting From <br> $0.001
+                        </h3>
+                    </div>
+                    <p>
+                        Unlock powerful SMM solutions at unbeatable prices, starting from just $0.001. Access a range of
+                        services designed to fit your budget and amplify your online presence affordably.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="why__item__wrap">
+                    <div class="why__item__top">
+                        <div class="why__icon">
+                            <img src="https://cdn.mypanel.link/hmz1fi/gczdcew55k6wtwkn.png" alt="" class="img-fluid">
+                        </div>
+                        <h3>
+                            We Provide Super <br> Fast Delivery
+                        </h3>
+                    </div>
+                    <p>
+                        Experience lightning-fast results with our super-fast delivery. At {{ site['site_name'] }}, we prioritize prompt
+                        service, ensuring your social media needs are met swiftly and efficiently.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="why__item__wrap">
+                    <div class="why__item__top">
+                        <div class="why__icon">
+                            <img src="https://cdn.mypanel.link/hmz1fi/3cf5gzlbpcknh49u.png" alt="" class="img-fluid">
+                        </div>
+                        <h3>
+                            User Friendly <br> Dashboard
+                        </h3>
+                    </div>
+                    <p>
+                        Navigate effortlessly through our user-friendly dashboard. Our intuitive interface is designed
+                        to offer ease of use, enabling you to manage your SMM activities seamlessly and efficiently.
+                    </p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+<section id="testimonialSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <h2 class="section__title text-center mb-5">
+                    Testimonials
+                </h2>
+
+                <div class="testimonials__wraper">
+                    <!-- Slider main container -->
+                    <div class="swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper" id="swiper-wrapper-7e57ba3736a1abb3" aria-live="off" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
+                            <!-- Slides -->
+                            <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 6" style="width: 1116px;">
+                                <div class="testimonial__item__wrap">
+                                    <div class="top__icon text-center">
+                                        <img src="https://cdn.mypanel.link/hmz1fi/aey68dtgirxgdepw.png" class="img-fludid" alt="">
+                                    </div>
+                                    <p>
+                                        "TechSMM has been a game-changer for our social media presence. Their services helped us skyrocket our engagement and reach. Highly recommended!"
+                                    </p>
+                                    <div class="testi__user text-center">
+                                        <div class="stars text-center">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <h4>Sarah Johnson</h4>
+                                        <p>CEO of Digital Boosters</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 6" style="width: 1116px;">
+                                <div class="testimonial__item__wrap">
+                                    <div class="top__icon text-center">
+                                        <img src="https://cdn.mypanel.link/hmz1fi/aey68dtgirxgdepw.png" class="img-fludid" alt="">
+                                    </div>
+                                    <p>
+                                        "Impressed with TechSMM's professionalism and quality service. Their prompt delivery and strategic approach significantly boosted our online visibility."
+                                    </p>
+                                    <div class="testi__user text-center">
+                                        <div class="stars text-center">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <h4>Mark Stevens</h4>
+                                        <p>Marketing Manager at Insightful Minds</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide" role="group" aria-label="3 / 6" style="width: 1116px;">
+                                <div class="testimonial__item__wrap">
+                                    <div class="top__icon text-center">
+                                        <img src="https://cdn.mypanel.link/hmz1fi/aey68dtgirxgdepw.png" class="img-fludid" alt="">
+                                    </div>
+                                    <p>
+                                        "I've tried several SMM services, but TechSMM stands out. Their user-friendly platform and exceptional results have been instrumental in our growth."
+                                    </p>
+                                    <div class="testi__user text-center">
+                                        <div class="stars text-center">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <h4>Emily Carter</h4>
+                                        <p>Founder of Sparkling Trends</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide" role="group" aria-label="4 / 6" style="width: 1116px;">
+                                <div class="testimonial__item__wrap">
+                                    <div class="top__icon text-center">
+                                        <img src="https://cdn.mypanel.link/hmz1fi/aey68dtgirxgdepw.png" class="img-fludid" alt="">
+                                    </div>
+                                    <p>
+                                        "TechSMM's expertise and commitment to quality are commendable. Their fast delivery and comprehensive solutions have been invaluable to our campaigns."
+                                    </p>
+                                    <div class="testi__user text-center">
+                                        <div class="stars text-center">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <h4>Alex Ramirez</h4>
+                                        <p>Social Media Strategist at Buzz Hive</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide" role="group" aria-label="5 / 6" style="width: 1116px;">
+                                <div class="testimonial__item__wrap">
+                                    <div class="top__icon text-center">
+                                        <img src="https://cdn.mypanel.link/hmz1fi/aey68dtgirxgdepw.png" class="img-fludid" alt="">
+                                    </div>
+                                    <p>
+                                        "TechSMM exceeded our expectations. The high-quality services and competitive pricing have made them our go-to choice for all our SMM needs."
+                                    </p>
+                                    <div class="testi__user text-center">
+                                        <div class="stars text-center">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <h4>Rachel Thompson</h4>
+                                        <p>Marketing Director at Bright Horizons</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide" role="group" aria-label="6 / 6" style="width: 1116px;">
+                                <div class="testimonial__item__wrap">
+                                    <div class="top__icon text-center">
+                                        <img src="https://cdn.mypanel.link/hmz1fi/aey68dtgirxgdepw.png" class="img-fludid" alt="">
+                                    </div>
+                                    <p>
+                                        "TechSMM has been instrumental in our social media strategy. Their affordable pricing combined with exceptional service quality helped us reach new audiences and boost sales. Grateful for their impactful contributions to our success!"
+                                    </p>
+                                    <div class="testi__user text-center">
+                                        <div class="stars text-center">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <h4>Michael Chen</h4>
+                                        <p>E-commerce Entrepreneur at ZenCommerce</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- If we need pagination -->
+                        <div class="swiper-pagination"></div>
+
+                        <!-- If we need navigation buttons -->
+                        <button class="sliderBtn slide-prev swiper-button-disabled" type="button" tabindex="-1" aria-label="Previous slide" aria-controls="swiper-wrapper-7e57ba3736a1abb3" aria-disabled="true" disabled="">
+                            <iconify-icon icon="lets-icons:arrow-drop-left"></iconify-icon>
+                        </button>
+                        <button class="sliderBtn slide-next" type="button" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-7e57ba3736a1abb3" aria-disabled="false">
+                            <iconify-icon icon="lets-icons:arrow-drop-right"></iconify-icon>
+                        </button>
+
+                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!------
+<section id="blogSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <h2 class="section__title text-center mb-5">
+                    Read Our Blog
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="blog__card">
+                    <div class="blog__image">
+                        <img src="https://cdn.mypanel.link/hmz1fi/r4o1ftjb3ywbbg1z.png" alt="" class="img-fluid">
+                    </div>
+                    <div class="blog__content">
+                        <h6 class="blog__date">Nov 1, 2023</h6>
+                        <h3>
+                            The Ultimate Guide to Social Media Promotion: Strategies for Business Success
+                        </h3>
+                        <p>
+                            This comprehensive companion explores colorful social media creation strategies that businesses can apply to enhance their online presence...
+                        </p>
+                        <a href="/blog/theultimateguidetosocialmediapromotionstrategiesforbusinesssuccess" class="btn btn-primary btn-sm btn-gradient">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="blog__card">
+                    <div class="blog__image">
+                        <img src="https://cdn.mypanel.link/hmz1fi/2z9cjt7fx6crbgdd.png" alt="" class="img-fluid">
+                    </div>
+                    <div class="blog__content">
+                        <h6 class="blog__date">Nov 1, 2023</h6>
+                        <h3>
+                            Le moins cher SMM Panel - Meilleur Panel SMM sur le marché
+
+                        </h3>
+                        <p>
+                            Are you looking for ways to earn some extra cash during your study and work hours? Have you ever thought about using your smartphone to earn money online? Well, you can do that now with the help of the {{ site['site_name'] }} website.
+                        </p>
+                        <a href="/blog/cheapestsmmpanel-bestsmmpanelintheholemarket" class="btn btn-primary btn-sm btn-gradient">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="blog__card">
+                    <div class="blog__image">
+                        <img src="https://cdn.mypanel.link/hmz1fi/2egdjek7pwomkb1y.png" alt="" class="img-fluid">
+                    </div>
+                    <div class="blog__content">
+                        <h6 class="blog__date">Nov 1, 2023</h6>
+                        <h3>
+                            {{ site['site_name'] }} - # 1 SMM panel | Le moins cher panel SMM dans le monde entier.
+                        </h3>
+                        <p>
+                            Social media has become an integral part of our lives, both personally and professionally. With the rise of social media platforms, businesses have started to leverage social media to reach their...
+                        </p>
+                        <a href="" class="btn btn-primary btn-sm btn-gradient">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+----------->
+<section id="paymentSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-12">
+                <h2 class="section__title text-center">
+                    We Accept Multiple Payment Methods
+                </h2>
+                <div class="payment__images">
+                    <img src="https://cdn.mypanel.link/hmz1fi/srtwbbr2kkl8qjg8.png" class="img-fluid for_desktop" alt="">
+                    <img src="https://cdn.mypanel.link/hmz1fi/187e2gr6e4bsaxz1.png" class="img-fluid for_phone" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+  </main>
+        
+
+
+{% for lang in site['languages'] %}
+  {% if lang['active'] %}
+    <script src="https://www.google.com/recaptcha/api.js?hl={{ lang['code'] }}"></script>
+  {% endif %}
+{% endfor %}
+
+ {% include 'footer.twig' %}
+		

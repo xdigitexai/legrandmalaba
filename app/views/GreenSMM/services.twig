@@ -1,0 +1,304 @@
+{% include 'header.twig' %}
+<div class="content">
+<main id="notLogin">
+<style>.order_id{display:block;background:var(--text-primary);text-align:center;color:#fff;padding:3px 8px;border-radius:10px}.dashboard #notLogin{padding-top:20px}#notLogin{padding-top:100px}</style>
+<div id="top_services">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card_v2">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                          
+                                <div class="service_button_filter" id="dc-body">
+                                
+                                     <button
+                      class="btn_ser_filter services-list-filter btn_filter btn_all"
+                      onclick="javascript:filterService('All')"
+                      data-services-filter="">
+                      
+                      All
+                    </button>
+
+                                    <button class="btn_ser_filter btn_filter btn_fb services-list-filter btn_filter btn_fb"  onclick="btnFltr(this)"
+                                  data-services-filter="facebook">
+                                        <span class="icon">
+                                            <i class="fab fa-facebook"></i>
+                                        </span>
+                                        
+                                    </button>
+
+                                    <button class="btn_ser_filter btn_tw btn_filter btn_fb services-list-filter btn_filter"  onclick="btnFltr(this)"
+                                    data-services-filter="twitter">
+                                        <span class="icon">
+                                            <i class="fab fa-twitter"></i>
+                                        </span>
+                                        
+                                    </button>
+
+                                    <button class="btn_ser_filter btn_ig btn_filter btn_fb services-list-filter btn_filter"  onclick="btnFltr(this)"
+                                    data-services-filter="instagram">
+                                        <span class="icon">
+                                            <i class="fab fa-instagram"></i>
+                                        </span>
+                                        
+                                    </button>
+
+
+                                    <button class="btn_ser_filter btn_in btn_filter btn_fb services-list-filter btn_filter"  onclick="btnFltr(this)"
+                                    data-services-filter="linkedin">
+                                        <span class="icon">
+                                            <i class="fab fa-linkedin"></i>
+                                        </span>
+                                        
+                                    </button>
+
+
+                                    <button class="btn_ser_filter btn_yt btn_filter btn_fb services-list-filter btn_filter"  onclick="btnFltr(this)"
+                                   data-services-filter="youtube">
+                                        <span class="icon">
+                                            <i class="fab fa-youtube"></i>
+                                        </span>
+                                        
+                                    </button>
+
+
+                                    <button class="btn_ser_filter btn_sp btn_filter btn_fb services-list-filter btn_filter"  onclick="btnFltr(this)"
+                                    data-services-filter="spotify">
+                                        <span class="icon">
+                                            <i class="fab fa-spotify"></i>
+                                        </span>
+                                        
+                                    </button>
+                                    <button class="btn_ser_filter btn_in btn_filter btn_fb services-list-filter btn_filter"  onclick="btnFltr(this)"
+                                    data-services-filter="telegram">
+                                        <span class="icon">
+                                            <i class="fab fa-telegram"></i>
+                                        </span>
+                                        
+                                    </button>
+                                    <button class="btn_ser_filter btn_tik btn_filter btn_fb services-list-filter btn_filter"  onclick="btnFltr(this)"
+                                  data-services-filter="tiktok">
+                                        <span class="icon">
+                                            <i class="fab fa-tiktok"></i>
+                                        </span>
+                                    </button>
+
+                                    <button class="btn_ser_filter btn_dis btn_filter btn_fb services-list-filter btn_filter"  onclick="btnFltr(this)"
+                                   data-services-filter="discord">
+                                        <span class="icon">
+                                            <i class="fab fa-discord"></i>
+                                        </span>
+                                    </button>
+
+                                    <button class="btn_ser_filter btn_traffic btn_filter btn_fb services-list-filter btn_filter"  onclick="btnFltr(this)"
+                                   data-services-filter="traffic">
+                                        <span class="icon">
+                                            <i class="fas fa-globe"></i>
+                                        </span>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="drop_dwon_menu" id="cat_filter">
+                                            <div class="text_filter">
+                                            <button class="btn mr-2 cat_btn_filter mb-sm-2 " role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-filter"></i> <span data-filter-active-category="true">Select Catogery</span>
+                                                <i class="fas fa-sort-down"></i>
+                                            </button>
+                                            
+                                            <ul class="dropdown-menu">
+                    <li>
+            <a class="dropdown-item" href="#" data-filter-category-id="All">All</a>
+          	{% for category in serviceCategory %}
+          	<a class="dropdown-item" href="services#" data-filter-category-id="{{ category["category_id"] }}"
+          	data-filter-category-name="{{ category["category_name"] }}">{{ category["category_name"] }}</a>{% endfor %}
+      </ul></div>
+                                        </div>
+                                    </div>
+                                    {% if user['auth'] == 0 %}
+<div class="col-md-6">
+<ul id="currency_changer">
+                                                <li>
+                                             <div class="dropdown ">
+                                                        <button class="btn btn-primary dropdown-toggle mb-sm-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="currencyToggler">
+                                                            <span class="services-filter__active-currency">{{site_base_currency}}</span>
+                                                        </button>
+                                                        <ul class="dropdown-menu" id="currencies-list">
+                                                                                   {{ without_login_currencies_item }}                                         
+                                                                </li>
+                                                                                                                    </ul>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                                                            </div>
+{% endif %}
+                                    
+                                </div>
+                           </div>
+                            <div class="col-md-6"><div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search" id="search" data-search-service="#service-table">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" data-filter-serch-btn="true">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </button>
+                                </span>
+                            </div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="table" class="services_page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="responsive-table def_table">
+                       <div class="table-responsive">
+                            
+                             <table id="serv-table" class="app-mtable table results table-mobile-cards">
+                                 
+                                <thead>
+                                            <th>ID</th>
+                                            <th>Service</th>
+                                            <th>Rate per 1000</th>
+                                            <th>Min order</th>
+                                            <th>Max order</th>
+                                                                                            <th class="nowrap">Average time
+                                                    <span class="fa fa-exclamation-circle" data-toggle="tooltip" data-placement="top" title="The average time is based on 10 latest completed orders per 1000 quantity."></span>
+                                                </th>
+                                                                                                                                        <th>Description</th>
+                                                                                 <th>Order</th> 
+                                        </tr>
+                                    </thead>
+
+                                        <tbody>
+                                        
+                                                {% for category in serviceCategory %}
+                                                                                                            <tr class="catetitle" data-filter-table-category-id="{{ category["category_id"] }}">
+                                                <td colspan="8">
+                                                   <div class="catetitle ">
+                                                       <div class="style-bg-primary-alpha-20 style-text-primary services-category text-center" style="font-size:20px; font-weight:bold;">
+                                                           {{ category["category_name"] }}
+                                                       </div>
+                                                   </div>
+                                                </td>
+                                            </tr>
+                                           
+                                                
+
+                {% for service in category['services'] %}
+                   <tr data-filter-table-category-id="{{ category["category_id"] }}">
+                   <td data-filter-table-service-id="{{ category["category_id"] }}">
+              
+                    
+                    
+                            <span id="servis_id" class="order_id">{{ service["service_id"] }}</span>
+                                            </td>
+                                            
+                                    <td class="service-name" data-filter-table-service-name="true">{{ service["service_name"] }}
+                                    </td>
+                                    <td>
+                      
+{% if user["auth"] == "1" %} 
+{{service["service_price"]}}
+
+{% else %}
+{{service["without_login_service_price"]}}
+{% endif %}
+                    </td>
+                                    <td>{{ service["service_min"] }}</td>
+                                    <td>{{ service["service_max"] }}</td>
+                                                                        <td class="avarage_time_Services">{{ service["time"] }}</td>
+                                                                                                        
+                                                                                        <td>
+                     <!-- Modal -->
+                        <div class="modal fade" id="servis{{ service["service_id"] }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                  <center><div class="serv_id_wrap" bis_skin_checked="1">
+                       <span id="servId">#{{ service["service_id"] }}</span>
+                    </div></center>
+                    <div class="servName" bis_skin_checked="1"> <span id="exampleModalLabel">
+                                                {{ service["service_name"] }}
+                                            </span></div>
+                                
+                                <button type="button" class="serv_modal_close" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                                
+                              </div>
+                              <div class="modal-body text-left">
+                                <p class="detail-data details-split-959"> {{ service["service_description"] }}</p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-actions" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+						  
+                        </div><a href="javascript:void(0)" class="btn btn-primary btn_serv btn_detail " data-toggle="modal" data-target="#servis{{ service["service_id"] }}">
+                         Details
+                      </a>
+                   
+                        </td>         
+                                         <td>
+                                                <a href="{{ site['url'] }}/?category_id={{category['category_id']}}&service_id={{ service['service_id'] }}" class="btn btn-primary btn_serv">
+                                                    <i class="fas fa-shopping-cart"></i> 
+                                                </a>
+                                            </td>                                                       
+                                                                                                
+
+                                                                    </tr>
+                                           
+                  
+                  
+                {% endfor %}
+              {% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div></div>
+</div>
+</div></div></div>
+
+
+{% if contentText2 %}
+{{ contentText2 }}
+{% endif %}
+
+<script>
+function btnFltr(t){var e=t.getAttribute("data-services-filter");$("#search").val(e),$("#search").attr("data-filter-value",e),$("#search").trigger("keyup")}$(document).ready(function(){$("#search").on("keyup",function(){var t=$(this).val().toLowerCase();$("#serv-table tbody tr").each(function(){var e=$(this).find("#servis_id").text().toLowerCase(),a=$(this).find(".service-name").text().toLowerCase(),i=$(this).attr("data-filter-table-category-id"),r=$('.catetitle[data-filter-table-category-id="'+i+'"]');(e+a).includes(t)?($(this).show(),r.show()):($(this).hide(),$('#serv-table tbody tr[data-filter-table-category-id="'+i+'"]:visible').length>0||r.hide())})})});
+</script>
+{% include 'footer.twig' %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <script type="text/javascript" src="/public/global/ch3915babussofa4.js">
+      </script>
+  <script type="text/javascript" src="/public/global/cgtptn05b64bwcs4.js">
+      </script>
+  <script type="text/javascript" src="/public/global/xcz59lmywkfdgsp4.js">
+      </script>
+  <script type="text/javascript" src="/public/global/wnzsoolloslhfumj.js">
+      </script>
+      <script type="text/javascript" src="/public/global/qri1ac173hshc2hdjc.js">
+</script>
+  <script type="text/javascript" >
+     window.modules.layouts = {"auth":0};   </script>
+  <script type="text/javascript" >
+     window.modules.signin = [];   </script>
+  <script type="text/javascript" >
+      </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.27.6/js/jquery.tablesorter.js"></script>
+

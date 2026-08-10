@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+	{% for lang in site['languages'] %}
+		{% if lang['active'] %}
+			<html lang="{{ lang['code'] }}">
+			{% endif %}
+		{% endfor %}
+
+		<head>
+			<base href="{{ site['url'] }}">
+
+
+			<title>
+				{% if pagetitle %}
+					{{ pagetitle }}
+				{% else %}
+					{{ title }}
+				{% endif %}
+			</title>
+			<meta property="og:title" content="{% if pagetitle %} {{ pagetitle }} {% else %} {{ title }} {% endif %}"/>
+			<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<meta name="keywords" content="{% if pagekeywords %} {{ pagekeywords }} {% else %} {{ site[" keywords"]}} {% endif %}">
+			<meta name="description" content="{% if pagedescription %} {{ pagedescription }} {% else %} {{ site['description'] }} {% endif %}">
+			<meta property="og:description" content="{% if pagedescription %} {{ pagedescription }} {% else %} {{ site['description'] }} {% endif %}"/>
+			{% if site['favicon'] %}
+				<link rel="shortcut icon" type="image/ico" href="{{ site['favicon'] }}"/>
+			{% endif %}
+
+
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+			<link rel="stylesheet" type="text/css" href="public/Simplify/bootstrap.css">
+			<link rel="stylesheet" type="text/css" href="public/Simplify/{{ settings['site_theme_alt'] }}.css?v=1.2">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
+			<link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css"/>
+			<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+			<style>
+				@media(max-width: 991px) {
+					.body .component-navbar-collapse-divider {
+						display: none;
+					}
+
+				}
+.body .component-navbar-public-nav-item {
+    height: 32px;
+}
+.wrapper-navbar .component_navbar_sub {
+    height: 0px;
+}
+#block_105 {padding-top: 0px;}
+				.body .card {
+					border-top-left-radius: 12px;
+					border-top-right-radius: 12px;
+					border-bottom-left-radius: 12px;
+					border-bottom-right-radius: 12px;
+					box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.1);
+					border: 0 solid;
+				}
+
+				#block_82 .sidebar-block__left {
+					overflow-y: auto;
+				}
+
+				.body .component-sidebar__menu {
+					overflow-y: visible;
+				}
+
+				@media(min-width: 778px) {
+					.ment iframe {
+						width: 70%;
+						min-height: 330px;
+					}
+
+					.card iframe {
+						min-height: 330px;
+					}
+				}
+
+				p img {
+					max-width: 100%;
+					border-radius: 15px;
+				}
+
+				@media(min-width: 991px) {
+					.ment iframe {
+						width: 50%;
+						min-height: 330px;
+					}
+				}
+
+				.ment {
+					padding: 15px;
+				}
+
+				iframe {
+					width: 100%;
+					height: auto;
+					min-height: 180px;
+					border-radius: 20px;
+				}
+
+				.ment iframe,
+				.card iframe,
+				.card iframe {
+					border: 1.5px solid rgb(255 255 255 / 35%);
+				}
+
+				.body .balance-dropdown__container {
+					margin: 5px 0 0;
+					height: auto;max-height:400px;
+					border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  box-shadow: 0px 3px 15px -2px rgba(0,0,0,0.25);
+  border: 1px solid #fff;
+				}
+
+				.body .balance-dropdown__link {
+					border-bottom: none;
+				}
+
+				@media(min-width:992px) {
+					.body .component-navbar-private-nav-item {
+						min-height: 64px;
+					}
+				}
+
+				.body .component-navbar-private-nav-item {
+					height: 32px;
+				}
+
+				#block_82 .sidebar-block__top {
+					position: absolute;
+					width: 100%;
+					top: 0;
+					left: 0;
+					z-index: 10;
+				}
+
+				#block_80 .sidebar-block__top {
+					position: absolute;
+					width: 100%;
+					top: 0;
+					left: 0;
+					z-index: 11;
+				}
+
+				#block_80 .block-wrapper {
+					width: 100%;
+					flex-shrink: 0;
+					position: absolute;
+					top: 0;
+					left: 0;
+					z-index: 120;
+				}
+
+				.navbar-nav-currencies {
+					order: -1;
+				}
+
+				.login-with-google-btn {
+
+					transition: background-color 0.3s, box-shadow 0.3s;
+
+					width: 100%;
+					padding: 12px 16px 12px 42px;
+					border: none;
+					border-radius: 10px;
+					box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 2px rgba(0, 0, 0, 0.25);
+					color: #000;
+					font-size: 14px;
+					font-weight: 500;
+					font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+
+					background-color: #fff;
+
+				}
+
+				.login-with-google-btn:active {
+					background-color: #eeeeee;
+				}
+
+				.login-with-google-btn:focus {
+					outline: none;
+				}
+
+				.body .component-navbar-collapse-divider {
+					height: 1px;
+					width: 100%;
+					display: none;
+					opacity: 0.2;
+				}
+
+				.navbar-collapse {
+					flex-basis: 100%;
+					flex-grow: 1;
+					align-items: center;
+				}
+
+
+				#block_48 .block-wrapper {
+					width: 100%;
+					flex-shrink: 0;
+					position: relative;
+					z-index: 120;
+				}
+
+
+				#block_48 .sidebar-block__top {
+					position: relative;
+					width: 100%;
+					top: 0;
+					left: 0;
+					z-index: 11;
+				}
+
+
+				.navbar {
+					position: relative;
+					display: flex;
+					flex-wrap: wrap;
+					align-items: center;
+					justify-content: space-between;
+					padding: 0.5rem 1rem;
+				}
+
+				@media(min-width: 992px) {
+					.navbar-expand-lg {
+						flex-flow: row nowrap;
+						justify-content: flex-start;
+					}
+				}
+
+
+				#block_48 .component-navbar-collapse {
+					margin-left: auto;
+				}
+
+				.body .component-navbar-nav-link-active__navbar-public {
+					background: transparent;
+				}
+
+				.body .component-navbar-nav-link__navbar-public {
+					background: transparent;
+					padding: 4px 16px;
+					border-style: none;
+					border-top-left-radius: 0;
+					border-top-right-radius: 0;
+					border-bottom-left-radius: 0;
+					border-bottom-right-radius: 0;
+					border-left-width: 0;
+					border-right-width: 0;
+					border-top-width: 0;
+					border-bottom-width: 0;
+				}
+
+				@media(max-width: 991px) {
+					.body .component-navbar__navbar-public .navbar {
+						display: flex;
+						flex-wrap: wrap;
+						height: auto;
+						min-height: 64px;
+						padding: 0 1rem;
+					}
+
+					.navbar {
+						position: relative;
+						display: flex;
+						flex-wrap: wrap;
+						align-items: center;
+						justify-content: space-between;
+						padding: 0.5rem 1rem;
+					}
+
+					.body .component-navbar__navbar-public .navbar-collapse {
+						position: relative;
+						top: 0;
+						left: 0;
+						width: 100%;
+						background: none;
+					}
+
+					#block_48 .sidebar-block__top {
+						position: relative;
+					}
+
+					.body .navbar {
+						flex-flow: row;
+					}
+
+					.body .component-navbar__navbar-public .navbar .navbar-public__header {
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						width: 100%;
+						height: 64px;
+					}
+
+					.body .component-navbar-nav-link {
+						width: 100%;
+						justify-content: flex-start;
+					}
+				}
+
+				#block_48 .sidebar-block__top-brand {
+					display: flex;
+					align-items: center;
+				}
+
+				.body .navbar-light .navbar-toggler {
+					border: none;
+					outline: none;
+					position: relative;
+				}
+
+				.navbar-light .navbar-toggler {
+					color: rgba(0, 0, 0, 0.5);
+					border-color: rgba(0, 0, 0, 0.1);
+				}
+
+				.navbar-toggler {
+					padding: 0.25rem 0.75rem;
+					font-size: 1.25rem;
+					line-height: 1;
+					background-color: transparent;
+					border: 1px solid transparent;
+					border-radius: 0.25rem;
+				}
+
+				.body .component-navbar-nav-item {
+					position: relative;
+				}
+
+
+				.body .component-navbar-private__wrapper {
+					height: 64px;
+				}
+				#block_49 .sidebar-block__top {
+					position: absolute;
+					top: 0;
+					right: 0;
+					z-index: 10;
+				}
+
+
+				#block_82 .component_private_navbar .component-navbar-private__wrapper {
+					height: 52px;
+				}
+
+				#block_82 .component_private_navbar .component-navbar__navbar-private .navbar {
+					height: 75px;
+				}
+				.navbar-toggler {
+					padding: 0.25rem 0.75rem;
+					font-size: 1.25rem;
+					line-height: 1;
+					background-color: transparent;
+					border: 1px solid transparent;
+					border-radius: 0.25rem;
+				}
+
+				#block_82 .component_private_navbar .navbar-light .navbar-toggler {
+					border: none;
+					outline: none;
+					position: relative;
+				}
+				.navbar-collapse {
+					flex-basis: 100%;
+					flex-grow: 1;
+					align-items: center;
+				}
+				#block_82 .component-navbar-collapse {
+					margin-left: auto;
+				}
+
+				#block_48 .navbar-languages {
+					padding-left: 12px;
+					padding-right: 12px;
+				}
+
+				@media(max-width: 991px) {
+					.body .component-navbar-private__wrapper {
+						height: auto;
+					}
+					#block_82 .component_private_navbar .component-navbar-private__wrapper {
+						height: auto;
+					}
+					#block_82 .sidebar-block__top {
+						position: relative;
+					}
+					#block_82 .component_private_sidebar .component-navbar__navbar-private {
+						width: 100%;
+					}
+					.body .navbar {
+						flex-flow: row;
+					}
+					#block_82 .component_private_navbar .navbar {
+						flex-flow: row;
+					}
+					#block_82 .component_private_navbar .component-navbar__navbar-private .navbar {
+						height: auto;
+						min-height: 52px;
+						flex-wrap: wrap;
+						padding: 0 1rem;
+					}
+					#block_82 .component-navbar__navbar-private .navbar .navbar-private__header {
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						width: 100%;
+					}
+					#block_82 .component_private_navbar .component-navbar__navbar-private .navbar .navbar-private__header {
+						height: 64px;
+					}
+					#block_82 .component-navbar__navbar-private .navbar .navbar-private__header {
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						width: 100%;
+					}
+					#block_82 .component_private_navbar .component-navbar__navbar-private .navbar .navbar-private__header {
+						min-height: 52px;
+					}
+					#block_82 .component_private_navbar .component-navbar__navbar-private .navbar-collapse {
+						position: relative;
+						top: 0;
+						left: 0;
+						width: 100%;
+						background: none;
+					}
+					#block_82 .component_private_navbar .component-navbar-collapse {
+						padding-top: 8px;
+						padding-bottom: 8px;
+					}
+					#block_82 .component_private_navbar .component-navbar__navbar-private .component-navbar-collapse {
+						flex-wrap: wrap;
+					}
+					.wrapper-sidebar-navbar {
+						display: block;
+					}
+
+					.wrapper-sidebar-navbar .wrapper-content {
+						padding-top: 0;
+					}
+					#block_48 .navbar-languages {
+						margin-top: 4px;
+						padding-left: 0;
+						padding-right: 0;
+					}
+				}
+
+				.body .navbar-dropdown {
+					padding-bottom: 0;
+				}
+				.body-rtl {
+				direction: rtl;
+				text-align: inherit !important;
+			}
+			</style>
+			{{ headerCode }}
+		</head>
+		{% if user['auth'] %}
+
+			<body class="body {{body_rtl}}">
+				<div class="wrapper wrapper-sidebar-navbar ">
+					<div id="block_82" class="component_private_navbar">
+						<span class="component_private_navbar ">
+							<div class="component-navbar-private__wrapper component_private_sidebar">
+								<div class="sidebar-block__top component-navbar component-navbar__navbar-private editor__component-wrapper">
+									<div>
+										<nav class="navbar navbar-expand-lg navbar-light">
+											<div class="navbar-private__header">
+												<div class="sidebar-block__top-brand">
+													<div class="component-navbar-logo">
+														<a target="_self" href="/">
+															{% if site["logo"] %}
+																<img style="max-width:200px;" src="{{ site['logo'] }}" alt="" title="">
+															{% else %}
+																<span style="text-transform: ">
+																	<span style="font-size: 24px">
+																		<span style="letter-spacing: 1.0px">
+																			<span style="line-height: 0px">
+																				<strong style="font-weight: bold">{{ site["site_name"] }}</strong>
+																			</span>
+																		</span>
+																	</span>
+																</span>
+															{% endif %}
+														</a>
+													</div>
+												</div>
+												<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-49" aria-controls="navbar-collapse-49" aria-expanded="false" aria-label="Toggle navigation" fdprocessedid="cp369d">
+													<span class="navbar-burger">
+														<span class="navbar-burger-line"></span>
+													</span>
+												</button>
+											</div>
+											<div class="navbar-collapse collapse" id="navbar-collapse-49" style="">
+												<div class="component-navbar-collapse-divider"></div>
+												<div class="d-flex component-navbar-collapse">
+													<ul class="navbar-nav navbar-nav-sidebar-menu">
+														{% for menu in menus %}
+															<li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+																<a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private {% if active_menu == menu[" active"] %} component-navbar-nav-link-active__navbar-private  {% endif %} " href="{{menu["slug"]}}">
+																	<span class="component-navbar-nav-link-icon">
+																		<span class="{{menu["icon"]}}"></span>
+																	</span>
+																	{{menu["name"]}}
+																</a>
+															</li>
+														{% endfor %}
+													</ul>
+													{% if site_currency_converter == "1" %}
+
+														<ul class="navbar-nav navbar-nav-currencies">
+
+															<div class="balance-dropdown-container component_balance_dropdown">
+																<div class="balance-dropdown ">
+																	<div class="balance-dropdown__name balance-dropdown__toggle" data-toggle="dropdown" aria-expanded="false">{{ user["balance"] }}</div>
+																	<ul class="balance-dropdown__container dropdown-menu" id="currencies-list">
+																		{{ currencies_dropdown }}
+																	</ul>
+																</div>
+															</div>
+														</ul>
+													{% else %}
+
+														<br>
+
+													{% endif %}
+													<ul class="navbar-nav">
+														<li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+															<a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private" href="/account">Account</a>
+														</li>
+														<li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+															<a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private" href="/logout">Logout</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</nav>
+									</div>
+								</div>
+							</div>
+						</span>
+
+						<span class="component_private_sidebar ">
+							<div class="component-sidebar_wrapper">
+								<div class="sidebar-block__left component-sidebar component-sidebar-with-navbar editor__component-wrapper component_private_navbar">
+									<div class="component-sidebar__menu-logo">
+										<div class="component-navbar-logo">
+											<a target="_self" href="/">
+												{% if site["logo"] %}
+													<img style="max-width:200px;" src="{{ site['logo'] }}" alt="" title="">
+												{% else %}
+													<span style="text-transform: ">
+														<span style="font-size: 24px">
+															<span style="letter-spacing: 1.0px">
+																<span style="line-height: 0px">
+																	<strong style="font-weight: bold">{{
+                        site["site_name"] }}</strong>
+																</span>
+															</span>
+														</span>
+													</span>
+												{% endif %}
+											</a>
+										</div>
+									</div>
+									<ul class="component-sidebar__menu sidebar-block__left-menu">
+										{% for menu in menus %}
+
+											{% if menu["type"] == 2 %}
+												<li {% if active_menu==menu["active"] %} class="component-sidebar__menu-item component-sidebar__menu-item-active" {% endif %}>
+													<a class="component-sidebar__menu-item-link" href="{{menu["slug"]}} ">
+														<span class=" sidebar-block__menu-item-icon">
+															<span class="{{menu["icon"]}}"></span>
+														</span>
+														{{menu["name"]}}
+													</a>
+												</li>
+											{% endif %}
+										{% endfor %}
+
+									</ul>
+								</div>
+							</div>
+						</span>
+					</div>
+				{% else %}
+
+
+					<body class="body {{body_rtl}}">
+						<div class="wrapper  wrapper-navbar ">
+							<div id="block_48">
+								<div class="block-wrapper">
+									<div class="component_navbar ">
+										<div class="component-navbar__wrapper">
+											<div class="sidebar-block__top component-navbar component-navbar__navbar-public editor__component-wrapper">
+												<div>
+													<nav class="navbar navbar-expand-lg navbar-light container-fluid">
+														<div class="navbar-public__header">
+															<div class="sidebar-block__top-brand">
+																<div class="component-navbar-brand component-navbar-public-brand">
+																	<a target="_self" href="/">
+																		{% if site["logo"] %}
+																			<img style="max-width:200px;" src="{{ site['logo'] }}" alt="" title="">
+																		{% else %}
+																			<span style="text-transform: ">
+																				<span style="font-size: 24px">
+																					<span style="letter-spacing: 1.0px">
+																						<span style="line-height: 0px">
+																							<strong style="font-weight: bold">{{ site["site_name"]
+                                      }}</strong>
+																						</span>
+																					</span>
+																				</span>
+																			</span>
+																		{% endif %}
+																	</a>
+
+																</div>
+															</div>
+															<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-80" aria-controls="navbar-collapse-80" aria-expanded="false" aria-label="Toggle navigation">
+																<span class="navbar-burger">
+																	<span class="navbar-burger-line"></span>
+																</span>
+															</button>
+														</div>
+														<div class="collapse navbar-collapse" id="navbar-collapse-80">
+															<div class="component-navbar-collapse-divider"></div>
+															
+																
+																<div class="navbar-languages component_navbar_dropdown">
+																	<div class="navbar-dropdown">
+																		<div class="navbar-dropdown__name navbar-dropdown__toggle" data-toggle="dropdown" aria-expanded="false">{{site["active_lang"]}}</div>
+																		<ul class="navbar-dropdown__container dropdown-menu">
+																			{% for language in site["languages"] %}
+																				{% if language["active"] != 1 %}
+																					<li class="navbar-dropdown__item">
+																			<a href="?lang={{ language["code"] }}" class="navbar-dropdown__link">{{ language["name"] }}</a>
+																					</li>
+																				{% endif %}
+																			{% endfor %}
+																		</ul>
+																	</div>
+																</div>
+
+															
+															<div class="d-flex component-navbar-collapse">
+																<ul class="navbar-nav">
+																	{% for menu in menus %}
+																		<li class="nav-item component-navbar-nav-item component_navbar component-navbar-public-nav-item">
+																			<a class="component-navbar-nav-link component-navbar-nav-link__navbar-public  {% if active_menu == menu[" active"] %} component-navbar-nav-link-active__navbar-public {% endif %}" href="{{menu["slug"]}}">
+																				<span class="component-navbar-nav-link-icon">
+																					<span class="{{menu["icon"]}}"></span>
+																				</span>
+																				{{menu["menu_name"]}}</a>
+																		</li>
+																	{% endfor %}
+
+																</ul>
+															</div>
+														</div>
+													</nav>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+
+						{% endif %}
+					</body>

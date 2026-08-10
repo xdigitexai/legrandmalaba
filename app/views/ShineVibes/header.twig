@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+{% for lang in site['languages'] %}
+{% if lang['active'] %}
+<html lang="{{ lang['code'] }}">
+{% endif %}
+{% endfor %}
+<head>
+  <base href="{{ site['url'] }}">
+  <title>{% if pagetitle %}  {{ pagetitle }}  {% else %} {{ title }} {% endif %} </title>
+  <meta property="og:title" content="{% if pagetitle %}  {{ pagetitle }}  {% else %} {{ title }} {% endif %}" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="{% if pagekeywords %} {{ pagekeywords }} {% else %} {{ site["keywords"]}}  {% endif %}">
+  <meta name="description" content="{% if pagedescription %} {{ pagedescription }} {% else %} {{ site['description'] }}  {% endif %}">
+  <meta property="og:description" content="{% if pagedescription %} {{ pagedescription }} {% else %} {{ site['description'] }}  {% endif %}" />
+  {% if site['favicon'] %}
+    <link rel="shortcut icon" type="image/ico" href="{{ site['favicon'] }}" />
+  {% endif %}
+
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="public/Simplify/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="public/Simplify/{{ settings['site_theme_alt'] }}.css?v=1.2">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css"
+    />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<style>.navbar-toggler {border: none !important;position: relative;}.navbar-toggler:focus,.navbar-toggler:active {outline: 0;}.navbar-toggler span {display: block;height: 2px;width: 25px;margin-top: 6px;margin-bottom: 4px;-webkit-transform: rotate(0deg);-moz-transform: rotate(0deg);-o-transform: rotate(0deg);transform: rotate(0deg);position: relative;left: 0;opacity: 1;}.navbar-toggler span:nth-child(1),.navbar-toggler span:nth-child(3) {-webkit-transition: transform 0.25s ease-in-out;-moz-transition: transform 0.25s ease-in-out;-o-transition: transform 0.25s ease-in-out;transition: transform 0.25s ease-in-out;}.navbar-toggler:not(.collapsed) span:nth-child(1) {position: absolute;left: 12px;top: 10px;-webkit-transform: rotate(135deg);-moz-transform: rotate(135deg);-o-transform: rotate(135deg);transform: rotate(135deg);opacity: 0.9;}.navbar-toggler:not(.collapsed) span:nth-child(2) {height: 12px;visibility: hidden;background-color: transparent;}.navbar-toggler:not(.collapsed) span:nth-child(3) {position: absolute;left: 12px;top: 10px;-webkit-transform: rotate(-135deg);-moz-transform: rotate(-135deg);-o-transform: rotate(-135deg);transform: rotate(-135deg);opacity: 0.9;}.body .btn-big-primary{transform: skew(0deg, 0deg);overflow:hidden;margin-top:15px;border-bottom-width: 0px;padding-top: 13px;padding-bottom: 13px;border-top-left-radius: 12px;border-top-right-radius: 12px;border-bottom-left-radius: 12px;border-bottom-right-radius: 12px;}.body .component-navbar__navbar-public,.body .component-navbar__navbar-private {background: #ffffff;box-shadow: 0px 5px 15px -3px rgba(0,0,0,0.15);}.body .form-control{border-bottom-width: 0px;border-top-left-radius: 10px;border-top-right-radius: 10px;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;}.body {background: none;}.body .card{border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-left-radius: 20px;border-bottom-right-radius: 20px;box-shadow: 0px 4px 15px -2px rgba(0,0,0,0.25);border:0px solid ;}@media(min-width: 778px){.ment iframe {width: 70%;min-height: 330px;}.card iframe{min-height: 330px;}}p img{max-width:100%;border-radius:15px;}@media(min-width: 991px){.ment iframe{width: 50%;min-height: 330px;}}.ment{padding:15px;}iframe{width:100%;height:auto;min-height:180px;border-radius:20px;}.ment iframe,.card iframe,.card iframe{border: 1.5px solid rgb(255 255 255 / 35%);}.body .balance-dropdown__container {height: auto;max-height:400px;margin: -5px 0px 0px 0px;border-top-left-radius: 10px;border-top-right-radius: 10px;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;border:1px solid #fff;box-shadow: 0px 4px 15px -2px rgba(0,0,0,0.25);}.body .balance-dropdown__link{border-bottom:none;}.body .component-navbar-private-nav-item {height: 85%;}.navbar-nav-currencies {order: -1;}.login-with-google-btn{transition: background-color 0.3s, box-shadow 0.3s;width:100%;padding: 12px 16px 12px 42px;border: none;border-radius: 10px;box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 2px rgba(0, 0, 0, 0.25);color: #000;font-size: 14px;font-weight: 500;font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);background-color: #fff;background-repeat: no-repeat;background-position: 75px 15px;}.login-with-google-btn:active {background-color: #eeeeee;}.login-with-google-btn:focus {outline: none;}{% if settings["site_theme_alt"] == "Red" %}.body .style-bg-primary,.body .btn-big-primary {;box-shadow: 0px 3px 12px -3px #d83346;}{% elseif settings["site_theme_alt"] == "Blue" %}.body .style-bg-primary,.body .btn-big-primary {box-shadow: 0px 3px 12px -3px #1979c8;}{% elseif settings["site_theme_alt"] == "Lime" %}.body .style-bg-primary,.body .btn-big-primary {box-shadow: 0px 3px 12px -3px #46b649;}{% elseif settings["site_theme_alt"] == "Grapes" %}.body .style-bg-primary,.body .btn-big-primary {box-shadow: 0px 3px 12px -3px #6216fb;}{% elseif settings["site_theme_alt"] == "Dark" %}.body .style-bg-primary,.body .btn-big-primary {box-shadow: 0px 3px 12px -3px #ff8355;}{% elseif settings["site_theme_alt"] == "Cyan" %}.body .style-bg-primary,.body .btn-big-primary {box-shadow: 0px 3px 12px -3px #32c7ce;}{% elseif settings["site_theme_alt"] == "Coral" %}.body .style-bg-primary,.body .btn-big-primary {box-shadow: 0px 3px 12px -3px #ff6b63;}{% elseif settings["site_theme_alt"] == "Green" %}.body .style-bg-primary,.body .btn-big-primary {box-shadow: 0px 3px 12px -3px #307c6f;}{% elseif settings["site_theme_alt"] == "Grey" %}.body .style-bg-primary,.body .btn-big-primary {box-shadow: 0px 3px 12px -3px #415566;}{% elseif settings["site_theme_alt"] == "Lilac" %}.body .style-bg-primary,.body .btn-big-primary {box-shadow: 0px 3px 12px -3px #7c96cf;}{% elseif settings["site_theme_alt"] == "Orange" %}.body .style-bg-primary,.body .btn-big-primary {box-shadow: 0px 3px 12px -3px #f36b15;}{% else %}.body .style-bg-primary,.body .btn-big-primary {box-shadow: 0px 3px 15px -3px #000;}{% endif %}.btn-big-primary:before {content: '';display: block;background: #ffffff35;height: 205%;width: 35px;transform: rotate(35deg);position: absolute;left: 0;top: -24px;transition: all 0.3s ease-in-out;animation: 3.2s alu infinite;}@keyframes alu {0% {left: 0;}20% {left: 110%;top: -20px;}100% {left: 110%;top: -20px;}}.totals-block__icon-preview {width: 70px;height: 70px;position: relative;overflow: hidden;border-radius: 20px;}
+
+.body .balance-dropdown__namee:before {content: '';display: block;background: #ffffff35;height: 205%;width: 35px;transform: rotate(35deg);position: absolute;left: 0;top: -24px;transition: all 0.3s ease-in-out;animation: 3.2s alu infinite;}
+.body .table-wr {box-shadow: 0px 4px 15px -2px rgba(0,0,0,0.25);border-top-left-radius: 14px;border-top-right-radius: 14px;border-bottom-left-radius: 14px;border-bottom-right-radius: 14px;}
+.badge {border-radius:8px;color:#fff;}
+.body .table thead tr th:first-child {border-top-left-radius: 14px;}.body .table thead tr th:last-child {border-top-right-radius: 14px;}
+.body .modal .modal-content {border: none;background: #ffffff;border-radius:20px;}
+.swal-modal{border-radius: 20px;}
+
+{% if settings["site_theme_alt"] == "Red" %}
+.body .table thead tr th { background-color: #d83346;color: #ffffff; }
+{% elseif settings["site_theme_alt"] == "Blue" %}
+.body .table thead tr th { background-color: #1979c8;color: #ffffff; }
+{% elseif settings["site_theme_alt"] == "Lime" %}
+.body .table thead tr th { background-color: #46b649;color: #ffffff; }
+{% elseif settings["site_theme_alt"] == "Grapes" %}
+.body .table thead tr th { background-color: #6216fb;color: #ffffff; }
+{% elseif settings["site_theme_alt"] == "Dark" %}
+.body .table thead tr th { background-color: #ff8355;color: #ffffff; }
+{% elseif settings["site_theme_alt"] == "Cyan" %}
+.body .table thead tr th { background-color: #32c7ce;color: #ffffff; }
+{% elseif settings["site_theme_alt"] == "Coral" %}
+.body .table thead tr th { background-color: #ff6b63;color: #ffffff; }
+{% elseif settings["site_theme_alt"] == "Green" %}
+.body .table thead tr th { background-color: #307c6f;color: #ffffff; }
+{% elseif settings["site_theme_alt"] == "Grey" %}
+.body .table thead tr th { background-color: #415566;color: #ffffff; }
+{% elseif settings["site_theme_alt"] == "Lilac" %}
+.body .table thead tr th { background-color: #7c96cf;color: #ffffff; }
+{% elseif settings["site_theme_alt"] == "Orange" %}
+.body .table thead tr th { background-color: #f36b15;color: #ffffff; }
+{% else %}
+.body .table thead tr th { background-color: #000; }
+{% endif %}
+
+ @media (max-width:991px){
+  .body .component-navbar-nav-link__navbar-private {
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 35px;
+    padding-bottom: 4px;}
+     
+     
+ }
+ @media (min-width:992px){
+ .body .component-navbar-nav-link__navbar-private {
+    background-color: #f1f1f1b4;
+    margin:4px 5% 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius:10px;
+    transform: skew(0deg, 0deg);
+    overflow: hidden;
+    font-weight:600;}
+     
+     
+      .body .component-navbar-nav-link-active__navbar-private:before {content: '';display: block;background: #ffffff35;height: 205%;width: 35px;transform: rotate(35deg);position: absolute;left: 0;top: -24px;transition: all 0.3s ease-in-out;animation: 3.2s alu infinite;}
+    
+    {% if settings["site_theme_alt"] == "Red" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #d83346;color:#fff;box-shadow: 0px 3px 12px -3px #d83346;}{% elseif settings["site_theme_alt"] == "Blue" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #1979c8;color:#fff;box-shadow: 0px 3px 12px -3px #1979c8;}{% elseif settings["site_theme_alt"] == "Lime" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #46b649;color:#fff;box-shadow: 0px 3px 12px -3px #46b649;}{% elseif settings["site_theme_alt"] == "Grapes" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #6216fb;color:#fff;box-shadow: 0px 3px 12px -3px #6216fb;}{% elseif settings["site_theme_alt"] == "Dark" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #ff8355;color:#fff;box-shadow: 0px 3px 12px -3px #ff8355;}{% elseif settings["site_theme_alt"] == "Cyan" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #32c7ce;color:#fff;box-shadow: 0px 3px 12px -3px #32c7ce;}{% elseif settings["site_theme_alt"] == "Coral" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background:#ff6b63;color:#fff;box-shadow: 0px 3px 12px -3px #ff6b63;}{% elseif settings["site_theme_alt"] == "Green" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #307c6f;color:#fff;box-shadow: 0px 3px 12px -3px #307c6f;}{% elseif settings["site_theme_alt"] == "Grey" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #415566;color:#fff;box-shadow: 0px 3px 12px -3px #415566;}{% elseif settings["site_theme_alt"] == "Lilac" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #7c96cf;color:#fff;box-shadow: 0px 3px 12px -3px #7c96cf;}{% elseif settings["site_theme_alt"] == "Orange" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #f36b15;color:#fff;box-shadow: 0px 3px 12px -3px #f36b15;}{% else %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #000;color:#fff;box-shadow: 0px 3px 15px -3px #000;}{% endif %}
+     
+     
+ }
+  .body .balance-dropdown__namee {margin-top:5px;margin-bottom:12px;border-radius:10px;padding:9px 10px 9px 10px;font-weight:600;white-space: nowrap;display: flex;justify-content: space-between;align-items: center;color:#fff;min-width:100px;transform: skew(0deg, 0deg);
+    overflow: hidden;}
+  @media (max-width: 991px){  
+.body .component-navbar__navbar-private .navbar-collapse {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 280px;
+    background: #ffffff;
+     min-height:100vh;
+    max-height:100vh;
+    padding-bottom:60px;
+    box-shadow: 3px 0px 15px 0px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;overflow-y:auto;}
+  .body .balance-dropdown__namee {
+    margin-top:10px;margin-bottom:15px;border-radius:10px;padding:12px 12px 12px 12px;font-weight:600; width: 100%;white-space: nowrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;color:#fff;}
+    .hug{display:none;}
+    .body .component-navbar-nav-link {width: 85%;height:85%;justify-content: flex-start;}
+    .sub{
+        padding-top:20px;
+    }
+.body .component-navbar-nav-link__navbar-private {
+    background-color: #f1f1f1b4;
+    margin:0px 7% 20px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius:10px;
+    transform: skew(0deg, 0deg);
+    overflow: hidden;
+    font-weight:600;}
+    
+     .body .component-navbar__navbar-public .navbar-collapse {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 280px;
+    background: #ffffff;
+     min-height:100vh;
+    max-height:100vh;
+    box-shadow: 3px 0px 15px 0px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;overflow-y:auto;}
+    .body .component-navbar-nav-link-active__navbar-private:before {content: '';display: block;background: #ffffff35;height: 205%;width: 35px;transform: rotate(35deg);position: absolute;left: 0;top: -24px;transition: all 0.3s ease-in-out;animation: 3.2s alu infinite;}
+    
+    {% if settings["site_theme_alt"] == "Red" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #d83346;color:#fff;box-shadow: 0px 3px 12px -3px #d83346;}{% elseif settings["site_theme_alt"] == "Blue" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #1979c8;color:#fff;box-shadow: 0px 3px 12px -3px #1979c8;}{% elseif settings["site_theme_alt"] == "Lime" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #46b649;color:#fff;box-shadow: 0px 3px 12px -3px #46b649;}{% elseif settings["site_theme_alt"] == "Grapes" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #6216fb;color:#fff;box-shadow: 0px 3px 12px -3px #6216fb;}{% elseif settings["site_theme_alt"] == "Dark" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #ff8355;color:#fff;box-shadow: 0px 3px 12px -3px #ff8355;}{% elseif settings["site_theme_alt"] == "Cyan" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #32c7ce;color:#fff;box-shadow: 0px 3px 12px -3px #32c7ce;}{% elseif settings["site_theme_alt"] == "Coral" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background:#ff6b63;color:#fff;box-shadow: 0px 3px 12px -3px #ff6b63;}{% elseif settings["site_theme_alt"] == "Green" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #307c6f;color:#fff;box-shadow: 0px 3px 12px -3px #307c6f;}{% elseif settings["site_theme_alt"] == "Grey" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #415566;color:#fff;box-shadow: 0px 3px 12px -3px #415566;}{% elseif settings["site_theme_alt"] == "Lilac" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #7c96cf;color:#fff;box-shadow: 0px 3px 12px -3px #7c96cf;}{% elseif settings["site_theme_alt"] == "Orange" %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #f36b15;color:#fff;box-shadow: 0px 3px 12px -3px #f36b15;}{% else %}.body .component-navbar-nav-link-active__navbar-private,.body .component-navbar-nav-link__navbar-private:hover {background: #000;color:#fff;box-shadow: 0px 3px 15px -3px #000;}{% endif %}}
+  .collapsing {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.25s ease;}
+    
+    .body .tab .nav-item .nav-link {
+     background: #f1f1f1b4;
+      padding-top: 9px;
+    padding-bottom: 9px;
+     margin:1px;
+ }
+    
+  .body .tab .nav-item .nav-link:not(.active):hover {
+    color: rgba(216, 51, 70, 0.9);
+    background: #f1f1f1b4;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+</style>
+{{ headerCode }}
+  </head>
+{% if user['auth'] %}
+
+<body class="body ">
+<div class="wrapper wrapper-sidebar-navbar ">
+   <div id="block_82" class="component_private_navbar">
+    <span class="component_private_navbar ">
+      <div class="component-navbar-private__wrapper">
+         <div class="sidebar-block__top component-navbar component-navbar__navbar-private editor__component-wrapper">
+            <div>
+<nav class="navbar navbar-expand-lg navbar-light">
+<div class="sidebar-block__top-brand">
+<div class="component-navbar-brand component-navbar-public-brand">
+<a target="_self" href="/">{% if site["logo"] %}
+<img style="max-width:200px;" src="{{ site['logo'] }}" alt="" title="">
+{% else %}<span style="text-transform: "><span style="font-size: 24px"><span style="letter-spacing: 1.0px"><span style="line-height: 120px"><strong style="font-weight: bold">{{ site["site_name"] }}</strong></span></span></span></span>{% endif %}</a>
+</div>
+</div>
+<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-collapse-14" aria-controls="navbar-collapse-14" aria-expanded="false" aria-label="Toggle navigation">
+ <span class="style-bg-primary"></span>
+    <span class="style-bg-primary"></span>
+    <span class="style-bg-primary"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbar-collapse-14">
+ <div class="component-navbar-collapse-divider"></div>
+ <div class="d-flex component-navbar-collapse">
+    <ul class="navbar-nav navbar-nav-sidebar-menu">
+
+
+<div class="">
+      <div class=" align-items-stretch justify-content-center">
+<div class="col-lg-3 col-md-6 col-sm-12 mt-2 mb-3">
+<div class="card " style="padding-top:12px;padding-bottom: px;padding-left:14px;display: flex;
+    align-items: center;margin-top:-8px">
+<div class="">
+<div class="totals-block__icon-preview style-bg-primary-alpha-10  style-text-primary" style="">
+  <img style="height:65px;width: 65px;margin:8px 0px 0px 2px" src="https://i.postimg.cc/tR2Y7Hv3/man.png">
+</div>
+    </div>
+      <div style="background-color: #fff;" class="totals-block__card-right style-text-primary">
+    <div class="totals-block__count">
+<center><h2 class="totals-block__count-value style-text-primary" style=" font-size:22px;margin-top:5px;">
+    <span style="color:#000;" >Welcome</span> {{ user["username"]  }}<img src="https://i.imgur.com/YLalTAd.png" width="20" height="20">
+</h2>
+<h3 class="totals-block__count-value style-text-primary" style=" font-size:18px; margin-top:-15px ;margin-bottom:1px">
+    <span style="color:#170900">Your Balance is </span> {{ user["balance"] }}
+</h3>
+<a href="/account" class="btn btn-big-primary" style="color:#fff;padding-left:14px;padding-right:14px;margin-left:3px;"><i class="fad fa-user"></i>
+   Account </a>
+      <a href="/logout" class="btn btn-big-primary" style="color:#fff;padding-left:17px;padding-right:17px;margin-left:2.5px;"><i class="fad fa-portal-exit"></i>
+   Logout</a>
+</center>
+    </div></div>
+</div> </div> </div></div>
+
+
+{% for menu in menus %}
+            {% if menu['slug'] == "/tickets" %}
+<li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+<a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private 
+{% if active_menu == menu["active"] %} component-navbar-nav-link-active__navbar-private  {% endif %} "     href=" {{menu["slug"]}}" >
+      <span class="component-navbar-nav-link-icon">
+     <span class="{{menu["icon"]}}"></span>
+   </span>
+           {{menu["name"]}}        {% if ticketCount %} <span class="badge" style="background-color: #ffb500">{{ ticketCount }}</span></span>  {% endif %}
+            </a>
+
+            </li>
+      {% elseif  menu['slug'] == "/refill" %}
+{% if site["refillavailable"] %} 
+
+<li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+<a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private 
+{% if active_menu == menu["active"] %} component-navbar-nav-link-active__navbar-private  {% endif %} "     href=" {{menu["slug"]}}" >
+      <span class="component-navbar-nav-link-icon">
+     <span class="{{menu["icon"]}}"></span>
+   </span>
+           {{menu["name"]}}      </a>
+
+            </li> 
+
+  {% endif %} 
+ 
+{% else %} {% if menu["type"] == 2 %} 
+<li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+<a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private 
+{% if active_menu == menu["active"] %} component-navbar-nav-link-active__navbar-private  {% endif %} "     href=" {{menu["slug"]}}" >
+      <span class="component-navbar-nav-link-icon">
+     <span class="{{menu["icon"]}}"></span>
+   </span>
+ {{menu["name"]}}
+            </a>
+           </li>   {% endif %}   {% endif %}   {% endfor %} </ul>
+
+
+
+{% if site_currency_converter == "1" %}
+
+<ul class="navbar-nav navbar-nav-currencies">
+
+<div class="balance-dropdown-container component_balance_dropdown">
+<div class="balance-dropdown ">
+<div class="style-bg-primary balance-dropdown__namee balance-dropdown__toggle " data-toggle="dropdown" data-hover="dropdown" aria-expanded="false">{{ user["balance"] }}</div>
+<ul class="balance-dropdown__container dropdown-menu" id="currencies-list">
+{{ currencies_dropdown }}
+</ul></div>
+</div></ul>
+{% else %}
+
+<br>
+
+{% endif %}
+
+
+
+<ul class="navbar-nav hug" style="margin:13px 19px 15px -10px;">
+
+<li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+<a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private 
+{% if active_menu == "account" %} component-navbar-nav-link-active__navbar-private  {% endif %} "     href="/account" >
+      <span class="component-navbar-nav-link-icon">
+     <span class="fa fa-user"></span>
+   </span> Account </a>
+
+            </li> 
+
+
+
+<li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+<a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private" href="/logout">
+      <span class="component-navbar-nav-link-icon">
+     <span class="fa fa-sign-out"></span>
+   </span>Logout</a>
+</li></ul>
+</div>
+								</div>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</span>
+
+    <span class="component_private_sidebar ">
+      <div class="component-sidebar_wrapper">
+         <div class="sidebar-block__left component-sidebar component-sidebar-with-navbar editor__component-wrapper component_private_navbar">
+            <div class="component-sidebar__menu-logo">
+                <div class="component-navbar-logo">
+     <a target="_self" href="/">{% if site["logo"] %}
+  													<img style="max-width:200px;" src="{{ site['logo'] }}" alt="" title="">
+  												{% else %}<span style="text-transform: "><span style="font-size: 24px"><span style="letter-spacing: 1.0px"><span style="line-height: 120px"><strong style="font-weight: bold">{{ site["site_name"] }}</strong></span></span></span></span>{% endif %}</a>
+ </div>
+    </div>
+            <ul class="component-sidebar__menu sidebar-block__left-menu">
+     {% for menu in menus %}
+            {% if menu['slug'] == "/tickets" %}
+<li {% if active_menu == menu["active"] %} class="component-sidebar__menu-item component-sidebar__menu-item-active" {% endif %}>
+<a class="component-sidebar__menu-item-link" href="{{menu["slug"]}} " >
+<span class="sidebar-block__menu-item-icon">
+            <span class="{{menu["icon"]}}"></span>
+           </span>
+              {{menu["name"]}} {% if ticketCount %} <span class="badge" style="background-color: #ffb500">{{ ticketCount }}</span></span>  {% endif %}
+          </a>
+
+            </li>
+      {% elseif  menu['slug'] == "/refill" %}
+{% if site["refillavailable"] %} 
+<li {% if active_menu == menu["active"] %} class="component-sidebar__menu-item component-sidebar__menu-item-active" {% endif %}>
+<a class="component-sidebar__menu-item-link" href="{{menu["slug"]}} " >
+<span class="sidebar-block__menu-item-icon">
+            <span class="{{menu["icon"]}}"></span>
+           </span>
+              {{menu["name"]}} 
+          </a>
+            </li>  {% endif %} 
+
+{% else %} {% if menu["type"] == 2 %} <li {% if active_menu == menu["active"] %} class="component-sidebar__menu-item component-sidebar__menu-item-active" {% endif %}>
+   <a class="component-sidebar__menu-item-link" href="{{menu["slug"]}} " >
+<span class="sidebar-block__menu-item-icon">
+            <span class="{{menu["icon"]}}"></span>
+           </span>
+              {{menu["name"]}} 
+          </a>
+ </li>{% endif %} {% endif %} {% endfor %} 
+                
+        </ul>
+         </div>
+      </div>
+   </span>
+</div>
+{% else %}
+
+
+
+
+
+
+
+
+
+<body class="body ">
+<div class="wrapper  wrapper-navbar ">
+   <div id="block_80">
+    <div class="block-wrapper">
+        <div class="component_navbar ">
+          <div class="component-navbar__wrapper">
+             <div class="sidebar-block__top component-navbar component-navbar__navbar-public editor__component-wrapper">
+                <div>
+ <nav class="navbar navbar-expand-lg navbar-light">
+  <div class="sidebar-block__top-brand">
+                <div class="component-navbar-brand component-navbar-public-brand">
+      <a target="_self" href="/">{% if site["logo"] %}
+  													<img style="max-width:200px;" src="{{ site['logo'] }}" alt="" title="">
+  												{% else %}<span style="text-transform: "><span style="font-size: 24px"><span style="letter-spacing: 1.0px"><span style="line-height: 120px"><strong style="font-weight: bold">{{ site["site_name"] }}</strong></span></span></span></span>{% endif %}</a>
+  </div>
+              </div>
+  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-collapse-80" aria-controls="navbar-collapse-80" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="style-bg-primary"></span>
+    <span class="style-bg-primary"></span>
+    <span class="style-bg-primary"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbar-collapse-80">
+     <div class="component-navbar-collapse-divider"></div>
+         <div class="d-flex component-navbar-collapse">
+												 
+        <ul class="navbar-nav sub" >
+      {% for menu in menus %} <li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+<a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private 
+{% if active_menu == menu["active"] %} component-navbar-nav-link-active__navbar-private  {% endif %} "     href=" {{menu["slug"]}}" >
+      <span class="component-navbar-nav-link-icon">
+     <span class="{{menu["icon"]}}"></span>
+   </span>
+ {{menu["name"]}}
+            </a>
+           </li>{% endfor %} 
+							   
+
+ </ul>
+														  
+
+</nav>
+     </div>
+      </div> 
+</div>
+</div>  
+</div>
+
+
+
+{% endif %}

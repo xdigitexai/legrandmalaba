@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+{% for lang in site['languages'] %}
+{% if lang['active'] %}
+<html lang="{{ lang['code'] }}">
+{% endif %}
+{% endfor %}
+<head>
+    
+    
+  <base href="{{ site['url'] }}/">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title ? title ~ ' - ' ~ site['site_name'] : site['title'] }}</title>
+  <meta name="keywords" content="{{ keywords ? keywords : site['keywords'] }}">
+  <meta name="description" content="{{ description ? description : site['description'] }}">
+  {% if site['favicon'] %}
+    <link rel="shortcut icon" type="image/ico" href="{{ site['favicon'] }}" />
+  {% endif %}
+
+    {{ headerCode }}
+
+    <link rel="stylesheet" type="text/css" href="https://res.cloudinary.com/dmentewxe/raw/upload/v1710699987/Rental-Panel/smmpanelbdlab/growfollows-v2/new-css/2lug4h6ujh6g3ur2_opg52e_pvwjll.css">
+    <link rel="stylesheet" type="text/css" href="https://res.cloudinary.com/dmentewxe/raw/upload/v1710700009/Rental-Panel/smmpanelbdlab/growfollows-v2/new-css/gyswa80r1cdn7gz4_egkejd_jp35l4.css">
+    <link rel="stylesheet" type="text/css" href="https://res.cloudinary.com/dmentewxe/raw/upload/v1710700037/Rental-Panel/smmpanelbdlab/growfollows-v2/new-css/bootstrap-datetimepicker.min_vioakg_j4sw0o.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.mypanel.link/css/font-awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://res.cloudinary.com/dmentewxe/raw/upload/v1710700060/Rental-Panel/smmpanelbdlab/growfollows-v2/new-css/tp2jssyocan4ndm1_vt339d_rozjzf.css">
+  
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  
+  <!--  Some CDN Link From Old Theme -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.2/umd/popper.min.js"></script>
+
+    <!--  /// Some CDN Link From Old Theme -->
+  </head>
+        {% if user['auth'] %}
+
+<body class="dashboard nightmode" id="body" >
+  
+
+  <script>
+    if (localStorage.getItem('growFollowsCurrentMode')) {
+      const bodyFire2 = document.getElementById('body');
+      bodyFire2.classList.add('nightmode');
+    }
+  </script>
+
+  <!-- Popup promotionnel mbbusiness.site -->
+  <div id="mb_promo_overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.65);z-index:99999;align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:16px;max-width:480px;width:92%;margin:auto;padding:0;box-shadow:0 8px 40px rgba(0,0,0,0.35);overflow:hidden;position:relative;">
+      <div style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);padding:28px 30px 20px;">
+        <div style="text-align:center;margin-bottom:8px;">
+          <span style="font-size:2.2rem;">🛍️</span>
+        </div>
+        <h2 style="color:#fff;text-align:center;font-size:1.15rem;font-weight:800;letter-spacing:0.5px;margin:0 0 6px;line-height:1.4;">ACHETEZ DES PRODUITS NUMÉRIQUES</h2>
+        <h2 style="color:#e94560;text-align:center;font-size:1.15rem;font-weight:800;letter-spacing:0.5px;margin:0;line-height:1.4;">COURS &amp; FORMATIONS EN LIGNE</h2>
+      </div>
+      <div style="padding:22px 30px 26px;text-align:center;">
+        <p style="color:#444;font-size:0.97rem;margin:0 0 18px;line-height:1.6;">
+          Découvrez notre boutique de produits numériques, cours et formations pour développer vos compétences et votre activité en ligne.
+        </p>
+        <a href="https://mbbusiness.site" target="_blank" rel="noopener noreferrer"
+           style="display:inline-block;background:linear-gradient(135deg,#e94560,#c0392b);color:#fff;font-weight:700;font-size:1rem;padding:12px 32px;border-radius:8px;text-decoration:none;letter-spacing:0.3px;box-shadow:0 4px 15px rgba(233,69,96,0.4);">
+          Visiter mbbusiness.site &rarr;
+        </a>
+        <div style="margin-top:16px;">
+          <button onclick="closeMbPromo()" style="background:none;border:none;color:#999;font-size:0.85rem;cursor:pointer;text-decoration:underline;">Fermer</button>
+        </div>
+      </div>
+      <button onclick="closeMbPromo()" style="position:absolute;top:12px;right:14px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:1.2rem;width:28px;height:28px;border-radius:50%;cursor:pointer;line-height:28px;text-align:center;">&times;</button>
+    </div>
+  </div>
+  <script>
+    (function(){
+      if (!sessionStorage.getItem('mb_promo_shown')) {
+        var el = document.getElementById('mb_promo_overlay');
+        if (el) { el.style.display = 'flex'; }
+        sessionStorage.setItem('mb_promo_shown', '1');
+      }
+    })();
+    function closeMbPromo() {
+      var el = document.getElementById('mb_promo_overlay');
+      if (el) { el.style.display = 'none'; }
+    }
+  </script>
+
+  <main id="main_container">
+    <div class="sidebar">
+      <button class="sidebar_menu_icon" onclick="toggleSidebar()">
+        <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707732856/Rental-Panel/smmpanelbdlab/growfollows-v2/img/4j6ex4un1721ze8y_axr2vn.png" class="close_nav_day" alt="">
+        <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707732875/Rental-Panel/smmpanelbdlab/growfollows-v2/img/eco8hx40xz8d3lmf_jk45ab.png" class="open_nav_day" alt="">
+
+        <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707732894/Rental-Panel/smmpanelbdlab/growfollows-v2/img/ie1rl1p1gwj5znf0_wlvfme.png" class="close_nav_night" alt="">
+        <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707732914/Rental-Panel/smmpanelbdlab/growfollows-v2/img/s0sa1hbdiaflcyyz_aklvlb.png" class="open_nav_night" alt="">
+      </button>
+      <div class="sidebar_top">
+        <div class="logo">
+          <img src="{{ site['logo'] }}" class="logo_img img-fluid"
+            alt="" title="">
+        </div>
+        <div class="user_data">
+          <div class="user_badges" data-bs-toggle="modal" data-bs-target="#GGstaticBackdrop">
+            <h4>
+                            NOUVEAU
+              
+            </h4>
+          </div>
+          <div class="total_data">
+            <div class="user_wrap">
+              <div class="v2_avatar">
+                <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707732955/Rental-Panel/smmpanelbdlab/growfollows-v2/img/11_avatar-512_uswxm5.png" class="img-fluid"
+                  alt="Avatar" id="profile1">
+              </div>
+              <div class="v2_user_info">
+                <h5>{{ user["username"]  }}</h5>
+              </div>
+            </div>
+            <div class="user_balance">
+              Solde <span class="balance">{{ user["balance"] }}</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="sidebar_bottom">
+        <div class="sidebar_menu">
+                               <a {% if active_menu == "neworder" %} href="/" class="menu_item active" {% endif %} class="menu_item" href="/">
+                                                    <div class="menu_icon">
+                                <i class="fas fa-calendar-plus"></i>
+                            </div>
+                                                <div class="menu_name">
+                            Nouvelle commande
+                        </div>
+                    </a> 
+                     <a {% if active_menu == "analytics" %} href="/" class="menu_item active" {% endif %} class="menu_item" href="/analytics">
+                                                    <div class="menu_icon">
+                                <i class="fas fa-calendar-plus"></i>
+                            </div>
+                                                <div class="menu_name">
+                            Commandes terminées
+                        </div>
+                    </a> 
+                     
+
+                                                              <a {% if active_menu == "massorder" %} href="/massorder" class="menu_item active" {% endif %} class="menu_item" href="/massorder">
+                                                    <div class="menu_icon">
+                                <i class="fab fa-first-order-alt"></i>
+                            </div>
+                                                <div class="menu_name">
+                            Commande groupée
+                        </div>
+                    </a> 
+                    
+                                         
+
+                                                              <a {% if active_menu == "orders" %} href="/orders" class="menu_item active" {% endif %} class="menu_item" href="/orders">
+                                                    <div class="menu_icon">
+                                <i class="fad fa-badge-sheriff"></i>
+                            </div>
+                                                <div class="menu_name">
+                            Commandes
+                        </div>
+                    </a> 
+                     
+
+                                         
+                                         
+
+                                                              <a {% if active_menu == "addfunds" %} href="/addfunds" class="menu_item active" {% endif %} class="menu_item" href="/addfunds">
+                                                    <div class="menu_icon">
+                                <i class="far fa-credit-card"></i>
+                            </div>
+                                                <div class="menu_name">
+                            Recharger
+                        </div>
+                    </a> 
+                     
+
+                                                              <a {% if active_menu == "tickets" %} href="/tickets" class="menu_item active" {% endif %} class="menu_item" href="/tickets">
+                                                    <div class="menu_icon">
+                                <i class="far fa-ticket-alt"></i>
+                            </div>
+                                                <div class="menu_name">
+                            Tickets
+                        </div>
+                    </a> 
+                     
+
+                                                              <a {% if active_menu == "services" %} href="/services" class="menu_item active" {% endif %} class="menu_item" href="/services">
+                                                    <div class="menu_icon">
+                                <i class="fas fa-abacus"></i>
+                            </div>
+                                                <div class="menu_name">
+                            Services
+                        </div>
+                    </a> 
+                     
+
+
+                    
+                    <!-- Show More Btn Codes Start -->
+                    <div id="show_more_wrap" >
+                      <button type="button" class="" id="showMore">
+                        <div class="menu_name">
+                            Voir plus
+                        </div>
+                            <div class="menu_icon">
+                              <i class="far fa-caret-circle-down"></i>
+                            </div>
+                      </button>
+                      
+                    </div>
+                    
+                    <div id="more_menu">
+                                                                                
+                                                                                                                                           <a {% if active_menu == "api" %} href="/api" class="menu_item active" {% endif %} class="menu_item" href="/api">
+                                                    <div class="menu_icon">
+                                <i class="fas fa-link"></i>
+                            </div>
+                                                <div class="menu_name">
+                            API
+                        </div>
+                    </a> 
+                                                                                        <a {% if active_menu == "affiliates" %} href="/affiliates" class="menu_item active" {% endif %} class="menu_item" href="/affiliates">
+                                                    <div class="menu_icon">
+                                <i class="fas fa-share-alt"></i>
+                            </div>
+                                                <div class="menu_name">
+                            Parrainage
+                        </div>
+                    </a> 
+                                                                                        <a {% if active_menu == "child-panels" %} href="/child-panels" class="menu_item active" {% endif %} class="menu_item" href="/child-panels">
+                                                    <div class="menu_icon">
+                                <i class="fas fa-child"></i>
+                            </div>
+                                                <div class="menu_name">
+                            Panel enfant
+                        </div>
+                    </a> 
+                                                                                        <a {% if active_menu == "faq" %} href="/faq" class="menu_item active" {% endif %} class="menu_item" href="/faq">
+                                                    <div class="menu_icon">
+                                <i class="far fa-question-circle"></i>
+                            </div>
+                                                <div class="menu_name">
+                            FAQ
+                        </div>
+                    </a> 
+                                                                                        <a {% if active_menu == "terms" %} href="/terms" class="menu_item active" {% endif %} class="menu_item" href="/terms">
+                                                    <div class="menu_icon">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                                                <div class="menu_name">
+                            Conditions
+                        </div>
+                    </a> 
+                                                                </div>
+                  <!-- Show More Btn Codes End -->
+        </div>
+      </div>
+    </div>
+            <div class="content_area">
+      <div class="top_header">
+        <div class="top_head_wrap">
+          <div class="item">
+            <div class="logo_off_nav">
+              <img src="{{ site['logo'] }}" class="img-fluid" alt="{{ site["site_name"] }}">
+            </div>
+          </div>
+          <div class="item">
+
+          </div>
+          <div class="item user_settings">
+            <!-- Panel enfant -->
+            <a href="/child-panels" class="telegram">
+              <i class="fas fa-child"></i>
+            </a>
+
+            <!-- Recharger -->
+            <a href="/addfunds" class="telegram">
+              <i class="fas fa-wallet"></i>
+            </a>
+
+             <!-- Sélecteur de devise -->
+                                                       <ul id="currency_changer5">
+                            <li>
+                              <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle mb-sm-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="currencyToggler2">
+                                <span>
+                                  <i class="fas fa-sack"></i>
+                                </span>
+                          <span class="caret"></span>
+                      </button>
+                            <ul class="dropdown-menu">
+                                                     <li class="balance-dropdown__item">
+                                      {{ currencies_dropdown }}
+                                    </li>
+                                           
+                                           
+                                                            </ul>
+                        </div>
+                    </li>
+                            </ul>
+                        <!-- Profil -->
+            <a href="/account" class="telegram">
+              <i class="fas fa-user"></i>
+            </a>
+
+            <!-- Déconnexion -->
+            <a href="/logout" class="telegram mr__css">
+              <i class="fas fa-sign-out-alt"></i>
+            </a>
+
+          </div>
+        </div>
+      </div>
+
+       <div class="content">
+                <!-- page and other top info -->
+                 <div id="page_info">
+                         <div class="item">
+                                 <h4>Vous êtes sur : <span class="sp_text_primary">{{ title }}</span></h4>
+                         </div>
+                         <div class="item">
+                                <h4>Total commandes : <span class="sp_text_primary">{{totalorders}}</span></h4>
+                        </div>
+                        <div class="item">
+                                <h4>Dépensé : <span class="sp_text_primary">{{ user["spent"] }}</span></h4>
+                        </div>
+                        <div class="item">
+                                <h4>Bienvenue <span class="sp_text_primary">{{ user["username"]  }}</span>, votre solde est : <span class="sp_text_primary">{{ user["balance"] }}</span></h4>
+                        </div>
+                 </div>
+
+        <!-- // page and other top info -->
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous">
+   </script>
+{% else %}
+
+<body class="noAuth" >
+      <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-static-top" id="navbar">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="{{ site['logo'] }}" alt="" title="">
+        </a>
+        <button class="navbar-toggler nav__btn" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation" onclick="navToggleMob()">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+              <a {% if active_menu == "login" %} href="/" class=" nav-link active" {% endif %} class="nav-link" href="/"> 
+                                Se connecter
+              </a>
+            </li>
+                        <li class="nav-item">
+              <a {% if active_menu == "terms" %} href="/terms" class=" nav-link active" {% endif %} class="nav-link " href="/terms" >
+                                Conditions
+              </a>
+            </li>
+                        <li class="nav-item">
+              <a {% if active_menu == "how-it-works" %} href="/how-it-works" class=" nav-link active" {% endif %} class=" nav-link" href="/how-it-works" >
+                                Comment ça marche
+              </a>
+            </li>
+                        <li class="nav-item">
+              <a {% if active_menu == "blog" %} href="/blog" class=" nav-link active" {% endif %} class=" nav-link" href="/blog" >
+                                Blog
+              </a>
+            </li>
+                      </ul>
+          <div class="navbar-nav m-auto">
+            <a href="/signup" class="signup_btn_nav">S'inscrire</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+{% endif %}

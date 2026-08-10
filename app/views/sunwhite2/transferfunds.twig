@@ -1,0 +1,120 @@
+{% include 'header.twig' %}
+
+<div class="wrapper-content__body" style="margin-top:-55px;" >
+ <div class="well">
+<main class="app-main">
+    <div class="page-content">
+        <div class="container-fluid">
+             <div class="row justify-content-center">
+             <div class="col-lg-6">
+		{% if contentText %}
+<div class="card" style="margin-top:95px;margin-bottom:-80px;">
+{{ contentText }}
+</div>
+{% endif %}
+</div></div>
+			<div class="hp-bbox mt-5 mb-5">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="hpbb-body">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+			 
+			  <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card mb-5">
+                        
+                        {% if errorText %}
+        <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <i class="fad fa-exclamation-triangle mr-2"></i>{{ errorText }}
+        </div>
+      {% endif %}
+      {% if successText %}
+        <div class="alert alert-dismissible alert-success">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <i class="fad fa-shield-check mr-2"></i>{{ successText }}
+        </div>
+      {% endif %}
+                        <div class="py-4 px-lg-3 px-4">
+						
+									<div class="t-head th-3">
+										<div class="" style="margin-bottom: 15px;">
+											<div class="col-lg-2">
+											
+											</div>
+											<div class="col-lg-10 col-12 ">
+												<h2><i class="fad fa-random"></i> {{ lang['transferfunds.bank.transferToFriends'] }}</h2>
+												<p>{{ lang['transferfunds.bank.transferToFriendsSmall'] }}</p>
+											</div>
+										</div>
+									</div>
+									
+                                    <form  method="post" action="transferfunds" >
+										
+
+                                        <div class="fga mb-2">
+                                            <label class="fla" for="amount">Recipient Username</label>
+                                            <div class="fg">
+                                                
+                                                <input type="text" name="username" class="form-control" placeholder="{{ lang['smmspot.transferfunds.payment.telephone.title'] }}" required value="{{ data['username'] }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="fga mb-4">
+                                            <label class="fla" for="amount">{{ lang['transferfunds.amount'] }}</label>
+                                            <div class="fg">
+                                                
+                                                <input type="number" class="form-control" name="amount" id="amount" value="{{ data['amount'] }}">
+                                            </div>
+
+                                        </div>
+        
+                                        <div class="row">
+                                            <div class="col-md-6 col-12 mb-4 mb-mb-0">
+                                                <button type="submit" class="btn btn-big-primary btn-block">
+                                                Transfer
+                                                </button>
+                                            </div>
+                                            <div class="col-md-6 col-12 mb-1 mb-mb-0">
+                                                <a href="/tickets" class="btn btn-big-primary btn-block" style="color:#fff;">
+                                                    Support Center  
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </form>
+                        </div>
+                    </div><!-- card -->
+                </div><!-- col -->
+
+
+            </div>
+		
+        </div>
+    </div>
+</main>
+
+	</div>
+	
+	
+	 <div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container">
+             <div class="row justify-content-center">
+             <div class="col-lg-6">
+ 
+		{% if contentText2 %}
+<div class="card mb-4"style="margin-top:-30px;">
+{{ contentText2 }}
+</div>
+{% endif %}
+</div></div></div>
+	
+{% include 'footer.twig' %}
+
+      
+        
+   

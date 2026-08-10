@@ -1,0 +1,244 @@
+
+{% include 'header.twig' %}
+<html lang="en">
+<head>
+  <title> Recent Completed Orders  </title>
+  <meta property="og:title" content=" Recent Completed Orders " />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="   ">
+  <meta name="description" content="   ">
+  <meta property="og:description" content="   " />
+  
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script src="https://browser.sentry-cdn.com/5.6.2/bundle.min.js" crossorigin="anonymous"></script>
+<style>.integration-fixed {
+  position: fixed;
+  z-index: 10000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px;
+  row-gap: 12px;
+}
+.integration-fixed__top-left {
+  top: 0;
+  left: 0;
+}
+.integration-fixed__top-right {
+  top: 0;
+  right: 0;
+}
+.integration-fixed__bottom-left {
+  bottom: 0;
+  left: 0;
+}
+.integration-fixed__bottom-right {
+  bottom: 0;
+  right: 0;
+}
+</style>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.tsm-storage.site/theme/TSM%20[%20NOVA%20]/xad4lsaa33xoytl9.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.tsm-storage.site/theme/TSM%20[%20NOVA%20]/ggjgwrcfwssga774.css">
+</head>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<style>
+.table-view {display: none; }.responsive-table {overflow-x: auto; }.responsive-table table {min-width: 600px; width: 100%;}
+  .mt-6 {
+        margin-top: 1.5rem; /* Adjust as needed */
+    }
+    .flex {
+        display: flex;
+        overflow-x: auto; /* Allow horizontal scrolling */
+    }
+    .space-x-1 > :not([hidden]) ~ :not([hidden]) {
+        margin-left: 0.25rem; /* Adjust spacing between pagination items */
+    }
+</style>
+<div class="component_navbar" ></div>
+    <div class="component_navbar_sub "></div>
+<div class="wrapper-content">
+    <div class="wrapper-content__header">
+          </div>
+    <div class="wrapper-content__body">
+<div class="min-h-screen bg-gray-100 p-3">
+    <div class="mb-1 mt-2">
+        <div class="flex items-center text-2xl font-bold text-gray-800">
+            <i class="fas fa-server mr-2 style-text-primary"></i>
+            <span class="style-text-primary">Order/Service Analytics</span>
+        </div>
+        <p class="mt-1 text-sm font-bold text-gray-600 uppercase">
+            Explore all recent order completions with real-time average processing times, enabling faster checks and helping you effortlessly discover the best-performing services on {{ site['site_name'] }}.
+        </p>
+    </div>
+    <div class="mb-3 flex justify-end">
+        <form action="/statistics" method="get" id="dateForm" class="mr-2">
+        <input
+            type="date"
+            name="date"
+            id="datePicker"
+            value="<?php echo isset($_GET['date']) ? htmlspecialchars($_GET['date']) : date('Y-m-d'); ?>"
+            class="px-3 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            onchange="document.getElementById('dateForm').submit()">
+        </form>
+        <button id="toggleView" class="px-3.5 py-2 style-bg-primary text-white rounded-md hover:opacity-90 focus:outline-none">
+            <i class="fas fa-table"></i> 
+        </button>
+    </div>
+    
+    <div class="mb-6">
+        <div class=" mx-auto">
+            <form action="/statistics" method="get" id="history-search">
+            <div class="flex">
+            <input class="w-full px-3 py-1.5 border border-gray-300 rounded-l-lg focus:outline-none" type="text" name="search" value=""  placeholder="Search For Service or Order IDs">
+            <button type="submit" class="px-4 py-1.5 style-bg-primary text-white rounded-r-lg hover:opacity-90 focus:outline-none "><i class="fa fa-search"></i></button>
+                </button>
+                </form>
+            </div>
+        </div>
+    </div>
+      <div id="cardView" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mb-6">
+      {% set today = "now"|date("Y-m-d") %} 
+    {% for order in orders %}
+    <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+        <div class="flex justify-between items-center p-2 pl-4 pr-4 border-b border-gray-200">
+            <div class="w-12 h-7 flex items-center justify-center style-bg-primary rounded-lg">
+                <span class="text-black font-bold text-xs">#{{ order['id'] }}</span>
+            </div>
+              {% if order['date']|date("Y-m-d") == today %} <!-- Check if the order date is today -->
+            <div class="px-3 h-7 flex items-center justify-center bg-green-100 rounded-md">
+                <span class="text-green-500 font-bold text-xs">Today's order</span>
+            </div>
+            {% endif %}
+            <div style="font-size: 13px !important;" class="px-3 py-1 bg-gray-100 rounded-lg text-sm style-text-primary">
+                <b><i class="fas fa-calendar mr-1"></i>
+                
+                <span>{{ order['date'] }}</span></b>
+            </div>
+            
+        </div>
+        
+        <div class="p-2 pl-4 pr-4">
+            <div class="text-md font-semibold text-gray-800 mb-2">
+                <span class="text-lg font-bold style-text-primary">{{ order['service_id'] }}</span> - {{ order['service'] }}
+                {% if order['status'] == lang['orders.status.completed'] %}
+                    
+                
+                    
+                {% endif %}
+            </div>
+            <div class="flex justify-between items-center text-xs text-gray-600">
+                <div class="flex items-center">
+                    <i class="fa fa-star mr-1"></i>
+                    <span>Quantity: <b>{{ order['quantity'] }}</b></span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fa fa-clock mr-1"></i>
+                    <span>Completion time: <b>{{ order.duration }}</b></span>
+                </div>
+            </div>
+        </div>
+        <div class="p-2 pl-4 pr-4 border-t border-gray-200">
+            <div class="flex justify-between items-center">
+                <div class="text-lg font-bold style-text-primary">
+                    {{ order["charge"] }}
+                </div> 
+                <a href="{{ site['url'] }}/?category_id={{order['category_id']}}&service_id={{ order['service_id'] }}" 
+                    class="text-md h-7 font-bold style-bg-primary rounded-lg px-3 flex items-center justify-center hover:opacity-90">
+                    <span class="text-black font-bold">Create Order</span>
+                </a> 
+            </div>
+        </div>
+    </div>
+    
+    {% endfor %}
+</div>
+                    
+                            </tbody>
+       </table>
+</div>
+<style>
+
+
+
+
+</style>
+{% if pagination["count"] > 1 %}
+<div class="mt-6 flex overflow-x-auto">
+
+        <ul class="pagination">
+            {% if pagination["current"] != 1 %}
+                <li>
+                    <a class="btn btn-actions" href="statistics/{{ status }}/{{ pagination["previous"] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Previous">
+                        <span aria-hidden="true">«</span>
+                    </a>
+                </li>
+            {% endif %}
+
+            {% for page in 1..pagination["count"] %}
+                <li{% if page == pagination['current'] %} class="active"{% endif %}>
+                    <a class="btn btn-actions" href="statistics/{{ status }}/{{ page }}{% if search %}?search={{ search }}{% endif %}">{{ page }}</a>
+                </li>
+            {% endfor %}
+
+            {% if pagination['current'] < pagination['count'] %}
+                <li>
+                    <a class="btn btn-actions" href="statistics/{{ status }}/{{ pagination['next'] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+        </div>
+{% endif %}
+
+<br>
+<br>
+</div>
+<br>
+<br>
+</div>
+<script>
+    const toggleViewButton = document.getElementById('toggleView');
+    const cardView = document.getElementById('cardView');
+    const tableView = document.getElementById('tableView');
+    const savedView = localStorage.getItem('viewPreference');
+    if (savedView === 'table') {
+        cardView.style.display = 'none';
+        tableView.style.display = 'block';
+        toggleViewButton.innerHTML = '<i class="fas fa-th-large"></i> ';
+    } else {
+        cardView.style.display = 'grid';
+        tableView.style.display = 'none';
+        toggleViewButton.innerHTML = '<i class="fas fa-table"></i> ';
+    }
+    toggleViewButton.addEventListener('click', () => {
+        if (cardView.style.display === 'none') {
+            cardView.style.display = 'grid';
+            tableView.style.display = 'none';
+            toggleViewButton.innerHTML = '<i class="fas fa-table"></i> ';
+            localStorage.setItem('viewPreference', 'card'); 
+        } else {
+            cardView.style.display = 'none';
+            tableView.style.display = 'block';
+            toggleViewButton.innerHTML = '<i class="fas fa-th-large"></i> ';
+            localStorage.setItem('viewPreference', 'table'); 
+        }
+    });
+</script>
+
+
+</div></div>
+
+ <script>
+   tippy('[data-tippy-content]',{maxWidth: 200});
+ </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+{% include 'footer.twig' %}

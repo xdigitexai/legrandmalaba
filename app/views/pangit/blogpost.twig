@@ -1,0 +1,33 @@
+{% include 'header.twig' %}
+<main id="notLogin">
+    <div id="single_blog_post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+               <div class="post_content">
+                 
+                 
+                    <div class="blog_img">
+                                                <img src="{{blogimage}}" alt="{{ blogtitle }}"  class="img-fluid" >
+                                            </div>
+                        <h1 class="signle_blog_title">{{ blogtitle }}</h1>
+                        <div class="blog_content">
+                        <p style="border: 0px solid rgb(217, 217, 227); --tw-border-spacing-x:0; --tw-border-spacing-y:0; --tw-translate-x:0; --tw-translate-y:0; --tw-rotate:0; --tw-skew-x:0; --tw-skew-y:0; --tw-scale-x:1; --tw-scale-y:1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness:proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width:0px; --tw-ring-offset-color:#fff; --tw-ring-color:rgba(59,130,246,0.5); --tw-ring-offset-shadow:0 0 transparent; --tw-ring-shadow:0 0 transparent; --tw-shadow:0 0 transparent; --tw-shadow-colored:0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; margin-bottom: 1.25em;">{{ blogcontent }}</p>
+                        </div>
+               </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <a href="/blog" class="btn btn-primary back_btn">Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+  
+  
+
+  
+  
+  
+{% include 'footer.twig' %}

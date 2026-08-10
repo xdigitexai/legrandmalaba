@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css?family=Karla:400,400i,700,700i');
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,500,600,700,900');
+
+.border-rounded{
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	background: #fff;
+}
+.border-solid {
+    border: 1px solid #ddd;
+}
+.text-bold{
+	font-weight:700;
+}
+
+.width-service-name{
+    width: 250px;
+}
+
+.forced-pull-right-search{
+    float: right;
+    padding: 10px;
+    width: 250px;
+}
+
+.nav-forced-centered{
+	width:100%;
+	text-align:center;
+	margin-top:10px;
+}
+
+.order-url{
+	word-wrap: break-word;max-width:40vw;
+}
+
+.payment_authorized{
+	background-color:green;color:white;
+}
+
+.pagination{
+	
+}
+
+.panel_icon_class{
+	margin-top:-16px;
+}

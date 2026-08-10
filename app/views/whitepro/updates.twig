@@ -1,0 +1,100 @@
+{% include 'header.twig' %}
+	 		<div class="app-content">
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-lg-10"> 
+      <div class="agr">
+      <div class="row my-4">
+       
+
+                </div></div>
+
+
+<div class="card card-border">
+                        <div class="card-body">
+                        {% for order in orders %}
+                                                       <div class="updatex">
+                              <div class="row">
+                            
+                                    <div class="col-md-6">
+                                        <div class="sctx-text">{{ order['service_id'] }} - {{ order['service_name'] }}</div>
+                                    </div><!-- ./col --> 
+                                    <div class="col-md-2">
+                                        <div class="sctc-text time_format">{{ order['date'] }}</div>
+                                    </div><!-- ./col --> 
+                                    <div class="col-md-4">
+                                       
+                                        <div class="op-stats neutral">
+                                      {{ order['description'] }}
+                                          
+                                    </div>
+                                    <div class="op-stats neutral">
+                                   <span class="badge" style="background-color: #ffb500"> {{ order['action'] }}
+                                      </span>    
+                                    </div>
+                                    <!-- ./col --> 
+                             </div>
+                                </div>
+                          
+                              </div><hr>{% endfor %}
+ </div> </div></div></div>
+                          <div class="container text-center d-flex justify-content-center">
+      <nav aria-label="">
+          {% if pagination["count"] > 1 %}
+                       <ul class="pagination ">
+                    {% if pagination["current"] != 1 %}
+            <li class="page-item pi-pn">
+            <a href="updates/{{ status }}/{{ pagination["previous"] }}{% if search %}?search={{ search }}{% endif %}" class="page-link" aria-label="Previous">
+              <i class="ri-arrow-left-s-line"></i>
+            </a>
+            </li>          {% endif %}
+            
+            {% set r, l = 3, 3 %}
+
+          {% if pagination['current'] == 1 %}
+            {% set r = 7 %}
+          {% endif %}
+
+          {% if pagination['current'] == 2 %}
+            {% set r = 5 %}
+          {% endif %}
+
+          {% if pagination['current'] >= pagination['count'] %}
+            {% set l = 5 %}
+          {% endif %}
+
+          {% for page in 1..pagination["count"] %}
+            {% if page >= (pagination['current']-l) and page <= (pagination['current']+r) %}
+              <li{% if page == pagination['current'] %} class="active" {%endif%}><a class="page-link" 
+ href="updates/{{ status }}/{{ page }}{% if search %}?search={{ search }}{% endif %}">{{ page }}</a></li>
+            {%endif%}
+          {% endfor %}
+          
+            
+          {% if pagination['current'] < pagination['count'] %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+                      <li class="page-item pi-pt">
+              <a href="updates/{{ status }}/{{ pagination['next'] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Next" class="page-link">
+                <i class="ri-arrow-right-s-line"></i>
+              </a>
+            </li>
+             {% endif %}
+
+        </ul>
+      {% endif %}
+                  
+          </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+     
+   
+
+
+{% include 'footer.twig' %}

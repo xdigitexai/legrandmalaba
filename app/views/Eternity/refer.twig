@@ -1,0 +1,179 @@
+{% include 'header.twig' %}
+
+
+
+
+
+<div class="wrapper-content">
+    <div class="wrapper-content__header">
+          </div>
+    <div class="wrapper-content__body">
+	<!-- Main variables *content* -->
+	<div id="block_16" >
+		<div class="ticket-form">
+			<div class="bg"></div>
+			<div class="divider-top"></div>
+			<div class="divider-bottom"></div>
+			<div class="container-fluid">
+ {% if contentText %}
+<div class="card mt-2 mb-2">
+{{ contentText }}
+</div>
+{% endif %}
+			
+                        
+ <div class="row affiliates-info__alignment affiliate-block__main-table">
+                <div class="col-lg-6">
+                    <div class="table-bg affiliates-info__data-table component_table_link ">
+                        <div class="table-wr table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+
+                                    <th>Referral link</th>
+                                    <th>Commission rate</th>
+                                    <th>Max Loading Amount</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="affiliates-table-border-none">
+<tr>
+                                    <td data-label="Referral link" nowrap>
+                                        <span id="link-1" class="mr-1">{{ site['url'] }}/ref/{{ user["referral_code"] }}</span>
+                                        <a>
+                                            <span
+                                                data-clip="true"
+                                                title="Link copied"
+                                                data-clipboard-action="copy"
+                                                data-clipboard-target="#link-1"
+                                                class="fas fa-clone"></span>
+                                        </a>
+                                    </td>
+                                    <td data-label="Commission rate"> {{ settings["ref_bonus"] }}%</td>
+                                    <td data-label="Max Loading Amount">{% if settings['currecnyconverter'] == "2" %}
+                                          
+                                                {% if user['currency_type'] == "USD" %}
+                    {{ settings['ref_max'] |round(2, 'floor') }}{{ "$" }}
+          {% else %} 
+                    {{ settings['ref_max']*settings['dolar_currency'] |round(2, 'floor') }}{{ settings["cur_symbol"] }}
+                
+                {% endif %}
+                                             {% endif %}
+{% if settings['currecnyconverter'] == "1" %}
+                                          
+              {{ settings['ref_max'] |round(2, 'floor') }}{% if settings['site_currency'] == "TRY" %} 
+                    {{ "₺" }}
+                {% elseif settings['site_currency'] == "USD" %}
+                    {{ "$" }}
+          {% elseif settings['site_currency'] == "INR" %}
+                    {{ "₹" }}
+                {% else %}
+                    {{ "€" }}
+      
+                {% endif %}
+                                             {% endif %}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<br>
+            <div class="row affiliates-info__alignment">
+                <div class="col-lg-6">
+                    <div class="table-bg component_table_statistics ">
+                        <div class="table-wr table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Total visits</th>
+                                    <th>Successful referrals</th>
+                                    <th>{{ lang['affiliates.total.payment'] }}</th>
+                                    <th> {{ lang['affiliates.total.win'] }}</th>
+
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="affiliates-table-border-none">
+<tr>
+                                   
+
+														
+<td>{{ user['total_click'] }}</td>
+<td>{{ refCount }}</td>
+<td>{% if settings['currecnyconverter'] == "2" %}
+                                          
+                                                 {% if user['currency_type'] == "USD" %}
+                    {{ user['reforder'] |round(2, 'floor') }}{{ "$" }}
+          {% else %} 
+                    {{ user['reforder']*settings['dolar_currency'] |round(2, 'floor') }}{{ settings["cur_symbol"] }}
+                
+                {% endif %}
+                            
+                                             {% endif %}
+{% if settings['currecnyconverter'] == "1" %}
+                                      
+                                       {{ user['reforder'] |round(2, 'floor') }}{% if settings['site_currency'] == "TRY" %} 
+                    {{ "₺" }}
+                {% elseif settings['site_currency'] == "USD" %}
+                    {{ "$" }}
+          {% elseif settings['site_currency'] == "INR" %}
+                    {{ "₹" }}
+                {% else %}
+                    {{ "€" }}
+                {% endif %}
+                                             {% endif %}</td>
+<td>          {% if settings['currecnyconverter'] == "2" %}
+                                      
+                                                 {% if user['currency_type'] == "USD" %}
+                    {{ user['refchar'] |round(2, 'floor') }}{{ "$" }}
+          {% else %} 
+                    {{ user['refchar']*settings['dolar_currency'] |round(2, 'floor') }}{{ settings["cur_symbol"] }}
+                
+                {% endif %}
+                                   
+                                             {% endif %}
+{% if settings['currecnyconverter'] == "1" %}
+                                             
+                                       {{ user['refchar'] |round(2, 'floor') }}{% if settings['site_currency'] == "TRY" %} 
+                    {{ "₺" }}
+                {% elseif settings['site_currency'] == "USD" %}
+                    {{ "$" }}
+          {% elseif settings['site_currency'] == "INR" %}
+                    {{ "₹" }}
+                {% else %}
+                    {{ "€" }}
+                {% endif %}
+                                      
+                                             {% endif %}</td>
+
+
+																	</tr>
+																</td>
+															</tbody>
+													
+													
+	</tr>
+
+												</tbody> 
+                            </table>
+                         </nav>
+                         </div>
+                              </nav>
+			</div>
+		</div>
+	</div>
+</div></div>
+<div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container">
+		{% if contentText2 %}
+<div class="card mt-3 mb-4">
+{{ contentText2 }}
+</div>
+{% endif %}
+</div>
+
+{% include 'footer.twig' %}

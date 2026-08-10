@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <title>Dexbellesmm - Social Med Link Fixer</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #6b7280;
+      --text-heading-color: #111827;
+      --shadow-color: rgba(30, 30, 30, 0.12);
+      --color-primary: #2563eb;
+      --color-primary-hover: #1e40af;
+      --border-radius: 0.75rem;
+      --font-heading: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --font-body: 'Inter', Helvetica, Arial, sans-serif;
+      --transition-fast: 0.3s ease;
+      --logo-facebook: #1877F2;
+      --logo-instagram-start: #feda75;
+      --logo-instagram-mid: #d62976;
+      --logo-instagram-end: #962fbf;
+      --logo-tiktok: #69C9D0;
+    }
+
+    [data-theme='dark'] {
+      --bg-color: #1f2937;
+      --text-color: #d1d5db;
+      --text-heading-color: #f9fafb;
+      --shadow-color: rgba(0, 0, 0, 0.5);
+      --color-primary: #3b82f6;
+      --color-primary-hover: #2563eb;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: #fff;
+      color: var(--text-color);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      padding: 16px 32px;
+      box-shadow: 0 4px 20px rgb(30 30 30 / 57%);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto 48px auto;
+      user-select: none;
+    }
+
+    header h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--text-heading-color);
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 600px;
+      margin: 0 auto 48px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .description-section {
+      font-size: 1.125rem;
+      font-weight: 400;
+      color: #111827;
+      text-align: center;
+      user-select: none;
+      max-width: 600px;
+      padding: 0 8px;
+      line-height: 1.5;
+    }
+
+    .platforms-wrapper {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      align-items: center;
+      user-select: none;
+    }
+
+    .platform-item {
+      background-color: white;
+    box-shadow: 0 4px 20px rgb(30 30 30 / 57%);
+    padding: 24px 32px;
+    border: 7px outset #d1d5db;
+    width: 100%;
+    max-width: 460px;
+    text-align: center;
+    display: flex
+;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    transition: box-shadow var(--transition-fast);
+    min-height: 280px;
+    }
+    .platform-item:hover,
+    .platform-item:focus-within {
+      box-shadow: 0 10px 36px rgba(30, 30, 30, 0.3);
+      outline: none;
+    }
+
+    .platform-logo {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      user-select: none;
+      pointer-events: none;
+      border-radius: 50%;
+      filter: drop-shadow(0 3px 6px rgba(0,0,0,0.08));
+    }
+
+    .platform-desc {
+      font-size: 1.05rem;
+      color:#000;
+      font-weight: 600;
+      line-height: 1.3;
+      user-select: text;
+      min-height: 3.5rem;
+      margin: 0 0 8px 0;
+      padding: 0 12px;
+    }
+.platform-btn:not(:disabled):hover, .platform-btn:not(:disabled):focus {
+    background-color: #79b0f7;
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px #8dbbf7;
+    outline: none;
+        border-top-left-radius: 50px;
+}
+    .platform-btn {
+          background-color: #8bbbf9;
+    color: #111827;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 14px 0;
+    font-weight: 700;
+    font-size: 1.125rem;
+    cursor: pointer;
+    border-top-left-radius: 50px;
+    box-shadow: 0 6px 18px #111827d6;
+    transition: background-color 0.3s ease, transform 0.15s ease, box-shadow 0.3s ease;
+    user-select: none;
+    width: 100%;
+    max-width: 260px;
+    align-self: center;
+    min-width: 160px;
+    letter-spacing: 0.03em;
+    }
+    .platform-btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+      box-shadow: none;
+      color: #666;
+    }
+   
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0,0,0,0.25);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 20px;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+    background: #FFA5C8;
+    border-radius: var(--border-radius);
+    max-width: 480px;
+    width: 100%;
+    border: 3px outset #fff;
+    padding: 32px 32px 36px;
+    box-shadow: 0 12px 24px #111827db;
+    text-align: center;
+    user-select: none;
+    display: flex
+;
+    flex-direction: column;
+    gap: 30px;
+    font-family: var(--font-body);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0;
+    }
+
+    .modal-header h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.75rem;
+      margin: 0;
+      color: var(--text-heading-color);
+      user-select: text;
+      line-height: 1.2;
+    }
+
+    .close-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      cursor: pointer;
+      padding: 6px 14px;
+      border-radius: var(--border-radius);
+      transition: color 0.3s ease, background-color 0.25s ease;
+      line-height: 1;
+      user-select: none;
+    }
+    .close-btn:hover,
+    .close-btn:focus {
+      color: var(--color-primary-hover);
+      background-color: rgba(37, 99, 235, 0.12);
+      outline: none;
+    }
+
+    .modal-logo {
+      max-width: 96px;
+      margin: 0 auto;
+      display: block;
+      user-select: none;
+    }
+
+    .modal-description {
+      font-size: 1.1rem;
+      color: #111827;
+      line-height: 1.5;
+      margin-bottom: 0;
+      user-select: text;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .modal-input {
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 1.125rem;
+      border: 1.5px solid #d1d5db;
+      border-radius: var(--border-radius);
+      background-color: #fff;
+      box-shadow: inset 0 1px 3px rgb(0 0 0 / 0.1);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      outline-offset: 2px;
+      user-select: text;
+      font-weight: 400;
+      font-family: var(--font-body);
+      box-sizing: border-box;
+      min-height: 50px;
+      color: #374151;
+    }
+
+    .modal-input::placeholder {
+      color: #9ca3af;
+      font-weight: 400;
+    }
+
+    .modal-input:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 12px rgba(37, 99, 235, 0.3);
+      outline: none;
+      background-color: #fff;
+      color: #111827;
+    }
+
+    .submit-btn {
+      background-color: #ff69b4;
+    color: var(--bg-color);
+    padding: 16px 0;
+    font-weight: 700;
+    font-size: 1.125rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    box-shadow: 0 8px 24px #111827;
+    transition: background-color 0.3s ease, transform 0.15s ease, box-shadow 0.3s ease;
+    user-select: none;
+    width: 100%;
+    max-width: none;
+    min-height: 50px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-family: var(--font-heading);
+    align-self: stretch;
+    }
+
+    .submit-btn:disabled {
+      background-color: #e5e7eb;
+      cursor: not-allowed;
+      box-shadow: none;
+      color: #9ca3af;
+    }
+
+    .submit-btn:not(:disabled):hover,
+    .submit-btn:not(:disabled):focus {
+     background-color: #ff69b4;
+    transform: scale(1.05);
+    box-shadow: 0 10px 32px rgb(30 30 30 / 57%);
+    outline: none;
+    }
+
+    #output {
+      max-width: 480px;
+      margin: 0 auto;
+      background-image: url("https://i.ibb.co/Kcm3hvSL/Hello-Kitty.jpg");
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 16px rgba(30, 30, 30, 0.12);
+      padding: 24px 32px;
+      font-weight: 700;
+      color: var(--text-heading-color);
+      word-break: break-word;
+      text-align: center;
+      user-select: text;
+      display: none;
+      margin-top: 32px;
+      min-height: 130px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+
+    #linkPreview {
+      width: 100%;
+    text-align: left;
+    user-select: none;
+    border-radius: var(--border-radius);
+    background-color: #ffa5c8;
+    box-shadow: 0 2px 8px #111827;
+    padding: 16px 20px;
+    box-sizing: border-box;
+    margin-top: 8px;
+    }
+
+    #linkPreview h4 {
+      margin: 0 0 8px 0;
+      font-size: 1.35rem;
+      color: #d62976;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    #linkPreview p {
+      margin: 0 0 12px 0;
+      font-size: 1.05rem;
+      color: var(--text-heading-color);
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    #linkPreview img {
+      max-width: 100%;
+      max-height: 180px;
+      border-radius: 0.5rem;
+      object-fit: contain;
+      margin-top: 4px;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
+      user-select: none;
+      transition: box-shadow var(--transition-fast);
+    }
+    #linkPreview img:hover,
+    #linkPreview img:focus {
+      box-shadow: 0 4px 12px rgba(37,99,235,0.35);
+      outline: none;
+    }
+
+    #fixedText a {
+      color: #d62976;
+      font-weight: 700;
+      text-decoration: underline;
+      font-size: 1.1rem;
+      word-break: break-word;
+      max-width: 100%;
+    }
+    #fixedText a:hover,
+    #fixedText a:focus {
+      color: var(--color-primary-hover);
+    }
+
+    #backToDashboard {
+      margin-top: 20px;
+      font-weight: 600;
+      color: #000;
+      cursor: pointer;
+      user-select: none;
+      font-size: 1rem;
+      display: none;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+    #backToDashboard:hover,
+    #backToDashboard:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+    #backToDashboard svg {
+      width: 16px;
+      height: 16px;
+      fill: #000;
+      transition: transform 0.3s ease;
+      transform: translateX(0);
+    }
+    #backToDashboard:hover svg,
+    #backToDashboard:focus svg {
+      transform: translateX(-4px);
+    }
+
+    #loaderOverlay {
+      position: fixed;
+      inset: 0;
+      background-color: transparent;
+      backdrop-filter: blur(6px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 3000;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    #loaderOverlay img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      animation: spinLogo 2s linear infinite;
+      object-fit: cover;
+      box-shadow: none;
+      user-select: none;
+    }
+    @keyframes spinLogo {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+    #loaderOverlay .loading-text {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--color-primary);
+      font-family: 'Arial Black', Arial, sans-serif;
+      user-select: none;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-color);
+      font-size: 0.875rem;
+      padding: 32px 16px;
+      user-select: none;
+      border-top: 1px solid #f3f4f6;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    #themeToggle {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-primary);
+      transition: color 0.3s ease;
+      width: 40px;
+      height: 40px;
+      border-radius: 0.5rem;
+      user-select: none;
+      flex-shrink: 0;
+    }
+    #themeToggle:hover,
+    #themeToggle:focus {
+      color: var(--color-primary-hover);
+      outline: none;
+      background-color: rgba(37, 99, 235, 0.12);
+      box-shadow: 0 0 5px rgba(37, 99, 235, 0.4);
+    }
+    #themeToggle svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.3s ease;
+    }
+    #themeToggle svg.hidden {
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      main {
+        margin-bottom: 48px;
+        padding: 0 16px;
+      }
+      header {
+        padding: 16px 16px;
+        margin-bottom: 32px;
+      }
+      .platforms-wrapper {
+        gap: 32px;
+      }
+      #output {
+        max-width: 100%;
+        padding: 16px 20px;
+        margin-top: 24px;
+      }
+      .platform-item {
+        max-width: 100%;
+        padding: 20px;
+      }
+      .platform-btn {
+        width: 100%;
+        max-width: unset;
+      }
+    }
+    #linkInput {
+ width: 100%;
+    max-width: 500px;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 2px solid #ff69b4;
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    box-shadow: 2px 2px 3px #000;
+}
+
+/* On focus */
+#linkInput:focus {
+  border-color: #ff69b4;   /* brighter pink on focus */
+  box-shadow: 0 0 6px rgba(255, 105, 180, 0.5);
+}
+
+  </style>
+</head>
+<body>
+ <header>
+  <h2>SocMed Link Fixer</h2>
+ <button onclick="history.back()" 
+        aria-label="Go back" 
+        title="Go back"
+        class="cute-back-btn">
+    ⬅ Back
+</button>
+
+<style>
+.cute-back-btn {
+  background-color: #8bbbf9; /* light pink */
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 20px; /* rounded pill shape */
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 94%);
+  transition: all 0.3s ease;
+}
+
+.cute-back-btn:hover {
+  background-color: #ff69b4; /* hot pink */
+  transform: scale(1.05);
+}
+
+.cute-back-btn:active {
+  transform: scale(0.95);
+}
+</style>
+ 
+
+</header>
+
+<main>
+  <section class="description-section" aria-label="Link fixer description">
+    A handy tool that tidies up Facebook, Instagram, and TikTok links by stripping out clutter and extra parameters, leaving you with clean, ready-to-share links.
+  </section>
+
+  <section class="platforms-wrapper" role="list" aria-label="Social platform link fixers">
+    <!-- Facebook -->
+    <article class="platform-item" role="listitem" tabindex="0" aria-labelledby="facebookTitle" aria-describedby="facebookDesc">
+      <img class="platform-logo" src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_(2019).png" alt="Facebook Logo" width="72" height="72" />
+      <h3 id="facebookTitle" class="platform-desc" style="color: #000;">Make Facebook links simple and direct by removing extra parameters.</h3>
+      <button class="platform-btn" onclick="showModal('facebook')" aria-label="Fix Facebook link">Fix Facebook Link</button>
+    </article>
+
+    <!-- Instagram -->
+    <article class="platform-item" role="listitem" tabindex="0" aria-labelledby="instagramTitle" aria-describedby="instagramDesc">
+      <img class="platform-logo" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram Logo" width="72" height="72" />
+      <h3 id="instagramTitle" class="platform-desc" style="background: linear-gradient(45deg, var(--logo-instagram-start), var(--logo-instagram-mid), var(--logo-instagram-end)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Clean up Instagram links and strip away unnecessary parameters.</h3>
+      <button class="platform-btn" onclick="showModal('instagram')" aria-label="Fix Instagram link">Fix Instagram Link</button>
+    </article>
+
+    <!-- TikTok -->
+    <article class="platform-item" role="listitem" tabindex="0" aria-labelledby="tiktokTitle" aria-describedby="tiktokDesc">
+      <img class="platform-logo" src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok Logo" width="72" height="72" />
+      <h3 id="tiktokTitle" class="platform-desc" style="color: var(--logo-tiktok);">Clean Tiktok links by stripping away unnecessary parameters.</h3>
+      <button class="platform-btn" onclick="showModal('tiktok')" aria-label="Fix TikTok link">Fix TikTok Link</button>
+    </article>
+  </section>
+
+  <a href="https://Dexbellesmm.com" id="backToDashboard" aria-label="Back to Dashboard">
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="var(--color-primary)" viewBox="0 0 24 24" width="16" height="16">
+      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+    </svg>
+    Back to Dashboard
+  </a>
+
+</main>
+
+<div id="linkModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1" class="modal" aria-hidden="true" >
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="modalTitle"></h3>
+      <button class="close-btn" aria-label="Close modal" onclick="closeModal()">&times;</button>
+    </div>
+    <img id="modalImage" src="" alt="" class="modal-logo" hidden />
+    <p id="modalDescription" class="modal-description"></p>
+    <input id="linkInput" type="url" placeholder="Paste the link here…" aria-label="Link input" autocomplete="off" required />
+    <button id="fixLinkButton" class="submit-btn" onclick="fixLink()" disabled>Fix Link</button>
+  </div>
+</div>
+
+<div id="output" aria-live="polite" aria-atomic="true" tabindex="-1">
+  <div id="fixedText"></div>
+  <div id="linkPreview" aria-live="polite" aria-atomic="true" tabindex="-1" role="region" aria-label="Link preview information" hidden>
+    <h4 id="previewTitle"></h4>
+    <img id="previewImage" src="" alt="" tabindex="0" />
+    <p id="previewDescription"></p>
+  </div>
+</div>
+
+<div id="loaderOverlay" aria-hidden="true" role="alert" aria-live="assertive">
+  <img src="app/controller/img/loader.png" alt="Loading spinner" />
+  <div class="loading-text">Loading...</div>
+</div>
+
+
+
+<script>
+  let currentPlatform = '';
+
+  const platformLogos = {
+    facebook: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_(2019).png',
+    instagram: 'https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg',
+    tiktok: 'https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg'
+  };
+
+  const platformDescriptions = {
+    facebook: 'Please enter the Facebook link you want to fix.',
+    instagram: 'Please enter the Instagram link you want to fix.',
+    tiktok: 'Please enter the TikTok link you want to fix.'
+  };
+
+  const backToDashboardEl = document.getElementById('backToDashboard');
+  backToDashboardEl.style.display = 'none';
+
+  function showModal(platform) {
+    currentPlatform = platform;
+    const modal = document.getElementById('linkModal');
+    const title = document.getElementById('modalTitle');
+    const description = document.getElementById('modalDescription');
+    const image = document.getElementById('modalImage');
+    const fixBtn = document.getElementById('fixLinkButton');
+    const input = document.getElementById('linkInput');
+
+    title.textContent = `Enter ${platform.charAt(0).toUpperCase() + platform.slice(1)} Link:`;
+    description.textContent = platformDescriptions[platform];
+    image.src = platformLogos[platform];
+    image.alt = `${platform.charAt(0).toUpperCase() + platform.slice(1)} Logo`;
+    image.hidden = false;
+
+    input.value = '';
+    fixBtn.disabled = true;
+
+    modal.setAttribute('aria-hidden', 'false');
+    modal.classList.add('show');
+    input.focus();
+
+    input.oninput = () => {
+      fixBtn.disabled = input.value.trim() === '' || !isValidURL(input.value.trim());
+    };
+
+    document.onkeydown = e => {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    };
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('linkModal');
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+    document.getElementById('linkInput').value = '';
+    document.getElementById('fixLinkButton').disabled = true;
+    document.onkeydown = null;
+  }
+
+  function isValidURL(string) {
+    try {
+      new URL(string);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function showLoader(show) {
+    const loader = document.getElementById('loaderOverlay');
+    if(show) {
+      loader.style.display = 'flex';
+      loader.setAttribute('aria-hidden', 'false');
+    } else {
+      loader.style.display = 'none';
+      loader.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  function ajaxPost(data, success, fail){
+    showLoader(true);
+    if (window.fetch){
+      fetch('', {
+        method:'POST',
+        headers:{'Content-Type':'application/x-www-form-urlencoded'},
+        body: new URLSearchParams(data).toString()
+      })
+      .then(r => r.json())
+      .then(result => {
+        showLoader(false);
+        success(result);
+      })
+      .catch(err => {
+        showLoader(false);
+        fail(err);
+      });
+    } else {
+      const req = new XMLHttpRequest();
+      req.open('POST','',true);
+      req.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+      req.onreadystatechange = () => {
+        if(req.readyState===4){
+          showLoader(false);
+          try{ success(JSON.parse(req.responseText)); }
+          catch(e){ fail(e); }
+        }
+      };
+      req.send(Object.keys(data).map(k=>encodeURIComponent(k)+'='+encodeURIComponent(data[k])).join('&'));
+    }
+  }
+
+  function fixLink(){
+    const raw = document.getElementById('linkInput').value.trim();
+    if(!raw) return;
+    backToDashboardEl.style.display = 'none';
+
+    ajaxPost({type:currentPlatform, link:raw}, data=>{
+      closeModal();
+      const fixedText = document.getElementById('fixedText');
+      fixedText.innerHTML =
+          `<strong>Fixed Link:</strong><br><a href="${data.fixed}" target="_blank" rel="noopener noreferrer">${data.fixed}</a>`;
+
+      const preview = document.getElementById('linkPreview');
+      if(data.meta && data.meta.title) {
+        document.getElementById('previewTitle').textContent = data.meta.title;
+        const descriptionEl = document.getElementById('previewDescription');
+        descriptionEl.textContent = data.meta.description || '';
+        const imgEl = document.getElementById('previewImage');
+        if(data.meta.image) {
+          imgEl.src = data.meta.image;
+          imgEl.alt = data.meta.title;
+          imgEl.hidden = false;
+          imgEl.style.display = 'block';
+        } else {
+          imgEl.hidden = true;
+          imgEl.style.display = 'none';
+          imgEl.src = '';
+          imgEl.alt = '';
+        }
+        preview.hidden = false;
+      } else {
+        preview.hidden = true;
+      }
+
+      const output = document.getElementById('output');
+      output.style.display = 'flex';
+      output.focus();
+
+      backToDashboardEl.style.display = 'inline-flex';
+    }, ()=>{
+      const fixedText = document.getElementById('fixedText');
+      fixedText.textContent = '❌ Could not fix link.';
+
+      const preview = document.getElementById('linkPreview');
+      preview.hidden = true;
+
+      const output = document.getElementById('output');
+      output.style.display = 'flex';
+      output.focus();
+
+      backToDashboardEl.style.display = 'none';
+    });
+  }
+
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const iconLight = document.getElementById('iconLight');
+  const iconDark = document.getElementById('iconDark');
+
+  function setTheme(isDark) {
+    if(isDark){
+      root.setAttribute('data-theme', 'dark');
+      iconLight.classList.add('hidden');
+      iconDark.classList.remove('hidden');
+      themeToggle.setAttribute('aria-label', 'Switch to light mode');
+      themeToggle.title = 'Switch to light mode';
+    } else {
+      root.setAttribute('data-theme', 'light');
+      iconLight.classList.remove('hidden');
+      iconDark.classList.add('hidden');
+      themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+      themeToggle.title = 'Switch to dark mode';
+    }
+    localStorage.setItem('preferred-theme', isDark ? 'dark' : 'light');
+  }
+
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = root.getAttribute('data-theme');
+    if(currentTheme === 'dark') {
+      setTheme(false);
+    } else {
+      setTheme(true);
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('preferred-theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if(savedTheme === 'dark' || (!savedTheme && prefersDark)){
+      setTheme(true);
+    } else {
+      setTheme(false);
+    }
+  });
+</script>
+</body>
+</html>

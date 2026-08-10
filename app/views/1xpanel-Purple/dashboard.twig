@@ -1,0 +1,115 @@
+{% include 'header.twig' %}
+
+
+ <div class="wrapper-content__body">
+      <!-- Main variables *content* -->
+      <div id="block_api" class="pt-5">
+  <div class="block-api">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="cardff">
+               <div class="col-md-12g">
+      <div class="well "></br></br>
+         <div class="dashboard-content">
+  <div style="background-color:white" class="head clearfix">
+    <h5><font color="#000000"><b>{{ user['username'] }}</b> <img src="/img/verified.png" width="20" height="20">  </font></h5>
+    <span>
+       <strong><a href="/addfunds" ><font color="#ffffff"> <i class="fas fa-wallet"></i>  <i> {{ user["balance"] }} </i></font></a></strong>
+          </span>
+  </div>
+  </div>
+</div> 
+            
+            
+<div class="dashboard-content">
+<div class="head clearfix">
+    <h5>ACCOUNT SPENDING</h5>
+    <span><strong> {{ user["spent"] }} </strong></span>
+  </div>
+  <div class="content">
+    <h6><font color="#000000">NOTE : </font></h6>
+    <p>Here you can see how much you have spent your whole life on {{ site["site_name"] }}, basically how much you love {{ site["site_name"] }}. We love you too!</p>
+  </div>
+</div>
+
+<div class="dashboard-content">
+<div style="background-color:red;color:white" class="head clearfix">
+    <center><h2><font style="color:white">Transfer Funds</font></h2></center>
+    </div>
+  <div class="content">
+    <h6><font color="#000000">NOTE : </font></h6>
+    <p>Transfer funds to any {{ site["site_name"] }} account. </br> 
+    Just enter Recipient Username and Amount after that click on Send Money button.</p>
+    <p><font style="color:red">You can transfer funds to others with 3% fees only.</font></p>
+    
+    </br>
+     {% if error %}
+        <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ errorText }}
+        </div>
+      {% elseif success %}
+        <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ successText }}
+        </div>
+      {% endif %}
+     
+      
+     <form  method="post" action="transferfunds" >
+										
+
+                                       <div class="fga mb-2">
+                                            <label class="fla" for="amount">Recipient Username</label>
+                                            <div class="fg">
+                                                
+                                                <input type="text" name="username" class="form-control" placeholder="{{ lang['smmspot.transferfunds.payment.telephone.title'] }}" required value="{{ data['username'] }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="fga mb-4">
+                                            <label class="fla" for="amount">{{ lang['transferfunds.amount'] }}</label>
+                                            <div class="fg">
+                                                
+                                                <input type="number" class="form-control" name="amount" id="amount" value="{{ data['amount'] }}">
+                                            </div>
+
+                                        </div>
+        
+                                        <div class="row">
+                                            <div class="col-md-6 col-12 mb-2 mb-mb-0">
+                                                <button type="submit" class="btn btn-big-primary btn-block" style="width:100%;background-color:red;color:#fff;">
+                                                SEND MONEY
+                                                </button>
+                                            </div>
+                                            <div class="col-md-6 col-12 mb-1 mb-mb-0">
+                                                <a href="/tickets" class="btn btn-big-primary btn-block" style="width:100%;background-color:blue;color:#fff;">
+                                                   SUPPORT
+                                                </a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </form>
+          
+          
+          
+  </div>
+</div>
+
+      </div>
+    </div>
+  </div>  </div>
+ </div> </div>
+</div> </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+{% include 'footer.twig' %}

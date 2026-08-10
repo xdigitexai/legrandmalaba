@@ -1,0 +1,190 @@
+{% if settings['register_page']  ==  2 %} 
+{% include 'header.twig' %}
+<!-- Main variables *content* -->
+		<style>
+#header, footer {display: none}@media (max-width: 991.98px){.homeHeader{padding-top: 0}}
+.google-login-wrap {
+	position: relative;
+	width: 100%;
+	height: 48px;
+	padding-top: 0;
+	padding-bottom: 0;
+	border-radius: 15px;
+	background-color: #7750f6;
+	border-color: #7750f6;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: space-around;
+}
+  .google-login {
+	color: #FFF;
+	font-size: 14px;
+	font-weight: 500;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	align-content: center;
+}
+  .google-btn {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	height: 55px;
+	width: 100%;
+	overflow: hidden;
+	opacity: 0;
+}
+  .google-login svg {
+	width: 20px;
+	display: inline-block;
+	margin-left: 8px;
+}
+.google-btn iframe {
+    	width: 100%!important
+}
+</style>
+	<section class="homeHeader">
+        <div class="homeBg">
+            <img src="https://storage.perfectcdn.com/a3vltc/9my58aizhkkah7zl.png">
+        </div>
+  <div class="container pt-5">
+    <div class="row align-items-center justify-content-center">
+		<div class="col-lg-5 d-none d-md-block">
+        	<div class="register-left">
+            	<img src="https://storage.perfectcdn.com/a3vltc/cpr6u8ahmfmaanqd.png" class="img-fluid">
+                        <h1 class="hhTitle">
+							{{ site["site_name"] }} <span class="rotate">social media.</span>
+                        </h1>
+						<div class="row mt-4 justify-content-center">
+						  <div class="col-lg-auto col-md-6 col-12 mb-4 mb-md-0">
+							<a href="/services" class="btn btn-primary btn-rounded btn-100">
+							  <span>Services</span>
+							  <i class="ri-arrow-right-up-line ms-3"></i>
+							</a>
+						  </div>
+						</div>
+            </div>
+      </div>
+      <div class="col-lg-6 offset-lg-1">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <a href="/">
+										<img src="{{ site["logo"] }}"  height="85" alt="{{ site["site_name"] }}" title="">
+				             </a>
+          <a href="/" class="btn btn-primary btn-sm">Home</a>
+        </div>
+        <div class="card card-bg">
+              <div class="card-body">
+          {% if errorText %}
+								<div class="alert alert-dismissible alert-danger">
+								  {{ errorText }}
+								</div>
+							  {% endif %}
+							  {% if successText %}
+								<div class="alert alert-dismissible alert-success">
+								  {{ successText }}
+								</div>
+							  {% endif %}							
+          
+          
+          
+          
+          
+          
+                            <form action="" method="post" class="component_form_group component_checkbox">
+                                <div class="">
+<div class="form-group">
+                                        <label for="username" class="control-label">Username</label>
+                                        <input type="text" class="form-control" id="username" name="username" value="{{ data['username'] }}">
+                                                                                                            
+                                    </div>{% if settings['name_fileds']  ==  1 %} 
+                                                                            <div class="form-group">
+                                            <label for="firstname" class="control-label">Name</label>
+                                            <input type="text" class="form-control" id="firstname" name="name" value="{{ data['name'] }}">
+                                        </div>{% endif %}
+                                       
+                                                                        <div class="form-group">
+                                        <label for="email" class="control-label">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" value="{{ data['email'] }}">
+                                    </div>{% if settings['skype_feilds']  ==  1 %} 
+                                                                            <div class="form-group">
+                                            <label for="skype" class="control-label">Whatsapp No.</label>
+                                            <input type="text" class="form-control" id="skype" name="telephone" value="{{ data['telephone'] }}">
+                                        </div>{% endif %}
+                                                                        <div class="form-group">
+                                        <label for="password" class="control-label">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password">
+                                    </div> 
+                                    <div class="form-group">
+                                        <label for="confirm" class="control-label">Confirm password</label>
+                                        <input type="password" class="form-control" id="confirm" name="password_again">
+                                    </div>
+
+                                      {% if captcha %}
+            <div class="form-group">
+              <div class="g-recaptcha" data-sitekey="{{ captchaKey }}"></div>
+            </div>
+          {% endif %}
+                                      <div class="checkbox">
+            <label>
+              <input type="checkbox" name="terms" value="1"> {{ lang['signup.accept_terms_text'] }}
+            </label>
+          </div>
+		   
+		                <div style="position:absolute; left:-9999px; top:-9999px; visibility:hidden;">
+  <label>Leave this blank</label>
+  <input type="text" name="contact_time" id="contact_time" value="">
+</div>
+<div style="display:none;">
+  <input type="text" name="website" value="">
+</div>
+
+<script>
+  try {
+    document.getElementById('contact_time').value = Date.now();
+  } catch (e) {}
+</script>
+		   
+                                <div class="component_button_submit">
+                                    <div class="form-group">
+                                        <div class="">
+                                            <button type="submit" class="btn btn-primary btn-100">Sign up</button>
+                                        </div>
+                                    </div>
+                                </div>
+<div class="google-login-wrap">
+                <span class="google-login">
+                  Sign up with 
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="LgbsSe-Bz112c"><g><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path><path fill="none" d="M0 0h48v48H0z"></path></g></svg>
+                </span>
+                                                 <div class="form-group google-btn">
+                                  <div id="g_id_onload"
+                                     data-client_id="504682137800-u36ld0dfp0qk5e0gnhgteh6rinn8se93.apps.googleusercontent.com"
+                                     data-login_uri="/confirm_signup"
+                                     data-auto_prompt="false"
+                                     data-_csrf="6GXo4jykbRNrwHTXTWp9_y3maFw256X-xPkTSsqXDiaCN6WaWc8VJC-CFeA3JTKpX5UADX6S8pmAimt5vvZtfw==">
+                                  </div>
+                                  <div class="g_id_signin"
+                                     data-type="standard"
+                                     data-size="large"
+                                     data-theme="outline"
+                                     data-text="sign_in_with"
+                                     data-shape="rectangular"
+                                     data-logo_alignment="left">
+                                  </div>
+                                </div>
+                                            </div>
+                                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+            
+  
+{% include 'footer.twig' %}
+{% endif %} 

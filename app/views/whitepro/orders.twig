@@ -1,0 +1,246 @@
+{% include 'header.twig' %}
+<!-- Main variables *content* -->
+<div class="hiddenTitle">
+   <div id="appTt">Orders</div>
+   <div id="appTx">We're the best!</div>
+</div>
+<div class="appContent">
+<section class="orders-nav-wrapper">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-9 col-md-12">
+            <ul class="orders-nav">
+               <li>
+                  <a class="orders-nav-link {% if 'all' == status %} active {% endif %}" href="/orders">
+                     <div class="icon">
+                        <i class="ri-sort-asc"></i>
+                     </div>
+                     <span class="text">
+                     All
+                     </span>
+                  </a>
+               </li>
+               <li>
+                  <a class="orders-nav-link {% if 'pending' == status %}  active {% endif %}" href="/orders/pending">
+                     <div class="icon">
+                        <i class="ri-loader-2-line"></i>
+                     </div>
+                     <span class="text">
+                     Pending
+                     </span>
+                  </a>
+               </li>
+               <li>
+                  <a class="orders-nav-link {% if 'inprogress' == status %}  active {% endif %}" href="/orders/inprogress">
+                     <div class="icon">
+                        <i class="ri-loader-2-line"></i>
+                     </div>
+                     <span class="text">
+                     In progress
+                     </span>
+                  </a>
+               </li>
+               <li>
+                  <a class="orders-nav-link {% if 'completed' == status %}  active {% endif %}" href="/orders/completed">
+                     <div class="icon">
+                        <i class="ri-checkbox-circle-line"></i>
+                     </div>
+                     <span class="text">
+                     Completed
+                     </span>
+                  </a>
+               </li>
+               <li>
+                  <a class="orders-nav-link {% if 'partial' == status %}  active {% endif %}" href="/orders/partial">
+                     <div class="icon">
+                        <i class="ri-pie-chart-line"></i>
+                     </div>
+                     <span class="text">
+                     Partial
+                     </span>
+                  </a>
+               </li>
+               <li>
+                  <a class="orders-nav-link {% if 'processing' == status %}  active {% endif %}" href="/orders/processing">
+                     <div class="icon">
+                        <i class="ri-truck-line"></i>
+                     </div>
+                     <span class="text">
+                     Processing
+                     </span>
+                  </a>
+               </li>
+               <li>
+                  <a class="orders-nav-link {% if 'canceled' == status %}  active {% endif %}" href="/orders/canceled">
+                     <div class="icon">
+                        <i class="ri-close-circle-line"></i>
+                     </div>
+                     <span class="text">Canceled
+                     </span>
+                  </a>
+               </li>
+            </ul>
+         </div>
+         <div class="col-lg-3 col-md-12">
+            <div class="orders-nav-link op-search-box">
+               <div class="icon">
+                  <i class="ri-search-line"></i>
+               </div>
+               <form action="" method="get" id="history-search">
+                  <input type="text" name="search" class="form-control" value="{{ search }}" 
+                     placeholder="Search">
+               </form>
+            </div>
+         </div>
+      </div>
+      <!-- ./row -->
+   </div>
+</section>
+{% for order in orders %}
+<section class="op-orders-wrapper">
+    <div class="container">
+      <div class="card card-border op-card">
+        <div class="card-body">
+          <div class="op-card--top">
+            <div class="row align-items-center">
+              <div class="col-lg-auto col-md-auto mb-3 mb-lg-0">
+                <div class="op-stats op-stats-sm primary">
+                  ID {{ order['id'] }}
+                </div>
+              </div><!-- ./col (ID)  -->
+              <div class="col-lg-3 col-md mb-3 mb-lg-0">
+                <h3 class="op-service-title">
+               {{ order['service'] }}
+                </h3>
+              </div><!-- ./col (service title) -->
+              <div class="col-lg-3 mb-3 mb-lg-0">
+                <a href="{{ order['link'] }}" target="_blank" class="orders-nav-link op-search-box op-order-link mb-0">
+                  <div class="icon">
+                    <i class="ri-share-box-fill"></i>
+                  </div>
+                  <div class="link">{{ order['link'] }}</div>
+                </a>
+              </div><!-- ./col (service title) -->
+              <div class="col-lg mb-3 mb-lg-0">
+                <div class="op-date">{{ order['date'] }}</div>
+              </div>
+              <div class="col-lg-auto">
+                  
+										<div class="op-stats primary">{{ order['status'] }}</div>
+									
+              </div>
+            </div>
+          </div><!-- ./op-card--top -->
+          <div class="op-card--bottom">
+            <div class="row align-items-center row-cols-md-4 row-cols-2">
+              <div class="col-lg-auto mt-3 mt-md-0">
+                <div class="op-item">
+                  <div class="title">Quantity</div>
+                  <div class="icon">
+                    <i class="ri-sort-asc"></i>
+                  </div>
+                  <div class="text">{{ order['quantity'] }}</div>
+                </div>
+              </div><!-- ./col -->
+              <div class="col-lg-auto mt-3 mt-md-0">
+                <div class="op-item">
+                  <div class="title">Charge</div>
+                  <div class="icon">
+                    <i class="ri-money-dollar-box-fill"></i>
+                  </div>
+                  <div class="text">{{ order['charge'] }}</div>
+                </div>
+              </div><!-- ./col -->
+              <div class="col-lg-auto mt-3 mt-md-0">
+                <div class="op-item">
+                  <div class="title">Start Count</div>
+                  <div class="icon">
+                    <i class="ri-play-fill"></i>
+                  </div>
+                  <div class="text">{{ order['start_count'] }}</div>
+                </div>
+              </div><!-- ./col -->
+              <div class="col-lg-auto mt-3 mt-md-0">
+                <div class="op-item">
+                  <div class="title">Remains</div>
+                  <div class="icon">
+                    <i class="ri-sort-asc"></i>
+                  </div>
+                  <div class="text">{{ order['remains'] }}</div>
+                </div>
+              </div><!-- ./col -->
+              <div class="col-lg-auto col-12 ms-lg-auto d-flex align-items-center justify-content-center mt-3 mt-lg-0">
+                              
+                  {% if order["refillButton"] == "2" %}
+{% if order['status'] == "Completed"  %}
+
+{% if order['show_refill'] == "true"  %}
+<a href="orders/refill/{{order['id']}}" class="op-stats op-stats-btn me-2"><i class="ri-restart-line me-2"></i>
+                  <span>
+                      Refill
+                 </span></a>
+
+{% endif %}
+{% endif %}
+{% endif %}
+{% if order["refillButton"] == "3" %}
+
+{% if order['status'] == "Completed"  %}
+
+{% if order['show_refill'] == "true"  %}
+<button type="button" class="op-stats op-stats-btn me-2" disabled="true">{{order['refillTimeLeft']}} {{ "Left for Refill" }}</button>
+{% endif %}
+{% endif %}
+{% endif %}
+{% if order["refillButton"] == "4" %}
+
+
+
+{% if order['status'] == "Completed"  %}
+
+{% if order['show_refill'] == "true"  %}
+<button type="button" class="op-stats op-stats-btn me-2" disabled="true">{{"Refilling"}}</button>
+{% endif %}
+{% endif %}
+{% endif %}
+
+{% if order['cancelButton']   == true %}
+         
+
+
+                   <a href="orders/cancel/{{order['id']}}" class="op-stats op-stats-btn me-2">
+                  <i class="ri-restart-line me-2"></i>
+                  <span>
+                      Cancel
+                 </span></a>
+               {% endif %}
+
+                 
+              
+            
+                                                                                                        
+                
+                
+             <a href="tickets" class="op-stats op-stats-btn danger-btn cs-btn">
+                  <i class="ri-customer-service-2-line"></i>
+                </a>
+             
+</div></div></div>
+            </div></div></div>
+   
+           
+          
+          
+  </section> {% endfor %}
+  
+    <div class="container text-center d-flex justify-content-center">
+      <nav aria-label="">
+       
+      
+    </div>
+  </div>
+</div>
+
+{% include 'footer.twig' %}
+
+

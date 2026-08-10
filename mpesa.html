@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cheap Panel | Secure M-Pesa Checkout</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,Tahoma}
+body{
+background:linear-gradient(135deg,#006400,#00a86b);
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+}
+.container{
+width:100%;
+max-width:600px;
+background:#fff;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+overflow:hidden;
+}
+header{
+background:#006400;
+color:#fff;
+padding:20px;
+text-align:center;
+}
+.content{padding:25px}
+label{font-weight:600;margin-bottom:6px;display:block}
+input{
+width:100%;
+padding:12px;
+border:2px solid #ddd;
+border-radius:8px;
+margin-bottom:15px;
+font-size:16px;
+}
+button{
+background:#006400;
+color:#fff;
+border:none;
+padding:14px;
+border-radius:8px;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+width:100%;
+}
+.loading{text-align:center;display:none;margin-top:15px}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<header>
+<h2>Cheap Panel</h2>
+<p>Secure M-Pesa Checkout</p>
+</header>
+
+<div class="content">
+
+<!-- DATA COMING FROM add_funds.php -->
+<input type="hidden" id="amount">
+<input type="hidden" id="user_id">
+
+<label>Phone Number</label>
+<input id="phone" placeholder="07XXXXXXXX">
+
+<label>Amount (KES)</label>
+<input id="display_amount" readonly>
+
+<button onclick="pay()" id="btn">Pay Now</button>
+
+<div class="loading" id="loading">Sending STK push…</div>
+
+</div>
+</div>
+
+<script>
+const MPESA_API = "https://mpesapi.giftedtech.co.ke";
+
+/* =========================
+   RECEIVE POST DATA
+========================= */
+const formData = new FormData(document.forms[0] || document.createElement("form"));
+const amountInput = document.getElementById("amount");
+const displayAmount = document.getElementById("display_amount");
+
+/* Inject values from POST */
+<?php
+// This block allows mpesa.html to receive POST safely
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $amount = (int)($_POST['amount'] ?? 0);
+    $userId = (int)($_POST['user_id'] ?? 0);
+} else {
+    $amount = 0;
+    $userId = 0;
+}
+?>
+
+const AMOUNT = <?= (int)$amount ?>;
+const USER_ID = <?= (int)$userId ?>;
+
+if (!AMOUNT || AMOUNT < 10) {
+    alert("Invalid amount");
+    window.location.href = "add_funds.php";
+}
+
+amountInput.value = AMOUNT;
+displayAmount.value = AMOUNT;
+
+/* FORMAT PHONE */
+function formatPhone(p){
+    if(p.startsWith("0")) return "254" + p.slice(1);
+    if(p.startsWith("254")) return p;
+    return "";
+}
+
+/* INITIATE PAYMENT */
+async function pay(){
+    const raw = document.getElementById("phone").value.trim();
+    const phone = formatPhone(raw);
+
+    if(!/^2547\d{8}$/.test(phone)){
+        alert("Enter valid phone number (07XXXXXXXX)");
+        return;
+    }
+
+    loading.style.display = "block";
+    btn.disabled = true;
+
+    try{
+        const res = await fetch(MPESA_API + "/api/payJay.php",{
+            method:"POST",
+            headers:{ "Content-Type":"application/json" },
+            body: JSON.stringify({
+                phoneNumber: phone,
+                amount: AMOUNT
+            })
+        });
+
+        const text = await res.text();
+        console.log("MPESA RAW RESPONSE:", text);
+
+        let data = {};
+        try { data = JSON.parse(text); } catch {}
+
+        if (data.CheckoutRequestID || data.ResponseCode === "0") {
+            pollStatus(data.CheckoutRequestID);
+        } else {
+            alert("Payment initiation failed");
+            btn.disabled = false;
+            loading.style.display = "none";
+        }
+
+    }catch(e){
+        alert("Network error");
+        btn.disabled = false;
+        loading.style.display = "none";
+    }
+}
+
+/* VERIFY PAYMENT */
+function pollStatus(checkoutId){
+    const timer = setInterval(async()=>{
+        try{
+            const res = await fetch(MPESA_API + "/api/verify-transaction.php",{
+                method:"POST",
+                headers:{ "Content-Type":"application/json" },
+                body: JSON.stringify({ checkoutRequestId: checkoutId })
+            });
+
+            const data = await res.json();
+
+            if(data.status === "completed"){
+                clearInterval(timer);
+                window.location.href = "success.php";
+            }
+
+            if(data.status === "failed"){
+                clearInterval(timer);
+                window.location.href = "failed.php";
+            }
+        }catch{}
+    }, 5000);
+}
+</script>
+
+</body>
+</html>

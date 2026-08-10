@@ -1,0 +1,153 @@
+{% include 'header.twig' %}
+      
+<div class="wrapper-content">
+    <div class="wrapper-content__header">
+          </div>
+    <div class="wrapper-content__body">
+        <div class="row sign-up-center-alignment mt-5" style="justify-content: center;" >
+            <div class="col-lg-4">
+                <div class="container">
+                           <div class="card mt-5">
+                               {% if error %}
+        <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ errorText }}
+        </div>
+      {% elseif success %}
+        <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ successText }}
+        </div>
+      {% endif %}
+      <script>document.querySelector('.close').addEventListener('click', function() {window.history.back(); });</script>
+                                 <div style="display: grid;
+    justify-content: center;    " class="confirm-email-card mt-2">
+                                                                                                            <div class="confirm-email__header">
+                                        <h3 style="    text-align: center;">Confirm email</h3>
+                                    </div>
+                                    <div class="confirm-email__description mb-3">
+                                        Please check your inbox and click the link to confirm your email address
+                                    </div>
+
+                                    <div style="display: flex;
+    justify-content: space-around;" class="confirm-email__actions">
+
+                                        <div class="component_button_resend">
+
+                                            <div class=""><a href="confirm_email/resend" ><button class="btn btn-big-primary" id="resendEmailLink">Resend email</button></a></div>
+                                        </div>
+                                                             {% if user["change_email"] ==  2  %}                   <div class="confirm-
+
+email__button-change-email component_button_change">
+                                            <div class="">
+                                                <button class="btn btn-big-secondary" data-toggle="modal" data-target="#changeEmailModal">Change email</button>
+                                            </div>
+                                        </div>{% endif %}
+                                                                            </div>
+
+                                    <input type="hidden" name="_csrf" 
+
+value="q2dAlhcRfniS0513PBKOI9J7u5xuLrvb6RWTGNnKJp_0ODjAYiUJCMq0xD5PWtYT4Ur3xCRv062oRcRqs6AR_g==">
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></div></div></div></div>
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="changeEmailModal" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+
+                <form class="modal-content" method="post" action="confirm_email/">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Change email</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body ">
+                        <div class="">
+                            <div id="changeEmailError" class="error-summary alert alert-dismissible alert-danger mb-3 hidden"></div>
+                        </div>
+{% if error %}
+        <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ errorText }}
+        </div>
+      {% elseif success %}
+        <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ successText }}
+        </div>
+      {% endif %}
+                        <div class="form-group">
+<form method="post" action="">
+                            <label for="current-email">Current email</label>
+                            <input class="form-control" id="current-email" value="{{user["email"]}}" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-email">New email</label>
+                            <input type="text" class="form-control" id="newemail" name="newemail" value="{{ data['newemail'] }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="current-password">Current password</label>
+<input type="text" class="form-control" id="password" name="password" value="{{ data['password'] }}">
+                                         </div>
+                        <input type="hidden" name="_csrf" value="q2dAlhcRfniS0513PBKOI9J7u5xuLrvb6RWTGNnKJp_0ODjAYiUJCMq0xD5PWtYT4Ur3xCRv062oRcRqs6AR_g==">
+                    </div>
+                    <div class="modal-footer text-lg-left">
+                        <button type="button" class="btn btn-big-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-big-primary" id="changeEmailSubmitBtn">Change email</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    
+    </div>
+    </div>
+
+    </div>
+    <div class="wrapper-content__footer">
+       <div id="block_27">
+    <div class="footer ">
+        <div class="component_footer_single_line">
+            <div class="component-footer">
+                <div class="component-footer__public">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="component-footer__public-copyright">
+                                                                            <p class="text-center"><span style="text-align: CENTER">© Copyright. All Rights Reserved.</span></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+     </div>
+  </div>
+</div>
+
+
+
+ 
+  <script type="text/javascript" >
+     window.modules.layouts = {"theme_id":21,"auth":1};   </script>
+  <script type="text/javascript" >
+     window.modules.confirmEmail = {"csrf_param":"_csrf","csrf":"q2dAlhcRfniS0513PBKOI9J7u5xuLrvb6RWTGNnKJp_0ODjAYiUJCMq0xD5PWtYT4Ur3xCRv062oRcRqs6AR_g==","change_email_url":"\/change-confirm-email"};   </script>
+  <script type="text/javascript" >
+      </script>
+</body>
+</html>

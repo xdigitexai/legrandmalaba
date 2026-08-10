@@ -1,0 +1,81 @@
+<!---------   
+=== Theme Author : Tanmoy Sarkar
+=== Theme Designed By: SmmEngage
+=== Contact Whatsapp: +8801782447728
+ ----------->  
+ 
+<!DOCTYPE html>
+{% for lang in site['languages'] %}
+{% if lang['active'] %}
+<html lang="{{ lang['code'] }}">
+{% endif %}
+{% endfor %}
+<head>
+  <base href="{{ site['url'] }}">
+  <title>{% if pagetitle %}  {{ pagetitle }}  {% else %} {{ title }} {% endif %} </title>
+  <meta property="og:title" content="{% if pagetitle %}  {{ pagetitle }}  {% else %} {{ title }} {% endif %}" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="{% if pagekeywords %} {{ pagekeywords }} {% else %} {{ site["keywords"]}}  {% endif %}">
+  <meta name="description" content="{% if pagedescription %} {{ pagedescription }} {% else %} {{ site['description'] }}  {% endif %}">
+  <meta property="og:description" content="{% if pagedescription %} {{ pagedescription }} {% else %} {{ site['description'] }}  {% endif %}" />
+  {% if site['favicon'] %}
+    <link rel="shortcut icon" type="image/ico" href="{{ site['favicon'] }}" />
+  {% endif %}
+
+
+{{ headerCode }}
+
+
+<script src="/cdn/theme/SmmEngage/js/sweetalert.min.js"></script>
+<script src="/cdn/theme/SmmEngage/js/jquery-3.3.1.slim.min.js"></script>
+
+
+
+
+
+		 <script src="/cdn/theme/SmmEngage/js/iconify-icon.min.js"></script>
+         <link rel="stylesheet" href="/cdn/theme/SmmEngage/css/swiper-bundle.min.css" />
+	 	 <link rel="stylesheet" type="text/css" href="/cdn/theme/SmmEngage/css/mbdesmezapxmafud_jzrcur_hnkdrp.css">
+	 	 <link rel="stylesheet" type="text/css" href="/cdn/theme/SmmEngage/css/z2sjk9wo7nudoaj5_j43ffq.css">
+	 	 <link rel="stylesheet" type="text/css" href="/cdn/theme/SmmEngage/css/bootstrap-datetimepicker.min.css">
+	 	 <link rel="stylesheet" type="text/css" href="/cdn/theme/SmmEngage/css/tp2jssyocan4ndm1_gcyj50_xd8a5t.css">
+	 	 <link rel="stylesheet" type="text/css" href="/cdn/theme/SmmEngage/css/all.min.css">
+         <link rel="stylesheet" type="text/css" href="/cdn/theme/SmmEngage/css/noandservicestyle_dvckaw_s2dyjw.css">
+         <link rel="stylesheet" type="text/css" href="/cdn/theme/SmmEngage/css/4g3dwcb2uecqmocp_ekquzu_rwkeiz_egr0ie.css">
+</head>
+
+{% if user['auth'] %}
+
+	<body  class="new_v2" >
+	 			 <header class="sticky-top">
+				 <nav class="navbar navbar-expand-lg bg-body-tertiary">
+					 <div class="container">
+						 <a class="navbar-brand" href="/">
+							 <div class="nav-bar-logo">
+							 
+{% if site["logo"] %}
+<img style="max-width:200px;"  src="{{ site['logo'] }}" alt="" title="">
+{% else %}<span style="text-transform: "><span style="font-size: 24px"><span style="letter-spacing: 1.0px"><span style="line-height: 50px"><strong style="font-weight: bold">{{ site["site_name"] }}</strong></span></span></span></span>{% endif %}</a>
+</div>
+						 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+							 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+							 aria-expanded="false" aria-label="Toggle navigation">
+							 <i class="fas fa-bars"></i>
+						 </button>
+						 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+							 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+								 								 								  
+								 								 								 <li class="nav-item signup_btn_wrap">
+									 <a class="nav-link signup_btn" href="/logout">Logout </a>
+								 </li>
+							 </ul>
+ 
+						 </div>
+					 </div>
+				 </nav>
+			 </header>
+
+{% endif %}

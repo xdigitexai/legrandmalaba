@@ -1,0 +1,174 @@
+{% include 'header.twig' %}
+
+
+
+<div class="wrapper-content">
+    <div class="wrapper-content__header">
+          </div>
+		 <div class="wrapper-content__body">
+		     <!-- Main variables *content* -->
+     <div id="block_47">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <div class="services-list ">
+    <div class="bg"></div>
+    <div class="divider-top"></div>
+    <div class="divider-bottom"></div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col ">
+          <div class="services-filters component_filter_form_group component_filter_card mb-3">
+            <div class="card">
+              <div class="row">
+                <div class="col-md-auto mb-3 mb-md-0">
+                  <div class="component_filter_button">
+                    <div class="dropdown">
+                      <a class="btn btn-big-primary w-sm-auto w-100 dropdown-toggle" href="#" role="button" id="dropdown-category-filter-47" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="fal fa-filter"></span>
+                        <span class="services-filter__active-category" data-filter-active-category="true"></span>
+                      </a>
+                                            <div class="dropdown-menu"><a class="dropdown-item"  data-filter-category-id="All">All</a>{% for category in serviceCategory %}
+                                                                                                                                                                                                <a class="dropdown-item" href="services#" data-filter-category-id="{{ category["category_id"] }}" data-filter-category-name="{{ category["category_name"] }}">{{ category["category_name"] }}</a>{% endfor %}
+                                                                                                                                                                                                
+                                                                                                                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search" id="priceService" data-search-service="#service-table">
+                                            <span class="input-group-append component_button_search">
+                                            <button class="btn btn-big-secondary" type="button" data-filter-serch-btn="true">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+<div class="row">
+                <div class="col">
+                    <div class="services-list__table">
+                        <div class="table-bg component_table ">
+                            <div class="table-wr table-responsive">
+                                <table class="table" id="service-table"> 
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th width="40%">Service</th>
+                                        <th class="nowrap">Price per 1000</th>
+                                        <th class="nowrap">Min order</th>
+                                        <th class="nowrap">Max order</th>
+<th class="nowrap" nowrap><div class="d-flex align-items-center">
+                                                    <span>Average time</span>
+                                                    <span class="ml-1 mr-1 fa fa-exclamation-circle" data-toggle="tooltip" data-placement="top" title="The average time is based on 10 latest completed orders per 1000 quantity."></span>
+                                                </div>
+                                            </th>
+                                          <th width="7%">Description</th>
+                                                                            </tr>
+                                    </thead>
+                                    <tbody> 
+                                    
+                                    {% for category in serviceCategory %}
+             <tbody id="service-tbody">
+                                                            <tr class="services-list-category-title" data-filter-table-category-id="{{ category["category_id"] }}">
+                        <td colspan="7" class="style-bg-primary-alpha-20 style-text-primary services-category editor__component-wrapper">
+                          <div class="w-100 ">
+                            <h4>
+                                                                                                                                
+                                                                                            <span class="align-middle">{{ category["category_name"] }}</span>
+                            </h4>
+                          </div>
+                        </td>
+                      </tr>
+
+
+                                                
+
+                {% for service in category['services'] %}
+                  <tr data-filter-table-category-id="{{ category["category_id"] }}">
+                    <td data-label="ID" data-filter-table-service-id="{{ service["service_id"] }}"><span id="service-{{ service["service_id"] }}">{{ service["service_id"] }}</span>
+                                        <a>
+                                            <span
+                                                data-clip="true"
+                                                title="Service id copied"
+                                                data-clipboard-action="copy"
+                                                data-clipboard-target="#service-{{ service["service_id"] }}"
+                                                class="fas fa-clone"></span>
+                                        </a></td>
+                    <td data-label="Service" class="table-service" data-filter-table-service-name="true">{{ service["service_name"] }}</td>
+                    
+                    <td>
+                      
+{% if user["auth"] == "1" %} 
+{{service["service_price"]}}
+
+{% else %}
+{{service["without_login_service_price"]}}
+{% endif %}
+                    </td>
+                    <td>{{ service["service_min"] }}</td>
+                    <td>{{ service["service_max"] }}</td>
+                    
+                    <td>{{ service["time"] }}</td>
+                     
+                     <td>
+                    
+                  
+                  <div class="">
+                                  <button class="btn btn-actions btn-view-service-description"
+                                          data-toggle="modal"
+                                          data-content-id="#service-description-id-49-{{ service["service_id"] }}"
+                                          data-service-id="{{ service["service_id"] }}"
+                                          data-service-name="{{ service["service_name"] }}"
+                                          data-min="{{ service["service_min"] }}"
+                                          data-max="{{ service["service_max"] }}"
+                                          data-target="#service-description-49">
+                                    View
+                                  </button>
+                                </div>
+                              </div>
+                              <div class="d-none" id="service-description-id-49-{{ service["service_id"] }}">
+                                {{ service["service_description"] }}
+                              </div>
+                                                      </td>
+                                              </tr>
+                                              
+                                              <div class="modal fade " tabindex="-1" role="dialog" id="service-description-49">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <i style="color: #b4c6d3;" class="fas fa-times"></i>
+        </button>
+        <div class="service-description-content"></div>
+        <button class="btn btn-block btn-big-primary" style="margin-top: 24px;" type="button" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+                  
+                  
+                {% endfor %}
+              {% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div></div>
+</div>
+</div></div></div>
+
+
+{% if contentText2 %}
+{{ contentText2 }}
+{% endif %}
+
+{% include 'footer.twig' %}

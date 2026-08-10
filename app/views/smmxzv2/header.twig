@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+{% for lang in site['languages'] %}
+{% if lang['active'] %}
+<html lang="{{ lang['code'] }}" data-bs-theme="dark" >
+{% endif %}
+{% endfor %}
+<head>
+  <base href="{{ site['url'] }}">
+
+  
+  <title>{% if pagetitle %}  {{ pagetitle }}  {% else %} {{ title }} {% endif %} </title>
+  <meta property="og:title" content="{% if pagetitle %}  {{ pagetitle }}  {% else %} {{ title }} {% endif %}" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="{% if pagekeywords %} {{ pagekeywords }} {% else %} {{ site["keywords"]}}  {% endif %}">
+  <meta name="description" content="{% if pagedescription %} {{ pagedescription }} {% else %} {{ site['description'] }}  {% endif %}">
+  <meta property="og:description" content="{% if pagedescription %} {{ pagedescription }} {% else %} {{ site['description'] }}  {% endif %}" />
+  {% if site['favicon'] %}
+    <link rel="shortcut icon" type="image/ico" href="{{ site['favicon'] }}" />
+  {% endif %}
+
+        
+ <link rel="shortcut icon" type="image/ico" href="https://storage.perfectcdn.com/ob5eq3/magqya7ghbnuh1dk.ico"/>
+		
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		  <![endif]-->
+
+        <!-- ########## ALL CDN Link Below ########## -->
+        <!-- Google Font CDN -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+        href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet"
+        />
+
+        <!-- Iconify Icon -->
+        <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"></script>
+
+        <!-- Swiper JS -->
+        <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+        />
+
+
+        <!-- Custom Header If there Any -->
+		
+
+<script src="https://browser.sentry-cdn.com/5.6.2/bundle.min.js" integrity="sha384-H4chu/XQ3ztniOYTpWo+kwec6yx3KQutpNkHiKyeY05XCZwCSap7KSwahg16pzJo" crossorigin="anonymous"></script>
+
+<script>Sentry.init({ dsn: 'https://294a44a1147a468c88270ee2dd6ecde9@sentry.io/4504813329711104' });</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9XKP27326S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9XKP27326S');
+</script>
+
+					<link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/ob5eq3/j8bedbs8ufeqce2c.css">
+					<link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/ob5eq3/84j1rca2zswc0exa.css">
+					<link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/libs/bootstrap-datetimepicker/4.17.47/bootstrap-datetimepicker.min.css">
+					<link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/css/font-awesome/css/all.min.css">
+					<link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/global/i76bg9kfcu5px52e.css">
+					<link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/global/0cppkyps8we2szqc.css">
+				<script>
+			window.modules = {};
+		</script>
+	</head>
+	{% if user['auth'] %}
+	
+          <body id="body" class="">
+		      <script>
+        if (localStorage.getItem("smmxzCurrentMode")) {
+          const bodyFire2 = document.getElementById("body");
+          const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+          document.documentElement.setAttribute('data-bs-theme', 'light');
+          bodyFire2.classList.add("daymode");
+        }
+      </script>
+      <section id="dashboard">
+      <div id="sidebar_active_blur" class="d-none"></div>
+      <div id="sidebar">
+        <a href="/" class="sider_logo">
+          <img
+            src="{{ site['logo'] }}"
+            class="img-fluid logo-white"
+            alt="{{ site['site_name'] }}"
+          />
+          <img
+            src="{{ site['logo'] }}"
+            class="img-fluid logo-color"
+            alt=""
+          />
+        </a>
+        <div class="user_box">
+          <div class="user_avatar">
+            <img
+              src="https://storage.perfectcdn.com/ob5eq3/4jfna2gmtxdomjdm.png"
+              class="img-fluid avatar_images"
+              alt=""
+            />
+          </div>
+          <h4>{{ user["username"] }}</h4>
+          <h6>Balance:{{ user["balance"] }}</h6>
+        </div>
+        <ul class="sidebar_menu">
+
+                    <li class="menu_item">
+            <a href="" class="menu_link "  target="_blank" >
+              <span class="icon">
+                                                  <i class="navbar-icon far fa-bell-on"></i>
+                                              </span>
+              <span class="menu_text"> Announcement </span>
+            </a>
+          </li>
+                  <li class="menu_item">
+          <a href="/" class="menu_link {% if active_menu == 'neworder' %}active{% endif %}">
+              <span class="icon">
+                                <iconify-icon
+                icon="solar:cart-large-minimalistic-bold-duotone"
+              ></iconify-icon>
+                              </span>
+              <span class="menu_text"> New order </span>
+            </a>
+          </li>
+                  <li class="menu_item">
+                <a href="/orders" class="menu_link {% if active_menu == 'orders' %}active{% endif %}">
+              <span class="icon">
+                                <span class="icon">
+                  <iconify-icon icon="solar:cart-bold"></iconify-icon>
+                </span>
+                              </span>
+              <span class="menu_text"> Orders </span>
+            </a>
+          </li>
+                  <li class="menu_item">
+            <a href="/tickets" class="menu_link {% if active_menu == 'tickets' %}active{% endif %}">
+              <span class="icon">
+                                <iconify-icon icon="game-icons:vr-headset"></iconify-icon>
+                              </span>
+              <span class="menu_text"> Tickets <span class="badge" style="background-color: #f0ad4e">{{ ticketCount }}</span> </span>
+            </a>
+          </li>
+                  <li class="menu_item">
+            <a href="/addfunds" class="menu_link {% if active_menu == 'addfunds' %}active{% endif %}" >
+              <span class="icon">
+                                <iconify-icon icon="healthicons:money-bag"></iconify-icon>
+                              </span>
+              <span class="menu_text"> Add funds </span>
+            </a>
+          </li>
+                  <li class="menu_item">
+            <a href="/services"class="menu_link {% if active_menu == 'services' %}active{% endif %}">
+              <span class="icon">
+                                <iconify-icon
+                icon="fluent:wrench-settings-20-regular"
+              ></iconify-icon>
+                              </span>
+              <span class="menu_text"> Services </span>
+            </a>
+          </li>
+                  <li class="menu_item">
+            <a href="/massorder" class="menu_link {% if active_menu == 'massorder' %}active{% endif %}">
+              <span class="icon">
+                                <iconify-icon icon="gg:list"></iconify-icon>
+                              </span>
+              <span class="menu_text"> Mass order </span>
+            </a>
+          </li>
+                  <li class="menu_item">
+            <a href="/child-panel" class="menu_link {% if active_menu == 'child-panel' %}active{% endif %}">
+              <span class="icon">
+                                <iconify-icon icon="ic:round-dashboard"></iconify-icon>
+                              </span>
+              <span class="menu_text"> Child Panel </span>
+            </a>
+          </li>
+                  <li class="menu_item">
+            <a href="/api" class="menu_link {% if active_menu == 'api' %}active{% endif %}">
+              <span class="icon">
+                                <iconify-icon icon="eos-icons:api"></iconify-icon>
+                              </span>
+              <span class="menu_text"> API </span>
+            </a>
+          </li>
+                 
+
+                  <li class="menu_item">
+            <a href="/updates" class="menu_link {% if active_menu == 'updates' %}active{% endif %}">
+              <span class="icon">
+                                <iconify-icon
+                icon="clarity:line-chart-solid-badged"
+                ></iconify-icon>
+                              </span>
+              <span class="menu_text"> Updates </span>
+            </a>
+          </li>
+                  <li class="menu_item">
+            <a href="/faqs" class="menu_link {% if active_menu == 'faqs' %}active{% endif %}">
+              <span class="icon">
+                                                  <i class="navbar-icon fas fa-bars"></i>
+                                              </span>
+              <span class="menu_text"> Faq </span>
+            </a>
+          </li>
+                 
+        
+        </ul>
+      </div>
+      <div id="content">
+        <!-- Main Content Area -->
+        <header id="header">
+          <div class="header_left">
+            <button class="sidebar_button" id="SidebarButton">
+              <iconify-icon icon="ic:sharp-menu"></iconify-icon>
+            </button>
+            <div class="header_logo d-none-desk">
+              <a href="/" class="sider_logo">
+                <img
+                  src="{{ site['logo'] }}"
+                  class="img-fluid logo-white"
+                  alt="{{ site['site_name'] }}"
+                />
+                <img
+                  src="{{ site['logo'] }}"
+                  class="img-fluid logo-color"
+                  alt=""
+                />
+              </a>
+            </div>
+          </div>
+          <div class="header_right d-none-ph d-none-tab">
+            <a href="" target="_blank" class="menu_btn telegram">
+              <img src="https://smmxz.sacloud.site/dashboard/telegram-logo.png" alt="" />
+            </a>
+            <!-- <a href="" class="menu_btn">
+              <img src="https://smmxz.sacloud.site/dashboard/bell-icon.png" alt="" />
+            </a> -->
+
+             <a
+              href="javascript:void(0)"
+              class="day_night_btn d-none-ph d-none-tab"
+              onclick="toggleThemeMode()"
+            >
+              <span class="active_circle"></span>
+              <span class="day_mode"
+                ><iconify-icon icon="ph:sun-duotone"></iconify-icon
+              ></span>
+              <span class="night_mode">
+                <iconify-icon icon="ph:moon-duotone"></iconify-icon>
+              </span>
+            </a>
+{% if site_currency_converter == "1" %}
+                        <div class="btn-group currency_btn">
+              <button
+                type="button"
+                class="btn btn-danger btn-sm dropdown-toggle currency_button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                             {{ user["balance"] }}}
+                            </button>
+              <ul class="dropdown-menu dropdown-menu-end" id="currencies-list">
+                									{{ currencies_dropdown }}
+																	
+									
+									
+								              </ul>
+            </div>{% else %} <br>{% endif %}
+
+
+                        <!-- Example single danger button -->
+            <div class="btn-group user_menu_wrap">
+              <button
+                type="button"
+                class="btn btn-danger btn-sm dropdown-toggle user_access_btn"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  src="https://storage.perfectcdn.com/ob5eq3/4jfna2gmtxdomjdm.png"
+                  class="img-fluid user_avatar avatar_images"
+                  alt=""
+                />
+              </button>
+              <ul
+                class="dropdown-menu dropdown-menu-end pb-0 overflow-hidden"
+              >
+                <li>
+                  <a class="dropdown-item" href="/account">
+                    <div class="icon">
+                      <iconify-icon icon="ph:user-duotone"></iconify-icon>
+                    </div>
+                    <div class="text">My Account</div>
+                  </a>
+                </li>
+               
+                <li>
+                  <a class="dropdown-item" href="/addfunds">
+                    <div class="icon">
+                      <iconify-icon icon="healthicons:money-bag"></iconify-icon>
+                    </div>
+                    <div class="text">Add Funds</div>
+                  </a>
+                </li>
+               
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item bg-danger" href="/logout">
+                    <div class="icon">
+                      <iconify-icon icon="uis:signout"></iconify-icon>
+                    </div>
+                    <div class="text">Logout</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="header_right d-none-desk">
+              <button
+                type="button"
+                class="btn btn-danger btn-sm dropdown-toggle user_access_btn"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
+              >
+                <img
+                  src="https://storage.perfectcdn.com/ob5eq3/4jfna2gmtxdomjdm.png"
+                  class="img-fluid user_avatar avatar_images"
+                  alt=""
+                />
+              </button>
+          </div>
+        </header>
+
+        <!-- Sidebar Offcanvas -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+              <a href="/" class="sider_logo">
+                                <img src="{{ site['logo'] }}" width="170px" class="img-fluid logo-white" alt="{{ site['site_name'] }}" />
+                <img
+                  src="{{ site['logo'] }}"
+                  class="img-fluid logo-color" width="170px"
+                  alt=""
+                />
+                            </a>
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+           
+            <div class="user_box">
+              <div class="user_avatar">
+                <img
+                  src="https://storage.perfectcdn.com/ob5eq3/4jfna2gmtxdomjdm.png"
+                  class="img-fluid avatar_images"
+                  alt=""
+                />
+              </div>
+              <h4>{{ user["username"] }}</h4>
+              <h6>Balance: {{ user["balance"] }}</h6>
+            </div>
+
+            <div class="user_sidebar mb-3">
+              <a href="" target="_blank" class="menu_btn telegram">
+                <img src="https://smmxz.sacloud.site/dashboard/telegram-logo.png" alt="" />
+              </a>
+              <!-- <a href="" class="menu_btn">
+                <img src="https://smmxz.sacloud.site/dashboard/bell-icon.png" alt="" />
+              </a> -->
+  
+              <a
+                href="javascript:void(0)"
+                class="day_night_btn"
+                onclick="toggleThemeMode()"
+              >
+                <span class="active_circle"></span>
+                <span class="day_mode"
+                  ><iconify-icon icon="ph:sun-duotone"></iconify-icon
+                ></span>
+                <span class="night_mode">
+                  <iconify-icon icon="ph:moon-duotone"></iconify-icon>
+                </span>
+              </a>
+  {% if site_currency_converter == "1" %}
+                            <div class="btn-group currency_btn">
+                <button
+                  type="button"
+                  class="btn btn-danger btn-sm dropdown-toggle currency_button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                                 {{ user["balance"] }}
+                                </button>
+                <ul class="dropdown-menu dropdown-menu-end" id="currencies-list">
+                              {{ currencies_dropdown }}  
+                                    
+                                  </ul>
+              </div>
+                            <!-- Example single danger button -->
+            </div>
+            {% else %} <br>{% endif %}
+            <div class="user_sidebar_menu">
+              <ul>
+                <li>
+                  <a class="sidebar-user-item" href="/account">
+                    <div class="icon">
+                      <iconify-icon icon="ph:user-duotone"></iconify-icon>
+                    </div>
+                    <div class="text">My Account</div>
+                  </a>
+                </li>
+              
+                <li>
+                  <a class="sidebar-user-item" href="/addfunds">
+                    <div class="icon">
+                      <iconify-icon icon="healthicons:money-bag"></iconify-icon>
+                    </div>
+                    <div class="text">Add Funds</div>
+                  </a>
+                </li>
+               
+                <li>
+                  <a class="sidebar-user-item" href="/logout">
+                    <div class="icon">
+                      <iconify-icon icon="uis:signout"></iconify-icon>
+                    </div>
+                    <div class="text">Logout</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    
+{% else %}
+
+
+<body class="noAuth" >
+     <!-- Without Login Header -->
+            <header class="fixed-top navbar-login">
+                <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="/">
+                    <div class="logo_navbar">
+                                                <img src="{{ site['logo'] }}" class="img-fluid" alt="{{ site['site_name'] }}" />
+                                            </div>
+                    </a>
+                    <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="offcanvas"
+                    href="#offcanvasExample"
+                    role="button"
+                    aria-controls="offcanvasExample"
+                    >
+                    <span class="icon">
+                        <iconify-icon icon="fe:bar"></iconify-icon>
+                    </span>
+                    <span class="text">Menu</span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                                                                <li class="nav-item" >
+                                <a href="/" class="nav-link   active" >
+                                                                        Home
+                                </a>
+                            </li>
+                                                                                                            <li class="nav-item" >
+                                <a href="/services" class="nav-link " >
+                                                                        Services
+                                </a>
+                            </li>
+                                                                                                         
+                                                                                                            
+                                                                                                            <li class="nav-item" >
+                                <a href="/api" class="nav-link " >
+                                                                        API
+                                </a>
+                            </li>
+                                                                                                            <li class="nav-item" >
+                                <a href="/faqs" class="nav-link " >
+                                                                        FAQ
+                                </a>
+                            </li>
+                                                                        </ul>
+                    <div class="ms-auto nav_right">
+                        <a href="/#login" class="btn nav_right_btn btn_white_outline"
+                        >Sign In</a
+                        >
+                        <a href="/signup" class="btn nav_right_btn btn_signup"
+                        >Sign Up</a
+                        >
+                    </div>
+                    </div>
+                </div>
+                </nav>
+            </header>
+        
+            <div
+                class="offcanvas offcanvas-end mobile_menu_sidebar"
+                tabindex="-1"
+                id="offcanvasExample"
+                aria-labelledby="offcanvasExampleLabel"
+            >
+                <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+                    <a href="/">
+                                                <img src="{{ site['logo'] }}" width="170px" class="img-fluid" alt="{{ site['site_name'] }}" />
+                                            </a>
+                </h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Close"
+                ></button>
+                </div>
+                <div class="offcanvas-body mobile_menu_body">
+                <div class="mobile_nav_menu">
+                    <ul class="navbar-nav mb-3">
+                                                                        <li class="nav-item" >
+                            <a href="/" class="nav-link   active" >
+                                                                Home
+                            </a>
+                        </li>
+                                                                                                    <li class="nav-item" >
+                                <a href="/services" class="nav-link " >
+                                                                        Services
+                                </a>
+                            </li>
+                                                                                                        
+                                                                                                       
+                                                                                                        <li class="nav-item" >
+                                <a href="/api" class="nav-link " >
+                                                                        API
+                                </a>
+                            </li>
+                                                                                                        <li class="nav-item" >
+                                <a href="/faqs" class="nav-link " >
+                                                                        FAQ
+                                </a>
+                            </li>
+                                                                        </ul>
+                </div>
+                <div class="ms-auto nav_right">
+                    <a href="/#login" class="btn nav_right_btn btn_white_outline"
+                    >Sign In</a
+                    >
+                    <a href="/signup" class="btn nav_right_btn btn_signup"
+                    >Sign Up</a
+                    >
+                </div>
+                </div>
+                <div class="offcanvas-footer">
+                <div class="p-3 text-white text-center">Version 2.0.0</div>
+                </div>
+            </div>
+        
+            <!-- #### Without Login Header -->
+			
+
+{% endif %}

@@ -1,0 +1,400 @@
+{% include 'header.twig' %}
+
+        	<!-- Main variables *content* -->
+        <main class="auth">
+                    <div class="about_us_effect">
+            <img
+              src="https://smmxz.sacloud.site/images/about-us-page-left-image.png"
+              class="img-fluid about_us_img_left"
+              alt=""
+            />
+            <img
+              src="https://smmxz.sacloud.site/images/about-us-page-right-image.png"
+              class="img-fluid about_us_img_right"
+              alt=""
+            />
+          </div>
+
+   <style>
+  .payment-dropdown>.btn-secondary {
+     width: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     background: #0a0a0a ;
+     color: var(--white);
+     font-size: 15px;
+     font-weight: normal;
+     padding: 10px;
+     text-align: left;
+     white-space: inherit;
+     border: 1px solid #0a0a0a ;
+     border-radius: 10px;
+  }
+
+  .daymode .payment-dropdown>.btn-secondary{
+    border-color: #ff770052;
+    background-color: #ffede0;
+    color: var(--black);
+  }
+
+  .payment-dropdown h6.dropdown-header {
+     background: var(--primary-color);
+     color: var(--white);
+     font-weight: bold;
+  }
+
+  .payment-dropdown .dropdown-item {
+     display: block;
+     width: 100%;
+     text-wrap: wrap;
+     white-space: inherit!important;
+     border-bottom: 1px solid #b7b7b7;
+  }
+
+  .payment-dropdown .dropdown-item:last-child {
+     border-bottom: none;
+  }
+
+  .payment-dropdown .dropdown-menu{
+    width: 100%;
+    max-height: inherit!important;
+    margin-bottom: 20px;
+  }
+
+
+</style>
+
+<section id="addfundBanner">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div id="payment_section" class="text-center mb-5">
+            <img src="https://storage.perfectcdn.com/ob5eq3/c1y7ang1sggnkk8o.png" alt="" class="img-fluid payment_img">
+            <h2>Hey! It’s Time to Add Funds</h2>
+            <p>
+                Select Payment Methods, Enter Amount and Click on Pay.
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .form-group.instruction{
+    display: none;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="addFundSections" class="pb-5">
+  <div class="container-fluid mb-5">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-12">
+        <div class="card card_auth_1 mb-3">
+            <div class="card-header d-flex flex-column justify-content-center">
+                <div class="addFundHeader">
+                  <div>
+                    <h3>Add Funds</h3>
+                    <p>
+                        Recharge your balance using various payment methods
+                    </p>
+                  </div>
+                  <div>
+                    <button type="button" class="btn btn_history" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                      See History
+                    </button>
+                  </div>
+                </div>
+            </div>
+            <div class="card-body">
+
+										<form method="post" id="addfundsForm" action="/addfunds">
+
+											<div class="form-group">
+												<label for="method" class="control-label">{{ lang['addfunds.method'] }}</label>
+												<select class="form-control" id="payment_method" name="payment_type">
+													{% for method in site["paymentMethods"] %}
+														<option value="{{ method['id'] }}">{{ method['name'] }}</option>
+													{% endfor %}
+												</select>
+											</div>
+											<div id="addfunds_fields"></div>
+										</form>
+										<div id="formSubmitResponseMessage"></div>
+										<div id="formSubmitResponseContent"></div>
+							</div>
+        </div>
+      </div>
+					  <div class="col-lg-6 col-md-6 col-12">
+        <div class="card card_auth_1 mb-3">
+            <div class="card-header d-flex flex-column justify-content-center">
+                <h3>Payment Gateway Information</h3>
+                <p>
+                    You can get more Information About Gateways
+                </p>
+            </div>
+            <div class="card-body">
+                  <div class="methodName">
+                    <h5 class="mb-3" id="methodName"> {% if contentText %}
+					
+					
+ 
+{{ contentText }}
+{% endif %}</h5>
+                  </div>
+                 
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
+
+<div class="mb-5"></div>
+
+<!-- Modal For Showing Balance History -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content services_dsc_modal">
+            <div class="modal__close">
+                <button type="button" class="btn btn_modal_close" data-bs-dismiss="modal"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div class="service_header">
+
+                <div><span id="service_name">Payment History</span></div>
+            </div>
+            <div class="services_body">
+                                            <table class="table">
+											<thead>
+												<tr>
+													<th><font size="3" color="red"><b>ID</b></font></th>
+													<th><font size="3" color="red"><b>Date</b></font></th>
+													<th><font size="3" color="red"><b>Method</b></font></th>
+													<th><font size="3" color="red"><b>Amount</b></font></th>
+												</tr>
+											</thead>
+											<tbody>
+											    
+												{% for payment in payments %}
+													<tr>
+														<td>{{ payment['id'] }}</td>
+														<td>{{ payment['date'] }}
+														</td>
+														<td>{{ payment['name'] }}</td>
+														<td>
+															{{ payment['amount'] }}
+														</td>
+													</tr>
+
+												{% endfor %}
+											</tbody>
+										</table>
+                            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+			<script>
+				var paymentMethods = {{ site["paymentMethodsJSON"] }};
+			</script>
+			<script>
+				const addfundsRoute = "/addfunds";
+function addfundsInit() {
+var addfundsForm = $("#addfundsForm");
+var fields = $("#addfunds_fields");
+var selectedMethod = $("#payment_method").val();
+var instructions = paymentMethods[selectedMethod][0].instructions;
+$.ajax({
+url: addfundsRoute,
+data: "action=getForm&selectedMethod=" + selectedMethod,
+type: "POST",
+success: function (json) {
+if (json.success == true) {
+if (instructions.length > 0) {
+var methodInstruction = '<div class="form-group"><label class="control-label">Instructions</label><div class="panel-body border-solid border-rounded">' + instructions + '</div></div>';
+} else {
+var methodInstruction = "";
+} fields.html(methodInstruction + json.content);
+extraFeeInit(selectedMethod);
+}
+}
+});
+}
+
+function extraFeeInit(method) {
+var fee = parseFloat(paymentMethods[method][0].fee).toFixed(2);
+var fields = $("#fee_fields");
+if (fee > 0) {
+fields.html('<div class="form-group"><label class="control-label">Extra fee</label><input type="text" class="form-control" id="methodExtraFee" disabled value="0.00"/></div><div class="form-group"><label class="control-label">Total Amount</label><input type="text" id="totalAmount" class="form-control" disabled value="0.00" /></div>');
+}
+}
+function preparePrice(t) {
+n = 2;
+var r = (t = $.trim(t.toString().replace(",", "."))).split(".");
+return void 0 !== r[1] && (r[1] = r[1].replace(/0+$/g, ""), r[1].length > n && (n = 2 < r[1].length ? 2 : r[1].length)),
+1e3 <= (t =( t = parseFloat(t)).toFixed(n)) && (t = t.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, "$1" + "")),
+t = t.toString().replace(/\.(\d+)$/g, "." + "$1");
+return t.toFixed(n)
+}
+$(document).ready(function () {
+$(document).on("keyup", "#paymentAmount", function () {
+var selectedMethod = $("#payment_method").val();
+var amount = parseFloat($(this).val());
+var feePercentage = parseFloat(paymentMethods[selectedMethod][0].fee);
+var feeInput = $("#methodExtraFee");
+var totalAmountInput = $("#totalAmount");
+var fee = amount * (feePercentage / 100);
+feeInput.val(preparePrice(fee));
+totalAmountInput.val(preparePrice(amount + fee));
+});
+addfundsInit();
+});
+$("#payment_method").change(function () {
+addfundsInit();
+});
+
+$("#addfundsForm").submit(function (e) {
+e.preventDefault();
+var data = $(this).serialize();
+
+$.ajax({
+url: addfundsRoute,
+data: data,
+type: "POST",
+success: function (json) {
+if (json.success == true) {
+var msgDiv = $("#formSubmitResponseMessage");
+msgDiv.html('<div class="alert alert-success alert-dismissible fade show mt-2" role="alert">' + json.message + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
+var contentDiv = $("#formSubmitResponseContent");
+contentDiv.html(json.content);
+} else {
+var msgDiv = $("#formSubmitResponseMessage");
+msgDiv.html('<div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">' + json.message + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
+}
+}
+
+});
+});
+			</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/libs/jquery/1.12.4/jquery.min.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/6lea6p5h1se0ydlc.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/lpckws4jmmcjpzoh.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/41oyxac8gg4eoke6.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/dmabhtcke4de93dz.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/ucpcfiz6liwlc86b.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/ob5eq3/t05xwla9gwo8usgw.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/ob5eq3/9kqdad0glwb7ykdp.js" >
+							</script>
+					<script type="text/javascript" >
+				                window.modules.layouts = {"theme_id":1,"auth":1,"live":true,"csrftoken":"mS3S9Q44AeTYk8_XGBmOb8nKZRIOhPtCKt-RqvN_qcPhWKKRQ30ztajJuKIgdv4MqvgrJVzwkxBsu8nzpjbL-w=="};
+                			</script>
+					<script type="text/javascript" >
+				                window.modules.paymentMethods = {"format":{"min_price":0.0001,"max":7,"min":2,"delimiter":".","thousands":"","balance_format":3},"fieldOptions":{"54334":{"commission":{"is_enabled":0,"fixed":0,"percent":0,"type":"extra_fee_enabled","extrafee":"Extra fee","total":"Total"},"instruction":{"label":"Instruction","name":"instruction","type":"container","value":"<p style=\"\"><span style=\"text-align: justify;\">Payeer is automatic payment getaway for world wide users.There is no extra fee on this method.<\/span><\/p><p style=\"\"><span style=\"text-align: justify;\"><br><\/span><\/p><p style=\"\"><span style=\"text-align: justify;\">Bonus : %5 extra on $100+ add funds&nbsp;<\/span><\/p>","texts":[]}},"54493":{"commission":{"is_enabled":0,"fixed":0,"percent":0,"type":"extra_fee_enabled","extrafee":"Extra fee","total":"Total"},"instruction":{"label":"Instruction","name":"instruction","type":"container","value":"<p style=\"\"><span style=\"text-align: justify;\">Coinbase is automatic payment getaway for world wide users.&nbsp;<\/span><span style=\"text-align: justify;\">This method accept only USDC payment.<\/span><\/p><p style=\"\"><span style=\"text-align: justify;\"><br><\/span><\/p><p style=\"\"><span style=\"text-align: justify;\">Bonus : %5 extra on $100+ add funds&nbsp;<\/span><br><\/p>","texts":[]}},"129424":{"commission":{"is_enabled":0,"fixed":0,"percent":0,"type":"extra_fee_enabled","extrafee":"Extra fee","total":"Total"},"instruction":{"label":"Instruction","name":"instruction","type":"container","value":"<p style=\"\"><span style=\"text-align: justify;\">Cryptomus is automatic payment getaway for world wide users.&nbsp;<\/span><span style=\"text-align: justify;\">T<\/span><span style=\"text-align: justify;\">his method accept all type of crypto currencies, as like - USDT,BNB,BTC,LTC,TON,SOL,SUI....... other<\/span><\/p><p style=\"\"><span style=\"text-align: justify;\"><br><\/span><\/p><p style=\"text-align: justify; \">Bonus : %5 extra on $100+ add funds&nbsp;<br><\/p>","texts":[]}},"178070":{"commission":{"is_enabled":0,"fixed":0,"percent":0,"type":"extra_fee_enabled","extrafee":"Extra fee","total":"Total"},"amount_converted":{"label":"Amount","type":"input","value":""},"instruction":{"label":"Instruction","name":"instruction","type":"container","value":null,"texts":[]}},"178196":{"commission":{"is_enabled":0,"fixed":0,"percent":0,"type":"extra_fee_enabled","extrafee":"Extra fee","total":"Total"},"instruction":{"label":"Instruction","name":"instruction","type":"container","value":"<p><img src=\"https:\/\/storage.perfectcdn.com\/ob5eq3\/1xy5eumh3c6frchd.jpg\" class=\"img-responsive\" style=\"display: inline-block; width: 311.156px; max-width: 100%;\"><br><\/p>","texts":[]}},"64408":{"commission":{"is_enabled":0,"fixed":0,"percent":0,"type":"extra_fee_enabled","extrafee":"Extra fee","total":"Total"},"instruction":{"label":"Instruction","name":"instruction","type":"container","value":"                                                                                                                                                                                                                                        <p style=\"\"><b>$1 = 60 PHP<\/b><\/p><p style=\"\"><br><\/p><p style=\"\">Contact telegram <a href=\"https:\/\/t.me\/smmXZpanel\" target=\"_blank\"><b>@smmXZpanel<\/b><\/a><\/p>    ","texts":[]}},"65139":{"commission":{"is_enabled":0,"fixed":0,"percent":0,"type":"extra_fee_enabled","extrafee":"Extra fee","total":"Total"},"instruction":{"label":"Instruction","name":"instruction","type":"container","value":"<p>Scan the QR code for send us money by wise.<\/p><p><img src=\"https:\/\/storage.perfectcdn.com\/ob5eq3\/pbtby06r8pwcht42.jpg\" class=\"img-responsive\" style=\"display: inline-block; width: 50%; max-width: 100%;\"><\/p><p>or,<\/p><p>Wise tag : <b>@mdakramulh1<\/b><\/p><p>or pay by URL :&nbsp;<a href=\"https:\/\/wise.com\/pay\/me\/mdakramulh1\">https:\/\/wise.com\/pay\/me\/mdakramulh1<\/a><a href=\"https:\/\/wise.com\/pay\/me\/mdakramulh1\"><\/a><\/p><p><br><\/p><p>After send money open <a href=\"https:\/\/smmxz.com\/tickets\" target=\"_blank\"><b>Ticket<\/b><\/a> with screenshot and other details or contact us by <a href=\"https:\/\/t.me\/smmXZpanel\" target=\"_blank\"><b>Telegram<\/b><\/a><\/p><p><br><\/p><p>Don't have wise account? <a href=\"https:\/\/wise.com\/invite\/ihpc\/mdakramulh1\" target=\"_blank\" style=\"\"><b>Click here<\/b><\/a> for create wise account and send money worldwide.<\/p>","texts":[]}},"91370":{"commission":{"is_enabled":0,"fixed":0,"percent":0,"type":"extra_fee_enabled","extrafee":"Extra fee","total":"Total"},"instruction":{"label":"Instruction","name":"instruction","type":"container","value":"<p style=\"text-align: justify;\"><b>Contact ticket<\/b><\/p>","texts":[]}},"175498":{"commission":{"is_enabled":0,"fixed":0,"percent":0,"type":"extra_fee_enabled","extrafee":"Extra fee","total":"Total"},"instruction":{"label":"Instruction","name":"instruction","type":"container","value":"<p><img src=\"https:\/\/storage.perfectcdn.com\/ob5eq3\/etdtnzyz7dmcbdc4.svg\" class=\"img-responsive\" style=\"display: inline-block; width: 50%; max-width: 100%;\"><\/p><p><br><\/p><p>Redotpay ID : <b>1676655837<\/b><\/p><p><b><br><\/b><\/p><p>Pay here and share details on <a href=\"https:\/\/smmxz.com\/tickets\" target=\"_blank\"><b>Ticket<\/b><\/a> or <b><a href=\"https:\/\/t.me\/smmXZpanel\" target=\"_blank\">Telegram<\/a><\/b><\/p>","texts":[]}}},"amountOptions":[],"amountCurrencyOptions":[],"convertAmountOptions":{"panel_currency":"USD","method_currencies":{"178070":"BDT"},"currency_rates":{"BDT":{"result_currency":"BDT","source_rate":"1.00000","result_rate":"121.42991"}},"precision":4},"options":{"manual_244":{"code":"manual_244","type":64408},"manual_246":{"code":"manual_246","type":65139},"manual_275":{"code":"manual_275","type":91370},"manual_276":{"code":"manual_276","type":175498}},"su":false};
+                			</script>
+					<script type="text/javascript" >
+				                window.modules.alerts = {"alerts":[]};
+                			</script>
+					<script type="text/javascript" >
+							</script>
+		
+        <!-- Footer Scripts -->
+                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+                <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+              
+        
+
+                        
+        

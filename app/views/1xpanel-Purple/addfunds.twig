@@ -1,0 +1,655 @@
+{% include 'header.twig' %}
+<script>
+function closeModal(btn) {
+  let modal = btn.closest(".modal");
+  if (modal) {
+    modal.remove(); // completely remove from DOM
+  }
+}
+</script>
+
+<style>
+/* Divider line */
+.modal-divider {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin: 0.75rem 0 1.25rem;
+}
+
+/* Custom Modal */
+.custom-modal .modal-content {
+  border-radius: 1.25rem;
+  border: none;
+  background: #fff;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+.instructions {
+  font-size: 0.9rem;
+  color: #374151;
+  background: #fafafa;
+  border-radius: 14px;
+  padding: 0.85rem;
+  margin-bottom: 1rem;
+  border: 1px solid #eee;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);
+}
+/* Header */
+.modal-header {
+  border: none;
+}
+
+.modal-title {
+  font-weight: 700;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #7e22ce;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  color: #444;
+  transition: 0.3s;
+}
+
+.btn-close:hover {
+  color: #7e22ce;
+  transform: scale(1.2);
+}
+
+/* Stepper */
+.stepper {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.step {
+  background: #f3f4f6;
+  color: #555;
+  padding: 0.45rem 1rem;
+  border-radius: 12px 30px 12px 30px; /* Unique futuristic shape */
+  font-size: 0.85rem;
+  border: 1px solid #e5e7eb;
+  transition: 0.3s;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+}
+
+.step.active {
+  background: #7e22ce;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.step.done {
+  background: #a855f7;
+  color: #fff;
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+
+
+/* Info Boxes */
+.info-box {
+  background: #f9fafb;
+  border-left: 4px solid #7e22ce;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.info-box.warning {
+  border-left-color: #f59e0b;
+}
+
+/* QR Code */
+.qr-code {
+  width: 160px;
+  margin: 1rem auto;
+  border-radius: 20px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+/* Instructions */
+.instructions {
+  font-size: 0.9rem;
+  color: #374151;
+  background: #fff;
+  border-radius: 14px;
+  padding: 0.85rem;
+  margin-bottom: 1rem;
+  border: 1px solid #eee;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);
+}
+
+/* Unique Futuristic Buttons */
+.btn-submit {
+  display: block;
+  width: 100%;
+  background: #7e22ce;
+  color: #fff;
+  border: none;
+  padding: 1rem;
+  border-radius: 18px 40px 18px 40px; /* asymmetrical futuristic shape */
+  font-weight: 600;
+  font-size: 1rem;
+  transition: 0.3s;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.btn-submit:hover {
+  background: #9333ea;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
+/* Status box */
+.status-box {
+  font-size: 0.9rem;
+  background: #fafafa;
+  padding: 1rem;
+  border-radius: 14px;
+  margin: 1rem 0;
+  border: 1px solid #eee;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+}
+</style>
+
+    <script>
+    document.getElementById("submitFinalPayment").addEventListener("click", function() {
+        var form = document.getElementById("finalPaymentForm");
+        var formData = new FormData(form);
+
+        fetch("/addfunds", {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            let msgBox = document.getElementById("finalPaymentMsg");
+            if (data.success) {
+                // Countdown for 10 minutes
+                let timeLeft = 600; // 600 seconds = 10 minutes
+                let countdown = setInterval(() => {
+                    let mins = Math.floor(timeLeft / 60);
+                    let secs = timeLeft % 60;
+                    msgBox.innerHTML = `
+                        <div class="alert alert-success">
+                          ${data.message}<br>
+                          Please wait <b>${mins}:${secs.toString().padStart(2,"0")}</b> for admin approval.
+                        </div>`;
+                    if (timeLeft <= 0) {
+                        clearInterval(countdown);
+                        msgBox.innerHTML = `<div class="alert alert-info">⏳ Still pending... please refresh to check status.</div>`;
+                    }
+                    timeLeft--;
+                }, 1000);
+                form.reset();
+            } else {
+                msgBox.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
+            }
+        })
+        .catch(() => {
+            document.getElementById("finalPaymentMsg").innerHTML = `<div class="alert alert-danger">Request failed.</div>`;
+        });
+    });
+    </script>
+<main>
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-lg-6">
+            <div class="page overflow-hidden">
+               <div class="page-body pb-4 pb-xl-6 mt-4">
+                  <div class="card mb-2">
+                     <div class="card-head d-flex align-items-center justify-content-between">
+                        <div class="card-head-title">
+                           <div class="row align-items-center">
+                                 <div class="col-auto">
+                                    <div class="card-head-icon">
+                                       <i class="ri-wallet-3-line"></i>
+                                    </div>
+                                 </div>
+                                 <div class="col">
+                                    <h4>Add funds</h4>
+                                 </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="card-body pt-3 pb-3">
+    <h6 class="pt-3">Select your preferred payment option.</h6>
+    <div class="payment-list" id="method-drop"></div>
+
+    <div class="payment-page-bottom">
+        <div id="addfundsForm">
+            <div class="payment-page-left-content"></div>
+            <div class="payment-page-left">
+                <div class="payment-left-span">
+                    <span class="payment-title">
+                        <i class="ri-wallet-3-line"></i> Add funds
+                    </span>
+                    <button type="button" class="payment-close" onclick="closePayment();">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="form-group">
+                    <label for="payment_method" class="control-label">
+                        {{ lang['addfunds.method'] }}
+                    </label>
+                    <select class="form-control" id="payment_method" name="payment_type" onchange="setChanceAmount()">
+                        {% for method in site["paymentMethods"] %}
+                            <option value="{{ method['id'] }}">{{ method['name'] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Extra dynamic fields -->
+                <div id="addfunds_fields"></div>
+<script>
+function openPaymentPopup() {
+    let popup = document.getElementById("topUpPopup");
+    if (popup) {
+        popup.style.display = "block";
+        popup.classList.add("show");
+    }
+}
+
+function closePaymentPopup() {
+    let popup = document.getElementById("topUpPopup");
+    if (popup) {
+        popup.style.display = "none";
+        popup.classList.remove("show");
+    }
+}
+
+// Example: open popup only when Pay button is clicked
+document.getElementById("openTopUpBtn").addEventListener("click", function() {
+    openPaymentPopup();
+});
+</script>
+
+
+
+
+
+<style>
+.payment-popup {
+    display: none;               /* hidden by default */
+    position: fixed;             /* stay in place */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1050;               /* always on top */
+}
+.payment-popup-content {
+    position: relative;
+    margin: 50px auto;
+    max-width: 600px;
+  width: 100%;
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 10000;
+}
+
+
+
+.payment-popup-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+
+/* 📱 Mobile adjustments */
+@media (max-width: 576px) {
+  .payment-popup-content {
+    max-width: 90%;
+    transform: scale(0.95);  /* make slightly smaller */
+  }
+  .payment-popup-content .card {
+    border-radius: 12px;
+  }
+}
+
+</style>
+
+                <!-- CSRF -->
+                <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+
+                <!-- Response messages -->
+                <div id="formSubmitResponseMessage"></div>
+                <div id="formSubmitResponseContent"></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+                  </div>
+               </div>
+            </div> 
+         </div>
+         </div> 
+         <div class="col-lg-6">
+  <div class="page overflow-hidden">
+    <div class="page-body pb-4 pb-xl-6 mt-4">
+      <div class="card mb-2">
+        
+        <!-- Unified Card Head -->
+        <div class="card-head d-flex align-items-center justify-content-between">
+          <div class="card-head-title">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <div class="card-head-icon">
+                  <i class="ri-bill-line"></i>
+                </div>
+              </div>
+              <div class="col">
+                <h4>Payment History</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body pt-3 pb-3" style="max-height: 550px; overflow-y: auto;">
+          {% if payments %}
+            <!-- Desktop Table -->
+            <div class="table-responsive d-none d-md-block">
+              <table class="table align-middle table-hover">
+                <thead class="table-light">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Method</th>
+                    <th scope="col">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for payment in payments %}
+                    <tr>
+                      <td class="fw-medium">{{ payment['id'] }}</td>
+                      <td>{{ payment['date'] }}</td>
+                      <td>
+                        <span class="badge bg-light text-dark px-3 py-2 rounded-pill">
+                          {{ payment['name'] }}
+                        </span>
+                      </td>
+                      <td class="fw-semibold text-success">
+                        {{ payment['amount'] }}
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Mobile View -->
+            <div class="d-md-none">
+              {% for payment in payments %}
+                <div class="border rounded-3 p-3 mb-2 shadow-sm bg-light">
+                  <div class="d-flex justify-content-between">
+                    <span class="fw-semibold text-muted">ID:</span>
+                    <span>{{ payment['id'] }}</span>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <span class="fw-semibold text-muted">Date:</span>
+                    <span>{{ payment['date'] }}</span>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <span class="fw-semibold text-muted">Method:</span>
+                    <span class="badge bg-light text-dark px-2 py-1 rounded-pill">{{ payment['name'] }}</span>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <span class="fw-semibold text-muted">Amount:</span>
+                    <span class="fw-semibold text-success">${{ payment['amount'] }}</span>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <!-- Empty State -->
+            <div class="text-center py-5">
+              <div class="mb-3 text-muted" style="font-size: 3rem;">
+                <i class="ri-error-warning-line"></i>
+              </div>
+              <p class="mb-0 text-secondary">
+                {% if user['lang'] == "ar" %}
+                  ليس لديك أي دفعة في نظامنا.
+                {% else %}
+                  You don’t have any payment in our system.
+                {% endif %}
+              </p>
+            </div>
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+         </div>
+      </div>
+   </div>
+  
+</main>
+
+<script>
+  function setPayment() {
+      $("#method-drop").empty(), $("#method option").each(function () {
+         if ("hidden" != $(this).attr("data-show")) {
+            var e = $(this).val(),
+                t = $(this).text();
+            paymentname = t.toLowerCase();
+           
+             console.log(paymentname)
+           
+            var a = "";
+            paymentname.includes("cryptomus") ? a += '<img src="https://storage.perfectcdn.com/a3vltc/wqxi1zbut68hcfo5.png"><div class="payment-alt"><img src="https://storage.perfectcdn.com/8qgzit/1pii39zyjr4jd72l.png"><img src="https://storage.perfectcdn.com/8qgzit/tmp53ie8gbcdbqt2.png"><img src="https://storage.perfectcdn.com/8qgzit/lekzqi4ishu2ytlu.png"><img src="https://storage.perfectcdn.com/8qgzit/jx4gom2mxi186ljk.png"><img src="https://storage.perfectcdn.com/8qgzit/mhitlml1runoy2kj.png"></div>' : paymentname.includes("payeer") ? a += '<img src="https://storage.perfectcdn.com/a3vltc/l3f02zcjqnx2n3q9.png"><div class="payment-alt"><img src="https://storage.perfectcdn.com/8qgzit/2pdkzfy1l8kyu36s.png"></div>' : paymentname.includes("nowpayments") ? a += '<img src="https://storage.perfectcdn.com/a3vltc/hj8nfpnyg2qx85mb.png"><div class="payment-alt"><img src="https://storage.perfectcdn.com/8qgzit/1pii39zyjr4jd72l.png"><img src="https://storage.perfectcdn.com/8qgzit/tmp53ie8gbcdbqt2.png"><img src="https://storage.perfectcdn.com/8qgzit/lekzqi4ishu2ytlu.png"><img src="https://storage.perfectcdn.com/8qgzit/jx4gom2mxi186ljk.png"><img src="https://storage.perfectcdn.com/8qgzit/mhitlml1runoy2kj.png"></div>' : paymentname.includes("perfect") ? a += '<img src="https://storage.perfectcdn.com/a3vltc/s3mh0usz4ao72dwm.png"><div class="payment-alt"><img src="https://storage.perfectcdn.com/8qgzit/bd5hywtjok37eoba.png"></div>' : paymentname.includes("usdt") ? a += '<img src="https://storage.perfectcdn.com/a3vltc/col2agr5niqobksd.png"><div class="payment-alt"><img src="https://storage.perfectcdn.com/a3vltc/rh5dlerh0qnxz50d.png"></div>' : paymentname.includes("heleket") ? a += '<img src="https://storage.perfectcdn.com/a3vltc/5tul7arwz8im2qgb.png"><div class="payment-alt"><img src="https://storage.perfectcdn.com/8qgzit/1pii39zyjr4jd72l.png"><img src="https://storage.perfectcdn.com/8qgzit/tmp53ie8gbcdbqt2.png"><img src="https://storage.perfectcdn.com/8qgzit/lekzqi4ishu2ytlu.png"><img src="https://storage.perfectcdn.com/8qgzit/jx4gom2mxi186ljk.png"><img src="https://storage.perfectcdn.com/8qgzit/mhitlml1runoy2kj.png"></div>' : paymentname.includes("vip") ? a += '<img src="https://storage.perfectcdn.com/a3vltc/izzfrhbi1j319cph.png"><div class="payment-alt"><img src="https://storage.perfectcdn.com/a3vltc/0onuncnfdjuyjrcs.png"></div>' : a += '<img src="https://storage.perfectcdn.com/a3vltc/ixwypo0rhyhq4aca.png">', $("#method-drop").append(`<div class="payment-box slct${e}" onclick="selectPayment(${e})" data-payment-name="${t}" data-payment-id="${e}"><div class="payment-top"><div class="payment-icon">${a}</div></div><div class="pay-best">Best Option</div></div>`)
+         }
+      });
+      var e = document.getElementById("method"),
+          t = e.options[e.selectedIndex].text;
+      $("#method-drops").html(t)
+   }
+
+   function setAmount(e) {
+      document.getElementById("amount").value = e, setChanceAmount()
+   }
+
+   function setChanceAmount() {
+      var e = document.getElementById("amount").value,
+         t = (document.getElementById("guncelbakiye").value, document.getElementById("last_amount"), $("#method option:selected").text());
+      paymentname = t.toLowerCase()
+   }  
+  
+   function selectPayment(e) {
+   $("#method").val(e), $("#method").trigger("change"), $("#method-drops").html($("#method option[value='" + e + "']").text()), setPayment(), $(".slct" + e).css({"border-color": "var(--color-6)", "background": "var(--color-8)"});
+     openPayment()
+   }
+   setPayment(), setChanceAmount(), setMethodName = function (e) {
+      e.innerText || e.textContent
+   }
+</script>
+<script>
+function openPayment() {
+   var paymentLeft = document.querySelector(".payment-page-left");
+   var paymentLeftContent = document.querySelector(".payment-page-left-content");
+   paymentLeft.classList.add("active");
+   paymentLeftContent.classList.add("active");
+}
+
+function closePayment() {
+   var paymentLeft = document.querySelector(".payment-page-left");
+   var paymentLeftContent = document.querySelector(".payment-page-left-content");
+   paymentLeft.classList.remove("active");
+   paymentLeftContent.classList.remove("active");
+}
+</script>
+<input type="hidden" value="0" id="guncelbakiye">
+
+<script>
+    $('.payment-box:first-child').addClass('active');
+    $('.payment-box').click(function () {
+        $(this).addClass('active');
+        return false;
+    });
+</script>
+{% include 'footer.twig' %}
+
+<script>
+    var paymentMethods = {{ site["paymentMethodsJSON"] }};
+    const addfundsRoute = "/addfunds";
+
+    function addfundsInit() {
+  var fields = $("#addfunds_fields");
+  var selectedMethod = $("#payment_method").val();
+  var instructions = paymentMethods[selectedMethod][0].instructions;
+
+  $.ajax({
+    url: addfundsRoute,
+    data: { action: "getForm", selectedMethod: selectedMethod },
+    type: "POST",
+    dataType: "json",
+    success: function (json) {
+      if (json.success === true) {
+        let methodInstruction = "";
+        if (instructions.length > 0) {
+          methodInstruction =
+            '<div class="form-group">' +
+              '<label class="control-label">Instructions</label>' +
+              '<div class="panel-body border-solid border-rounded">' +
+                instructions +
+              "</div></div>";
+        }
+        $("#addfunds_fields").html(methodInstruction + json.content); // injects HTML
+        extraFeeInit(selectedMethod);
+      }
+    }
+  });
+}
+
+    function extraFeeInit(method) {
+        var fee = parseFloat(paymentMethods[method][0].fee).toFixed(2);
+        var fields = $("#fee_fields");
+        if (fee > 0) {
+            fields.html(
+                '<div class="form-group">' +
+                '<label class="control-label">Extra fee</label>' +
+                '<input type="text" class="form-control" id="methodExtraFee" disabled value="0.00"/>' +
+                '</div><div class="form-group">' +
+                '<label class="control-label">Total Amount</label>' +
+                '<input type="text" id="totalAmount" class="form-control" disabled value="0.00" />' +
+                "</div>"
+            );
+        }
+    }
+
+    function preparePrice(t) {
+        n = 2;
+        var r = (t = $.trim(t.toString().replace(",", "."))).split(".");
+        if (r[1] !== undefined) {
+            r[1] = r[1].replace(/0+$/g, "");
+            if (r[1].length > n) {
+                n = r[1].length > 2 ? 2 : r[1].length;
+            }
+        }
+        t = parseFloat(t).toFixed(n);
+        if (t >= 1000) {
+            t = t.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, "$1");
+        }
+        return parseFloat(t).toFixed(n);
+    }
+
+    $(document).ready(function () {
+        // recalc fees on amount input
+        $(document).on("keyup", "#paymentAmount", function () {
+            var selectedMethod = $("#payment_method").val();
+            var amount = parseFloat($(this).val());
+            var feePercentage = parseFloat(paymentMethods[selectedMethod][0].fee);
+            var feeInput = $("#methodExtraFee");
+            var totalAmountInput = $("#totalAmount");
+            var fee = amount * (feePercentage / 100);
+            feeInput.val(preparePrice(fee));
+            totalAmountInput.val(preparePrice(amount + fee));
+        });
+
+        // init on load
+        addfundsInit();
+
+        // change method -> reload form
+        $("#payment_method").change(function () {
+            addfundsInit();
+        });
+
+        // handle main form submit (step 1)
+        $("#addfundsForm").submit(function (e) {
+            e.preventDefault();
+            var data = $(this).serialize();
+
+            $.ajax({
+                url: addfundsRoute,
+                data: data,
+                type: "POST",
+                dataType: "json", // ✅
+                success: function (json) {
+                    if (json.success === true) {
+                        $("#formSubmitResponseMessage").html(
+                            '<div class="alert alert-success mt-2">' +
+                            json.message +
+                            "</div>"
+                        );
+                        $("#formSubmitResponseContent").html(json.content);
+                    } else {
+                        $("#formSubmitResponseMessage").html(
+                            '<div class="alert alert-danger mt-2">' +
+                            json.message +
+                            "</div>"
+                        );
+                    }
+                }
+            });
+        });
+    });
+
+    // handle nested forms (stepper Next buttons)
+    document.addEventListener("submit", function(e) {
+  if (e.target.closest("#addfunds_fields form")) {
+    e.preventDefault();
+    let form = e.target;
+
+    $.ajax({
+      url: addfundsRoute,
+      method: "POST",
+      data: new FormData(form),
+      processData: false,
+      contentType: false,
+      dataType: "json",
+      success: function(json) {
+        if (json.success) {
+          $("#addfunds_fields").html(json.content); // renders the HTML for the next step
+        } else {
+          alert(json.message || "Something went wrong.");
+        }
+      }
+    });
+  }
+});
+</script>
+

@@ -1,0 +1,190 @@
+{% include"header.twig"%}
+		
+		
+		<div class="page-content">
+     <div class="page-container">
+          <div class="container-fluid">
+              <div class="row">
+                  <span class="page-title"><i class="fi fi-rr-bags-shopping"></i> Orders</span>
+                  <div class="col-md-12">
+                      <div class="page-search-r p-3">
+                    <div class="order_dropdown row">
+                   <div class="col-md-8">
+                    <div class="dropdown">
+                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ALL
+                         </a>
+                       
+                         <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuLink">
+                              <li class="active"><a class="dropdown-item"  href="orders">All</a></li>
+                              <li class=""><a class="dropdown-item"  href="/orders/pending">Pending</a></li>
+                              <li class=""><a class="dropdown-item"  href="/orders/processing">In Progress</a></li>
+                              <li class=""><a class="dropdown-item"  href="/orders/completed">Completed</a></li>
+                              <li class=""><a class="dropdown-item"  href="/orders/partial">Partial ( Means Remaining showing work  payment Refunded )</a></li>
+                              <li class=""><a class="dropdown-item"  href="/orders/canceled">Refunded</a></li>
+                         </div>
+               </div>
+                   </div>
+                         <div class="col-md-4">
+                              <div class="serach-box-input">
+                                   <form action="" method="get" id="history-search">
+                                       <input name="search" style="height:42px;" class="form-control" placeholder="Search orders" type="text">
+                                       <button type="submit" class="search-input-btn">
+                                        <i class="fas fa-search"></i>
+                                   </button>
+                                   </form>
+                               </div>
+                         </div>
+                      </div>
+                    
+                                </div>
+     
+<div  class="table-responsive table-responsive__search ">
+<table class="table">
+<thead>
+<tr>
+<th style="border-top-left-radius: 0px;">ID</th>
+												<th>Date</th>
+												<th>Link</th>
+												<th>Charge</th>
+												<th class="nowrap">Start count</th>
+												<th>Quantity</th>
+												<th>Service</th>
+												<th>Status</th>
+												<th>Remains</th>
+												<th>Complete details</th>
+<th style="border-top-right-radius: 0px;"> </th>
+																							</tr>
+										</thead>
+<tbody>
+
+
+            {% for order in orders %}
+
+              <tr>
+
+<td>
+<span id="order-{{ order['id'] }}">{{ order['id'] }}</span>
+        <a>
+            <span
+data-clip="true"
+title="Order ID copied"
+data-clipboard-action="copy"
+data-clipboard-target="#order-{{ order['id'] }}"
+class="fas fa-clone"></span>
+        </a>
+
+        
+{% if order['order_where'] == "api"  %}<a class="btn btn-actions">Api</a>{% endif %} </td>
+<td>{{ order['date'] }}</td>
+<td class="width-40"><a   target="_blank" href="{{ order['link'] }}">{{ order['link'] }}</a></td>
+<td><div style="width:90px;">{{order["charge"]}}</div></td>
+<td class="nowrap">{{ order['start_count'] }}</td>
+<td>{{ order['quantity'] }}</td>
+<td class="table-service">{{ order['service'] }}</td>
+<td>{{ order['status'] }}</td>
+<td>{{ order['remains'] }}</td>
+  {% if order.duration %}
+            <td style="margin-top: 5px; font-size: 12px;">
+                {{ order.duration }}
+            </td>
+        {% endif %}
+<td>
+{% if order["refillButton"] == "2" %}
+{% if order['status'] == "Completed"  %}
+
+{% if order['show_refill'] == "true"  %}
+<a href="orders/refill/{{order['id']}}" class="btn btn-sm refill-button">Refill</a>
+<br><br>
+{% endif %}
+{% endif %}
+{% endif %}
+{% if order["refillButton"] == "3" %}
+
+{% if order['status'] == "Completed"  %}
+
+{% if order['show_refill'] == "true"  %}
+
+  <button data-tippy-content="Refill will be available in {{order['refillTimeLeft']}}" class="btn btn-sm refill-button">Refill</button>
+{% endif %}
+{% endif %}
+{% endif %}
+{% if order["refillButton"] == "4" %}
+
+
+
+{% if order['status'] == "Completed"  %}
+
+{% if order['show_refill'] == "true"  %}
+<button type="button" class="btn btn-sm refill-button" disabled="true">{{"Refilling"}}</button>
+{% endif %}
+{% endif %}
+{% endif %}
+
+{% if order['cancelButton']   == true %}
+         
+
+
+                   <a href="orders/cancel/{{order['id']}}" class="btn btn-actions bg-danger">cancel</a>
+               {% endif %}
+
+                 </td>
+              </tr>
+            {% endfor %}
+
+
+</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+      {% if pagination["count"] > 1 %}
+        <ul class="pagination">
+
+          {% if pagination["current"] != 1 %}
+            <li>
+              <a class="btn btn-actions" href="orders/{{ status }}/{{ pagination["previous"] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Previous">
+<span aria-hidden="true">«</span>
+              </a>
+            </li>
+          {% endif %}
+
+          {% set r, l = 3, 3 %}
+
+          {% if pagination['current'] == 1 %}
+            {% set r = 7 %}
+          {% endif %}
+
+          {% if pagination['current'] == 2 %}
+            {% set r = 5 %}
+          {% endif %}
+
+          {% if pagination['current'] >= pagination['count'] %}
+            {% set l = 5 %}
+          {% endif %}
+
+          {% for page in 1..pagination["count"] %}
+            {% if page >= (pagination['current']-l) and page <= (pagination['current']+r) %}
+              <li{% if page == pagination['current'] %} class="active" {%endif%}><a class="btn btn-actions" 
+ href="orders/{{ status }}/{{ page }}{% if search %}?search={{ search }}{% endif %}">{{ page }}</a></li>
+            {%endif%}
+          {% endfor %}
+
+          {% if pagination['current'] < pagination['count'] %}
+            <li>
+              <a class="btn btn-actions" href="orders/{{ status }}/{{ pagination['next'] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Next">
+<span aria-hidden="true">»</span>
+              </a>
+            </li>
+          {% endif %}
+
+        </ul>
+      {% endif %}
+
+    </div>
+  
+	{% include"footer.twig" %}

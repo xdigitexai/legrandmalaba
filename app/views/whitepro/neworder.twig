@@ -1,0 +1,782 @@
+{% include 'header.twig' %}
+<style>
+#service_descriptions {
+   padding: 13px;
+    border-radius: 12px;
+    color: #393e46;
+    box-shadow: none;
+    background-color: #F1F7FC;
+     overflow-y: auto;
+    height: 150px; 
+}
+</style>
+
+  <style>
+.service-dashboard {
+    background-color: #f9f9f9; /* Light background */
+    border: 1px solid #e0e0e0; /* Softer border */
+    padding: 1rem; /* Use rem for better scalability */
+    margin-top: 1.25rem; /* Use rem for better scalability */
+    border-radius: 0.5rem; /* Rounded corners */
+    box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-height: 250px; /* Set a max height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.service-dashboard h4 {
+    font-size: 1.125rem; /* Use rem for better scalability */
+    color: #333; /* Dark text */
+    margin-bottom: 0.625rem; /* Use rem for better scalability */
+    border-bottom: 2px solid #000; /* Bottom border */
+    padding-bottom: 0.3125rem; /* Use rem for better scalability */
+}
+
+.service-dashboard ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+.service-dashboard li {
+    background-color: #fff; /* White background */
+    border: 1px solid #e0e0e0; /* Border for items */
+    border-radius: 0.3125rem; /* Rounded corners */
+    padding: 0.5rem; /* Use rem for better scalability */
+    margin: 0.3125rem 0; /* Use rem for better scalability */
+    transition: background-color 0.2s; /* Smooth background color change */
+}
+
+.service-dashboard li:hover {
+    background-color: #f0f0f0; /* Change background on hover */
+}
+
+.service-dashboard li::before {
+    content: "✔️"; /* Checkmark */
+    margin-right: 0.3125rem; /* Space between icon and text */
+    color: #007bff; /* Checkmark color */
+}
+</style>
+		<!-- Main variables *content* -->
+<div class="col-md-12">
+  {% if settings['video_feilds']  ==  1 %} 
+               <div id="block_134">
+        <div class="block-bg"></div>
+        <div class="container">
+            <div class="video">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="video-container">
+                            <div class="video-block">
+                                <div class="video-frame">
+                                    <iframe src="{{ site['site_video'] }}?controls=1&autoplay=1&mute=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+<style>
+  #block_134 {
+    position: relative;
+    z-index: auto;
+    width: 100%;
+    display: flex;
+    min-height: auto;
+    align-items: flex-start;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: var(--text-dark);
+}
+
+#block_134 .block-bg {
+    background: var(--color-id-131);
+}
+
+#block_134 .video-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#block_134 .video-block {
+    max-width: 800px; /* Maximum width for larger screens */
+    width: 100%; /* Full width for smaller screens */
+    height: 0; /* Set height to 0 for aspect ratio */
+    padding-top: 30%; /* 16:9 Aspect Ratio */
+    position: relative; /* Position relative for absolute children */
+    overflow: hidden; /* Hide overflow */
+}
+
+#block_134 .video-block .video-frame {
+    position: absolute; /* Position absolute to fill the parent */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: none;
+    border-radius: 4px; /* Rounded corners */
+    border: 3px solid var(--color-id-158); /* Border color */
+}
+
+#block_134 .video-block iframe {
+    position: absolute; /* Position absolute to fill the frame */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    border: none; /* Remove default border */
+}
+
+/* Responsive styles */
+@media (max-width: 499px) {
+    #block_134 .video-block {
+        padding-top: 56.25%; /* Maintain aspect ratio */
+    }
+}
+</style>
+
+			<style>
+.border-rounded {
+    background-color: transparent;
+}
+.order-success-card {
+
+    width:380px;
+
+    background-color: #fff;
+    border-radius:10px;
+    position: fixed;
+    top:0;
+    left:50%;
+    padding:0 30px 30px;
+    
+    color:#333;
+    transform: translate(-50%,-50%) scale(0.1);
+    visibility: hidden;
+    transition :transform 0.4s,top 0.4s;
+    box-shadow:0 20px 50px rgba(0,0,0,0.2);
+    z-index:9999;
+    font-family: sans-serif;
+}
+.order-success-card-active {
+    visibility:visible;
+    top:50%;
+    transform: translate(-50%,-50%) scale(1);
+}
+
+.order-success-card img {
+    width:100px;
+    margin-top: -50px;
+    border-radius:50%;
+    box-shadow : 0 2px 5px rgba(0,0,0,0.2);
+}
+.order-success-card h2 {
+    font-size: 20px;
+    font-weight:500;
+    margin : 30px 0 10px;
+    text-align:center;
+    font-family: fantasy;
+    
+}
+.order-success-card button {
+    width:100%;
+    margin-top:20px;
+    padding:10px 0;
+    background: #6fd649;
+    outline:none;
+    border:0;
+    border-radius:6px;
+    font-size:18px;
+    cursor:pointer;
+    box-shadow : 0 5px 5px rgba(0,0,0,0.2);
+}
+.order-success-card .order-details p {
+    padding:10px;
+}
+.order-success-card .order-details .paid-amount {
+    float:left;
+    background-color: rgba(120, 67, 219,0.2);
+    padding : 4px;
+    border-radius: 4px;
+    margin-left:-10px;
+}
+.order-success-card .order-details .quantity {
+    float:right;
+    background-color:rgba(224, 20, 76,0.2);
+    padding : 4px;
+    border-radius: 4px;
+    margin-right:-10px;
+}
+.order-success-card .user-details {
+padding:10px;
+background: rgba(111, 214, 73,0.2);
+margin-top:25px;
+border-radius: 4px;
+}
+.dropdown-menu.open {
+    max-width: 100%;
+    position: inherit;
+}
+.open>.dropdown-menu {
+    display: block;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    background-clip: padding-box;
+}
+.btn-default {
+    color: #000;
+    background-color: #fff;
+    border-color: #25aae1;
+    padding: 12px 12px;
+}
+.img-responsive {
+    max-width: calc(1em + 3px);
+    max-height: calc(1em + 3px);
+}
+.bootstrap-select .dropdown-menu li a span.text {
+    word-wrap: break-word;
+    white-space: break-spaces;
+}
+.btn-default .badge {
+    color: #f5f5f5;
+    background-color: #111;
+}
+.badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #f15f23;
+    border-radius: 10px;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    line-height: 1.5;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    padding: 1rem;
+}
+.service_cat_header {
+    background: rgba(7, 238, 255, 1);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 16px;
+}
+.particle-snow{position:fixed;top:0;left:0;width:100%;height:100%;z-index:999;pointer-events:none}.particle-snow canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none}.christmas-garland{text-align:center;white-space:nowrap;overflow:hidden;position:absolute;z-index:1;padding:0;pointer-events:none;width:100%;height:85px}.christmas-garland .christmas-garland__item{position:relative;width:28px;height:28px;border-radius:50%;display:inline-block;margin-left:20px}.christmas-garland .christmas-garland__item .shape{-webkit-animation-fill-mode:both;animation-fill-mode:both;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-name:flash-1;animation-name:flash-1;-webkit-animation-duration:2s;animation-duration:2s}.christmas-garland .christmas-garland__item .apple{width:22px;height:22px;border-radius:50%;margin-left:auto;margin-right:auto;margin-top:8px}.christmas-garland .christmas-garland__item .pear{width:12px;height:28px;border-radius:50%;margin-left:auto;margin-right:auto;margin-top:6px}.christmas-garland .christmas-garland__item:nth-child(2n+1) .shape{-webkit-animation-name:flash-2;animation-name:flash-2;-webkit-animation-duration:.4s;animation-duration:.4s}.christmas-garland .christmas-garland__item:nth-child(4n+2) .shape{-webkit-animation-name:flash-3;animation-name:flash-3;-webkit-animation-duration:1.1s;animation-duration:1.1s}.christmas-garland .christmas-garland__item:nth-child(odd) .shape{-webkit-animation-duration:1.8s;animation-duration:1.8s}.christmas-garland .christmas-garland__item:nth-child(3n+1) .shape{-webkit-animation-duration:1.4s;animation-duration:1.4s}.christmas-garland .christmas-garland__item:before{content:"";position:absolute;background:#222;width:10px;height:10px;border-radius:3px;top:-1px;left:9px}.christmas-garland .christmas-garland__item:after{content:"";top:-9px;left:14px;position:absolute;width:52px;height:18px;border-bottom:solid #222 2px;border-radius:50%}.christmas-garland .christmas-garland__item:last-child:after{content:none}.christmas-garland .christmas-garland__item:first-child{margin-left:-40px}
+.message {
+    padding:10px 20px;
+    
+    border-radius:5px;
+    background-color: rgba(0,0,0,0.1) ;
+}
+ .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+    background-color: #f15f23 ;
+}
+
+
+#service_description,
+		#service_avg_time {
+			padding: 13px;
+			border-radius: 10px;
+			color: #393e46;
+			box-shadow: 1px 1px 1px #F1F2F3;
+			background-color: #F1F2F3;
+		}
+		</style>
+
+  		<div class="hiddenTitle">
+	<div id="appTt">Welcome to {{ site["site_name"]  }}
+		<span class="danger-color">{{ user["username"]  }}!</span>
+	</div>
+	<div id="appTx">We're the best!</div>
+</div>
+<div class="appContent">
+      <marquee scrollamount="1" scrolldelay="10" truespeed="" style="text-align: start; color: #201f21; font-family: " lucida="" sans="" unicode";"="" bgcolor="#ffc107"><span style="font-weight: 700;">{{ site["site_marqueens"] }}
+</span></marquee>
+	<section class="mt-4 mb-4">
+		<div class="container">
+			<div class="nwoCard-row row row-cols-2 row-cols-md-2 row-cols-lg-4">
+				<div class="col">
+					<div class="card nwoCard">
+						<div class="card-body">
+							<div class="icon">
+								<i class="ri-money-dollar-circle-line"></i>
+							</div>
+							<div class="col-r">
+								<h3 class="title">Current Balance</h3>
+								<p class="value">{{ user["balance"] }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ./col -->
+				<div class="col">
+					<div class="card nwoCard">
+						<div class="card-body">
+							<div class="icon">
+								<i class="ri-money-dollar-circle-line"></i>
+							</div>
+							<div class="col-r">
+								<h3 class="title">Total Orders</h3>
+								<p class="value">{{totalorders}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ./col -->
+				<div class="col">
+					<div class="card nwoCard">
+						<div class="card-body">
+							<div class="icon">
+								<i class="ri-money-dollar-circle-line"></i>
+							</div>
+							<div class="col-r">
+								<h3 class="title">Spending</h3>
+								<p class="value"> {{ user["spent"] }} </p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ./col -->
+				<div class="col">
+					<div class="card nwoCard">
+						<div class="card-body">
+							<div class="icon">
+								<i class="ri-money-dollar-circle-line"></i>
+							</div>
+							<div class="col-r">
+								<h3 class="title">Status</h3>
+								<p class="value">
+									New
+																	</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ./col -->
+			</div>
+        
+          </div>
+      
+    <div class="text-center mb-3">
+                 <h5 class="text-primary text-small"style="color:red;">
+<br>       
+
+
+
+
+
+    </h5>
+			<!-- ./row -->
+		</div>
+	</section>
+	
+
+	
+	<section class="nwoMain mt-3">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 mb-4 mb-lg-0">
+					<div class="card">
+						<div class="card-header">
+							<div class="row align-items-center">
+								<div class="col">
+									
+								</div>
+								<div class="col-auto mt-4 mt-lg-0">
+									<ul class="nwoNav nav nav-tabs" role="tablist">
+										<li class="nav-item" role="presentation">
+											<button class="nwoNavLink active smmspot-newOrderBtn" data-bs-toggle="tab" d="newOrder-tab" data-bs-target="#newOrder" type="button" role="tab" aria-controls="newOrder" aria-selected="true">New Order</button>
+										</li>
+										<li class="nav-item" role="presentation">
+											<button class="nwoNavLink smmspot-favOrderBtn" data-bs-toggle="tab" id="favOrder-tab" data-bs-target="#favOrder" type="button" role="tab" aria-controls="favOrder" href="massorder" aria-selected="false">Mass order</button>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						
+					
+						     
+						<div class="card-body">
+							<div class="tab-content">
+								<div class="tab-pane active" id="newOrder" role="tabpanel" aria-labelledby="newOrder-tab">
+									<div class="smmspot-newOrderArea">
+										<div class="smmspot-orderFormContainer">
+											<form method="post" action="">
+											      <style>
+#unique-dropdown{max-height: 300px;border-radius: 8px;margin-top:8px;border-left-width: 0px;border-right-width: 0px;border-top-width: 0px;border-bottom-width: 0px;border-color: transparent;border-style: solid;box-shadow: 0 12px 24px 12px rgba(0, 0, 0, 0.2);overflow-y: auto;display: block;position: absolute;left:auto;max-width:100%;width: 86%;background:white;z-index: 1;}@media(min-width:776px){ #unique-dropdown{width: 93%;}}@media(min-width:991px){ #unique-dropdown{width: 92.4%;}}.selectme {padding: 3px 10px;cursor: pointer;list-style-type: none; }.selectme:hover {background-color: #f2f2f2;}.highlight {font-weight: bold; }.form-group .search-dropdown .input-wrapper .input-wrapper__prepend, .form-group .search-dropdown .input-wrapper .input-wrapper__append {position: absolute;background: none;border: none;top: 50%;transform: translateY(-50%);padding: 0px 15px;color: var(--form_group_icon_color);}.form-group .search-dropdown .input-wrapper .input-wrapper__prepend:hover, .form-group .search-dropdown .input-wrapper .input-wrapper__append:hover {opacity: 0.5;}.form-group .search-dropdown .input-wrapper .input-wrapper__prepend:hover, .form-group .search-dropdown .input-wrapper .input-wrapper__append:focus {outline:none;}.form-group .search-dropdown .input-wrapper .input-wrapper__append {font-size: 12px;right: 3px;display: none;}
+</style>
+
+
+ <div class="form-group">
+        <div class="search-dropdown" id="new-order-search" style="position: relative;" data-lang-placeholder="Search">
+            <div class="input-wrapper" style="position: relative;">
+                <button type="button" class="input-wrapper__prepend" onclick="focusInputField()"><span class="fas fa-search"></span></button>
+             <input style="padding-left:41px" type="text" class="form-control" id="unique-input" value="" placeholder="Search">
+             <button type="button" class="input-wrapper__append" onclick="clearInput()"><span class="fas fa-times"></span></button>
+            </div>
+        </div>
+        <div class="search-results" id="unique-dropdown" style="display: none;"></div>
+    </div>
+											   
+{% if error %}
+      <div class="alert alert-dismissible alert-danger">
+        {{ errorText }}
+      </div>
+    {% endif %}
+
+    {% if data["order"]["success"] == 1 %}
+									
+<!--	<div class="alert alert-success alert-dismissible" role="alert">
+														<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+															<span aria-hidden="true">×</span>
+														</button>
+														<h4>Your order received</h4> ID: {{data['order']['id']}}<br> Service: {{data['order']['service']}}
+							<br> Link: {{data['order']['link']}}<br> Quantity: {{data['order']['quantity']}}<br> Charge:
+																													<span data-toggle="tooltip" data-placement="top" title="">{{ data['order']['price'] }}</span>
+														<br> Balance:
+																													<span data-toggle="tooltip" data-placement="top" title=""> {{ data['order']['balance']}}</span>
+														<br>
+													</div>-->
+    {% endif %}
+<div class="mb-4">
+    
+    
+    
+   
+        
+														<label for="orderform-category" class="form-label">Category</label>
+														<select class="form-control" id="neworder_category" name="category" data-select="true" data-select-search="true" data-select-search-placeholder="Search" >
+
+{{ category_html_simplify }}
+
+	
+																
+																</select>
+													</div>
+																								<div class="mb-4">
+													<label for="neworder_services" class="control-label">Service</label>
+													<select class="form-control" id="neworder_services" name="services" data-select="true" data-select-search="true" data-select-search-placeholder="Search" ></select>
+												</div>
+
+
+											<div id="neworder_fields"></div>
+
+												<div class="mb-4">
+													<label for="charge" class="control-label">Charge</label>
+													<input type="text" class="form-control" id="charge" value="" readonly>
+												</div>
+
+																									<div class="row">
+														<div class="col-12 col-md-6 mb-4 mb-md-0">
+															<input type="hidden" name="_csrf" value="Xwp5VUlJpfRfCKb5-xGgFRh_kEqovdLhmtRTAkeM8WMraQMWHgCRlwxB1LWSI5NnXUrUZ53XhJKjizU3Nt-wEw==">
+															<button type="submit" class="btn btn-primary btn-100">Submit</button>
+														</div>
+														<div class="col-12 col-md-6">
+															<a href="/addfunds" class="btn btn-secondary btn-100">Add Funds</a>
+														</div>
+													</div>
+													
+</form>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane" id="favOrder" role="tabpanel" aria-labelledby="favOrder-tab">
+                  <div class="smmspot-favOrderArea"></div>
+                </div>
+							</div>	
+	
+																									
+																									
+							<!-- ./nwoTabs -->
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="card">
+							<div class="card-header">
+								<h2 class="card-title">
+									
+									
+									<span id="servname"></span>
+								</h2>
+								<p class="card-h-text"></p>
+							</div>
+							<div class="card-body">
+								<div class="row row-cols-md-2">
+								<div class="col mb-4">
+										<div class="form-label">Start Time</div>
+										<div class="nwoDeIt">
+											<div class="icon primary-bg">
+												<i class="ri-timer-flash-line"></i>
+											</div>
+											<div class="text" data-id="serviceStart"></div>
+										</div>
+									</div>
+									<!-- ./col (description item) -->
+								<div class="col mb-4">
+										<div class="form-label">Average Time</div>
+										<div class="nwoDeIt">
+											<div class="icon pink-bg">
+												<i class="ri-timer-line"></i>
+											</div>
+											<div class="text" id="s_time"></div>
+										</div>
+									</div>
+									<!-- ./col (description item) -->
+								<div class="col mb-4">
+										<div class="form-label">Speed</div>
+										<div class="nwoDeIt">
+											<div class="icon danger-bg">
+												<i class="ri-shield-flash-line"></i>
+											</div>
+											<div class="text" data-id="serviceSpeed"></div>
+										</div>
+									</div>
+									<!--./col (description item) -->
+									<div class="col mb-4">
+										<div class="form-label">Guarantee</div>
+										<div class="nwoDeIt">
+											<div class="icon success-bg">
+												<i class="ri-check-line"></i>
+											</div>
+											<div class="text" data-id="serviceRefill"></div>
+										</div>
+									</div>
+									<!-- ./col (description item) -->
+							</div>
+								<!--	 ./row -->
+							<div>
+									<div class="form-label">Description</div>
+									<div class="nwoDeIt description">
+										<div class="text" data-id=""><span id="description_new"></span></div>
+									</div> 
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- ./col (end) -->
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<style>
+	.hidden,
+	[hidden] {
+		display: none;
+	}
+</style>
+{% include 'footer.twig' %}
+<script>
+    /*
+    $(document).on('change','#neworder_category',function(){
+
+          $('#neworder_fields').hide();
+
+          while (1){
+              if($('#description')){
+                  $('#description').attr('style','display:none');
+                  $('#neworder_fields').show();
+                  $('#description_new').html($('#service_description').html());
+                  console.log('x');
+                  break;
+              }else{
+                  console.log('y');
+                  continue;
+              }
+          }
+
+            document.getElementById('description').addEventListener()
+
+        })
+        */
+
+    $(document).on('DOMSubtreeModified','#neworder_fields',function(){
+        $('#description').hide();
+        $('#description_new').html($('#service_description').html());
+    })
+  /*  $(document).on('DOMSubtreeModified','#order_link',function(){
+        console.log('x');
+       // $('#order_link').hide();
+        //$('#order_link').html('<div class="fg"><div class="fg-icon"><i class="far fa-link"></i></div><input class="fg-control" name="OrderForm[link]" value="" type="text" id="field-orderform-fields-link"></div></div></div>');
+    }) */
+    
+
+$(document).on('DOMSubtreeModified','#neworder_services',function(){
+        $('#s_name').html($('#neworder_services').find(":selected").html());
+    })
+
+
+function ikon(opt) {
+var ikon = "";
+if (opt.indexOf("Instagram") >= 0) {
+ikon = '<img src="https://cdn.mypanel.link/si46tw/akj2dlg0893li2ic.png" alt="" class="img-responsive btn-group-vertical" style="max-width: calc(1em + 10px); max-height: calc(1em + 10px); margin-right: 10px;">';
+  
+} else if (opt.indexOf("Facebook") >= 0) {
+ikon = '<img src="https://cdn.mypanel.link/si46tw/ni21xuu3n4a6r0if.png" alt="" class="img-responsive btn-group-vertical" style="max-width: calc(1em + 10px); max-height: calc(1em + 10px); margin-right: 10px;">';
+  
+} else if (opt.indexOf("YouTube") >= 0) {
+ikon = '<img src="https://cdn.mypanel.link/si46tw/3hxfpcmr6odceun7.png" alt="" [ Refill Guarantee ]" class="img-responsive btn-group-vertical" style="max-width: calc(1em + 10px); max-height: calc(1em + 10px); margin-right: 10px;">';
+  
+} else if (opt.indexOf("Twitter") >= 0) {
+ikon = '<img src="https://cdn.mypanel.link/si46tw/u658e5mcklnydog5.png" alt="" class="img-responsive btn-group-vertical" style="max-width: calc(1em + 10px); max-height: calc(1em + 10px); margin-right: 10px;">';
+    
+} else if (opt.indexOf("Telegram") >= 0) {
+ikon = '<img src="https://cdn.mypanel.link/si46tw/rhacs5djntmcr17b.png" alt="" class="img-responsive btn-group-vertical" style="max-width: calc(1em + 10px); max-height: calc(1em + 10px); margin-right: 10px;">';
+  
+} else if (opt.indexOf("Tik") >= 0) {
+ikon = '<img src="https://cdn.mypanel.link/si46tw/04u3rorjptffqax9.png" alt="" class="img-responsive btn-group-vertical" style="max-width: calc(1em + 10px); max-height: calc(1em + 10px); margin-right: 10px;">';
+  
+} else {
+ikon = '<img src="/assets/smmspot/assets/images/icons8-circled-z-24.png" alt="" class="img-responsive btn-group-vertical" style="max-width: calc(1em + 10px); max-height: calc(1em + 10px); margin-right: 10px;">';
+}
+return ikon;
+}
+
+  
+  
+  var categories = {{categories|json_encode()}};
+  
+  
+  
+  
+setTimeout(function () {
+                $('#neworder_services').trigger('change');
+                $('.nwoCtFlt').on('click', function() {
+                  
+                    category = $(this).data('id');
+                    
+                     var category_2 = null;
+                    if(category == 'instagram'){
+                            category_2 = "Ø§Ù†Ø³ØªØºØ±Ø§Ù…";
+                    }
+                    if(category == 'facebook'){
+                            category_2 = "ÙØ§ÙŠØ³Ø¨ÙˆÙƒ";
+                    }
+                    if(category == 'youtube'){
+                            category_2 = "ÙŠÙˆØªÙŠÙˆØ¨";
+                    }
+                    if(category == 'twitter'){
+                            category_2 = "ØªÙˆÙŠØªØ±";
+                    }
+                    if(category == 'tiktok'){
+                            category_2 = "ØªÙŠÙƒ ØªÙˆÙƒ";
+                    }
+                    if(category == 'telegram'){
+                            category_2 = "ØªÙ„ØºØ±Ø§Ù…";
+                    }
+                    
+                    
+                    $('#neworder_category').html("");
+                    categories.forEach(element => {
+                        if (category == "everything") {
+                            $('#neworder_category').append("<option value='" + element.category_id + "'>" + element.category_name + "</option>");
+                        } else if (category == "other") {
+                            if (!element.category_name.toLowerCase().includes("instagram") &&
+                                !element.category_name.toLowerCase().includes("facebook") &&
+                                !element.category_name.toLowerCase().includes("youtube") &&
+                                !element.category_name.toLowerCase().includes("twitter") &&
+                                !element.category_name.toLowerCase().includes("tiktok") &&
+                                !element.category_name.toLowerCase().includes("telegram")) {
+                                $('#neworder_category').append("<option value='" + element.category_id + "'>" + element.category_name + "</option>");
+                            }
+                        } else if (element.category_name.toLowerCase().includes(category) || element.category_name.toLowerCase().includes(category_2)) {
+                            $('#neworder_category').append("<option value='" + element.category_id + "'>" + element.category_name + "</option>");
+                        }
+                    });
+                    $('#neworder_category').trigger('change');
+                    setTimeout(function(){
+                        $(".smmspot-sb-dd-item").each(function() {
+                            var ico = ikon($(this).text());
+                            $(this).html(ico + $(this).text() );
+                            console.log($(this).text());
+                        });
+                    }, 500);
+                    setTimeout(function(){
+                        $(".smmspot-sb-selected").each(function() {
+                            var ico = ikon($(this).text());
+                            $(this).html(ico + $(this).text() );
+                            console.log($(this).text());
+                        });
+                    }, 500);
+                });
+            
+        }, 400);
+        
+</script>
+
+{% if data["order"]["success"] == 1 %}
+<div class="order-success-card" id="order-success-card">
+<center
+<img src="https://www.linkpicture.com/q/404-tick.png" alt="checkmark"></center>
+<h2>Your order has been placed.</h2>
+<div class="order-details">
+<p><span class="service-name">
+<b>Service :</b><br/>{{data['order']['service']}}</span></p>
+<p><span class="link"><b>Link :</b><br /><a href="{{data['order']['link']}}">{{data['order']['link']}}</a></span></p>
+<p><span class="paid-amount"><b>You paid :</b>  <span style="color:#7743DB">
+    {{ data['order']['price'] }}</span></span><span class="quantity"><b>Quantity :</b>  <span style="color:#E0144C">{{data['order']['quantity']}}</span></span></p>
+</div>
+<div class="user-details">
+<p>Order ID :  {{data['order']['id']}}</p>
+<p>Remaining balance :  
+{{ data['order']['balance']}}</p>
+</div>
+<a href="{{ site['url'] }}" ><button type="button">OK</button>
+</a>
+</div>
+
+
+</div>
+<script>
+
+setTimeout(function(){
+var el = $("#order-success-card");
+el.addClass("order-success-card-active");
+});
+
+</script>
+
+    {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<div class="wrapper-content__footer">
+   </div>
+  </div>
+
+
+</div></div></div></div></div>
+

@@ -1,0 +1,25 @@
+[18-Jan-2026 18:11:31 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'boostmmcmusicage_latest.api_keys' doesn't exist in /home/boostmmcmusicage/public_html/api/v2/index.php:21
+Stack trace:
+#0 /home/boostmmcmusicage/public_html/api/v2/index.php(21): PDO->prepare('\r\n    SELECT id...')
+#1 {main}
+  thrown in /home/boostmmcmusicage/public_html/api/v2/index.php on line 21
+[18-Jan-2026 18:11:33 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'boostmmcmusicage_latest.api_keys' doesn't exist in /home/boostmmcmusicage/public_html/api/v2/index.php:21
+Stack trace:
+#0 /home/boostmmcmusicage/public_html/api/v2/index.php(21): PDO->prepare('\r\n    SELECT id...')
+#1 {main}
+  thrown in /home/boostmmcmusicage/public_html/api/v2/index.php on line 21
+[18-Jan-2026 18:12:46 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'boostmmcmusicage_latest.api_keys' doesn't exist in /home/boostmmcmusicage/public_html/api/v2/index.php:21
+Stack trace:
+#0 /home/boostmmcmusicage/public_html/api/v2/index.php(21): PDO->prepare('\r\n    SELECT id...')
+#1 {main}
+  thrown in /home/boostmmcmusicage/public_html/api/v2/index.php on line 21
+[18-Jan-2026 18:12:50 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'boostmmcmusicage_latest.api_keys' doesn't exist in /home/boostmmcmusicage/public_html/api/v2/index.php:21
+Stack trace:
+#0 /home/boostmmcmusicage/public_html/api/v2/index.php(21): PDO->prepare('\r\n    SELECT id...')
+#1 {main}
+  thrown in /home/boostmmcmusicage/public_html/api/v2/index.php on line 21
+[18-Jan-2026 18:12:58 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'boostmmcmusicage_latest.api_keys' doesn't exist in /home/boostmmcmusicage/public_html/api/v2/index.php:21
+Stack trace:
+#0 /home/boostmmcmusicage/public_html/api/v2/index.php(21): PDO->prepare('\r\n    SELECT id...')
+#1 {main}
+  thrown in /home/boostmmcmusicage/public_html/api/v2/index.php on line 21

@@ -1,0 +1,370 @@
+{% include 'header.twig' %}
+
+<main class="main_content">
+
+
+                <div class="container-fluid">
+    <div class="row mb-3">
+        <div class="col-lg-4 col-md-4 col-12">
+            <div class="dashboard__items">
+                <div class="dash_left">
+                    <h5>Your Level</h5>
+                    <p>
+                                                VIP
+                                            </p>
+                </div>
+                <div class="dash_right">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-12">
+            <div class="dashboard__items">
+                <div class="dash_left">
+                    <h5>Your Balance</h5>
+                    <p>{{ user["balance"] }} </p>
+                </div>
+                <div class="dash_right">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-12">
+            <div class="dashboard__items">
+                <div class="dash_left">
+                    <h5>Your Spent</h5>
+                    <p> {{ user["spent"] }} </p>
+                </div>
+                <div class="dash_right">
+                    <i class="fas fa-comments-dollar"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-12 col-12 mb-5">
+            <div class="card card_type_3 h-100">
+                <div class="card-header">
+                    <div class="account_card_head">
+                        <h4>ACCOUNT STATUS</h4>
+                        <div class="account__status">
+                                                        $ 0 Spent | VIP Account
+                                                    </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-2 border-dashed-bottom">
+                        <div class="d-flex align-items-center pb-2">
+                            <h5 class="account_benifits_text">Account Benifits </h5>
+                            <a href="javascript:void(0)" class="btn btn-primary btn-sm btn__status"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">Others Status Benifits</a>
+                        </div>
+                    </div>
+                    <ul class="dashboard_list">
+                                                <li>🔥24/7 Tickets Support</li>
+                        <li>🔥1% Redeem Point ( Spend 1$ = 1 Points )</li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-12 mb-5">
+            <div class="card card_type_3 h-100">
+                <div class="card-header">
+                    <div class="account_card_head">
+                        <h4>ACCOUNT SPENDING</h4>
+                        <div class="account__status">
+                            $ 0
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="dashboard_list">
+                        <li class="list_item">
+                            <span>MASTER</span> <span>==></span> <span>$50K+ (100 points = 3$)</span> 
+                        </li>
+                        <li class="list_item">
+                            <span>VIP</span> <span>==></span> <span>$25K+ (100 points = 2.00$)</span> 
+                        </li>
+                        <li class="list_item">
+                            <span>ELITE</span> <span>==></span> <span>$5K+ (100 points = 1.75$)</span> 
+                        </li>
+                        <li class="list_item">
+                            <span>REGULAR</span> <span>==></span> <span>$500+ (100 points = 1.50$)</span> 
+                        </li>
+                        <li class="list_item">
+                            <span>JUNIOR</span> <span>==></span> <span>$100+ (100 points = 1.25$)</span> 
+                        </li>
+                        <li class="list_item">
+                            <span>NEW</span> <span>==></span> <span>$0+ (100 points = 1.00$)</span> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+            <div class="card card_type_3 mb-5">
+                <div class="card-header">
+                    <div class="account_card_head">
+                        <h4>ACCOUNT POINTS </h4>
+                        <div class="account__status">
+                            <strong id="points">0</strong> ≈
+                            $<strong id="point_balance">--</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="dashboard_list">
+                        <li>- You earn points by ordering. Each 1$ spent by you = 1 point.</li>
+                        <li>- Each 100 points = 1$ up to 3$ depending on your Account status.</li>
+                        <li>- You cannot redeem less than 100 points.</li>
+                        <li>- To convert your point into funds, you must open a ticket and choose the subject "Points"
+                            and
+                            write down "Redeem All".</li>
+                        <li>- To prevent spam, it will take a minimum of 3 days to convert your points into funds, and
+                            up
+                            to 7 days!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <ul class="nav nav-pills mb-3 account_status_btns" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-new-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-new" type="button" role="tab" aria-controls="pills-new"
+                                aria-selected="true">
+                                <i class="fas fa-star"></i>
+                                NEW
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-junior-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-junior" type="button" role="tab" aria-controls="pills-junior"
+                                aria-selected="false">
+                                <i class="fas fa-child"></i>
+                                JUNIOR
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-regular-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-regular" type="button" role="tab" aria-controls="pills-regular"
+                                aria-selected="false">
+                                <i class="fad fa-user-astronaut"></i>
+                                REGULAR
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-elite-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-elite" type="button" role="tab" aria-controls="pills-elite"
+                                aria-selected="false">
+                                <i class="fas fa-badge-sheriff"></i>
+                                ELITE
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-vip-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-vip" type="button" role="tab" aria-controls="pills-vip"
+                                aria-selected="false">
+                                <i class="fas fa-chess-king"></i>
+                                VIP
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-master-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-master" type="button" role="tab" aria-controls="pills-master"
+                                aria-selected="false">
+                                <i class="fas fa-crown"></i>
+                                MASTER
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="tab-content account_status_content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-new" role="tabpanel"
+                            aria-labelledby="pills-new-tab" tabindex="0">
+                            <ul class="user_popup_benifits">
+                                <li>🔥24/7 Tickets Support</li>
+                                <li>🔥1% Redeem Point ( Spend 1$ = 1 Points )</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="pills-junior" role="tabpanel" aria-labelledby="pills-junior-tab"
+                            tabindex="0">
+                            <ul class="user_popup_benifits">
+                                <li>🔥24/7 Tickets Support</li>
+                                <li>🔥1.25% Redeem Point ( Spend 1$ = 1 Points )</li>
+                                <li>🔥Child Panel - Discount ( 50% Discount for 1st month bill )</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="pills-regular" role="tabpanel"
+                            aria-labelledby="pills-regular-tab" tabindex="0">
+                            <ul class="user_popup_benifits">
+                                <li>🔥24/7 Tickets Support</li>
+                                <li>🔥1% Redeem Point ( Spend 1$ = 1 Points )</li>
+                                <li>🔥Up to 5% Payments Bonus</li>
+                                <li>🔥Free Child Panel ( 1st Month Free )</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="pills-elite" role="tabpanel" aria-labelledby="pills-elite-tab"
+                            tabindex="0">
+                            <ul class="user_popup_benifits">
+                                <li>🔥24/7 Tickets Support</li>
+                                <li>🔥Up to 5% Payments Bonus</li>
+                                <li>🔥Each 100 points = 1.75$</li>
+                                <li>🔥Free Child Panel - Lifetime (Min 500$ spend per month)</li>
+                                <li>🔥Priority Tickets Support by Team</li>
+                                <li>🔥5-10% Discount Available</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="pills-vip" role="tabpanel" aria-labelledby="pills-vip-tab"
+                            tabindex="0">
+                            <ul class="user_popup_benifits">
+                                <li>🔥24/7 Tickets Support</li>
+                                <li>🔥Up to 5% Payments Bonus</li>
+                                <li>🔥Each 100 points = 2$</li>
+                                <li>🔥Free Child Panel - Lifetime (Min 500$ spend per month)</li>
+                                <li>🔥Priority Tickets Support by Team</li>
+                                <li>🔥5-10% Discount Available</li>
+                                <li>🔥Early Notification On new services</li>
+                                <li>🔥Whatsapp Support by Team</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="pills-master" role="tabpanel" aria-labelledby="pills-master-tab"
+                            tabindex="0">
+                            <ul class="user_popup_benifits">
+                                <li>🔥24/7 Tickets Support</li>
+                                <li>🔥Up to 5% Payments Bonus </li>
+                                <li>🔥Each 100 points = 3.00$</li>
+                                <li>🔥Free Child Panel - Lifetime (Min 500$ spend per month)</li>
+                                <li>🔥Priority Tickets Support by Team</li>
+                                <li>🔥5-10% Discount Available</li>
+                                <li>🔥Early Notification On new services</li>
+                                <li>🔥Whatsapp Support by Team</li>
+                                <li>🔥Special Discount by the admin</li>
+                                <li>🔥Support handle by the admin</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% include 'footer.twig' %}

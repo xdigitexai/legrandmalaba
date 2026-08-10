@@ -1,0 +1,285 @@
+{% include 'header.twig' %}
+<div class="wrapper-content">
+	<div class="wrapper-content__header"></div>
+	<div
+		class="wrapper-content__body">
+		<!-- Main variables *content* -->
+		<div id="block_20">
+			<div class="ticket-form">
+				<div class="bg"></div>
+				<div class="divider-top"></div>
+				<div class="divider-bottom"></div>
+				<div class="container-fluid">
+					<div class="row px-lg-4 ticket-form__alignment">
+							
+						<div class="col-lg-8">
+							<div class="component_card">
+{% if contentText %}
+<div class="card mt-2 mb-3">
+{{ contentText }}
+</div>
+{% endif %}
+								<div class="card">
+									{% if error %}
+										<div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+											<button type="button" class="close" data-dismiss="alert">×</button>
+											{{ errorText }}
+										</div><br>
+									{% elseif success %}
+										<div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+											<button type="button" class="close" data-dismiss="alert">×</button>
+											{{ successText }}
+										</div> <br>
+								
+
+
+									
+
+										<form method="post" action="tickets">
+										
+										<div class="">
+											<div class="form-group">
+												<label  for="subject" class="control-label">{{ lang['tickets.subject'] }}</label>
+												<input class="form-control" id="subject" name="subject" value="{{ data['subject'] }}">
+											</div>
+											<div class="form-group">
+												<label for="message" class="control-label">{{ lang['tickets.message'] }}</label>
+												<textarea class="form-control" rows="7" id="message" name="message">{{ data['message'] }}</textarea>
+											</div>
+											
+										</div>
+										<div class="component_button_submit">
+											<div class="">
+												<button class="btn btn-block btn-primary" type="submit">
+													{{ lang['tickets.button'] }}
+												</button>
+											</div>
+										</div>
+									</form>
+
+								{% endif %}
+
+
+								
+
+								<div class="tab-content" id="pills-tabContent">
+								<!-- New Order Tab -->
+								
+								<div class="tab-pane  active in" id="new-ticket" role="tabpanel" aria-labelledby="pills-home-tab">
+								  <div id="main-page" class="well  table-responsive">
+								   
+								  <form method="post" action="tickets" id="ticketsend" onSubmit="form_submit()">
+							  
+									  
+									  <div class="form-group">
+										<label for="subject" class="control-label">Subject</label>
+										<select class="form-control" id="subject" name="raw_subject" onchange="handleOrderType(this)" >
+										  <option value="Order" selected="">Order</option>
+										  <option value="Payment">Payment</option>
+										  <option value="Api">API</option>
+										  <option value="Child Panel">Child Panel</option>
+										  <option value="Request">Request</option>
+										  <option value="Real Followers">Real Followers</option>
+										  <option value="Blue Badge Verification">Blue Badge Verification</option>
+										  <option value="Other">Other</option>
+										</select>
+									   
+										
+									  </div>
+									  <div class="form-group" id="order-group" style="display: block;">
+										<label>Order ID: [For multiple orders, please separate them using comma. (example: 31851525,31851511,31851509)]</label>
+										<input type="text" class="form-control" id="orderid">
+										<label style="margin-top:15px">Request</label>
+										<select class="form-control" name="want" id="want">
+										  <option value="Refill">Refill</option>
+										  <option value="Cancel">Cancel</option>
+										  <option value="Speed-up">Speed Up</option>
+										  <option value="Restart">Restart</option>
+										  <option value="Not-Started">Not Started</option>
+										  <option value="Mark-as-completed-without-done">Mark as completed without done</option>
+										  <option value="Other">Other</option>
+										</select>
+									  </div>
+									  <div class="form-group" id="payment-group" style="display: none;">
+										<label>Payment</label>
+										<select class="form-control" name="payment" id="payment">
+										  <option value="PayPal">PayPal</option>
+										  <option value="Other">Other</option>
+										</select>
+										<label style="margin-top:15px">Payment / Transaction ID(s):</label>
+										<input type="text" class="form-control" name="transaction_id" id="PaymentID">
+										<label style="margin-top:15px">Payment / Email ID(s):</label>
+										<input type="text" class="form-control" name="payment_email" id="emailID">
+										<label style="margin-top:15px">Add Amount</label>
+										<input type="number" class="form-control" name="payment_amount" id="addamount">
+									  </div>
+									  <div class="form-group message">
+										<label for="message" class="control-label">Message</label>
+										<textarea class="form-control" rows="7" id="message" name="raw_message"></textarea>
+									  </div>
+									  <input id="hmessage" name="message" type="hidden">
+									  <input id="hsubject" name="subject" type="hidden">
+									  
+									 
+									  <input type="hidden" name="add_ticket" value="add_ticket">
+									  <button type="submit" class="btn btn-block btn-primary">Submit ticket</button>
+									</form>
+								  </div>
+								
+								  
+								  
+								  
+								</div>
+								
+								
+								
+									
+								  </div>
+							
+							
+
+
+
+								</div>
+							</div>
+						</div>
+							
+					</div>
+				</div>
+			</div>
+		</div>
+<br>
+		<div id="block_31">
+			<div class="tickets-list">
+				<div class="bg"></div>
+				<div class="divider-top"></div>
+				<div class="divider-bottom"></div>
+				<div class="container-fluid">
+					<div class="row px-lg-4 tickets-list__alignment">
+						<div class="col-lg-8">
+							<div class="row">
+								<div class="col">
+									<div class="tickets-list__margin-table">
+										<div class="table-bg component_table ">
+											<div class="table-wr ">
+												
+												<div class="table-responsive table-responsive__search ">
+													<table class="table">
+														<thead>
+															<tr>
+																	<th>{{ lang['tickets.id'] }}</th>
+																	<th>{{ lang['tickets.subject'] }}</th>
+																	<th>{{ lang['tickets.status'] }}</th>
+																	<th class="nowrap">{{ lang['tickets.updated'] }}</th>
+															</tr>
+														</thead>
+														<tbody>
+																{% for ticket in ticketList %}
+																	<tr>
+																		<td>{{ ticket['ticket_id'] }}</td>
+																		{% if ticket["support_new"] == 2 %}
+																			<td>
+																				<a href="tickets/{{ ticket['ticket_id'] }}">
+																					<strong>{{ ticket['subject'] }}</strong>
+																				</a>
+																			</td>
+																		{% else %}
+																			<td>
+																				<a href="tickets/{{ ticket['ticket_id'] }}">{{ ticket['subject'] }}</a>
+																			</td>
+																		{% endif %}
+																		<td>{{ ticket['status'] }}</td>
+																		<td>
+																			<span class="nowrap">{{ ticket['lastupdate_time'] }}</span>
+																		</td>
+																	</tr>
+																{% endfor %}
+														</tbody>
+													</table>
+													<div></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12">
+											<nav class="component_pagination">
+												<div class=""></div>
+											</nav>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+<div class="container-fluid">
+					<div class="row px-lg-4 ticket-form__alignment">
+						<div class="col-lg-8">
+							<div class="component_card">
+							    {% if contentText2 %}
+<div class="card mt-3 mb-3">
+{{ contentText2 }}
+</div>
+{% endif %}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% include 'footer.twig' %}
+
+				<script>
+					document.getElementById("payment-group").style.display = "none";
+				  
+					function handleOrderType(selectObject) {
+					  var element = document.getElementById("order-group");
+					  var element2 = document.getElementById("payment-group");
+					  var optional = document.getElementById("optional");
+				  
+					  if (selectObject.value == "Order") {
+						element.style.display = "block";
+						element2.style.display = "none";
+						optional.style.display = "block";
+					  } else if (selectObject.value == "Payment" ) {
+						element.style.display = "none";
+						element2.style.display = "block";
+						optional.style.display = "none";
+					  } else if (selectObject.value == "Other") {
+						element.style.display = "none";
+						element2.style.display = "none";
+						optional.style.display = "none";
+					  }else{
+						element.style.display = "none";
+						element2.style.display = "none";
+						optional.style.display = "none";
+					  }
+					}
+				  
+					function createTicket(e) {
+					  if (e.preventDefault) e.preventDefault();
+				  
+					  var subject = document.getElementById("subject").value;
+					  var message = "";
+					  if (subject == "Order") {
+						subject = subject + " : " + document.getElementById("orderid").value
+						message = "Order ID: " + document.getElementById("orderid").value + " " + "Request: " + document.getElementById("want").value + " , Message : " + document.getElementById("message").value;
+					  } else if (subject == "Payment") {
+						subject = subject + " : " + document.getElementById("payment").value
+						message = "Payment : " + document.getElementById("payment").value + " , " + "Transaction ID : " + document.getElementById("PaymentID").value + " , " + "Payment Email ID : " + document.getElementById("emailID").value + " , " + "Amount : " + document.getElementById("addamount").value + " , Message :  " + document.getElementById("message").value;
+					  } else {
+						message = document.getElementById("message").value;
+					  }
+					  
+					  document.getElementById("hmessage").value = message;
+					  document.getElementById("hsubject").value = subject;
+				  
+					  return true;
+					}
+					
+					function form_submit(){
+					  var form = document.getElementById("ticketsend");
+					  createTicket(form);
+					  form.submit();
+					}
+					</script>
+				

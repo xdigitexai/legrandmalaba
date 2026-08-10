@@ -1,0 +1,122 @@
+
+ 
+
+
+<script>window.modules=window.modules||{};window.modules.siteOrder=window.modules.siteOrder||{"fields":[]};window.modules.select=window.modules.select||[];window.modules.signin=window.modules.signin||[];window.modules.layouts=window.modules.layouts||{};</script>
+<script type="text/javascript" src="https://storage.perfectcdn.com/global/xojc2ex9tt7ue0en.js">
+      </script>
+  <script type="text/javascript" src="https://storage.perfectcdn.com/global/1pkn9z6xp9unracg.js">
+      </script>
+  <script type="text/javascript" src="https://storage.perfectcdn.com/global/krhktsa9fnhnbdq7.js">
+      </script>
+  <script type="text/javascript" src="https://storage.perfectcdn.com/global/wbf7ugsgkz198pk1.js">
+      </script>
+
+
+
+
+
+
+
+
+
+
+      <script src="public/script.js"></script>
+
+    <script type="text/javascript" >
+        window.modules.layouts = {"theme_id":2,"auth":0,"live":true,"csrftoken":"nGYqbb0d2q7_D-_HprZVrEFUawsDnYPi8kOl7MvjERXECWwXykmy36dJgpjemzDlGT4YekHrx5e3G82tndpJWg=="};
+      </script>
+    <script type="text/javascript" >
+        window.modules.layouts = {"theme_id":2,"auth":0,"live":true,"csrftoken":"nGYqbb0d2q7_D-_HprZVrEFUawsDnYPi8kOl7MvjERXECWwXykmy36dJgpjemzDlGT4YekHrx5e3G82tndpJWg=="};
+      </script>
+    <script type="text/javascript" >
+        window.modules.signin = [];
+      </script>
+    <script type="text/javascript" >
+      </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+   <script src="https://unpkg.com/@popperjs/core@2"></script>
+   <script>tippy('[data-tippy-content]',{maxWidth: 200});</script>
+      <script>
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));}
+var serviceId = getUrlParameter('service_id');
+var categoryId = getUrlParameter('category_id');
+if (serviceId && categoryId) { 
+    $('#neworder_services').val(serviceId).trigger('change');
+    $('#neworder_category').val(categoryId).trigger('change');
+    var urlWithoutParams = window.location.href.split('?')[0];
+    history.replaceState({}, document.title, urlWithoutParams);
+    var url = 'ajax_data/selectize?service_id=' + serviceId;
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+            category_id: categoryId,
+            action: 'selectize'
+        }
+    });
+}
+</script>
+
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+
+    
+      
+  {% if user['auth'] %}
+
+  <!-- script for show more btn -->
+  <script>
+    const showMorebtn = document.getElementById('showMore');
+    showMorebtn.addEventListener('click', function (e) {
+      const targetThat = document.getElementById('more_menu');
+      targetThat.classList.toggle('active_more_menu');
+    });
+  </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+{% else %}
+
+ 
+    
+  
+  <script>
+    function navToggleMob() {
+      let menuBox = document.getElementById('navMob');
+      menuBox.classList.toggle('active');
+    }
+
+
+    $(window).scroll(function () {
+      var scroll = $(window).scrollTop();
+
+      if (scroll >= 80) {
+        $("#navbar").addClass("shrink");
+      } else {
+        $("#navbar").removeClass("shrink");
+      }
+
+      if (scroll >= 300) {
+        $("#navbar").addClass("fixed-top");
+      } else {
+        $("#navbar").removeClass("fixed-top");
+      }
+    });
+
+  </script>
+  
+  
+{% endif %}
+
+</body>
+
+</html>

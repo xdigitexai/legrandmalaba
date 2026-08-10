@@ -1,0 +1,81 @@
+{% include 'header.twig' %}
+<div class="wrapper-content">
+    <div class="wrapper-content__header">
+          </div>
+    <div class="wrapper-content__body">
+      <!-- Main variables *content* -->
+      <div id="block_95">
+    <div class="ticket-form">
+        <div class="bg"></div>
+        <div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                   <div class="component_card">
+                      <div class="card mt-2 mb-4">
+    <div>
+
+      {% if error %}
+        <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ errorText }}
+        </div>
+      {% endif %}
+      {% if success %}
+        <div class="alert alert-dismissible alert-success">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ successText }}
+        </div>
+      {% endif %}
+
+      
+ <div class="ticket-dialog__title"><h3>{{ messageList['ticket']['subject'] }}</h3> {% if messageList["ticket"]["canmessage"] == 1 %} <span class="badge"> This request has been closed by the administrator</span></div> {% endif %} 
+
+              {% if messageList %}
+                {% for message in messageList %}
+                  {% if message["support"] == 1 %}
+<div class="ticket-dialog__body component_ticket_messages">
+                      <div class="col-md-12">
+                        <div class="ticket-dialog__row  ticket-dialog__row-admin">
+                    <div class="ticket-dialog__row-message">{{ message["message"] }}</div>
+                                            <div class="ticket-dialog__row-bottom">
+                                                <div class="ticket-dialog__row-bottom-name">{{ user["username"] }}</div>
+                                                <div class="ticket-dialog__row-bottom-date">{{ message["time"] }}</div>
+                                              </div>
+                      </div>
+                    </div>
+                  {% elseif message["subject"] %}
+                  {% else %}
+                    
+<div class=" ticket-dialog__row  ticket-dialog__row-user ">
+                                            <div class="ticket-dialog__row-message">{{ message["message"] }}</div>
+                                            <div class="ticket-dialog__row-bottom">
+                                                <div class="ticket-dialog__row-bottom-name">Support</div>
+                                                <div class="ticket-dialog__row-bottom-date">{{ message["time"] }}</div>
+                                            </div>
+                                        </div>
+                                                                    </div>
+                            
+                  {% endif %}
+
+                {% endfor %}
+              {% endif %}
+              <div class="row">
+                  <div class="col-md-12">
+                    <form method="post" action="tickets/{{ messageList['ticket']['ticket_id'] }}">
+                      <div class="form-group panel-border-top"><br>
+                        <label for="message" class="control-label">Message</label>
+                        <textarea id="message" rows="5" class="form-control" name="message">{{ data["message"] }}</textarea>
+                      </div>
+                      <button type="submit" class="btn btn-block btn-big-primary">Submit</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+                      </div>
+                    </div>
+</div>
+
+{% include 'footer.twig' %}

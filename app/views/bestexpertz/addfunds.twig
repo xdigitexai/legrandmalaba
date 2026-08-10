@@ -1,0 +1,230 @@
+{% include"header.twig"%}
+
+<div class="page-content">
+     <!-- Main variables *content* -->
+     <div class="page-container">
+          <div class="addfunds-page">
+               <span class="page-title">Payment methods</span>
+               <div class="payment-list" id="method-drop">
+                    <div class="payment-box slct16946" onclick="selectPayment(16946)"
+                         >
+                         <div class="payment-top"><span> Perfect Money | Min 1| 5% Bonus </span></div>
+                         <div class="payment-bottom">
+                              <div class="payment-bonus"><span>% Bonus Bonus</span></div>
+                              <div class="payment-icon"><img src="https://cdn.fsksoft.com/assets/svg/perfectmoney.svg">
+                              </div>
+                         </div>
+                    </div>
+                    <div class="payment-box slct87932" onclick="selectPayment(87932)">
+                         <div class="payment-top"><span> Binance USDT| Min 1| 5% Bonus </span></div>
+                         <div class="payment-bottom">
+                              <div class="payment-bonus"><span>% Bonus Bonus</span></div>
+                              <div class="payment-icon"><img src="https://cdn.fsksoft.com/assets/svg/perfectmoney.svg">
+                              </div>
+                         </div>
+                    </div>
+                    <div class="payment-box slct58922" onclick="selectPayment(58922)">
+                         <div class="payment-top"><span> JAZZCASH | Min 100$| 5% Bonus  on  </span></div>
+                         <div class="payment-bottom">
+                              <div class="payment-bonus"><span>% Bonus Bonus</span></div>
+                              <div class="payment-icon"><img src="https://cdn.fsksoft.com/assets/svg/payeer.svg"></div>
+                         </div>
+                    </div>
+                    <div class="payment-box slct16898" onclick="selectPayment(16898)">
+                         <div class="payment-top"><span> Easypaisa ,Jazzcash, Bank Transfer and Debit Card for Pakistani Users |
+                                   Wallet|</span></div>
+                         <div class="payment-bottom">
+                              <div class="payment-bonus"><span></span></div>
+                              <div class="payment-icon"><img src="https://cdn.fsksoft.com/assets/svg/visa.svg"><img
+                                        src="https://cdn.fsksoft.com/assets/svg/mastercard.svg"></div>
+                         </div>
+                    </div>
+                    <div class="payment-box slct16948" onclick="selectPayment(16948)">
+                         <div class="payment-top"><span>EASYPAISA  | 5% Bonus From 100$ </span></div>
+                         <div class="payment-bottom">
+                              <div class="payment-bonus"><span></span></div>
+                              <div class="payment-icon"><img src="https://cdn.fsksoft.com/assets/svg/creditcard.svg">
+                              </div>
+                         </div>
+                    </div>
+                    <div class="payment-box slct19000" onclick="selectPayment(19000)">
+                         <div class="payment-top"><span>Paytm | Min 10 Rs| </span></div>
+                         <div class="payment-bottom">
+                              <div class="payment-bonus"><span></span></div>
+                              <div class="payment-icon"><img src="https://cdn.fsksoft.com/assets/svg/creditcard.svg">
+                              </div>
+                         </div>
+                    </div>
+               </div>
+               <div class="payment-page-bottom">
+                    <div class="payment-page-left">
+                    
+                   	<form method="post" id="addfundsForm" action="/addfunds">
+
+											<div class="form-group">
+												<label for="method" class="control-label">{{ lang['addfunds.method'] }}</label>
+												<select class="form-control" id="payment_method" name="payment_type">
+													{% for method in site["paymentMethods"] %}
+														<option value="{{ method['id'] }}">{{ method['name'] }}</option>
+													{% endfor %}
+												</select>
+											</div>
+											<div id="addfunds_fields"></div>
+										</form>
+										<div id="formSubmitResponseMessage"></div>
+										<div id="formSubmitResponseContent"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+  <div class="col-md-8 col-md-offset-2">	
+  <div class="payment-page-right">
+                         <span class="payment-title">Payment history</span>
+                         <div class="payment-history">
+                         <div id="order-page" class="well well-float table-responsive">
+						<table class="table ">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Old Payments</th>
+									<th>₹ Amount</th>
+									<th>Date</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for payment in payments %}
+													<tr>
+														<td>{{ payment['id'] }}</td>
+														<td>{{ payment['date'] }}
+														</td>
+														<td>{{ payment['name'] }}</td>
+														<td>
+															{{ payment['amount'] }}
+														</td>
+													</tr>
+
+												{% endfor %}
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+			
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+   <script src="https://unpkg.com/@popperjs/core@2"></script>
+ <script src="https://unpkg.com/tippy.js@6"></script>
+ <script>
+   tippy('[data-tippy-content]',{maxWidth: 200});
+ </script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <script type="text/javascript" src="/public/global/ch3915babussofa4.js">
+      </script>
+  <script type="text/javascript" src="/public/global/cgtptn05b64bwcs4.js">
+      </script>
+  <script type="text/javascript" src="/public/global/xcz59lmywkfdgsp4.js">
+      </script>
+  <script type="text/javascript" src="/public/global/wnzsoolloslhfumj.js">
+      </script>
+      <script type="text/javascript" src="/public/global/qri1ac173hshc2hdjc.js">
+</script>
+
+  
+
+			<script>
+				var paymentMethods = {{ site["paymentMethodsJSON"] }};
+			</script>
+			<script>
+				const addfundsRoute = "/addfunds";
+function addfundsInit() {
+var addfundsForm = $("#addfundsForm");
+var fields = $("#addfunds_fields");
+var selectedMethod = $("#payment_method").val();
+var instructions = paymentMethods[selectedMethod][0].instructions;
+$.ajax({
+url: addfundsRoute,
+data: "action=getForm&selectedMethod=" + selectedMethod,
+type: "POST",
+success: function (json) {
+if (json.success == true) {
+if (instructions.length > 0) {
+var methodInstruction = '<div class="form-group"><label class="control-label">Instructions</label><div class="panel-body border-solid border-rounded">' + instructions + '</div></div>';
+} else {
+var methodInstruction = "";
+} fields.html(methodInstruction + json.content);
+extraFeeInit(selectedMethod);
+}
+}
+});
+}
+
+function extraFeeInit(method) {
+var fee = parseFloat(paymentMethods[method][0].fee).toFixed(2);
+var fields = $("#fee_fields");
+if (fee > 0) {
+fields.html('<div class="form-group"><label class="control-label">Extra fee</label><input type="text" class="form-control" id="methodExtraFee" disabled value="0.00"/></div><div class="form-group"><label class="control-label">Total Amount</label><input type="text" id="totalAmount" class="form-control" disabled value="0.00" /></div>');
+}
+}
+function preparePrice(t) {
+n = 2;
+var r = (t = $.trim(t.toString().replace(",", "."))).split(".");
+return void 0 !== r[1] && (r[1] = r[1].replace(/0+$/g, ""), r[1].length > n && (n = 2 < r[1].length ? 2 : r[1].length)),
+1e3 <= (t =( t = parseFloat(t)).toFixed(n)) && (t = t.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, "$1" + "")),
+t = t.toString().replace(/\.(\d+)$/g, "." + "$1");
+return t.toFixed(n)
+}
+$(document).ready(function () {
+$(document).on("keyup", "#paymentAmount", function () {
+var selectedMethod = $("#payment_method").val();
+var amount = parseFloat($(this).val());
+var feePercentage = parseFloat(paymentMethods[selectedMethod][0].fee);
+var feeInput = $("#methodExtraFee");
+var totalAmountInput = $("#totalAmount");
+var fee = amount * (feePercentage / 100);
+feeInput.val(preparePrice(fee));
+totalAmountInput.val(preparePrice(amount + fee));
+});
+addfundsInit();
+});
+$("#payment_method").change(function () {
+addfundsInit();
+});
+
+$("#addfundsForm").submit(function (e) {
+e.preventDefault();
+var data = $(this).serialize();
+
+$.ajax({
+url: addfundsRoute,
+data: data,
+type: "POST",
+success: function (json) {
+if (json.success == true) {
+var msgDiv = $("#formSubmitResponseMessage");
+msgDiv.html('<div class="alert alert-success alert-dismissible fade show mt-2" role="alert">' + json.message + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
+var contentDiv = $("#formSubmitResponseContent");
+contentDiv.html(json.content);
+} else {
+var msgDiv = $("#formSubmitResponseMessage");
+msgDiv.html('<div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">' + json.message + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
+}
+}
+
+});
+});
+			</script>
+
+
+
+{% include"footer.twig" %}

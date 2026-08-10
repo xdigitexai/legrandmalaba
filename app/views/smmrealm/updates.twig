@@ -1,0 +1,117 @@
+{% include 'header.twig' %}
+	
+<div class="wrapper-content">
+    <div class="wrapper-content__header">
+          </div>
+
+    <div class="wrapper-content__body">
+      <!-- Main variables *content* -->
+      <div id="block_99"style="margin-top:-20px;">
+    <div class="orders-history ">
+        <div class="bg"></div>
+        <div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="orders-history__margin-tab">
+                        <div class="component_status_tabs">
+                            <div class="">
+      <ul class="nav nav-pills tab ">
+	  
+        <li class="nav-item" >
+		
+      </ul><br>
+	
+     <div class="row">
+                <div class="col">
+                    <div class="orders-history__margin-table">
+                        <div class="table-bg component_table ">
+                            <div class="table-wr table-responsive">
+        <table class="table ">
+          <thead>
+            <tr>
+<th class="width-service-name"><span>ID</span>    </th>
+<th width="40%">Service Name</th>
+              <th width="20%">Description</th>
+<th>Date </th> 
+              <th>Action</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+
+
+
+            {% for order in orders %}
+              <tr>
+<td>{{ order['service_id'] }}</td> 
+                <td>{{ order['service_name'] }}</td>
+               
+                 <td>{{ order['description'] }}</td> 
+      <td>{{ order['date'] }}</td> 
+          <td><span class="badge" style="background-color: #ffb500">{{ order['action'] }}</span></span></td>
+               
+
+              </tr>
+            {% endfor %}
+</td>
+          </tbody>
+        </table>
+      </div>
+    <br>
+     {% if pagination["count"] > 1 %}
+        <ul class="pagination">
+
+          {% if pagination["current"] != 1 %}
+            <li>
+              <a class="btn btn-actions" href="updates/{{ status }}/{{ pagination["previous"] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Previous">
+                <span aria-hidden="true">«</span>
+              </a>
+            </li>
+          {% endif %}
+
+          {% set r, l = 3, 3 %}
+
+          {% if pagination['current'] == 1 %}
+            {% set r = 7 %}
+          {% endif %}
+
+          {% if pagination['current'] == 2 %}
+            {% set r = 5 %}
+          {% endif %}
+
+          {% if pagination['current'] >= pagination['count'] %}
+            {% set l = 5 %}
+          {% endif %}
+
+          {% for page in 1..pagination["count"] %}
+            {% if page >= (pagination['current']-l) and page <= (pagination['current']+r) %}
+              <li{% if page == pagination['current'] %} class="active" {%endif%}><a class="btn btn-actions" 
+ href="updates/{{ status }}/{{ page }}{% if search %}?search={{ search }}{% endif %}">{{ page }}</a></li>
+            {%endif%}
+          {% endfor %}
+
+          {% if pagination['current'] < pagination['count'] %}
+            <li>
+              <a class="btn btn-actions" href="updates/{{ status }}/{{ pagination['next'] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Next">
+                <span aria-hidden="true">»</span>
+              </a>
+            </li>
+          {% endif %}
+
+        </ul>
+      {% endif %}
+
+
+    </div>
+  </div>
+</div></div></div></div>
+</div></div></div></div></div></div>
+</div>
+
+
+
+
+<br><br><br><br><br>
+{% include 'footer.twig' %}

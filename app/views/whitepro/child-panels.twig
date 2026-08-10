@@ -1,0 +1,128 @@
+{% include 'header.twig' %}
+
+	<div class="hiddenTitle">
+  <div id="appTt">Child Panel</div>
+  <div id="appTx">We're the best!</div>
+</div>
+<div class="appContent">
+  <section class="dashboard-head-wrapper">
+    <div class="container">
+      <div class="dashboard-head card-border">
+        <div class="dhead-body">
+          <h2 class="title">Rent a Child Panel</h2>
+          <p class="text">How much Is the Cost For Child Panel?
+
+We charge 0$ for child panel if you spend more than 500$/Per month otherwise the cost is 2$/Month. 
+
+1% Discount for all services for worldbestsmm's Child Panels if spend more than 500$/Per month
+2% Discount for all services for worldbestsmm's Child Panels if spend more than 1000$/Per month
+3% Discount for all services for worldbestsmm's Child Panels if spend more than 2500$/Per month
+5% Discount for all services for worldbestsmm's Child Panels if spend more than 5000$/Per month
+</p>
+        </div>
+        <div class="dhead-img-wrapper">
+          <img src="https://cdn.smmspot.net/snfollows/assets/img/cp-h.png" class="dhead-img" alt="Coin Moin">
+        </div>
+      </div>
+    </div>
+  </section>
+    <section class="">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col-md">
+                  <h3 class="card-title">Set Your Nameservers</h3>
+                  <p class="card-h-text">Using SMM Services can sometimes be a problem because most of the panels do not
+                    offer.</p>
+                 </div>
+                <div class="col-md-auto">
+   </div>
+                <div class="col-md-auto">
+                  <button class="btn btn-secondary btn-rounded mb-2">{{ site['ns1'] }}</button><br>
+                  <button class="btn btn-secondary btn-rounded mb-2">{{ site['ns2'] }}</button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+            {% if errorText %}
+            <div class="alert alert-dismissible alert-danger ">
+              <span class="icon icon-circle" data-dismiss="alert">×</span>
+              {{ errorText }}
+            </div>
+            {% endif %}
+      {% if data["childpanel"]["success"] == 1 %}
+      <div class="alert alert-dismissible alert-success">
+          <strong> Order Id: </strong> {{ data['childpanel']['id'] }} <br>
+          <strong> Service: </strong> {{ data['childpanel']['service'] }} <br>
+          <strong> Domain: </strong> {{ data['childpanel']['link'] }} <br>
+          <strong> Quantity: </strong> {{ data['childpanel']['quantity'] }} <br>
+          <strong> Charge: </strong> {{ data['childpanel']['price'] }} <br>
+      </div>
+    {% endif %}
+            
+                    <form action="/child-panels" method="post">
+                                               <div class="row">
+                  <div class="col-12 col-md-6 mb-3">
+                                <label for="form-domain" class="form-label">Domain</label>
+                                <input type="text" class="form-control" id="domain" name="CreateOrderForm[domain]"
+                                       value="">
+                            </div>
+                            
+                        <div class="col-12 col-md-6 mb-3">
+                    <label for="form-currency" class="form-label">Currency</label>
+                            <select class="form-select" name="currency" data-select="true" data-select-search="true" data-select-search-placeholder="Search" required>
+<option value="USD">USA Dollars (USD)</option>
+<option value="INR">Indian Rupee (INR)</option>
+</select>
+                        </div>
+                        <div class="col-12 col-md-12 mb-3">
+                            <label class="control-label"
+                                   for="createorderform-username">Admin username</label>
+                            <input
+                                    type="text" id="createorderform-username" class="form-control"
+                                    name="username" placeholder="Admin Username" aria-required="true"
+                                    value="">
+                        </div>
+                        <div class="col-12 col-md-6 mb-3">
+                            <label class="control-label"
+                                   for="createorderform-password">Admin password</label>
+                            <input
+                                    type="password" id="createorderform-password" class="form-control"
+                                    name="password" placeholder="Password" aria-required="true">
+                        </div>
+                        <div class="col-12 col-md-6 mb-3">
+                            <label class="control-label"
+                                   for="createorderform-password_confirm">Confirm password</label>
+                            <input
+                                    type="password" id="createorderform-password_confirm" class="form-control"
+                                    name="password_confirm" placeholder="Password" aria-required="true">
+                        </div>
+                        
+                        <div class="col-12 col-md-6 mb-3">
+                            <label class="control-label"
+                                   for="createorderform-password_confirm">Charge</label>
+                            <input type="text" class="form-control" id="price" value="{{site_base_currency_symbol}}{{" "}}{{site["childpanel_price"]}}" readonly>
+                        </div>
+                        
+                        
+                        
+                         <div class="col-12 col-md-6 mb-3 mb-md-0">
+                        
+                        <button type="submit" class="btn btn-primary  btn-100">Submit order</button>
+                         </div>
+                         <div class="col-12 col-md-6">
+                    <button type="submit" class="btn btn-secondary btn-100">How to Set Nameservers</button>
+                  </div>
+                </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+{% include 'footer.twig' %}

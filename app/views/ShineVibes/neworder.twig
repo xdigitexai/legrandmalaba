@@ -1,0 +1,543 @@
+{% include 'header.twig' %}
+
+
+
+
+ <style>
+.service-dashboard {
+    background-color: #f9f9f9; /* Light background */
+    border: 1px solid #e0e0e0; /* Softer border */
+    padding: 15px; /* Reduced padding */
+    margin-top: 20px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-height: 250px; /* Set a max height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.service-dashboard h4 {
+    font-size: 1.12rem; /* Slightly smaller font size */
+    color: #333; /* Dark text */
+    margin-bottom: 10px; /* Reduced margin */
+    border-bottom: 2px solid #000000; /* Bottom border */
+    padding-bottom: 5px; /* Reduced padding */
+}
+
+.service-dashboard ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+.service-dashboard li {
+    background-color: #fff; /* White background */
+    border: 1px solid #e0e0e0; /* Border for items */
+    border-radius: 5px; /* Rounded corners */
+    padding: 8px; /* Reduced padding */
+    margin: 5px 0; /* Margin for spacing */
+    transition: background-color 0.2s; /* Smooth background color change */
+}
+
+.service-dashboard li::before {
+    content: "✔️"; /* Checkmark */
+    margin-right: 5px; /* Space between icon and text */
+    color: #007bff; /* Checkmark color */
+}
+</style>
+
+
+
+
+
+<style>
+#service_descriptions {
+   padding: 13px;
+    border-radius: 12px;
+    color: #393e46;
+    box-shadow: none;
+    background-color: #F1F7FC;
+     overflow-y: auto;
+    height: 150px; 
+}
+</style>
+<style>
+#unique-dropdown{max-height: 300px;border-radius: 8px;margin-top:8px;border-left-width: 0px;border-right-width: 0px;border-top-width: 0px;border-bottom-width: 0px;border-color: transparent;border-style: solid;box-shadow: 0 12px 24px 12px rgba(0, 0, 0, 0.2);overflow-y: auto;display: block;position: absolute;left:auto;max-width:100%;width: 86%;background:white;z-index: 1;}@media(min-width:776px){ #unique-dropdown{width: 93%;}}@media(min-width:991px){ #unique-dropdown{width: 92.4%;}}.selectme {padding: 3px 10px;cursor: pointer;list-style-type: none; }.selectme:hover {background-color: #f2f2f2;}.highlight {font-weight: bold; }.form-group .search-dropdown .input-wrapper .input-wrapper__prepend, .form-group .search-dropdown .input-wrapper .input-wrapper__append {position: absolute;background: none;border: none;top: 50%;transform: translateY(-50%);padding: 0px 15px;color: var(--form_group_icon_color);}.form-group .search-dropdown .input-wrapper .input-wrapper__prepend:hover, .form-group .search-dropdown .input-wrapper .input-wrapper__append:hover {opacity: 0.5;}.form-group .search-dropdown .input-wrapper .input-wrapper__prepend:hover, .form-group .search-dropdown .input-wrapper .input-wrapper__append:focus {outline:none;}.form-group .search-dropdown .input-wrapper .input-wrapper__append {font-size: 12px;right: 3px;display: none;}
+</style>
+
+<style>
+@media (max-width:991px){ #block_93 .totals-block__card-right {margin-left:-13px;padding-left:22px;border:2px solid;border-bottom-width:0px;border-top-width:0px;border-right-width:0px;border-radius: 0px 12px 12px 0px;margin-right:-10px;}}.news-item{display: flex;align-items: flex-start;gap: 20px;}.news-item:first-child{margin-top:-20px;}.news-icon-inline{width: 30px;margin-right:7px;}.news-icon img{width: 100%;}.news-details{flex: 1;}.news-title{display: flex;font-size: 14px;margin-bottom:0px;padding:7px ;background:;border-radius:12px 12px 0 0;}.news-content{margin: 0;color: #000;padding:7px ;background:;border-radius:0px 0px 12px 12px;}.headsir{position:sticky;top:0;width:101%;font-weight: 700;font-size: 22px;padding: 1rem 1rem;color: #fff;margin:-1.2px 0px 0px -1.2px;border-radius:20px 20px 0px 0px;background: #e70720e0;box-shadow: 0px 5px 15px -3px rgba(0,0,0,0.1);}.news-date {margin: 0;padding:0.5px 0px;color: #fff;font-size: 12px;width:50%;text-align: center;border-radius:8px;margin-bottom:10px;margin-top:20px;}.ssw{max-height: 450px;overflow-y: auto;padding-top: 25px;padding-bottom: 25px;padding-right: 20px;padding-left: 20px;}@media (min-width: 992px){.news-date{width:40%;}}.select2-container--default .select2-results > .select2-results__options {max-height: 412px;overflow-y: auto;}.body .form-group .select2-results__option {border-bottom: 0px solid white;}.select2-container .select2-selection--single .select2-selection__rendered{padding: 4px;margin-left:-5px}.body .style-bg-primary-alpha-10 {box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.2);transform: skew(0deg, 0deg);overflow: hidden;}.body .style-bg-primary-alpha-10:before {content: '';display: block;background: #ffffff50;height: 205%;width: 20px;transform: rotate(35deg);position: absolute;left: 0;top: -24px;transition: all 0.3s ease-in-out;animation: 3.2s shine infinite;}@keyframes shine {0% {left: -20px;}20% {left: 100%;top: -20px;}100% {left: 100%;top: -20px;}}.mop{transform:rotatey(180deg);margin-bottom:-5px;margin-top:-12px;opacity:2}.select2-container--default .select2-results__option[aria-selected=true] a{color:#fff;}.select2-container--default .select2-results__option:hover a{color:#fff;}.badge.badge-secondary {color: #fff;}.body .style-bg-primary-alpha-10 {background: rgb(233 233 233 / 22%);}
+{% if settings["site_theme_alt"] == "Red" %}
+.totals-block__card-right{ background-color: #fbf1f2; }
+		#service_description,
+		#service_avg_time {padding: 13px;border-radius: 10px;color: #393e46;box-shadow:none;background-color: #fbf1f2;}
+	{% elseif settings["site_theme_alt"] == "Blue" %}
+	.totals-block__card-right{ background-color: #F1F7FC; }
+		#service_description,
+		#service_avg_time {
+			padding: 13px;
+			border-radius: 12px;
+			color: #393e46;
+			box-shadow:none;
+			background-color: #F1F7FC;}
+	{% elseif settings["site_theme_alt"] == "Lime" %}
+	.totals-block__card-right{ background-color: #eff7f0; }
+		#service_description,
+		#service_avg_time {
+			padding: 13px;
+			border-radius: 12px;
+			color: #393e46;
+			box-shadow:none;
+			background-color: #eff7f0;}
+	{% elseif settings["site_theme_alt"] == "Grapes" %}
+	.totals-block__card-right{ background-color: #f3edff; }
+		#service_description,
+		#service_avg_time {
+			padding: 13px;
+			border-radius: 12px;
+			color: #393e46;
+			box-shadow:none;
+			background-color: #f3edff;}
+	{% elseif settings["site_theme_alt"] == "Dark" %}
+	.totals-block__card-right{ background-color: #252427; }
+		#service_description,
+		#service_avg_time {
+			padding: 13px;
+			border-radius: 12px;
+			color: #fff;
+			box-shadow:none;
+			background-color: #252427;}
+	{% elseif settings["site_theme_alt"] == "Cyan" %}
+	.totals-block__card-right{ background-color: #e5f9fa; }
+		#service_description,
+		#service_avg_time {
+			padding: 13px;
+			border-radius: 12px;
+			color: #393e46;
+			box-shadow:none;
+			background-color: #e5f9fa;}
+	{% elseif settings["site_theme_alt"] == "Coral" %}
+	.totals-block__card-right{ background-color: #fff5f4; }
+		#service_description,
+		#service_avg_time {
+			padding: 13px;
+			border-radius: 12px;
+			color: #393e46;
+			box-shadow:none;
+			background-color: #fff5f4;}
+	{% elseif settings["site_theme_alt"] == "Green" %}
+	.totals-block__card-right{ background-color: #e4f1ef; }
+		#service_description,
+		#service_avg_time {
+			padding: 13px;
+			border-radius: 12px;
+			color: #393e46;
+			box-shadow:none;
+			background-color: #e4f1ef;}
+		{% elseif settings["site_theme_alt"] == "Grey" %}
+		.totals-block__card-right{ background-color: #e2e8ee; }
+		#service_description,
+		#service_avg_time {
+			padding: 13px;
+			border-radius: 12px;
+			color: #393e46;
+			box-shadow:none;
+			background-color: #e2e8ee;}
+{% elseif settings["site_theme_alt"] == "Lilac" %}
+.totals-block__card-right{ background-color: #f5f2f8; }
+		#service_description,
+		#service_avg_time {
+			padding: 13px;
+			border-radius: 12px;
+			color: #393e46;
+			box-shadow:none;
+			background-color: #f5f2f8;}
+{% elseif settings["site_theme_alt"] == "Orange" %}
+.totals-block__card-right{ background-color: #fff4ed; }
+		#service_description,
+		#service_avg_time {
+			padding: 13px;
+			border-radius: 12px;
+			color: #393e46;
+			box-shadow:none;
+			background-color: #fff4ed;}
+	{% else %}
+	.totals-block__card-right{ background-color: #252427; }
+		#service_description,
+		#service_avg_time {
+			padding: 13px;
+			border-radius: 12px;
+			color: #fff;
+			box-shadow:none;
+			background-color: #252427;}
+	{% endif %}
+	{% if settings["site_theme_alt"] == "Red" %}svg {fill: #d83346;}{% elseif settings["site_theme_alt"] == "Blue" %}svg {fill: #1979c8;}{% elseif settings["site_theme_alt"] == "Lime" %}svg {fill: #46b649;}{% elseif settings["site_theme_alt"] == "Grapes" %}.mop{margin-top:15px;}svg {fill: #6216fb;}{% elseif settings["site_theme_alt"] == "Dark" %}svg {fill: #ff8355;}{% elseif settings["site_theme_alt"] == "Cyan" %}svg {fill: #32c7ce;}{% elseif settings["site_theme_alt"] == "Coral" %}svg {fill:#ff6b63;}{% elseif settings["site_theme_alt"] == "Green" %}svg {fill: #307c6f;}{% elseif settings["site_theme_alt"] == "Grey" %}svg {fill: #415566;}{% elseif settings["site_theme_alt"] == "Lilac" %}svg {fill: #7c96cf;}{% elseif settings["site_theme_alt"] == "Orange" %}svg {fill: #f36b15;}{% else %}svg {fill: #000;}{% endif %}
+@media (min-width:992px){
+    .totals-block__card-right{ background-color: #fff; }
+}
+</style>
+   <div class="wrapper-content">
+    <div class="wrapper-content__header">
+  </div>
+    <div class="wrapper-content__body">
+          <marquee scrollamount="1" scrolldelay="10" truespeed="" style="text-align: start; color: #201f21; font-family: " lucida="" sans="" unicode";"="" bgcolor="#ffc107"><span style="font-weight: 700;">{{ site["site_marqueens"] }}
+</span></marquee>
+  {% if settings['video_feilds']  ==  1 %} 
+               <div id="block_134">
+        <div class="block-bg"></div>
+        <div class="container">
+            <div class="video">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="video-container">
+                            <div class="video-block">
+                                <div class="video-frame">
+                                    <iframe src="{{ site['site_video'] }}?controls=1&autoplay=1&mute=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+<style>
+  #block_134 {
+    position: relative;
+    z-index: auto;
+    width: 100%;
+    display: flex;
+    min-height: auto;
+    align-items: flex-start;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: var(--text-dark);
+}
+
+#block_134 .block-bg {
+    background: var(--color-id-131);
+}
+
+#block_134 .video-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#block_134 .video-block {
+    max-width: 800px; /* Maximum width for larger screens */
+    width: 100%; /* Full width for smaller screens */
+    height: 0; /* Set height to 0 for aspect ratio */
+    padding-top: 20%; /* 16:9 Aspect Ratio */
+    position: relative; /* Position relative for absolute children */
+    overflow: hidden; /* Hide overflow */
+}
+
+#block_134 .video-block .video-frame {
+    position: absolute; /* Position absolute to fill the parent */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: none;
+    border-radius: 4px; /* Rounded corners */
+    border: 3px solid var(--color-id-158); /* Border color */
+}
+
+#block_134 .video-block iframe {
+    position: absolute; /* Position absolute to fill the frame */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    border: none; /* Remove default border */
+}
+
+/* Responsive styles */
+@media (max-width: 499px) {
+    #block_134 .video-block {
+        padding-top: 56.25%; /* Maintain aspect ratio */
+    }
+}
+</style>
+
+  <div id="block_93">
+ 
+ <div class="totals ">
+    <div class="bg"></div>
+    <div class="divider-top"></div>
+    <div class="divider-bottom"></div>
+    <div class="container-fluid">
+        {% if contentText %}
+<div class="card mt-2 mb-2">																
+{{ contentText }}
+</div>
+{% endif %}
+      <div class="row align-items-stretch justify-content-center">
+<div class="col-lg-3 col-md-6 col-sm-12 mt-2">
+<div class="card h-100" style="padding-top:12px;padding-bottom: 12px;padding-left:14px">
+<div class="totals-block__card">
+<div class="totals-block__card-left">
+<div class="totals-block__icon-preview style-bg-primary-alpha-10  style-text-primary" style="">
+  <img style="height:65px;width: 65px;margin:8px 0px 0px 2px" src="img/files/53b5414cbfb407b69cd9be52e13bdbfc.png">
+</div>
+    </div>
+      <div class="totals-block__card-right style-text-primary">
+    <div class="totals-block__count">
+<h2 class="totals-block__count-value style-text-primary" style=" font-size:22px;">
+    {{ user["username"]  }}<img src="https://i.imgur.com/YLalTAd.png" width="20" height="20">
+</h2>
+    </div>
+    <div class="totals-block__card-name">
+  <p style="color:#170900">Welcome To {{ site["site_name"]  }} </p>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+  <div class="col-lg-3 col-md-6 col-sm-12 mt-2">
+<div class="card h-100" style="padding-top:12px;padding-bottom: 12px;padding-left:14px">
+<div class="totals-block__card">
+<div class="totals-block__card-left">
+<div class="totals-block__icon-preview style-bg-primary-alpha-10 style-text-primary" style="
+  ">
+  <img style="margin:6px 0px 0px 2px"src="img/files/cd4a5fafc6a2b511f2a0820e10e99fa1.png">
+</div>
+    </div>
+      <div class="totals-block__card-right style-text-primary">
+    <div class="totals-block__count">
+<h2 class="totals-block__count-value style-text-primary" style=" font-size: 22px;">
+ {{ user["spent"] }} 
+</h2>
+    </div>
+    <div class="totals-block__card-name">
+  <p style="color:#170900">Total Spent</p>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+  <div class="col-lg-3 col-md-6 col-sm-12 mt-2">
+<div class="card h-100" style="
+  padding-top:12px;padding-bottom: 12px;padding-left:14px">
+<div class="totals-block__card">
+<div class="totals-block__card-left">
+<div class="totals-block__icon-preview style-bg-primary-alpha-10 style-text-primary" style="
+  ">
+<img style="margin:3px 0px 0px -2px" src="img/files/b54f41f6b5a0a8bb2c343f2567614f76.png">
+</div>
+    </div>
+      <div class="totals-block__card-right style-text-primary">
+    <div class="totals-block__count">
+<h2 class="totals-block__count-value style-text-primary" style=" font-size: 22px;">
+{{totalorders}}     </h2>
+    </div>
+    <div class="totals-block__card-name">
+  <p style="color:#170900" style="color:#170900">Total Orders</p>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+  <div class="col-lg-3 col-md-6 col-sm-12 mt-2">
+<div class="card h-100" style="
+  padding-top:12px;padding-bottom: 12px;padding-left:14px">
+<div class="totals-block__card">
+<div class="totals-block__card-left">
+<div class="totals-block__icon-preview style-bg-primary-alpha-10 style-text-primary" style="
+  ">
+ <img style="height:60px;width: 63px;margin:5px 0px 0px 4px" src="img/files/1df8f8afc0a58cea6ecc0d4bf7988627.png" >
+</div>
+    </div>
+      <div class="totals-block__card-right style-text-primary">
+          
+    <div class="totals-block__count">
+  
+<h2 class="totals-block__count-value style-text-primary" style=" font-size: 22px;">
+{{ user["balance"] }}  </h2>
+    </div>
+    <div class="totals-block__card-name">
+  <p style="color:#170900">Total Balance</p>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+</div>
+    </div>
+</div>
+</div>
+ 
+<div class="mop">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.28 2.17" height="35px"width="100%" preserveAspectRatio="none"><path d="M0 .5c3.07.55 9.27-.42 16.14 0 6.88.4 13.75.57 19.14-.11V0H0z" fill="%23ffffff"/><path d="M0 1c3.17.8 7.29-.38 10.04-.55 2.75-.17 9.25 1.47 12.67 1.3 3.43-.17 4.65-.84 7.05-.87 2.4-.02 5.52.88 5.52.88V0H0z" opacity=".5" fill="%23ffffff"/><path d="M0 1.85c2.56-.83 7.68-.3 11.79-.42 4.1-.12 6.86-.61 9.58-.28 2.73.33 5.61 1.17 8.61 1 3-.19 4.73-.82 5.3-.84V.1H0z" opacity=".5" fill="%23ffffff"/></svg>
+ </div>
+ 
+ 
+<div style="padding-bottom: 2px;padding-top: 2px;" id="block_93">
+    <div class="new_order-block ">
+<div class="bg"></div>
+<div class="divider-top"></div>
+<div class="divider-bottom"></div>
+<div class="container">
+    <div class="row new-order-form">
+<div class="col-lg-7">
+   <div class="component_form_group component_card component_radio_button">
+<div class="card mt-3 ">
+{% if error %}
+      <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">✕</button>
+{{ errorText }}
+      </div>
+    {% endif %}
+
+     {% if data["order"]["success"] == 1 %}
+      <div class="alert alert-dismissible alert-success">
+          <strong> {{ lang["neworder.success.id"] }}: </strong> {{ data['order']['id'] }} <br>
+          <strong> {{ lang["neworder.success.service"] }}: </strong> {{ data['order']['service'] }} <br>
+          <strong> {{ lang["neworder.success.link"] }}: </strong> {{ data['order']['link'] }} <br>
+          <strong> {{ lang["neworder.success.quantity"] }}: </strong> {{ data['order']['quantity'] }} <br>
+          <strong> {{ lang["neworder.success.charge"] }}: </strong> {{ data['order']['price'] }} <br>
+          <strong> {{ lang["neworder.success.balance"] }}: </strong>{{ data['order']['balance'] }} <br>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">✕</span></button>
+
+      </div>
+    {% endif %}
+    
+    
+    {% if data["order"]["success"] == 2 %}
+      <div class="alert alert-dismissible alert-success">
+ <strong> {{ lang["neworder.success.id"] }}: </strong> {{ data['order']['id'] }} <br>
+ <strong> {{ lang["neworder.success.service"] }}: </strong> {{ data['order']['service'] }} <br>
+ <strong> {{ lang["neworder.success.username"] }}: </strong> {{ data['order']['link'] }} <br>
+ <strong> {{ lang["neworder.success.quantity"] }}: </strong> {{ data['order']['min'] }} - {{ data['order']['max'] }} <br>
+ <strong> {{ lang["neworder.success.posts"] }}: </strong> {{ data['order']['posts'] }} <br>
+ <strong> {{ lang["neworder.success.delay"] }}: </strong>{{ data['order']['delay'] }} <br>
+       </div>
+    {% endif %}
+ 
+
+     <div class="well">
+
+	
+<form method="post" action="">
+<div class="component_button_forms">
+    <div class="form-group">
+        <div class="search-dropdown" id="new-order-search" style="position: relative;" data-lang-placeholder="Search">
+            <div class="input-wrapper" style="position: relative;">
+                <button type="button" class="input-wrapper__prepend" onclick="focusInputField()"><span class="fas fa-search"></span></button>
+             <input style="padding-left:41px" type="text" class="form-control" id="unique-input" value="" placeholder="Search">
+             <button type="button" class="input-wrapper__append" onclick="clearInput()"><span class="fas fa-times"></span></button>
+            </div>
+        </div>
+        <div class="search-results" id="unique-dropdown" style="display: none;"></div>
+    </div>
+    <div class="form-group">
+<label for="orderform-category" class="control-label">{{ lang["neworder.category"] }}</label>
+
+<select class="form-control" id="neworder_category" name="categories" data-select="true" data-select-search="true" data-select-search-placeholder="Search" data-select-container="#select-category-container" tabindex="-1" aria-hidden="true">
+{{ category_html_simplify }}
+
+</select>
+<div id="select-category-container" class="position-relative"></div>
+</div>
+</div>
+    <div class="form-group">
+<label for="orderform-service" class="control-label">{{ lang["neworder.service"] }}</label>
+<select class="form-control" id="neworder_services" name="services" data-select="true" data-select-search="true" data-select-search-placeholder="Search" data-select-container="#select-service-container" tabindex="-1" aria-hidden="true">
+<option value="1">No services found in this category</option>
+</select>
+<div id="select-service-container" class="position-relative"></div>
+    </div>
+
+
+  
+  
+  
+  
+  
+  
+  
+
+    <div id="neworder_fields"></div>
+
+  
+  <div class="form-group" id="charge_div">
+      <label for="charge" class="control-label">Charge</label>
+      <input type="text" class="form-control" id="charge" readonly>
+    </div>
+  
+
+
+
+
+
+  
+  <button type="submit" class="btn btn-block btn-big-primary">{{ lang["neworder.button"] }}</button>
+</form>
+</div>
+   </div>
+</div>
+    </div>
+
+<div class="col-lg-5 mt-3">
+  <div class="component_content_card component_content_button component_content_headers">
+{% if news %}
+    <div style="padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;" class="card mb-3">
+      <div class="style-bg-primary headsir"><i class="fal fa-newspaper mr-2"></i>Latest News</div>
+      <div class="ssw">
+      {% for new in news %}
+      <div class="news-item">
+        <div class="news-details">
+          <p class="style-bg-primary news-date"><i class="fad fa-calendar-alt mr-1" style="--fa-secondary-opacity: 0.65;"></i>{{ new['news_date'] }}</p>
+          <h4 id="service_description" class=" news-title"style="border-bottom-left-radius:0px;border-bottom-right-radius:0px;">
+            <span class="icon-container">
+              <img width="30" class="news-icon-inline" src="{{ new['news_icon'] }}" alt="News Icon">
+            </span>
+            {{ new['news_title'] }}
+          </h4>
+          <p id="service_description" class= "news-content" style="border-top-left-radius:0px;border-top-right-radius:0px;">{{ new['news_content'] }}</p>
+        </div>
+      </div>
+      {% endfor %}
+      </div>
+  </div>
+  </div>
+{% endif%}
+
+<div class="container">
+</div>	
+{% if contentText2 %}
+<div class="card mt-3 mb-4">
+{{ contentText2 }}
+</div>
+{% endif %}
+														
+</div></div>
+</div></div>
+</div>
+</div></div></div>
+</div></div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollArea = document.getElementById('service_descriptions');
+    
+    // Example content to ensure scrolling
+    for (let i = 0; i < 20; i++) {
+        const p = document.createElement('p');
+        p.textContent = 'Item ' + (i + 1);
+        scrollArea.appendChild(p);
+    }
+
+    // Check if scrolling works
+    scrollArea.addEventListener('scroll', function() {
+        console.log('Scrolling...');
+    });
+});
+</script>
+{% include 'footer.twig' %}

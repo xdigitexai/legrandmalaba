@@ -1,0 +1,710 @@
+{% include 'header.twig' %}
+
+<style>
+@media only screen and (max-width: 550px) {
+    .filter_btn_wrap{
+        grid-template-columns: repeat(4, 1fr);
+        height: 150px;
+        overflow: hidden;
+        overflow-y: scroll;
+        grid-gap: 8px 10px;
+    }
+    .filter_btn_wrap .btn_filter{
+        font-size: 20px;
+        padding: 5px;
+        border-width: 1px;
+    }
+    .filter_btn_wrap .btn_filter .filter_txt{
+        display: none;
+    }
+}
+.filter_btn_wrap{
+    display: grid;
+    gap: 10px 10px;
+    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+}
+
+.filter_btn_wrap .btn_filter {
+    font-size: 18px;
+    text-transform: capitalize;
+    border: none;
+    padding: 3px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    background: #7867cd;
+    color: #fff;
+    border: 2px solid #22213b;
+    transition: 0.4s;
+}
+.btn_filter:hover,
+.btn_filter.activeItem{
+   background: var(--button_primary_background_color);
+   border-color: var(--button_primary_border_color);
+}
+#service_description {
+    padding-top: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+    color: var(--services_description_text_color);
+    font-size: null;
+    border-color: var(--services_description_border_color);
+    background: var(--services_description_background_color);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 2px;
+    border-style: none;
+    box-shadow: var(--services_description_box_shadow);
+}
+
+</style>
+<style>
+#service_descriptions {
+   padding: 13px;
+    border-radius: 12px;
+    color: #393e46;
+    box-shadow: none;
+    background-color: #F1F7FC;
+     overflow-y: auto;
+    height: 150px; 
+}
+</style>
+
+ <style>
+.service-dashboard {
+    background-color: #f9f9f9; /* Light background */
+    border: 1px solid #e0e0e0; /* Softer border */
+    padding: 15px; /* Reduced padding */
+    margin-top: 20px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-height: 250px; /* Set a max height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.service-dashboard h4 {
+    font-size: 1.12rem; /* Slightly smaller font size */
+    color: #333; /* Dark text */
+    margin-bottom: 10px; /* Reduced margin */
+    border-bottom: 2px solid #000000; /* Bottom border */
+    padding-bottom: 5px; /* Reduced padding */
+}
+
+.service-dashboard ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+.service-dashboard li {
+    background-color: #fff; /* White background */
+    border: 1px solid #e0e0e0; /* Border for items */
+    border-radius: 5px; /* Rounded corners */
+    padding: 8px; /* Reduced padding */
+    margin: 5px 0; /* Margin for spacing */
+    transition: background-color 0.2s; /* Smooth background color change */
+}
+
+.service-dashboard li::before {
+    content: "✔️"; /* Checkmark */
+    margin-right: 5px; /* Space between icon and text */
+    color: #007bff; /* Checkmark color */
+}
+</style>
+
+
+<style>
+@media (max-width:991px){ #block_93 .totals-block__card-right {margin-left:-13px;padding-left:22px;border:2px solid;border-bottom-width:0px;border-top-width:0px;border-right-width:0px;border-radius: 0px 12px 12px 0px;margin-right:-10px;}}.news-item{display: flex;align-items: flex-start;gap: 20px;}.news-item:first-child{margin-top:-20px;}.news-icon-inline{width: 30px;margin-right:7px;}.news-icon img{width: 100%;}.news-details{flex: 1;}.news-title{display: flex;font-size: 14px;margin-bottom:0px;padding:7px ;background:;border-radius:12px 12px 0 0;}.news-content{margin: 0;color: #000;padding:7px ;background:;border-radius:0px 0px 12px 12px;}.headsir{position:sticky;top:0;width:101%;font-weight: 700;font-size: 22px;padding: 1rem 1rem;color: #fff;margin:-1.2px 0px 0px -1.2px;border-radius:20px 20px 0px 0px;background: #e70720e0;box-shadow: 0px 5px 15px -3px rgba(0,0,0,0.1);}.news-date {margin: 0;padding:0.5px 0px;color: #fff;font-size: 12px;width:50%;text-align: center;border-radius:8px;margin-bottom:10px;margin-top:20px;}.ssw{max-height: 450px;overflow-y: auto;padding-top: 25px;padding-bottom: 25px;padding-right: 20px;padding-left: 20px;}@media (min-width: 992px){.news-date{width:40%;}}.select2-container--default .select2-results > .select2-results__options {max-height: 412px;overflow-y: auto;}.body .form-group .select2-results__option {border-bottom: 0px solid white;}.select2-container .select2-selection--single .select2-selection__rendered{padding: 4px;margin-left:-5px}.body .style-bg-primary-alpha-10 {box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.2);transform: skew(0deg, 0deg);overflow: hidden;}.body .style-bg-primary-alpha-10:before {content: '';display: block;background: #ffffff50;height: 205%;width: 20px;transform: rotate(35deg);position: absolute;left: 0;top: -24px;transition: all 0.3s ease-in-out;animation: 3.2s shine infinite;}@keyframes shine {0% {left: -20px;}20% {left: 100%;top: -20px;}100% {left: 100%;top: -20px;}}.mop{transform:rotatey(180deg);margin-bottom:-5px;margin-top:-12px;opacity:2}.select2-container--default .select2-results__option[aria-selected=true] a{color:#fff;}.select2-container--default .select2-results__option:hover a{color:#fff;}.badge.badge-secondary {color: #fff;}.body .style-bg-primary-alpha-10 {background: rgb(233 233 233 / 22%);}
+	.totals-block__card-right{ background-color: #f3edff; }
+		#service_description,
+		#service_avg_time {
+			padding: 13px;
+			border-radius: 12px;
+			color: #393e46;
+			box-shadow:none;
+			background-color: #f3edff;}
+		.mop{margin-top:15px;}svg {fill: #6216fb;}@media (min-width:992px){
+    .totals-block__card-right{ background-color: #fff; }
+}
+</style>
+   <div class="wrapper-content">
+    <div class="wrapper-content__header">
+  </div>
+    <div class="wrapper-content__body">
+          <marquee scrollamount="1" scrolldelay="10" truespeed="" style="text-align: start; color: #201f21; font-family: " lucida="" sans="" unicode";"="" bgcolor="#ffc107"><span style="font-weight: 700;">{{ site["site_marqueens"] }}
+</span></marquee>
+        <br>
+  {% if settings['video_feilds']  ==  1 %} 
+               <div id="block_134">
+        <div class="block-bg"></div>
+        <div class="container">
+            <div class="video">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="video-container">
+                            <div class="video-block">
+                                <div class="video-frame">
+                                    <iframe src="{{ site['site_video'] }}?controls=1&autoplay=1&mute=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+<style>
+  #block_134 {
+    position: relative;
+    z-index: auto;
+    width: 100%;
+    display: flex;
+    min-height: auto;
+    align-items: flex-start;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: var(--text-dark);
+}
+
+#block_134 .block-bg {
+    background: var(--color-id-131);
+}
+
+#block_134 .video-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#block_134 .video-block {
+    max-width: 800px; /* Maximum width for larger screens */
+    width: 100%; /* Full width for smaller screens */
+    height: 0; /* Set height to 0 for aspect ratio */
+    padding-top: 30%; /* 16:9 Aspect Ratio */
+    position: relative; /* Position relative for absolute children */
+    overflow: hidden; /* Hide overflow */
+}
+
+#block_134 .video-block .video-frame {
+    position: absolute; /* Position absolute to fill the parent */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: none;
+    border-radius: 4px; /* Rounded corners */
+    border: 3px solid var(--color-id-158); /* Border color */
+}
+
+#block_134 .video-block iframe {
+    position: absolute; /* Position absolute to fill the frame */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    border: none; /* Remove default border */
+}
+
+/* Responsive styles */
+@media (max-width: 499px) {
+    #block_134 .video-block {
+        padding-top: 56.25%; /* Maintain aspect ratio */
+    }
+}
+</style>
+
+ <div id="block_307">
+  <div class="totals ">
+    <div class="bg"></div>
+    <div class="divider-top"></div>
+    <div class="divider-bottom"></div>
+    <div class="container">
+      <div class="row align-items-stretch justify-content-center">
+        <div class="col-lg-3 col-md-6 col-sm-12 mb-2 mt-2">
+          <div class="card h-100" style="
+                                         padding-top: 12px;                                  padding-bottom: 12px;                                  padding-left: 16px;                                  padding-right: 17px;                                                                                                                                                                  border-left-width: 0px;                                  border-right-width: 0px;                                  border-bottom-width: 0px;                                  border-top-width: 0px;                                  box-shadow: 0 10px 24px 0 rgba(0, 0, 0, 0.32);                                  border-style: solid; ">
+            <div class="totals-block__card">
+              <div class="totals-block__card-left">
+                <div class="totals-block__icon-preview style-bg-primary-alpha-10 style-border-radius-default style-text-primary" style="
+                                                                                                                                        background: rgba(185, 185, 185, 0.5);                                          border-top-left-radius: 6px;                                          border-bottom-left-radius: 6px;                                          border-top-right-radius: 6px;                                          border-bottom-right-radius: 6px;                               ">
+                  <span class="totals-block__icon style-text-primary far fa-list-ul" style="
+                                                                                            font-size: 38px;
+                                                                                            transform: rotate(0deg);
+                                                                                            color: #000000;
+                                                                                            text-shadow: 0 2px 4px #000;
+                                                                                            border-radius: 0px;
+                                                                                            "></span>
+                </div>
+              </div>
+              <div class="totals-block__card-right">
+                <div class="totals-block__count">
+                  <h2 class="totals-block__count-value style-text-primary" style=" color: rgba(0, 0, 0, 0.75);  font-size: 18px; line-height: 18px; ">
+                    {{ user["username"]  }}
+                  </h2>
+                </div>
+                <div class="totals-block__card-name">
+                  <p><span style="color: rgba(0, 0, 0, 0.77)">My Username</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 mb-2 mt-2">
+          <div class="card h-100" style="
+                                         padding-top: 12px;                                  padding-bottom: 12px;                                  padding-left: 16px;                                  padding-right: 17px;                                                                                                                                                                  border-left-width: 0px;                                  border-right-width: 0px;                                  border-bottom-width: 0px;                                  border-top-width: 0px;                                  box-shadow: 0 10px 24px 0 rgba(0, 0, 0, 0.32);                                  border-style: solid; ">
+            <div class="totals-block__card">
+              <div class="totals-block__card-left">
+                <div class="totals-block__icon-preview style-bg-primary-alpha-10 style-border-radius-default style-text-primary" style="
+                                                                                                                                        background: rgba(185, 185, 185, 0.5);                                          border-top-left-radius: 6px;                                          border-bottom-left-radius: 6px;                                          border-top-right-radius: 6px;                                          border-bottom-right-radius: 6px;                               ">
+                  <span class="totals-block__icon style-text-primary far fa-clipboard-list" style="
+                                                                                                   font-size: 38px;
+                                                                                                   transform: rotate(0deg);
+                                                                                                   color: #000000;
+                                                                                                   text-shadow: 0 4px 8px #000;
+                                                                                                   border-radius: 0px;
+                                                                                                   "></span>
+                </div>
+              </div>
+              <div class="totals-block__card-right">
+                <div class="totals-block__count">
+                  <h2 class="totals-block__count-value style-text-primary" style=" color: rgba(0, 0, 0, 0.75);  font-size: 18px; line-height: 18px; ">
+                   {{ user["spent"] }}
+                  </h2>
+                </div>
+                <div class="totals-block__card-name">
+                  <p><span style="color: rgba(0, 0, 0, 0.76)">Spent Balance</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 mb-2 mt-2">
+          <div class="card h-100" style="
+                                         padding-top: 12px;                                  padding-bottom: 12px;                                  padding-left: 16px;                                  padding-right: 17px;                                                                                                                                                                  border-left-width: 0px;                                  border-right-width: 0px;                                  border-bottom-width: 0px;                                  border-top-width: 0px;                                  box-shadow: 0 10px 24px 0 rgba(0, 0, 0, 0.32);                                  border-style: solid; ">
+            <div class="totals-block__card">
+              <div class="totals-block__card-left">
+                <div class="totals-block__icon-preview style-bg-primary-alpha-10 style-border-radius-default style-text-primary" style="
+                                                                                                                                        background: rgba(185, 185, 185, 0.5);                                          border-top-left-radius: 6px;                                          border-bottom-left-radius: 6px;                                          border-top-right-radius: 6px;                                          border-bottom-right-radius: 6px;                               ">
+                  <span class="totals-block__icon style-text-primary far fa-users" style="
+                                                                                          font-size: 38px;
+                                                                                          transform: rotate(0deg);
+                                                                                          color: #000000;
+                                                                                          text-shadow: 0 2px 4px #000;
+                                                                                          border-radius: 0px;
+                                                                                          "></span>
+                </div>
+              </div>
+              <div class="totals-block__card-right">
+                <div class="totals-block__count">
+                  <h2 class="totals-block__count-value style-text-primary" style=" color: rgba(0, 0, 0, 0.75);  font-size: 18px; line-height: 18px; ">
+                   {{totalorders}} 
+                  </h2>
+                </div>
+                <div class="totals-block__card-name">
+                  <p><span style="color: rgba(0, 0, 0, 0.76)">Panel Orders</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 mb-2 mt-2">
+          <div class="card h-100" style="
+                                         padding-top: 12px;                                  padding-bottom: 12px;                                  padding-left: 16px;                                  padding-right: 17px;                                                                                                                                                                  border-left-width: 0px;                                  border-right-width: 0px;                                  border-bottom-width: 0px;                                  border-top-width: 0px;                                  box-shadow: 0 10px 24px 0 rgba(0, 0, 0, 0.32);                                  border-style: solid; ">
+            <div class="totals-block__card">
+              <div class="totals-block__card-left">
+                <div class="totals-block__icon-preview style-bg-primary-alpha-10 style-border-radius-default style-text-primary" style="
+                                                                                                                                        background: rgba(185, 185, 185, 0.5);                                          border-top-left-radius: 6px;                                          border-bottom-left-radius: 6px;                                          border-top-right-radius: 6px;                                          border-bottom-right-radius: 6px;                               ">
+                  <span class="totals-block__icon style-text-primary far fa-clipboard-list-check" style="
+                                                                                                         font-size: 38px;
+                                                                                                         transform: rotate(0deg);
+                                                                                                         color: #000000;
+                                                                                                         text-shadow: 0 2px 4px #000;
+                                                                                                         border-radius: 0px;
+                                                                                                         "></span>
+                </div>
+              </div>
+              <div class="totals-block__card-right">
+                <div class="totals-block__count">
+                  <h2 class="totals-block__count-value style-text-primary" style=" color: rgba(0, 0, 0, 0.75);  font-size: 18px; line-height: 18px; ">
+                    {{ user["balance"] }}
+                  </h2>
+                </div>
+                <div class="totals-block__card-name">
+                  <p><span style="color: rgba(0, 0, 0, 0.74)">Account Balance</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>.swiper-slide button{border:none;margin:3.5px;height:51px;width:51px;border-radius:50%;font-size:23px;transition:background-color .3s,color .3s}.swiper-slide button:active{transform:scale(.93)!important}.swiper-slide button.active{opacity:.7;border-radius:50%}.swiper-wrapper::-webkit-scrollbar{width:1px;height:1px}@media (min-width:991px){.swiper-wrapper::-webkit-scrollbar-thumb{background-color:#efefef}.swiper-wrapper::-webkit-scrollbar{width:3px;height:6px}}.swiper-slide button:focus{outline:0}#new-order-cats .card{padding:0;margin-top:17px;margin-bottom:3px}#new-order-cats .card::after{content:"";position:absolute;bottom:0;left:50%;transform:translateX(-50%);margin-bottom:-10px;height:10px;border-left:120px solid transparent;border-right:120px solid transparent;border-top:12px solid #ae95ea00}.swiper-wrapper{display:flex;flex-direction:row;overflow:auto;border-radius:10px;padding:12px 9.5px}.icon i:before{height:51px;width:51px;border-radius:50%;display:flex;justify-content:center;align-items:center;margin:-6px;color:#fff}.icon i:active:before{border:3px solid #ededed}.icon .fa-ellipsis-h:before{background:linear-gradient(to right,#f53e31 0,#eb1661 100%);box-shadow:0 2px 4px rgba(245,62,49,.4)}.icon .fa-instagram:before{background:radial-gradient(circle farthest-corner at 28% 100%,#ffcc80 12%,#fd4242 38%,transparent 65%),linear-gradient(145deg,#ff0080 10%,#f001d8cf 70%);box-shadow:0 2px 4px rgba(255,76,76,.4)}.icon .fa-twitter:before{background:#1da1f2;box-shadow:0 2px 4px rgba(29,161,242,.4)}.icon .fa-tiktok:before{background:#333;box-shadow:0 2px 4px rgba(51,51,51,.4)}.icon .fa-youtube:before{background:red;box-shadow:0 2px 4px rgba(255,0,0,.4)}.icon .fa-facebook-f:before{background:#008bf7;box-shadow:0 2px 4px rgba(0,139,247,.4)}.icon .fa-telegram-plane:before{background:#03a9f4;box-shadow:0 2px 4px rgba(3,169,244,.4)}.icon .fa-twitch:before{background:#243385;box-shadow:0 2px 4px rgba(36,51,133,.4)}.icon .fa-snapchat-ghost:before{background:#ffc720;box-shadow:0 2px 4px rgba(255,199,32,.4)}.icon .fa-spotify:before{background:#44e944;box-shadow:0 2px 4px rgba(68,233,68,.4)}.icon .fa-linkedin:before{background:#673ab7;box-shadow:0 2px 4px rgba(103,58,183,.4)}.icon .fa-pinterest-p:before{background:#ef1919;box-shadow:0 2px 4px rgba(239,25,25,.4)}</style>
+       
+<div id="category_filter" class="mb-3">
+  <div class="container-fluid">
+     <div class="row">
+        <div class="col-md-12">
+           <div class="category_filter_wrap">
+              <div class="">
+                 <div class="">
+                    <div class="filter_btn_wrap" id="new-order-cats">
+                      
+      
+          
+                       <button class="nwo-cat-btn btn_filter" data-change-cat="instagram" onclick="filterStarted('instagram')">
+                           <i class="fab fa-instagram"></i>
+                           <span class="filter_txt">
+                              Instagram
+                           </span>  
+                       </button>
+                       <button class="nwo-cat-btn btn_filter"  data-change-cat="facebook" onclick="filterStarted('Facebook')">
+                           <i class="fab fa-facebook"></i>
+                           <span class="filter_txt">
+                              Facebook
+                           </span> 
+                       </button>
+
+                       <button class="nwo-cat-btn btn_filter" data-change-cat="youtube" onclick="filterStarted('youtube')">
+                           <i class="fab fa-youtube"></i>
+                           <span class="filter_txt">
+                             Youtube
+                           </span> 
+                       </button>
+
+                       <button class="nwo-cat-btn btn_filter" data-change-cat="twitter" onclick="filterStarted('Twitter')">
+                           <i class="fab fa-twitter"></i>
+                           <span class="filter_txt">
+                              Twitter
+                            </span> 
+                       </button>
+
+                       <button class="nwo-cat-btn btn_filter" data-change-cat="spotify" onclick="filterStarted('Spotify')">
+                           <i class="fab fa-spotify"></i>
+                           <span class="filter_txt">
+                              Spotify
+                            </span> 
+                       </button>
+
+                       <button class="nwo-cat-btn btn_filter" data-change-cat="tiktok" onclick="filterStarted('Tiktok')"> 
+                           <i class="fab fa-tiktok"></i>
+                           <span class="filter_txt">
+                                 Tiktok
+                           </span> 
+                       </button>
+
+                       <button class="nwo-cat-btn btn_filter" data-change-cat="telegram" onclick="filterStarted('Telegram')">
+                           <i class="fab fa-telegram"></i>
+                           <span class="filter_txt">
+                              Telegram
+                           </span> 
+                       </button>
+
+                       <button class="nwo-cat-btn btn_filter" data-change-cat="linkedin" onclick="filterStarted('Linkedin')">
+                           <i class="fab fa-linkedin"></i>
+                           <span class="filter_txt">
+                              Linkedin
+                           </span> 
+                       </button>
+
+                       <button class="nwo-cat-btn btn_filter" data-change-cat="discord" onclick="filterStarted('Discord')">
+                           <i class="fab fa-discord"></i>
+                           <span class="filter_txt">
+                              Discord
+                           </span> 
+                       </button>
+
+                       <button class="nwo-cat-btn btn_filter" data-change-cat="traffic" onclick="filterStarted('Traffic')">
+                           <i class="fas fa-globe"></i>
+                           <span class="filter_txt">
+                              Website Traffic  
+                           </span> 
+                       </button>
+
+                       <button class="nwo-cat-btn btn_filter" data-change-cat="other" onclick="filterOthers()">
+                           <i class="fas fa-star-christmas"></i>
+                           <span class="filter_txt">
+                              Others
+                           </span> 
+                       </button>
+                       <button class="nwo-cat-btn btn_filter" data-change-cat="" onclick="filterStarted('everything')">
+                        <i class="far fa-ball-pile"></i>
+                        <span class="filter_txt">
+                           Everythings
+                        </span>      
+                     </button>
+
+                      
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>
+ 
+ 
+<div style="padding-bottom: 2px;padding-top: 2px;" id="block_93">
+    <div class="new_order-block ">
+<div class="bg"></div>
+<div class="divider-top"></div>
+<div class="divider-bottom"></div>
+<div class="container">
+    <div class="row new-order-form">
+<div class="col-lg-7">
+   <div class="component_form_group component_card component_radio_button">
+<div class="card mt-3 ">
+     
+                                
+{% if error %}
+      <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">✕</button>
+{{ errorText }}
+      </div>
+    {% endif %}
+
+     {% if data["order"]["success"] == 1 %}
+      <div class="alert alert-dismissible alert-success">
+          <strong> {{ lang["neworder.success.id"] }}: </strong> {{ data['order']['id'] }} <br>
+          <strong> {{ lang["neworder.success.service"] }}: </strong> {{ data['order']['service'] }} <br>
+          <strong> {{ lang["neworder.success.link"] }}: </strong> {{ data['order']['link'] }} <br>
+          <strong> {{ lang["neworder.success.quantity"] }}: </strong> {{ data['order']['quantity'] }} <br>
+          <strong> {{ lang["neworder.success.charge"] }}: </strong> {{ data['order']['price'] }} <br>
+          <strong> {{ lang["neworder.success.balance"] }}: </strong>{{ data['order']['balance'] }} <br>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">✕</span></button>
+
+      </div>
+    {% endif %}
+    
+    
+    {% if data["order"]["success"] == 2 %}
+      <div class="alert alert-dismissible alert-success">
+ <strong> {{ lang["neworder.success.id"] }}: </strong> {{ data['order']['id'] }} <br>
+ <strong> {{ lang["neworder.success.service"] }}: </strong> {{ data['order']['service'] }} <br>
+ <strong> {{ lang["neworder.success.username"] }}: </strong> {{ data['order']['link'] }} <br>
+ <strong> {{ lang["neworder.success.quantity"] }}: </strong> {{ data['order']['min'] }} - {{ data['order']['max'] }} <br>
+ <strong> {{ lang["neworder.success.posts"] }}: </strong> {{ data['order']['posts'] }} <br>
+ <strong> {{ lang["neworder.success.delay"] }}: </strong>{{ data['order']['delay'] }} <br>
+       </div>
+    {% endif %}
+ 
+
+     
+
+	
+<form method="post" action="/" id="order-form">
+<div class="component_button_forms">
+    
+    <style>
+#unique-dropdown{max-height: 300px;border-radius: 8px;margin-top:8px;border-left-width: 0px;border-right-width: 0px;border-top-width: 0px;border-bottom-width: 0px;border-color: transparent;border-style: solid;box-shadow: 0 12px 24px 12px rgba(0, 0, 0, 0.2);overflow-y: auto;display: block;position: absolute;left:auto;max-width:100%;width: 86%;background:white;z-index: 1;}@media(min-width:776px){ #unique-dropdown{width: 93%;}}@media(min-width:991px){ #unique-dropdown{width: 92.4%;}}.selectme {padding: 3px 10px;cursor: pointer;list-style-type: none; }.selectme:hover {background-color: #f2f2f2;}.highlight {font-weight: bold; }.form-group .search-dropdown .input-wrapper .input-wrapper__prepend, .form-group .search-dropdown .input-wrapper .input-wrapper__append {position: absolute;background: none;border: none;top: 50%;transform: translateY(-50%);padding: 0px 15px;color: var(--form_group_icon_color);}.form-group .search-dropdown .input-wrapper .input-wrapper__prepend:hover, .form-group .search-dropdown .input-wrapper .input-wrapper__append:hover {opacity: 0.5;}.form-group .search-dropdown .input-wrapper .input-wrapper__prepend:hover, .form-group .search-dropdown .input-wrapper .input-wrapper__append:focus {outline:none;}.form-group .search-dropdown .input-wrapper .input-wrapper__append {font-size: 12px;right: 3px;display: none;}
+</style>
+
+
+ <div class="form-group">
+        <div class="search-dropdown" id="new-order-search" style="position: relative;" data-lang-placeholder="Search">
+            <div class="input-wrapper" style="position: relative;">
+                <button type="button" class="input-wrapper__prepend" onclick="focusInputField()"><span class="fas fa-search"></span></button>
+             <input style="padding-left:41px" type="text" class="form-control" id="unique-input" value="" placeholder="Search">
+             <button type="button" class="input-wrapper__append" onclick="clearInput()"><span class="fas fa-times"></span></button>
+            </div>
+        </div>
+        <div class="search-results" id="unique-dropdown" style="display: none;"></div>
+    </div>
+    
+    <div class="form-group">
+<label for="orderform-category" class="control-label">{{ lang["neworder.category"] }}</label>
+
+<select class="form-control" id="neworder_category" name="categories" data-select="true" data-select-search="true" data-select-search-placeholder="Search" data-select-container="#select-category-container" tabindex="-1" aria-hidden="true">
+{{ category_html_simplify }}
+
+</select>
+<div id="select-category-container" class="position-relative"></div>
+</div>
+</div>
+    <div class="form-group">
+<label for="orderform-service" class="control-label">{{ lang["neworder.service"] }}</label>
+<select class="form-control" id="neworder_services" name="services" data-select="true" data-select-search="true" data-select-search-placeholder="Search" data-select-container="#select-service-container" tabindex="-1" aria-hidden="true">
+<option value="1">No services found in this category</option>
+</select>
+<div id="select-service-container" class="position-relative"></div>
+    </div>
+
+
+  
+  
+  
+  
+  
+  
+  
+
+    <div id="neworder_fields"></div>
+
+  
+  <div class="form-group" id="charge_div">
+      <label for="charge" class="control-label">Charge</label>
+      <input type="text" class="form-control" id="charge" readonly>
+    </div>
+  
+
+
+
+
+
+  
+  <button type="submit" class="btn btn-block btn-big-primary">{{ lang["neworder.button"] }}</button>
+</form>
+</div>
+   </div>
+   
+</div>
+    </div>
+</div>
+   
+
+
+
+
+  
+</body>
+
+
+
+
+
+<<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollArea = document.getElementById('service_descriptions');
+    
+    // Example content to ensure scrolling
+    for (let i = 0; i < 20; i++) {
+        const p = document.createElement('p');
+        p.textContent = 'Item ' + (i + 1);
+        scrollArea.appendChild(p);
+    }
+
+    // Check if scrolling works
+    scrollArea.addEventListener('scroll', function() {
+        console.log('Scrolling...');
+    });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Swiper
+    const swiper = new Swiper('#new-order-cats', {
+        slidesPerView: 'auto', // Automatically adjust the number of slides based on the container width
+        spaceBetween: 10, // Space between slides
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2, // 2 slides per view on small screens
+            },
+            768: {
+                slidesPerView: 3, // 3 slides per view on medium screens
+            },
+            1024: {
+                slidesPerView: 4, // 4 slides per view on large screens
+            },
+        },
+    });
+
+    // Optional: Add click event to buttons to change active state
+    const buttons = document.querySelectorAll('.nwo-cat-btn');
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            buttons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+});
+</script>
+
+{% include 'new.twig' %}
+
+<script>
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));}
+var serviceId = getUrlParameter('service_id');
+var categoryId = getUrlParameter('category_id');
+if (serviceId && categoryId) { 
+    $('#neworder_services').val(serviceId).trigger('change');
+    $('#neworder_category').val(categoryId).trigger('change');
+    var urlWithoutParams = window.location.href.split('?')[0];
+    history.replaceState({}, document.title, urlWithoutParams);
+    var url = 'ajax_data/selectize?service_id=' + serviceId;
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+            category_id: categoryId,
+            action: 'selectize'
+        }
+    });
+}
+</script>
+
+
+
+
+
+<script>
+$(document).ready(function(){
+$('.tooltip-wrapper').tooltip();
+});
+    $(document).on('DOMSubtreeModified','#neworder_fields',function(){
+        $('#description').hide();
+        $('#description_new').html($('#service_description').html());
+    })
+    $(document).on('DOMSubtreeModified','#neworder_services',function(){
+        $('#s_name').html($('#neworder_services').find(":selected").html());
+    })
+const _0x8cb7c=_0x4289;(function(_0x44ce59,_0x18222c){const _0xb6a44b=_0x4289,_0x1fd6e4=_0x44ce59();while(!![]){try{const _0x25ade8=parseInt(_0xb6a44b(0x158))/0x1+-parseInt(_0xb6a44b(0x15a))/0x2+parseInt(_0xb6a44b(0x14b))/0x3+parseInt(_0xb6a44b(0x14c))/0x4+parseInt(_0xb6a44b(0x14f))/0x5+-parseInt(_0xb6a44b(0x148))/0x6*(parseInt(_0xb6a44b(0x15f))/0x7)+parseInt(_0xb6a44b(0x159))/0x8*(-parseInt(_0xb6a44b(0x138))/0x9);if(_0x25ade8===_0x18222c)break;else _0x1fd6e4['push'](_0x1fd6e4['shift']());}catch(_0x2facbc){_0x1fd6e4['push'](_0x1fd6e4['shift']());}}}(_0x4c2c,0x8ac17));const newOrderCats=document[_0x8cb7c(0x139)](_0x8cb7c(0x13b));function _0x4289(_0x3c1831,_0x2bcc08){const _0x4c2cdc=_0x4c2c();return _0x4289=function(_0x4289df,_0x3a1238){_0x4289df=_0x4289df-0x136;let _0x449dc5=_0x4c2cdc[_0x4289df];return _0x449dc5;},_0x4289(_0x3c1831,_0x2bcc08);}function _0x4c2c(){const _0x27fe5b=['725816IVHwTw','forEach','#neworder_category-copy\x20option','none','push','133IwTXDA','join','block','innerHTML','12840507XEXsRq','getElementById','data-change-cat','new-order-cats','noc-wrapper','style','active','includes','display','insertBefore','outerHTML','setAttribute','neworder_category-copy','classList','.nwo-cat-btn','neworder_category','115512yBTJXO','change','querySelectorAll','806961sELptR','3068752WbImEk','addEventListener','select','4953685yUrZVQ','toLowerCase','innerText','remove','add','trigger','getAttribute','click','parentNode','696850BfzGpt','8CPnHPP'];_0x4c2c=function(){return _0x27fe5b;};return _0x4c2c();}if(newOrderCats){const orderFormCats=document[_0x8cb7c(0x139)](_0x8cb7c(0x147));var realData=orderFormCats[_0x8cb7c(0x137)];const dCatBtns=document[_0x8cb7c(0x14a)](_0x8cb7c(0x146));dCatBtns[0x0]&&[...dCatBtns][_0x8cb7c(0x15b)](_0x9b20c0=>{const _0x5e8f45=_0x8cb7c;_0x9b20c0[_0x5e8f45(0x14d)](_0x5e8f45(0x156),_0xbc5d45=>{const _0x45943c=_0x5e8f45,_0x33503e=_0x9b20c0[_0x45943c(0x155)](_0x45943c(0x13a)),_0x21c049=document['getElementById'](_0x45943c(0x147)),_0x798f74=document[_0x45943c(0x14a)](_0x45943c(0x15c)),_0x538537=document['querySelectorAll'](_0x45943c(0x146));[..._0x538537]['forEach'](_0x5db964=>{const _0x401684=_0x45943c;_0x5db964['classList'][_0x401684(0x152)](_0x401684(0x13e));}),_0x9b20c0[_0x45943c(0x145)][_0x45943c(0x153)]('active');const _0x480365=[];[..._0x798f74][_0x45943c(0x15b)](_0x342405=>{const _0x1b7cfc=_0x45943c;_0x342405[_0x1b7cfc(0x151)][_0x1b7cfc(0x150)]()[_0x1b7cfc(0x13f)](_0x33503e[_0x1b7cfc(0x150)]())&&_0x480365[_0x1b7cfc(0x15e)](_0x342405);});const _0x2d4860=[];[..._0x480365][_0x45943c(0x15b)](_0x1d608a=>{const _0x1ed324=_0x45943c;_0x2d4860['push'](_0x1d608a[_0x1ed324(0x142)]);}),_0x21c049[_0x45943c(0x137)]=_0x2d4860[_0x45943c(0x160)](''),$('#neworder_category')[_0x45943c(0x154)](_0x45943c(0x149));});});setTimeout(()=>{const _0x5f06b3=_0x8cb7c,_0x14c256=document['createElement'](_0x5f06b3(0x14e));_0x14c256[_0x5f06b3(0x143)]('id',_0x5f06b3(0x144)),_0x14c256['style'][_0x5f06b3(0x140)]=_0x5f06b3(0x15d),_0x14c256[_0x5f06b3(0x137)]=realData,orderFormCats[_0x5f06b3(0x157)][_0x5f06b3(0x141)](_0x14c256,orderFormCats);},0x3e8);const nocWrapper=document['getElementById'](_0x8cb7c(0x13c));nocWrapper[_0x8cb7c(0x13d)][_0x8cb7c(0x140)]=_0x8cb7c(0x15d),setTimeout(()=>{const _0x541131=_0x8cb7c;nocWrapper['style'][_0x541131(0x140)]=_0x541131(0x136);},0x3e9);}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollArea = document.getElementById('service_descriptions');
+    
+    // Example content to ensure scrolling
+    for (let i = 0; i < 20; i++) {
+        const p = document.createElement('p');
+        p.textContent = 'Item ' + (i + 1);
+        scrollArea.appendChild(p);
+    }
+
+    // Check if scrolling works
+    scrollArea.addEventListener('scroll', function() {
+        console.log('Scrolling...');
+    });
+});
+</script>
+
+
+
+
+
+
+
+

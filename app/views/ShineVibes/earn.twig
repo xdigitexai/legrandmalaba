@@ -1,0 +1,152 @@
+{% include 'header.twig' %}
+<div class="wrapper-content">
+    <div class="wrapper-content__header">
+          </div>
+
+{% if PageText %}
+
+      <div id="block_93">
+    <div class="new_order-block ">
+        <div class="bg"></div>
+        <div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container">
+            <div class="row new-order-form">
+                <div class="col-lg-6">
+                   <div class="component_form_group component_card component_radio_button">
+                      <div class=" ">
+    <div class="col-md-12">
+      
+      <div class="card">
+        {{ contentText }}
+      </div>
+    </div>
+</div>
+    </div>
+  </div></div></div></div></div>
+{% endif %} 
+
+    <div class="wrapper-content__body">
+      <!-- Main variables *content* -->
+      <div id="block_94">
+    <div class="add-funds__form">
+        <div class="bg"></div>
+        <div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container">
+            <div class="row add-funds__form-alignment">
+                <div class="col-lg-6">
+                    <div class="component_card">
+                        <div class="card">
+<div class="col-md-12">
+      {% if error %}
+        <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ errorText }}
+        </div>
+      {% elseif success %}
+        <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ successText }}
+        </div>
+      {% endif %}
+
+        <div class="well">
+          <form method="post" action="earn">
+            <div class="form-group">
+              <label for="link" class="control-label">Promotion Link</label>
+              <input type="text" class="form-control" id="link" name="link" value="{{ data['link'] }}">
+            </div>
+            <button type="submit" class="btn btn-block btn-big-primary">Send Link</button>
+          </form>
+</div></div>
+</div></div>
+    </div>
+     <div class="col-lg-6">
+				
+                    <div class="table-bg affiliates-info__data-table component_table_link ">
+                        <div class="table-wr table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+              <th>Promotion Link</th>
+              <th>Note</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+<tbody>
+                                 {% for earn in earn %}
+              <tr>
+
+                <td>{{ earn['id'] }}</td>
+                <td>{{ earn['link'] }}</td>
+                <td>{{ earn['note'] }}</td>
+                <td>{{ earn['status'] }}</td>
+
+              </tr>
+            {% endfor %}
+       
+                                    </tbody>
+        </table>
+      </div>
+
+    <br>
+      {% if pagination["count"] > 1 %}
+        <ul class="pagination">
+
+          {% if pagination["current"] == 1 %}
+            <li>
+              <a href="earn/{{ status }}/{{ pagination["previous"] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Previous">
+                <span aria-hidden="true">Â«</span>
+              </a>
+            </li>
+          {% endif %}
+
+          {% set r, l = 3, 3 %}
+
+          {% if pagination['current'] == 1 %}
+            {% set r = 7 %}
+          {% endif %}
+
+          {% if pagination['current'] == 2 %}
+            {% set r = 5 %}
+          {% endif %}
+
+          {% if pagination['current'] >= pagination['count'] %}
+            {% set l = 5 %}
+          {% endif %}
+
+          {% for page in 1..pagination["count"] %}
+            {% if page >= (pagination['current']-l) and page <= (pagination['current']+r) %}
+              <div style="border:1px solid rgb(128,128,128); padding:4px; margin-left:8px; min-width:21px; text-align:center;"><li{% if page == pagination['current'] %} class="active" {%endif%}><a href="earn/{{ status }}/{{ page }}{% if search %}?search={{ search }}{% endif %}">{{ page }}</a></li></div>
+            {%endif%}
+          {% endfor %}
+
+          {% if pagination['current'] < pagination['count'] %}
+            <li>
+              <a style="margin-left:8px;" href="earn/{{ status }}/{{ pagination['next'] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Next">
+                <span aria-hidden="true">Â»</span>
+              </a>
+            </li>
+          {% endif %}
+
+        </ul>
+      {% endif %}
+
+    </div>
+    </div>
+    
+ 
+    <div class="wrapper-content__body">
+      <!-- Main variables *content* -->
+   <div id="block_93">
+    <div class="new_order-block ">
+        <div class="bg"></div>
+        <div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container">
+            <div class="row new-order-form">
+               
+
+{% include 'footer.twig' %}

@@ -1,0 +1,138 @@
+{% include 'header.twig' %}
+<!-- Main variables *content* -->
+
+
+
+  		<div class="hiddenTitle">
+    <div id="appTt">Support Center</div>
+    <div id="appTx">We're the best!</div>
+</div>
+<div class="appContent">
+    <section class="dashboard-head-wrapper">
+        <div class="container">
+            <div class="dashboard-head card-border">
+                <div class="dhead-body">
+                    <h2 class="title">Create or View Ticket!</h2>
+                    <p class="text">Get Free Access To Our 24*7 Support Team Just Create A Account And Create A ticket</p>
+                </div>
+                <div class="dhead-img-wrapper">
+                    <img src="https://cdn.smmspot.net/snfollows/assets/img/sc-h.png" class="dhead-img" alt="Coin Moin" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card card-border">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col-md">
+                                    <h3 class="card-title">Create Ticket</h3>
+                                    <p class="card-h-text">You can create support ticket here.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./card-header -->
+                        <div class="card-body">
+                            {% if error %}
+        <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ errorText }}
+        </div>
+      {% elseif success %}
+        <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ successText }}
+        </div>
+      {% endif %}
+
+                            <form method="post" action="" id="tickets">
+                                <div class="alert alert-dismissible alert-danger ticket-danger" style="display: none;">
+                                    <button type="button" class="close">×</button>
+                                    <div></div>
+                                </div>
+                                <div class="siginInRow form-group mb-4">
+                                    <label class="control-label">Subject</label>
+                                    <select class="form-control" id="subject" name="subject" data-select="true" data-select-search="true" data-select-search-placeholder="Search">
+                                        <option
+                                            value="New-Order">
+                                            Order
+                                        </option>
+                                        <option value="New-Payment">Payment</option>
+                                        <option value="New-Child-Panel">Child Panel</option>
+                                        <option value="New-API">API</option>
+                                        <option value="New-Bug">Bug</option>
+                                        <option value="New-Request">Request</option>
+                                        <option value="New-Other">Other</option>
+                                    </select>
+                                </div>
+
+                              
+                             
+                                <div class="siginInRow form-group mb-4">
+                                    <label class="control-label">Message<span id="optional"> (optional) </span></label>
+                                    <textarea class="form-control" rows="4" cols="50" id="message" name="message">{{ data['message'] }}</textarea>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary btn-block">Submit ticket</button>
+                            </form>
+
+                            
+                        </div>
+                        <!-- ./card-body -->
+                    </div>
+                    <!-- ./card -->
+                </div>
+                                  <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header body-top-on-this">
+                            <div class="row align-items-center">
+                                <div class="col-md">
+                                    <h3 class="card-title">Support History</h3>
+                                    <p class="card-h-text">Your Ticket history</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./card-header -->
+                        <div class="card-body">
+                            <div class="sc-sup-history">
+                                                             {% for ticket in ticketList %}   
+                                                                <a href="tickets/{{ ticket['ticket_id'] }}" class="sc-sup-item">
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <div class="title">ID</div>
+                                            <div class="text">{{ ticket['ticket_id'] }}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="title">Subject</div>
+                                            <div class="text">
+                                                {{ ticket['subject'] }}                                       </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="title">Status</div>
+                                                                                        <div class="text {% if ticket['status'] == 'Answered' %} success-color {% endif %}  {% if ticket['status'] == 'Pending' %} primary-color {% endif %} {% if ticket['status'] == 'Closed' %}   danger-color {% endif %}">{{ ticket['status'] }}</div>
+                                                                                      </div>
+                                        <div class="col-auto">
+                                            <div class="title">Last update</div>
+                                            <div class="text">{{ ticket['lastupdate_time'] }}</div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- ./sc-sup-item -->{% endfor %}
+                                                            </div>
+                        </div>
+                        <!-- ./card-body -->
+                    </div>
+                    <!-- ./card -->
+                </div>
+                <!-- ./col(right) -->
+            </div>
+        </div>
+            </section>
+</div>
+
+
+
+{% include 'footer.twig' %}

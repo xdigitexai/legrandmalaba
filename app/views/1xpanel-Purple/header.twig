@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+	{% for lang in site['languages'] %}
+		{% if lang['active'] %}
+			<html lang="{{ lang['code'] }}">
+			{% endif %}
+		{% endfor %}
+
+		<head>
+  <base href="{{ site['url'] }}">
+  <title>{% if pagetitle %}  {{ pagetitle }}  {% else %} {{ title }} {% endif %} </title>
+  <meta property="og:title" content="{% if pagetitle %}  {{ pagetitle }}  {% else %} {{ title }} {% endif %}" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="{% if pagekeywords %} {{ pagekeywords }} {% else %} {{ site["keywords"]}}  {% endif %}">
+  <meta name="description" content="{% if pagedescription %} {{ pagedescription }} {% else %} {{ site['description'] }}  {% endif %}">
+  <meta property="og:description" content="{% if pagedescription %} {{ pagedescription }} {% else %} {{ site['description'] }}  {% endif %}" />
+  {% if site['favicon'] %}
+    <link rel="shortcut icon" type="image/ico" href="{{ site['favicon'] }}" />
+  {% endif %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <script>
+    // Prevent pinch zoom (iOS / Safari)
+    document.addEventListener('gesturestart', function (e) {
+      e.preventDefault();
+    });
+    document.addEventListener('gesturechange', function (e) {
+      e.preventDefault();
+    });
+    document.addEventListener('gestureend', function (e) {
+      e.preventDefault();
+    });
+
+    // Prevent double-tap zoom
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function (event) {
+      const now = new Date().getTime();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
+
+    // Prevent Ctrl + scroll zoom (desktop browsers)
+    document.addEventListener('wheel', function (event) {
+      if (event.ctrlKey) {
+        event.preventDefault();
+      }
+    }, { passive: false });
+
+    // Prevent keyboard zoom (Ctrl + '+' / '-')
+    document.addEventListener('keydown', function (event) {
+      if ((event.ctrlKey || event.metaKey) && 
+         (event.key === '+' || event.key === '-' || event.key === '=')) {
+        event.preventDefault();
+      }
+    });
+  </script>
+  
+<link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/a3vltc/7j4kauifzjbbi8l2.css">
+					<link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/a3vltc/tuotf4yqdyiq3dnl.css">
+					<link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/libs/bootstrap-datetimepicker/4.17.47/bootstrap-datetimepicker.min.css">
+					<link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/css/font-awesome/css/all.min.css">
+					<link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/global/spcob4z2no8pa441.css">
+					<link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/global/rqjyyl9xtowtlhgu.css">
+		 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css" />
+      	</head>
+		{% if user['auth'] %}
+
+		<body class="dashboard">
+      <header class="d-flex align-items-center px-xl-7 px-4 py-3">
+        <button class="close-sidebar js-close-sidebar" style="display: block !important;">
+            <i class="ri-arrow-right-s-line"></i>
+        </button>
+		<div class="header-msg">
+    <h6 class="header-title">
+        {% if pagetitle %}
+            {{ pagetitle }}
+        {% else %}
+            {{ title }}
+        {% endif %}
+    </h6>
+</div>
+
+<div class="navbar ms-auto">
+            <style>
+:root {
+  --cc-bg: #0f1222;
+  --cc-bg-hover: #171a2e;
+  --cc-text: #e7e9ff;
+  --cc-accent: #7750f6;
+  --cc-success: #0a7222;
+  --cc-border: #252942;
+  --cc-shadow: 0 8px 18px rgba(0,0,0,.25);
+  --cc-radius: 10px;
+  --cc-radius-sm: 8px;
+  --cc-pad: 6px 10px;
+  --cc-font: 12px;
+  --cc-font-sm: 11px;
+}
+
+.balance-dropdown-container {
+  position: relative;
+}
+
+.balance-dropdown__name {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--cc-font);
+  font-weight: 600;
+  color: var(--cc-text);
+  background: var(--cc-bg);
+  border: 1px solid var(--cc-border);
+  border-radius: var(--cc-radius);
+  padding: 6px 10px;
+  cursor: pointer;
+  line-height: 1;
+  transition: background .2s, border-color .2s;
+}
+
+.balance-dropdown__name i {
+  display: inline-grid;
+  place-items: center;
+  background: var(--cc-success);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  font-size: 8px;
+  color: #fff;
+  transition: transform .18s;
+}
+
+.balance-dropdown__name:hover {
+  background: var(--cc-bg-hover);
+  border-color: #313656;
+}
+
+.balance-dropdown__container,
+#currencies-list.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px) !important;  /* ⬅️ force dropdown lower */
+  right: 0;
+  min-width: 160px;
+  max-height: 40vh;
+  overflow: auto;
+  background: var(--cc-bg);
+  border: 1px solid var(--cc-border);
+  border-radius: var(--cc-radius);
+  box-shadow: var(--cc-shadow);
+  padding: 6px;
+  margin: 0;
+  list-style: none;
+  display: none;
+  font-size: var(--cc-font);
+}
+
+.balance-dropdown__container.show,
+#currencies-list.dropdown-menu.show {
+  display: block;
+}
+
+#currencies-list a,
+#currencies-list .currency-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border-radius: var(--cc-radius-sm);
+  padding: 6px 8px;
+  text-decoration: none;
+  font-size: var(--cc-font);
+  color: var(--cc-text);
+  background: transparent;
+  cursor: pointer;
+  transition: background .15s;
+}
+
+#currencies-list a:hover,
+#currencies-list .currency-item:hover {
+  background: var(--cc-bg-hover);
+}
+</style>
+
+
+<div class="nav-item currencyItem toggle-item ms-auto">
+  {% if site_currency_converter == "1" %}
+  <ul class="navbar-nav navbar-nav-currencies">
+    <div class="balance-dropdown-container component_balance_dropdown">
+      <div class="balance-dropdown">
+        <div class="balance-dropdown__name" data-toggle="dropdown" aria-expanded="false">
+          {{ user["balance"] }}
+          <i class="fal fa-angle-down"></i>
+        </div>
+        <ul class="balance-dropdown__container dropdown-menu" id="currencies-list">
+          {{ currencies_dropdown }}
+        </ul>
+      </div>
+    </div>
+  </ul>
+  {% else %}
+  <br>
+  {% endif %}
+</div>
+
+													
+													<!-- Notification dropdown (copy/paste as-is) -->
+<style>
+/* --- Container --- */
+.nav-item.currencyItem.toggle-item {
+  position: relative; /* anchor for the dropdown */
+  display: inline-block;
+}
+
+/* --- Bell button --- */
+#notifBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  border-radius: 8px;
+  color: #e7e9ff;
+  font-size: 18px;
+  position: relative; /* so badge can be positioned relative to button */
+}
+
+/* hover look */
+#notifBtn:hover { background: rgba(255,255,255,0.04); }
+
+/* --- notification count badge --- */
+#notification-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  font-size: 11px;
+  line-height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: #e53935;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.32);
+  pointer-events: none;
+  font-weight: 600;
+}
+
+/* --- dropdown body --- */
+#notifications-dropdown {
+  position: absolute;
+  top: calc(100% + 12px); /* <-- distance under the button */
+  right: 0;
+  width: 320px;
+  max-height: 420px;
+  overflow-y: auto;
+  background: #0f1222;
+  border: 1px solid #252942;
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.32);
+  padding: 8px;
+  z-index: 2500;
+
+  /* Hidden state (keeps element in flow so positioning works) */
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+/* visible */
+#notifications-dropdown.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* --- notification item --- */
+.tn-item {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  color: #dfe3ff;
+}
+.tn-item:last-child { border-bottom: none; }
+
+.tn-date { font-size: 11px; color: #9aa0b4; margin-bottom: 4px; }
+.tn-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; color: #fff; }
+.tn-text { font-size: 12px; color: #cfd3f4; line-height: 1.35; }
+
+/* small button inside item */
+.tn-btn a {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 12px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: #7750f6;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Fix currency dropdown */
+.balance-dropdown__container.dropdown-menu {
+  min-width: 200px !important;   
+  width: auto !important;        
+  max-width: 90vw !important;    
+  left: 50% !important;          /* start centering */
+  transform: translateX(-50%) !important; /* perfect center */
+  margin-top: 8px !important;   
+  padding: 8px 10px !important;  
+  white-space: normal !important;
+  word-wrap: break-word !important;
+}
+
+/* --- Responsive Main Logo --- */
+.main-logo {
+    width: auto;              /* maintain aspect ratio */
+    height: auto;             /* auto height */
+    max-height: 60px;         /* desktop max height */
+    max-width: 100%;          /* never overflow container */
+    display: block;
+}
+
+/* On small screens (mobile) */
+@media (max-width: 480px) {
+  .balance-dropdown__container.dropdown-menu {
+    min-width: 250px !important;  
+    width: auto !important;
+    max-width: 95vw !important;   
+    left: 50% !important;         
+    transform: translateX(-50%) !important; 
+    font-size: 14px !important;   
+  }
+}
+
+</style>
+
+<div class="nav-item currencyItem toggle-item">
+  <button id="notifBtn" aria-expanded="false" aria-controls="notifications-dropdown" aria-haspopup="true" type="button">
+    <!-- Inline bell SVG -->
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+      <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11c0-3.07-1.64-5.64-4.5-6.32V4a1.5 1.5 0 10-3 0v.68C7.64 5.36 6 7.92 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h11z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+    <!-- Dynamic notification count -->
+    <span id="notification-count" aria-hidden="true">{{ news|length }}</span>
+  </button>
+
+  <div id="notifications-dropdown" role="menu" aria-labelledby="notifBtn">
+    {% for new in news %}
+    <div class="tn-item" role="menuitem">
+        <div class="tn-date">
+            <i class="fad fa-calendar-alt"></i> {{ new.news_date }}
+        </div>
+        <div class="tn-title">{{ new.news_title }}</div>
+        <div class="tn-text">
+            Service ID : {{ new.service_id }} , {{ new.news_content }}
+            <span style="color:#ff6b6b">{{ new.highlight }}</span>
+        </div>
+        <div class="tn-btn">
+            <a href="https://boostbayan.com/?select_service_id={{ new.service_id }}">Go to service</a>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const btn = document.getElementById('notifBtn');
+  const dropdown = document.getElementById('notifications-dropdown');
+
+  if (!btn || !dropdown) return; // safety
+
+  function openDropdown() {
+    dropdown.classList.add('show');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+  function closeDropdown() {
+    dropdown.classList.remove('show');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+  function toggleDropdown() {
+    if (dropdown.classList.contains('show')) closeDropdown();
+    else openDropdown();
+  }
+
+  btn.addEventListener('click', function (ev) {
+    ev.stopPropagation(); // don't let document click handler close it immediately
+    toggleDropdown();
+  });
+
+  // Keep clicks inside the dropdown from closing it
+  dropdown.addEventListener('click', function (ev) {
+    ev.stopPropagation();
+  });
+
+  // Click outside closes the dropdown
+  document.addEventListener('click', function (ev) {
+    if (!btn.contains(ev.target) && !dropdown.contains(ev.target)) {
+      closeDropdown();
+    }
+  });
+
+  // Esc closes
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key === 'Escape') closeDropdown();
+  });
+});
+</script>
+
+			
+            <div class="nav-item currencyItem toggle-item">
+               <button type="button" class="toggle-head nav-link basket-drawer-toggle">
+    <i class="far fa-user-circle"></i>
+    <span id="sepetsayi" style="display: none"></span>
+</button>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector(".basket-drawer-toggle").addEventListener("click", function () {
+        window.location.href = "/account"; // change this to your real account page
+    });
+});
+</script>
+            </div>
+           
+            <div class="nav-item currencyItem toggle-item">
+               <button onclick="window.location.href='/logout'" class="toggle-head nav-link basket-drawer-toggle">
+					<i class="ri-logout-circle-r-line text-danger"></i>
+               </button>
+            </div>           
+         </div>
+      </header>
+      <aside class="sidebar d-flex flex-column position-fixed flex-nowrap pt-4">
+         <div class="d-flex sidebar-top justify-content-center align-items-center mb-3 w-100">
+            <a class="logo flex-shrink-0" href="/">
+         <img id="site-logo" 
+         src="{{ site['logo_light'] | default(site['logo']) }}" 
+         alt="{{ site['site_name'] }} Logo" 
+         class="main-logo">
+             </a>
+
+            <button class="close-sidebar js-close-sidebar d-block d-md-none">
+				<i class="ri-close-line"></i>
+            </button>
+         </div>
+
+		 
+		<div class="profile-box">
+    <div class="profile-avatar">
+        {{ user['username'] | slice(0,1) | upper }}
+    </div>
+    <span>{{ user['username'] }}</span>
+    <small>{{ user['email'] }}</small>
+    <div class="profile-box-btn">
+        <div class="switcher" data-active="light">
+            <button class="switcher-item light-btn" onclick="changeTheme('light')" aria-label="Light">
+                <i class="fas fa-sun"></i>
+                <span>Light</span>
+            </button>
+            <button class="switcher-item dark-btn active" onclick="changeTheme('dark')" aria-label="Dark">
+                <i class="fas fa-moon"></i>
+                <span>Dark</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const logo = document.getElementById("site-logo");
+
+    const logos = [
+        "{{ site['logo_light'] | default(site['logo']) }}",
+        "{{ site['logo_dark'] | default(site['logo']) }}"
+    ];
+
+    // Preload logos
+    logos.forEach(src => { const img = new Image(); img.src = src; });
+
+    function updateLogo(mode) {
+        if(mode === "dark") logo.src = logos[1];
+        else if(mode === "light") logo.src = logos[0];
+        else { // auto
+            const darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            logo.src = darkMode ? logos[1] : logos[0];
+        }
+    }
+
+    function colorApp() {
+        let getmode = localStorage.getItem("themeMode") || "dark";
+
+        if(getmode === "auto") {
+            let isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            document.documentElement.setAttribute("class", isDarkMode ? "dark" : "light");
+        } else {
+            document.documentElement.setAttribute("class", getmode);
+        }
+
+        document.querySelectorAll(".switcher-item").forEach(btn => btn.classList.remove("active"));
+        if(getmode === "light") document.querySelector(".light-btn").classList.add("active");
+        else if(getmode === "dark") document.querySelector(".dark-btn").classList.add("active");
+        else document.querySelector(".auto-btn").classList.add("active");
+
+        // <-- Update logo on theme change
+        updateLogo(getmode);
+    }
+
+    window.changeTheme = function(mode) {
+        localStorage.setItem("themeMode", mode);
+        colorApp();
+    }
+
+    // System theme change
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+        if(localStorage.getItem("themeMode") === "auto") colorApp();
+    });
+
+    // Initial
+    colorApp();
+});
+</script>
+								<div class="nav nav-pills mb-auto mt-2 menu">
+		  <div class="menu-box">
+			<p class="menu-box-title">Quick Links</p>
+						  				
+						  				            <div  class="nav-item" >
+				  <a href="/analytics"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="ri-refresh-line"></i>
+					                    					<span class="menu-text">Completed order</span>
+                    				  </a>
+				</div>
+						  				
+			  						  				<div  class="nav-item " >
+				  <a href="/"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="ri-home-line"></i>
+					                    					<span class="menu-text">New order</span>
+                    				  </a>
+				</div>
+			  						  				<div  class="nav-item" >
+				  <a href="/massorder"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="ri-shopping-basket-2-line"></i>
+					                    					<span class="menu-text">Mass order</span>
+                    				  </a>
+				</div>
+			  						  				<div  class="nav-item" >
+				  <a href="/services"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="ri-file-list-3-line"></i>
+					                    					<span class="menu-text">Services</span>
+                    				  </a>
+				</div>
+			  						  				<div  class="nav-item" >
+				  <a href="/orders"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="ri-archive-line"></i>
+					                    					<span class="menu-text">Your Orders</span>
+                    				  </a>
+				</div>
+				
+				                                   <div  class="nav-item" >
+				  <a href="/refunds"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="ri-refund-2-line"></i>
+					                    					<span class="menu-text">Refunds</span>
+                    				  </a>
+				</div>
+				                                <div  class="nav-item" >
+				  <a href="/updates"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="ri-refresh-line"></i>
+					                    					<span class="menu-text">Service Updates</span>
+                    				  </a>
+				</div>
+				                                <div  class="nav-item" >
+				  <a href="https://boostbayan.com/application.html"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="ri-download-2-line"></i>
+					                    					<span class="menu-text">Mobile Application</span>
+                    				  </a>
+				</div>				  						  						  						  						  						  			<div  class="nav-item" >
+				  <a href="/link-fixer.php"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="ri-download-2-line"></i>
+					                    					<span class="menu-text">Website Link Fixer</span>
+                    				  </a>
+				</div>				  						  						  						  						  						  						  					  </div>
+
+		  <div class="menu-box">
+			<p class="menu-box-title">Payments & Payouts</p>
+						  						  						  						  						  						  						  						  				<div  class="nav-item" >
+				  <a href="/addfunds"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="ri-money-dollar-circle-line"></i>
+										<span class="menu-text">Add funds</span>
+				  </a>
+				</div>
+			  						  						  						  			
+			  						  				<div  class="nav-item" >
+				  <a href="/child-panels"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="ri-store-line"></i>
+										<span class="menu-text">Child Panel (₱500.00)</span>
+				  </a>
+				</div>
+			  						  						  						  						  					  </div>
+
+		  <div class="menu-box">
+			<p class="menu-box-title">Your Requests</p>
+						  						  						  						  						  						  						  						  						  				<div  class="nav-item" >
+				  <a href="/tickets"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="ri-chat-1-line"></i>
+										<span class="menu-text">Tickets</span>
+				  </a>
+				</div>
+				
+				<div  class="nav-item" >
+				  <a href="https://t.me/smmveiorg_bot"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="ri-android-line"></i>
+										<span class="menu-text">SMMVEI AI Support</span>
+				  </a>
+				</div>
+			  						  				<div  class="nav-item" >
+				  <a href="/terms"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="ri-questionnaire-line"></i>
+										<span class="menu-text">FAQ</span>
+				  </a>
+				</div>
+				
+				
+			  						  						  						  						  						  						  					  						  						  						  					  </div>
+			  						  						  						  						  						  						  					  						  						  						  					  <div class="menu-box">
+			<p class="menu-box-title">Our Channel</p>
+						  						  						  						  						  						  						  						  				<div  class="nav-item" >
+				  <a href="https://t.me/smmvei123"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="fab fa-telegram-plane"></i>
+										<span class="menu-text">Our Main Channel</span>
+				  </a>
+				</div>
+			  						  						  						  			
+			  						  				<div  class="nav-item" >
+				  <a href="https://t.me/xo_veisi"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="fab fa-telegram-plane"></i>
+										<span class="menu-text">Our Main Account</span>
+				  </a>
+				</div>
+				
+				<div  class="nav-item" >
+				  <a href="https://wa.me/+639205648851?text=Hi, How to have Boosting Website?"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="ri-whatsapp-line"></i>
+										<span class="menu-text">Start your own Boosting Business</span>
+				  </a>
+				</div>
+			  						  						  						  						  					  </div>
+
+	       
+          
+		  <div class="menu-box">
+			<p class="menu-box-title">User Info</p>
+						  						  						  						  						  						  						  						  						  						  						  				<div  class="nav-item" >
+				  <a href="/api"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="ri-code-box-line"></i>
+										<span class="menu-text">API</span>
+				  </a>
+				</div>
+			  						  				<div  class="nav-item" >
+				  <a href="/account"  class="nav-link d-flex align-items-center p-1"  >
+										  <i class="ri-user-line"></i>
+										<span class="menu-text">Account</span>
+				  </a>
+				</div>
+			  						  			
+			  						  						  						  						  						  						  					  </div>
+		</div>
+
+         <div class="border-top bottom bottom-shadow pt-2">
+            <div class="bottom-info">
+				<a href="https://www.facebook.com/oliviacollinianss/" target="_blank">
+				  <i class="ri-facebook-fill"></i>
+				  <small class="text-center">Admin Main Facebook</small>
+				</a>
+			</div>
+         </div>
+      </aside>
+
+	<div class="basket-overlay"></div>
+	<div class="basket-drawer">
+	  <div class="drawer-header">
+		  <h3 class="drawer-header-title">My Cart</h3>
+		<div class="basket-header-close">
+		  <i class="ri-close-line"></i>
+		</div>
+	  </div>
+		<div class="drawer-body topbar">
+			<div class="sepetmodal">
+						
+				<div id="sepetListe">
+				
+				</div>
+
+				<div id="sepetAlt">
+					
+				</div>
+		  </div>
+		</div>        
+	</div>        
+
+
+
+<!-- bottom nav -->
+		<div class="bottom-bar">
+		   <div class="bottom-item">
+			  <a class="bottom-link" href="/tickets">
+				<i class="fal fa-user-headset"></i>
+				<span>Tickets</span>
+			  </a>
+		   </div>
+		   <div class="bottom-item">
+			  <a class="bottom-link" href="/addfunds">
+				<i class="fal fa-wallet"></i>
+				<span>Add funds</span>
+			  </a>
+		   </div>
+		   <div class="bottom-item bottom-center">
+			  <a class="bottom-link" href="/">
+				<i class="fal fa-plus-circle"></i>
+			  </a>
+		   </div>
+		   <div class="bottom-item">
+			  <a class="bottom-link" href="/orders">
+				<i class="fal fa-shopping-bag"></i>
+				<span>Orders</span>
+			  </a>
+		   </div>
+		   <div class="bottom-item">
+			  <a class="bottom-link" href="/services">
+				<i class="fal fa-clipboard-list"></i>
+				<span>Services</span>
+			  </a>
+		   </div>
+		</div>
+  
+       <div class="bs-toast">
+         <div class="bs-toast-content">
+            <div class="toast-text">Copy to clipboard</div>
+         </div>
+      </div>
+  
+      <div id="notify">
+          <span id="notifyText">
+              <i class=""></i>
+              <span class="text"></span>
+          </span>
+      </div> 
+
+      <div class="overlay"></div>
+</body>
+<script>
+    const htmlcontent = document.documentElement;
+
+    function colorApp() {
+        let getmode = localStorage.getItem("themeMode") || "dark";
+
+        if (getmode === "auto") {
+            let isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            htmlcontent.setAttribute("class", isDarkMode ? "dark" : "light");
+        } else {
+            htmlcontent.setAttribute("class", getmode);
+        }
+
+        // Reset active state
+        document.querySelectorAll(".switcher-item").forEach(btn => btn.classList.remove("active"));
+
+        if (getmode === "light") {
+            document.querySelector(".light-btn").classList.add("active");
+        } else if (getmode === "dark") {
+            document.querySelector(".dark-btn").classList.add("active");
+        } else {
+            document.querySelector(".auto-btn").classList.add("active");
+        }
+    }
+
+    function changeTheme(mode) {
+        localStorage.setItem("themeMode", mode);
+        colorApp();
+    }
+
+    // Update if system theme changes and mode is auto
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+        if (localStorage.getItem("themeMode") === "auto") {
+            colorApp();
+        }
+    });
+
+    // Initialize on load
+    colorApp();
+</script>
+
+{% endif %}
+
+<script>
+$(document).ready(function () {
+    renderCart();
+
+    $('#add-to-cart').on('click', function () {
+        const extraInputs = [
+            "field-orderform-fields-answer_number",
+            "field-orderform-fields-comment",
+            "field-orderform-fields-comment_username",
+            "field-orderform-fields-dripfeed",
+            "field-orderform-fields-media_url",
+            "field-orderform-fields-mention_usernames",
+            "field-orderform-fields-hashtag",
+            "field-orderform-fields-hashtags",
+            "field-orderform-fields-keywords",
+            "field-orderform-fields-min",
+            "field-orderform-fields-old_posts",
+            "field-orderform-fields-posts",
+            "field-orderform-fields-user_name",
+            "field-orderform-fields-username",
+            "field-orderform-fields-usernames",
+            "field-orderform-fields-usernames_custom"
+        ];
+
+        const hasVisibleExtraInput = extraInputs.some(id => {
+            const el = document.getElementById(id);
+            return el && el.offsetParent !== null;
+        });
+
+        if (hasVisibleExtraInput) {
+            showToast("You cannot add this product to your cart.");
+            return;
+        }
+
+        const linkInput = document.getElementById('field-orderform-fields-link');
+        const miktarInput = document.getElementById('field-orderform-fields-quantity');
+        const fiyatInput = document.getElementById('charge');
+        const serviceIdInput = document.getElementById('orderform-service');
+
+        if (!linkInput || !miktarInput || !fiyatInput || !serviceIdInput) {
+            showToast("Please fill in the required fields.");
+            return;
+        }
+
+        const link = linkInput.value.trim();
+        const miktar = miktarInput.value.trim();
+        const fiyat = fiyatInput.value.trim();
+        const servisId = serviceIdInput.value.trim();
+
+        if (!link || !miktar || !fiyat || !servisId) {
+            showToast("Please fill in the required fields.");
+            return;
+        }
+
+        const servis = window.modules?.siteOrder?.services?.[servisId]?.name || "Unknown Service";
+
+        let cart = JSON.parse(localStorage.getItem('orderCart')) || [];
+
+        const item = {
+            id: Date.now(),
+            link,
+            miktar,
+            fiyat,
+            servis,
+            servisId
+        };
+
+        cart.push(item);
+        localStorage.setItem('orderCart', JSON.stringify(cart));
+
+        showToast("Added to your cart.", true);
+        renderCart();
+    });
+});
+
+function renderCart() {
+    const cart = JSON.parse(localStorage.getItem('orderCart')) || [];
+    const $cartItems = $('#sepetListe');
+    const $cartSummary = $('#sepetAlt');
+
+    $cartItems.html('');
+    $cartSummary.html('');
+
+    const totalItems = cart.length;
+    $('#sepetsayi').text(`${totalItems}`);
+
+    if (totalItems === 0) {
+        $('#sepetsayi').css('display', 'none');
+        $cartItems.html('<p>There are no orders in your cart.</p>');
+        return;
+    }
+
+    cart.forEach(item => {
+        $cartItems.append(`
+            <div class="sepetbox">
+                <div class="sepettop">
+                    <div class="sepetname">
+                        <div class="sepetservis"><strong>Services :</strong>${item.servis}</div>
+                    </div>
+                    <div class="sepetdetails">
+                        <div class="sptalt"><strong>Link :</strong> <span>${item.link}</span></div>
+                        <div class="sptalt"><strong>Quantity :</strong> <span>${item.miktar}</span></div>
+                    </div>
+                </div>
+                <div class="sepetbottom">
+                    <div class="sepetfiyat">${item.fiyat}</div>
+                    <button type="button" onclick="removeFromCart(${item.id})"><i class="ri-close-circle-fill"></i></button>
+                </div>
+            </div>
+        `);
+    });
+
+    $cartSummary.html(`
+        <div class="sepetprice">
+            <div class="sepetcharge">
+                <strong>Charge:</strong> <span id="sepetallprice">$ 0.00</span>
+            </div>
+            <button type="submit" class="btn btn-primary" id="sepetbuy">Buy now</button>
+        </div>
+    `);
+
+    $('#sepetsayi').css('display', 'block');
+
+    setTimeout(updateTotalFromVisiblePrices, 10);
+}
+
+function updateTotalFromVisiblePrices() {
+    let toplam = 0;
+    $('.sepetfiyat').each(function () {
+        const fiyatText = $(this).text().replace(",", ".").replace("₺", "").replace("$", "").trim();
+        const fiyatSayi = parseFloat(fiyatText);
+        if (!isNaN(fiyatSayi)) {
+            toplam += fiyatSayi;
+        }
+    });
+
+    $('#sepetallprice').text(`$ ${toplam.toFixed(2)}`);
+}
+
+function removeFromCart(id) {
+    let cart = JSON.parse(localStorage.getItem('orderCart')) || [];
+    cart = cart.filter(item => item.id !== id);
+    localStorage.setItem('orderCart', JSON.stringify(cart));
+    renderCart();
+}
+
+function showToast(message, success = false) {
+    const toastEl = $('.bs-toast');
+    const toastText = $('.toast-text');
+
+    toastText.html(message);
+    toastEl.css("display", "block");
+
+    if (success) {
+        toastEl.removeClass('toast-error').addClass('toast-success');
+    } else {
+        toastEl.removeClass('toast-success').addClass('toast-error');
+    }
+
+    setTimeout(() => {
+        toastEl.css("display", "none");
+    }, 3000);
+}
+$(document).on('click', '#sepetbuy', function (e) {
+    e.preventDefault();
+
+    const cart = JSON.parse(localStorage.getItem('orderCart')) || [];
+
+    if (cart.length === 0) {
+        showToast("Your cart is empty.");
+        return;
+    }
+
+    const crsft = window.modules?.layouts?.csrftoken || '';
+
+    if (!crsft) {
+        showToast("CSRF token missing.");
+        return;
+    }
+
+    const ordersText = cart.map(item => {
+        return `${item.servisId} | ${item.link} | ${item.miktar}`;
+    }).join('\n');
+
+    const $form = $(`
+        <form method="post" action="/massorder">
+            <input type="hidden" name="_csrf" value="${crsft}">
+            <textarea name="MassOrderForm[orders]" rows="15" style="display:none;">${ordersText}</textarea>
+        </form>
+    `);
+
+    $('body').append($form);
+    $form.submit();
+});
+
+$(document).ready(function () {
+    if ($(".mass-success").length > 0) {
+        localStorage.removeItem("orderCart");
+        renderCart();
+    }
+});
+
+</script>
+
+<script type="text/javascript"  src="https://storage.perfectcdn.com/libs/jquery/1.12.4/jquery.min.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/3wn3x2yo9a92g8rs.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/1auzlght1yugk7np.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/6p5ukubb1yqzpqmc.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/l7f4k8ebeocfr9tp.js" >
+							</script>
+					<script>
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+$(".js-show-sidebar, .js-close-sidebar").on("click", function() {
+    $("aside.sidebar").removeClass("passive");
+	$("body").toggleClass("sidebar-active");
+});
+
+(function() {
+    $("#switch-theme-input").on("change", function() {
+        if ($(this).prop("checked")) {
+            $("body").addClass("dark");
+            localStorage.setItem("darkMode", true);
+        } else {
+            $("body").removeClass("dark");
+            localStorage.setItem("darkMode", false);
+        }
+    });
+})();</script>
+
+					<script type="text/javascript" >
+				window.modules.layouts = {"theme_id":1,"auth":1,"live":true,"csrftoken":"G2ZBcDNj-PK8E2oP7WDUOR_kflgCtU6cohHAvyOGJPNaUQsvUi-ZsN5KGlmnIudeTKNMLDXzDPfLKKbRUbJsnQ=="};
+			</script>
+					
+					<script type="text/javascript" >
+				window.modules.select = [];
+			</script>
+					<script type="text/javascript" >
+				window.modules.alerts = {"alerts":[]};
+			</script>
+					<script type="text/javascript" >
+							</script>
+
+  
+

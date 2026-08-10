@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+{% for lang in site['languages'] %}
+{% if lang['active'] %}
+<html lang="{{ lang['code'] }}">
+{% endif %}
+{% endfor %}
+<head>
+  <base href="{{ site['url'] }}">
+  <title>{{ title }}</title>
+  <meta property="og:title" content="{% if pagetitle %}  {{ pagetitle }}  {% else %} {{ title }} {% endif %}" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="{% if pagekeywords %} {{ pagekeywords }} {% else %} {{ site["keywords"]}}  {% endif %}">
+  <meta name="description" content="{% if pagedescription %} {{ pagedescription }} {% else %} {{ site['description'] }}  {% endif %}">
+  <meta property="og:description" content="{% if pagedescription %} {{ pagedescription }} {% else %} {{ site['description'] }}  {% endif %}" />
+  {% if site['favicon'] %}
+    <link rel="shortcut icon" type="image/ico" href="{{ site['favicon'] }}" />
+  {% endif %}
+
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+ <link rel="stylesheet" type="text/css" href="chp/caste/yqj4us9o9zmulbxw.css">
+      <link rel="stylesheet" type="text/css" href="chp/caste/xs0ob2g5hczrt3tb.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css"
+    />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+{{ headerCode }}
+  </head>
+  
+  
+  
+{% if user['auth'] %}
+
+<body class="body ">
+<div class="wrapper wrapper-sidebar-navbar ">
+  <div id="block_6" class="component_private_navbar">
+    <span class="component_private_navbar ">
+      <div class="component-navbar-private__wrapper component_private_sidebar">
+         <div class="sidebar-block__top component-navbar component-navbar__navbar-private editor__component-wrapper">
+            <div>
+               <nav class="navbar navbar-expand-lg navbar-light">
+                  <div class="navbar-private__header">
+                    <div class="sidebar-block__top-brand">
+                                                                  <div class="component-navbar-logo">
+                              <a href="/">
+                                <img src="{{site['logo']}}" class="sidebar-block__top-logo" alt="" title="">
+                             </a>
+                        </div>
+                                        </div>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-6" aria-controls="navbar-collapse-6" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-burger">
+                        <span class="navbar-burger-line"></span>
+                    </span>
+                  </button>
+                  </div>
+                 <div class="collapse navbar-collapse" id="navbar-collapse-6">
+                     <div class="component-navbar-collapse-divider"></div>
+                     <div class="d-flex component-navbar-collapse">
+                        <ul class="navbar-nav navbar-nav-sidebar-menu">
+                                                          
+                                                          <li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+                                  <a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private " href="/">
+                                                                                    <span class="component-navbar-nav-link-icon">
+                                             <span class="fas fa-cart-plus"></span>
+                                           </span>
+                                                                             New order
+                                                                      </a>
+                               </li>
+                                   <li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+                                  <a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private " href="/analytics">
+                                                                                    <span class="component-navbar-nav-link-icon">
+                                             <span class="fas fa-cart-plus"></span>
+                                           </span>
+                                                                             Completed Orders
+                                                                      </a>
+                               </li>
+                                                          <li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+                                  <a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private " href="/services">
+                                                                                    <span class="component-navbar-nav-link-icon">
+                                             <span class="fab fa-aws"></span>
+                                           </span>
+                                                                             Services
+                                                                      </a>
+                               </li>
+                                                          <li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+                                  <a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private " href="/orders">
+                                                                                    <span class="component-navbar-nav-link-icon">
+                                             <span class="fas fa-baby-carriage"></span>
+                                           </span>
+                                                                             Orders History
+                                                                      </a>
+                               </li>
+                               
+                               
+
+                               
+                               
+                                                          <li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+                                  <a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private " href="/addfunds">
+                                                                                    <span class="component-navbar-nav-link-icon">
+                                             <span class="fas fa-badge-dollar"></span>
+                                           </span>
+                                                                             Add funds
+                                                                      </a>
+                               </li>
+                                                          <li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+                                  <a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private " href="/api">
+                                                                                    <span class="component-navbar-nav-link-icon">
+                                             <span class="far fa-link"></span>
+                                           </span>
+                                                                             API
+                                                                      </a>
+                               </li>
+                                                          <li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+                                  <a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private " href="/tickets">
+                                                                                    <span class="component-navbar-nav-link-icon">
+                                             <span class="fad fa-user-headset"></span>
+                                           </span>
+                                                                             Support Tickets <span class="badge" style="background-color: #ffb500">{{ ticketCount }}</span>
+                                                                                                                                                </a>
+                               </li>
+                                                          <li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+                                  <a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private " href="/updates">
+                                                                                    <span class="component-navbar-nav-link-icon">
+                                             <span class="fas fa-edit"></span>
+                                           </span>
+                                                                             Updates
+                                                                      </a>
+                               </li>
+                                                          <li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+                                  <a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private " href="/refer">
+                                                                                    <span class="component-navbar-nav-link-icon">
+                                             <span class="fad fa-handshake"></span>
+                                           </span>
+                                                                             Affiliates
+                                                                      </a>
+                               </li>
+                                                          <li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+                                  <a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private " href="/child-panels">
+                                                                                    <span class="component-navbar-nav-link-icon">
+                                             <span class="far fa-credit-card-front"></span>
+                                           </span>
+                                                                             Child panel
+                                                                      </a>
+                               </li>
+                                                          
+                                                          <li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+                                  <a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private " href="/massorder">
+                                                                                    <span class="component-navbar-nav-link-icon">
+                                             <span class="fas fa-atom"></span>
+                                           </span>
+                                                                             Mass order
+                                                                      </a>
+                               </li>
+                                                        
+                                                          <li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+                                  <a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private " href="/terms">
+                                                                                    <span class="component-navbar-nav-link-icon">
+                                             <span class="fad fa-exclamation-triangle"></span>
+                                           </span>
+                                                                             Terms
+                                                                      </a>
+                               </li>
+                                                          <li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+                                  <a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private " href="/blog">
+                                                                                    <span class="component-navbar-nav-link-icon">
+                                             <span class="fas fa-rss"></span>
+                                           </span>
+                                                                             Blog
+                                                                      </a>
+                               </li>
+                                                          <li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+                                  <a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private " href="/about">
+                                                                                    <span class="component-navbar-nav-link-icon">
+                                             <span class="far fa-image"></span>
+                                           </span>
+                                                                             About
+                                                                      </a>
+                               </li>
+                                                    </ul>
+                        <ul class="navbar-nav navbar-nav-currencies">
+                                                      <div class="balance-dropdown-container component_balance_dropdown">
+                              <div class="balance-dropdown">
+                                <div class="balance-dropdown__name balance-dropdown__toggle" data-toggle="dropdown" data-hover="dropdown" aria-expanded="false">{{ user["balance"] }}</div>
+                                <ul class="balance-dropdown__container dropdown-menu" id="currencies-list">
+                                                                      {{ currencies_dropdown }}
+                                                                  </ul>
+                              </div>
+                            </div>
+                                                  </ul>
+                        <ul class="navbar-nav">
+                                                                                                                                                    <li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+                                        <a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private" href="/account">Account</a>
+                                    </li>
+                                                                                                                        <li class="nav-item component-navbar-nav-item component-navbar-private-nav-item">
+                                        <a class="component-navbar-nav-link  component-navbar-nav-link__navbar-private" href="/logout">Logout</a>
+                                    </li>
+                                                                                  </ul>
+                     </div>
+                  </div>
+               </nav>
+            </div>
+         </div>
+      </div>
+   </span>
+    <span class="component_private_sidebar ">
+      <div class="component-sidebar_wrapper">
+         <div class="sidebar-block__left component-sidebar component-sidebar-with-navbar component_private_navbar editor__component-wrapper">
+           <div class="component-sidebar__menu">
+            <div class="component-sidebar__menu-logo">
+                                  <a href="/" class="component-navbar-logo" style="background-image: url({{site['logo']}})"></a>
+                                          </div>
+            <ul class="sidebar-block__left-menu editor__component-wrapper">
+                                
+                                  <li class="component-sidebar__menu-item ">
+                       <a class="component-sidebar__menu-item-link" href="/">
+                                                        <span class="sidebar-block__menu-item-icon">
+                                <span class="fas fa-cart-plus"></span>
+                               </span>
+                                                    New order
+                                                </a>
+                   </li>
+                    <li class="component-sidebar__menu-item ">
+                       <a class="component-sidebar__menu-item-link" href="/analytics">
+                                                        <span class="sidebar-block__menu-item-icon">
+                                <span class="fas fa-cart-plus"></span>
+                               </span>
+                                                    Completed Orders
+                                                </a>
+                   </li>
+                                  <li class="component-sidebar__menu-item ">
+                       <a class="component-sidebar__menu-item-link" href="/services">
+                                                        <span class="sidebar-block__menu-item-icon">
+                                <span class="fab fa-aws"></span>
+                               </span>
+                                                    Services
+                                                </a>
+                   </li>
+                                  <li class="component-sidebar__menu-item ">
+                       <a class="component-sidebar__menu-item-link" href="/orders">
+                                                        <span class="sidebar-block__menu-item-icon">
+                                <span class="fas fa-baby-carriage"></span>
+                               </span>
+                                                    Orders History
+                                                </a>
+                   </li>
+                   
+                   
+                 
+                   
+                   
+                                  <li class="component-sidebar__menu-item ">
+                       <a class="component-sidebar__menu-item-link" href="/addfunds">
+                                                        <span class="sidebar-block__menu-item-icon">
+                                <span class="fas fa-badge-dollar"></span>
+                               </span>
+                                                    Add funds
+                                                </a>
+                   </li>
+                                  <li class="component-sidebar__menu-item ">
+                       <a class="component-sidebar__menu-item-link" href="/api">
+                                                        <span class="sidebar-block__menu-item-icon">
+                                <span class="far fa-link"></span>
+                               </span>
+                                                    API
+                                                </a>
+                   </li>
+                                  <li class="component-sidebar__menu-item ">
+                       <a class="component-sidebar__menu-item-link" href="/tickets">
+                                                        <span class="sidebar-block__menu-item-icon">
+                                <span class="fad fa-user-headset"></span>
+                               </span>
+                                                    Support Tickets <span class="badge" style="background-color: #ffb500">{{ ticketCount }}</span>
+                                                                                                    </a>
+                   </li>
+                                  <li class="component-sidebar__menu-item ">
+                       <a class="component-sidebar__menu-item-link" href="/updates">
+                                                        <span class="sidebar-block__menu-item-icon">
+                                <span class="fas fa-edit"></span>
+                               </span>
+                                                    Updates
+                                                </a>
+                   </li>
+                                  <li class="component-sidebar__menu-item ">
+                       <a class="component-sidebar__menu-item-link" href="/refer">
+                                                        <span class="sidebar-block__menu-item-icon">
+                                <span class="fad fa-handshake"></span>
+                               </span>
+                                                    Affiliates
+                                                </a>
+                   </li>
+                                  <li class="component-sidebar__menu-item ">
+                       <a class="component-sidebar__menu-item-link" href="/child-panels">
+                                                        <span class="sidebar-block__menu-item-icon">
+                                <span class="far fa-credit-card-front"></span>
+                               </span>
+                                                    Child panel
+                                                </a>
+                   </li>
+                                  
+                                  <li class="component-sidebar__menu-item ">
+                       <a class="component-sidebar__menu-item-link" href="/massorder">
+                                                        <span class="sidebar-block__menu-item-icon">
+                                <span class="fas fa-atom"></span>
+                               </span>
+                                                    Mass order
+                                                </a>
+                   </li>
+                                
+                                  <li class="component-sidebar__menu-item ">
+                       <a class="component-sidebar__menu-item-link" href="/terms">
+                                                        <span class="sidebar-block__menu-item-icon">
+                                <span class="fad fa-exclamation-triangle"></span>
+                               </span>
+                                                    Terms
+                                                </a>
+                   </li>
+                                 
+                                  <li class="component-sidebar__menu-item ">
+                       <a class="component-sidebar__menu-item-link" href="/about">
+                                                        <span class="sidebar-block__menu-item-icon">
+                                <span class="far fa-image"></span>
+                               </span>
+                                                    About
+                                                </a>
+                   </li>
+                            </ul>
+           </div>
+         </div>
+      </div>
+   </span>
+</div>
+{% else %}
+
+
+
+
+
+
+
+
+
+<body class="body ">
+<div class="wrapper  wrapper-navbar ">
+  <div id="block_10">
+    <div class="block-wrapper">
+        <div class="component_navbar ">
+          <div class="component-navbar__wrapper">
+             <div class="sidebar-block__top component-navbar component-navbar__navbar-public editor__component-wrapper">
+                <div>
+                   <nav class="navbar navbar-expand-lg navbar-light container-lg ">
+                      <div class="navbar-public__header">
+                        <div class="sidebar-block__top-brand">
+                                                                                <div class="component-navbar-logo">
+                              <a href="/">
+                                <img src="{{site['logo']}}" class="sidebar-block__top-logo" alt="" title="https://resellerboost.com/">
+                              </a>
+                            </div>
+                                                  </div>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-10" aria-controls="navbar-collapse-10" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-burger">
+                            <span class="navbar-burger-line"></span>
+                        </span>
+                        </button>
+                      </div>
+                     <div class="collapse navbar-collapse" id="navbar-collapse-10">
+                        <div class="component-navbar-collapse-divider"></div>
+                                                 <div class="d-flex component-navbar-collapse">
+                           <ul class="navbar-nav">
+                                                            <li class="nav-item component-navbar-nav-item component_navbar component-navbar-public-nav-item">
+                                 <a class="component-navbar-nav-link component-navbar-nav-link__navbar-public " href="/"><i class="navbar-icon far fa-address-card"></i> Sign in</a>
+                               </li>
+                                                            <li class="nav-item component-navbar-nav-item component_navbar component-navbar-public-nav-item">
+                                 <a class="component-navbar-nav-link component-navbar-nav-link__navbar-public " href="/signup"><i class="navbar-icon fad fa-address-card"></i> Sign up</a>
+                               </li>
+                                                            <li class="nav-item component-navbar-nav-item component_navbar component-navbar-public-nav-item">
+                                 <a class="component-navbar-nav-link component-navbar-nav-link__navbar-public " href="/services"><i class="navbar-icon fal fa-ballot"></i> Services</a>
+                               </li>
+                                                          <li class="nav-item component-navbar-nav-item component_navbar component-navbar-public-nav-item">
+                                 <a class="component-navbar-nav-link component-navbar-nav-link__navbar-public " href="/api"><i class="navbar-icon fas fa-analytics"></i> API</a>
+                               </li>
+                                                            <li class="nav-item component-navbar-nav-item component_navbar component-navbar-public-nav-item">
+                                 <a class="component-navbar-nav-link component-navbar-nav-link__navbar-public " href="/terms"><i class="navbar-icon far fa-image"></i> Terms</a>
+                               </li>
+                                                          
+                                                          
+                                                        </ul>
+                         </div>
+                      </div>
+                   </nav>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="component_navbar"></div>
+</div>
+     </div>
+      </div> 
+</div>
+</div>  
+</div>
+
+
+
+{% endif %}

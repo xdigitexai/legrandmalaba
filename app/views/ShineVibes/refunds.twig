@@ -1,0 +1,32 @@
+{% include 'header.twig' %}
+	<div class="wrapper-content">
+    <div class="wrapper-content__header">
+          </div>
+    <div class="wrapper-content__body">
+
+			<div id="block_93">
+				<div class="add-funds__form">
+					<div class="bg"></div>
+					<div class="divider-top"></div>
+					<div class="divider-bottom"></div>
+					<div class="container">
+						<div class="row">
+							{% if contentText %}
+<div class="col-lg-12 mt-2">
+<div class="card mb-2">
+{{ contentText }}
+</div></div>
+{% endif %}
+
+ {% if contentText2 %}
+ <div class="card mt-4 mb-4 ">	
+{{ contentText2 }}
+</div>
+{% endif %}
+</div>
+</div>
+							</div>
+						</div>
+					
+
+			{% include 'footer.twig' %}

@@ -1,0 +1,124 @@
+{% include 'header.twig' %}
+
+<style>.form-control {
+    background: #f7fafc;
+    border-radius: 15px;
+    border: 1px solid #008eed;
+    line-height: 20px;
+    padding: 14px 18px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #0c2447;
+}
+</style>
+  		 <div class="hiddenTitle">
+  <div id="appTt">Add Funds</div>
+  <div id="appTx">We're the best!</div>
+</div>
+<div class="appContent">
+  <section class="dashboard-head-wrapper">
+    <div class="container">
+      <div class="dashboard-head card-border">
+        <div class="dhead-body">
+          <h2 class="title">Fill Balance on {{ site["site_name"] }} Panel</h2>
+          <p class="text">Add Sufficient Fund To Your Account To Enjoy Our Services.</p>
+        </div>
+        <div class="dhead-img-wrapper">
+          <img src="https://cdn.smmspot.net/snfollows/assets/img/af-h.png" class="dhead-img" alt="Coin Moin">
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+
+<div class="wrapper-content">
+	<div class="wrapper-content__header"></div>
+
+
+	<div class="wrapper-content">
+		<div class="wrapper-content__header"></div>
+		<div class="wrapper-content__body">
+
+			<div id="block_26">
+				<div class="add-funds__form">
+					<div class="bg"></div>
+					<div class="divider-top"></div>
+					<div class="divider-bottom"></div>
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="component_card">
+									<div class="card">
+										
+
+
+										<form method="post" id="addfundsForm" action="/addfunds">
+
+											<div class="form-group">
+												<label for="method" class="control-label">{{ lang['addfunds.method'] }}</label>
+												<select class="form-control" id="payment_method" name="payment_type">
+													{% for method in site["paymentMethods"] %}
+														<option value="{{ method['id'] }}">{{ method['name'] }}</option>
+													{% endfor %}
+												</select>
+											</div>
+											<div id="addfunds_fields"></div>
+										</form>
+										<div id="formSubmitResponseMessage"></div>
+										<br>
+										<div id="formSubmitResponseContent"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+<br>
+			<div id="block_29">
+				<div class="add-funds__list">
+					<div class="bg"></div>
+					<div class="divider-top"></div>
+					<div class="divider-bottom"></div>
+					<div class="container">
+						<div class="row mb-3">
+							<div class="col-lg-12">
+								<div class="table-bg component_table ">
+									<div class="table-wr table-responsive">
+										<table class="table">
+											<thead>
+												<tr>
+													<th>ID</th>
+													<th>Date</th>
+													<th>Method</th>
+													<th>Amount</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for payment in payments %}
+													<tr>
+														<td>{{ payment['id'] }}</td>
+														<td>{{ payment['date'] }}
+														</td>
+														<td>{{ payment['name'] }}</td>
+														<td>
+															{{ payment['amount'] }}
+														</td>
+													</tr>
+
+												{% endfor %}
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+{% include 'footer.twig' %}

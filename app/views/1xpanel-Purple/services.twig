@@ -1,0 +1,196 @@
+{% include 'header.twig' %}
+<div style="padding-top:100px;">
+  
+  <body>
+  <div class="container">
+    <div class="section">
+<!-- Main variables *content* -->
+            <style>.dropdown-item { white-space: normal;}@media(min-width:991.98px){.dropdown-item{min-width: 400px}}</style>
+<div class="row mt-lg-3 m-top">
+    <div class="col-lg-12">
+        <div class="row align-items-center ">
+            <div class="col-md-auto col-12">
+                <div class="dropdown mb-3 mb-lg-0">
+                    <button class="btn btn-primary dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span>
+                            <i class="fal fa-filter"></i>
+                            Services Filter
+                        </span>
+                    </button>
+                    <ul class="dropdown-menu" style="max-height: 400px; overflow: auto;">
+                        <li>
+                            <a class="dropdown-item" href="#" data-filter-category-id="All">All</a>
+                        </li>
+                        {% for category in serviceCategory %}
+                        <li>
+                            <a class="dropdown-item" href="#" data-filter-category-id="{{ category["category_id"] }}">
+                                {{ category["category_name"] }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg">
+                <div class="service-search">
+                    <input type="text" class="textbox" name="query" id="filterServicesInput" placeholder="Search services" data-search-service="#service-table">
+                </div>
+            </div>
+        </div>
+
+        <div class="nothing-found" style="display: none;">
+            <div class="card card-shadow">
+                <div class="card-body p-4 p-lg-5 text-center">
+                    <div style="font-size: 64px;">
+                        <i class="fal fa-radar"></i>
+                    </div>
+                    <h3>There were no results!</h3>
+                    <p>Please try again with another word.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-category" id="service-container">
+            {% for category in serviceCategory %}
+            <div class="service-content-all" data-category="{{ category["category_id"] }}">
+                <div class="service-content-head">
+                    <div class="service-cat-side">
+                        <h2 class="service-cat-header">
+                            <img src="https://storage.perfectcdn.com/2vot6g/fi73oygft1yway0h.png" alt="{{ category["category_name"] }}" class="img-responsive btn-group-vertical" style="max-width: calc(1em + 6px); max-height: calc(1em + 6px);">
+                            {{ category["category_name"] }}
+                        </h2>
+                    </div>
+                </div>
+                {% for service in category['services'] %}
+                <div class="service-item" data-service-id="{{ service["service_id"] }}" data-service-name="{{ service["service_name"] }}" data-category="{{ category["category_id"] }}">
+                    <div class="services-item-top">
+                        <div class="sit-first">
+                            <div class="services-id">
+                                {{ service["service_id"] }}
+                            </div>
+                            <div class="services-title">
+                                <span class="ss-name">{{ service["service_name"] }}</span>
+                            </div>
+                        </div>
+                        <div class="sit-last">
+                            <div class="services-rate">
+                                <i class="fas fa-money-bill-wave"></i>
+                                {% if user["auth"] == "1" %}
+                                {{ service["service_price"] }}/1K
+                                {% else %}
+                                {{ service["without_login_service_price"] }}/1K
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="services-item-bottom">
+                        <div class="sib-first">
+                            <span class="min">
+                                <i class="fas fa-sort-shapes-down-alt"></i>
+                                <span>Min order:</span>
+                                <strong>{{ service["service_min"] }}</strong>
+                            </span>
+                            <span class="max">
+                                <i class="fas fa-sort-shapes-up"></i>
+                                <span>Max order:</span>
+                                <strong>{{ service["service_max"] }}</strong>
+                            </span>
+                            <span class="avg c-pointer" data-toggle="tooltip" data-placement="top" title="The average time is based on 10 latest completed orders per 1000 quantity.">
+                                <i class="fas fa-hourglass-start"></i>
+                                <span>Average time:</span>
+                                <strong>{{ service["time"] }}</strong>
+                            </span>
+                        </div>
+                        <div class="sib-last">
+                            <a href="/?select_service_id={{ service["service_id"] }}" class="btn btn-success" style="border-radius: 8px">
+                                <i class="fal fa-shopping-cart"></i> Order now
+                            </a>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#servis{{ service["service_id"] }}">Description</button>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="servis{{ service["service_id"] }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">⚡ {{ service["service_name"] }}</h5>
+                                </div>
+                                <div class="modal-body text-left">
+                                    <p class="detail-data details-split-959"><small>{{ service["service_description"] }}</small></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-big-primary" style="width:100%;background-color:red;color:white" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const filterLinks = document.querySelectorAll(".dropdown-item");
+        const searchInput = document.getElementById("filterServicesInput");
+        const serviceItems = document.querySelectorAll(".service-item");
+        const serviceCategories = document.querySelectorAll(".service-content-all");
+        const nothingFound = document.querySelector(".nothing-found");
+
+        // Filter by category
+        filterLinks.forEach(link => {
+            link.addEventListener("click", function (e) {
+                e.preventDefault();
+                const categoryId = this.getAttribute("data-filter-category-id");
+
+                if (categoryId === "All") {
+                    serviceCategories.forEach(cat => cat.style.display = "block");
+                    serviceItems.forEach(item => item.style.display = "block");
+                } else {
+                    serviceCategories.forEach(category => {
+                        const hasItems = Array.from(category.querySelectorAll(".service-item"))
+                            .some(item => item.getAttribute("data-category") === categoryId);
+                        category.style.display = hasItems ? "block" : "none";
+                    });
+
+                    serviceItems.forEach(item => {
+                        item.style.display = item.getAttribute("data-category") === categoryId ? "block" : "none";
+                    });
+                }
+                checkIfEmpty();
+            });
+        });
+
+        // Search services
+        searchInput.addEventListener("input", function () {
+            const searchText = this.value.toLowerCase();
+
+            serviceItems.forEach(item => {
+                const serviceName = item.getAttribute("data-service-name").toLowerCase();
+                const matchesSearch = serviceName.includes(searchText);
+                item.style.display = matchesSearch ? "block" : "none";
+            });
+
+            serviceCategories.forEach(category => {
+                const hasVisibleItems = Array.from(category.querySelectorAll(".service-item"))
+                    .some(item => item.style.display === "block");
+                category.style.display = hasVisibleItems ? "block" : "none";
+            });
+
+            checkIfEmpty();
+        });
+
+        // Check if nothing is found
+        function checkIfEmpty() {
+            const hasVisibleItems = Array.from(serviceItems).some(item => item.style.display === "block");
+            nothingFound.style.display = hasVisibleItems ? "none" : "block";
+        }
+    });
+</script>
+</div></div>
+
+{% include 'footer.twig' %}

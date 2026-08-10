@@ -1,0 +1,84 @@
+{% include 'header.twig' %}
+
+<!-- Main variables *content* -->
+		      <main>
+         <div class="container-fluid">
+			 <div class="row">
+				<div class="col-lg-12">
+					 <div class="page overflow-hidden">
+						<div class="page-body pb-4 pb-xl-6 mt-4">
+						<div class="card mb-3">
+							  <div class="card-head d-flex align-items-center justify-content-between">
+									<div class="card-head-title">
+										<div class="row align-items-center">
+											<div class="col-auto">
+											  <div class="card-head-icon">
+												<i class="ri-shopping-basket-2-line"></i>
+											  </div>
+											</div>
+											<div class="col">
+											  <h4>Mass order</h4>
+											</div>
+										</div>
+									</div>
+							  </div>
+							<div class="card-body">
+								<div class="fast-mass">
+									<div class="fast-item">
+										<input type="number" class="form-control" name="mass-id" placeholder="Service ID">
+									</div>
+									<div class="fast-item">
+										<input type="text" class="form-control" name="mass-link" placeholder="Link">
+									</div>
+									<div class="fast-item">
+										<input type="number" class="form-control" name="mass-quantity" placeholder="Quantity">
+									</div>
+									<div class="fast-item">
+										<button class="add-more">
+											<i class="fas fa-plus-circle"></i>
+											<span>Add</span>
+										</button>
+										<button class="remove-more hidden">
+											<i class="fas fa-minus-circle"></i>
+											<span>Remove</span>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						   <div class="card">
+							  <div class="card-body">
+							  {% if error %}
+        <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ errorText }}
+        </div>
+      {% elseif success %}
+        <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ successText }}
+        </div>
+      {% endif %}
+							  
+								<form  method="post" action="/massorder">
+                                                            
+                              <div class="form-group">
+									<label for="links" class="control-label">One order per line in format</label>
+                                   <textarea type="text" class="form-control" id="mass" name="mass" value="{{ data['mass'] }}" placeholder="service_id | link | quantity" rows="15"></textarea>
+                               </div>
+                               <!-- form-group end -->
+
+                             <button type="submit" class="btn btn-primary btn-100">Submit</button>
+								</form>
+			
+							  </div>
+						   </div>
+						</div>
+					 </div>
+				</div>
+			 </div>
+         </div>
+      </main>
+
+
+{% include 'footer.twig' %}

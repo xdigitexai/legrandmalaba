@@ -1,0 +1,410 @@
+   {% include 'header.twig' %}
+    
+<style>#service_description{display:block!important;background-color:#e1e1e1!important;color:#000}#service_avg_time,#service_description{padding:11px 12px;border-radius:10px;font-size:15px;box-shadow:none;background-color:#fff4ed}svg{fill:#ffffff}@media (min-width:992px){.totals-block__card-right{background-color:#e9b9d8}}.badge,.panel-body{color:#fff;font-size:13px}#orderform-category,#orderform-service,.swal2-popup{display:none}.badge{background-color:#28cb69;height:19px;line-height:21px;padding:0 4px}.panel-body{background:var(--dark-bg-input);border:1px solid var(--form-border-color);border-radius:15px;padding:10px}.swal2-popup{position:relative;box-sizing:border-box;grid-template-columns:minmax(0,100%);width:32em;max-width:100%;padding:0 0 1.25em;border:none;border-radius:5px;background:#57d27a;color:#545454;font-family:inherit;font-size:1rem}.select2-container--default .select2-selection--single.form-control{padding: 10px 23px 10px 12px;}.select2-results__option a{padding: 3px 10px;}</style>
+           
+           <style>
+#service_descriptions {
+   padding: 13px;
+    border-radius: 12px;
+    color: #393e46;
+    box-shadow: none;
+    background-color: #F1F7FC;
+     overflow-y: auto;
+    height: 150px; 
+}
+</style>
+           
+           <style>
+.service-dashboard {
+    background-color: #f9f9f9; /* Light background */
+    border: 1px solid #e0e0e0; /* Softer border */
+    padding: 1rem; /* Use rem for better scalability */
+    margin-top: 1.25rem; /* Use rem for better scalability */
+    border-radius: 0.5rem; /* Rounded corners */
+    box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-height: 250px; /* Set a max height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.service-dashboard h4 {
+    font-size: 1.125rem; /* Use rem for better scalability */
+    color: #333; /* Dark text */
+    margin-bottom: 0.625rem; /* Use rem for better scalability */
+    border-bottom: 2px solid #000; /* Bottom border */
+    padding-bottom: 0.3125rem; /* Use rem for better scalability */
+}
+
+.service-dashboard ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+.service-dashboard li {
+    background-color: #fff; /* White background */
+    border: 1px solid #e0e0e0; /* Border for items */
+    border-radius: 0.3125rem; /* Rounded corners */
+    padding: 0.5rem; /* Use rem for better scalability */
+    margin: 0.3125rem 0; /* Use rem for better scalability */
+    transition: background-color 0.2s; /* Smooth background color change */
+}
+
+.service-dashboard li:hover {
+    background-color: #f0f0f0; /* Change background on hover */
+}
+
+.service-dashboard li::before {
+    content: "✔️"; /* Checkmark */
+    margin-right: 0.3125rem; /* Space between icon and text */
+    color: #007bff; /* Checkmark color */
+}
+</style>
+          <div class="wrapper-content">
+    <div class="wrapper-content__header">
+          </div>
+    <div class="wrapper-content__body">
+      <!-- Main variables *content* -->
+      <div id="block_100"><div class="block-bg"></div><div class="container"><div class="faq ">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="row">
+                                    <div class="col-lg-12">
+                        <div class="faq-block__card">
+                            <div class="card" style="
+                             background: var(--color-id-173);                                      color: var(--text-dark);                                                                          border-color: var(--color-id-90);                                                                                                                                                                                      border-top-left-radius: 20px;                                      border-bottom-left-radius: 20px;                                      border-top-right-radius: 20px;                                      border-bottom-right-radius: 20px;                                      border-left-width: 8px;                                      border-right-width: 8px;                                      border-bottom-width: 8px;                                      border-top-width: 8px;                                      box-shadow: 0px 8px 16px 0px var(--color-id-114);                                      border-style: double; ">
+                                <div class="faq-block__header collapsed" data-toggle="collapse" data-target="#faq-block-100-1" aria-expanded="false" aria-controls="#faq-block-100-1">
+                                    <div class="faq-block__header-title">
+                                                                                    <h4 class="text-center"><span style="color: var(--color-id-75)"><span style="font-size: 26px"><span style="text-align: CENTER"><u style="text-decoration: underline">TERMS BEFORE PLACING ORDERS!</u></span></span></span></h4>
+                                                                            </div>
+                                    <div class="faq-block__header-icon">
+                                        <div class="style-text-dark faq-block__icon" style="color: inherit;"></div>
+                                    </div>
+                                </div>
+                                <div class="faq-block__body collapse" id="faq-block-100-1">
+                                    <div class="faq-block__body-description" style="padding-top: 8px">
+                                                                                    <h2><span style="color: var(--color-id-71)"><strong style="font-weight: bold">Terms of Service</strong></span></h2>
+<ul>
+  <li><span style="color: var(--color-id-71)"><strong style="font-weight: bold">Whether you read them or not, by using our panel to place a purchase, you automatically agree to all of the terms of service stated below.</strong></span></li>
+  <li><span style="color: var(--color-id-71)"><strong style="font-weight: bold">These Terms of Service are subject to change at any time and without prior notice. Before completing any order, you must read the terms of service to make sure you are aware of all current modifications and any upcoming ones.</strong></span></li>
+  <li><span style="color: var(--color-id-71)"><strong style="font-weight: bold">You agree to only use our website in a way that complies with the terms of service listed on each social networking platform's page.</strong></span></li>
+  <li><span style="color: var(--color-id-71)"><strong style="font-weight: bold">Without prior warning, our pricing is subject to change at any time. If the rate changes, the terms remain in force.</strong></span></li>
+  <li><span style="color: var(--color-id-71)"><strong style="font-weight: bold">For any services, we do not guarantee a delivery time. Regarding the order's delivery date, we provide our best estimate. Please note that this is merely an estimate, and if you feel that the processing time for an order is excessively long, we will not return it.</strong></span></li>
+  <li><span style="color: var(--color-id-71)"><strong style="font-weight: bold">We are making a lot of effort to meet our re-sellers expectations precisely. In this instance, if we think it's necessary to finish an order, we reserve the right to switch the type of service.</strong></span></li>
+  <li><span style="color: var(--color-id-71)"><strong style="font-weight: bold">Be cautious—once you place an order on this automatic server, there is no way to cancel. However, you can request a cancellation if we are unable to fulfill your order or refill it. If you would like to cancel your order and it hasn't started after more than 24 hours or the specified processing time, we accept cancellation requests. &nbsp;It will take three to seven days to cancel an order if it is possible. Orders that are already underway, finished, and problem-free at that point cannot be canceled.</strong></span></li>
+  <li><span style="color: var(--color-id-71)"><strong style="font-weight: bold">All times are estimates, and depending on server load, speed and average time may change sometimes.</strong></span></li>
+  <li><span style="color: var(--color-id-71)"><strong style="font-weight: bold">Please refrain from ordering the link from the same service more than once. For instance, you can order views, likes, and comments for the same link simultaneously, but you cannot order two separate like services for the same link simultaneously; instead, you must wait for the first order to finish before placing the second.</strong></span></li>
+  <li><span style="color: var(--color-id-71)"><strong style="font-weight: bold">We won't guarantee a refund if your order is automatically marked as completed and you converted your account to private or the account/link was removed.</strong></span></li>
+  <li><span style="color: var(--color-id-71)"><strong style="font-weight: bold">Kindly refrain from requesting a link on both our website and another website simultaneously. There won't be a refund if this leads to completion without delivery.</strong></span></li>
+  <li><span style="color: var(--color-id-71)"><strong style="font-weight: bold">Ordering Facebook services should be done carefully since they deal with sensitive information. Read the description carefully and make sure you follow the required format. If you are ordering for a regular Profile server, do not place a Profile page account as these orders tend to auto-complete, and we will not reimburse you in this situation. If Facebook views and live views are not ordered correctly, your order may not be delivered, may take longer to arrive, or worse, may finish automatically.</strong></span></li>
+</ul>
+                                                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                            </div>
+        </div>
+    </div>
+</div></div></div><div id="block_122"><div class="block-bg"></div><div class="block-divider-top"><svg width="100%" height="100%" viewBox="0 0 1280 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><g fill="currentColor"><path d="M1280 69.65l-320 49.24L320 20.4 0 69.65V0h1280v69.65z"></path></g></svg></div><div class="container"><div class="text-block-with-button ">
+    <div class="row">
+        <div class="col-12">
+            <div class="text-block-with-button__description">
+                                    <p><br></p>
+                            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="text-block-with-button__button component_button_link">
+                <div class="">
+                    <a class="btn btn-big-primary" target="_blank" href="/faqs">
+                                                    <p>boosting video tutorial</p>
+                                            </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></div></div><div id="block_96"><div class="block-bg"></div><div class="container"><div class="totals ">
+    <div class="row align-items-stretch justify-content-center">
+                                                        <div class="col-lg-4 col-md-6 col-sm-12 mb-2 mt-2">
+                        <div class="card h-100"
+                             style="
+                              background: var(--color-id-173);                                  color: var(--text-dark);                                                                  border-color: var(--color-id-71);                                  padding-top: 24px;                                  padding-bottom: 24px;                                                                                                  border-top-left-radius: 48px;                                  border-bottom-left-radius: 16px;                                  border-top-right-radius: 16px;                                  border-bottom-right-radius: 16px;                                  border-left-width: 3px;                                  border-right-width: 3px;                                  border-bottom-width: 3px;                                  border-top-width: 3px;                                  box-shadow: 0px 4px 8px 0px var(--color-id-114);                                  border-style: outset; ">
+                            <div class="totals-block__card">
+                                                                    <div class="totals-block__card-left">
+                                        <div
+                                                class="totals-block__icon-preview style-bg-primary-alpha-10 style-border-radius-default style-text-primary"
+                                                style="
+                                                 background: var(--color-id-173);                                                                                                                                                                                                                         ">
+                        <span class="totals-block__icon style-text-primary fas fa-th-list" style="
+                                font-size: 38px;
+                                transform: rotate(0deg);
+                                color: var(--color-id-75);
+                                text-shadow: Array;
+                                border-radius: 0px;
+                                "></span>
+                                        </div>
+                                    </div>
+                                                                <div class="totals-block__card-right">
+                                                                            <style>
+                                            #block_96 .totals-block__count a {
+                                                color: var(--color-id-71) !important;
+                                            }
+                                        </style>
+                                                                        <div class="totals-block__count">
+                                        <h2 class="totals-block__count-value style-text-primary"
+                                            style=" color: var(--color-id-71);  font-size: 29px; line-height: 29px; ">
+                                                                                                                                                {{ user["username"]  }}
+                                                                                                                                                                                </h2>
+                                    </div>
+                                    <div class="totals-block__card-name">
+                                                                                    <p><span style="color: var(--color-id-75)"><strong style="font-weight: bold">Account username</strong></span></p>
+                                                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                                                                                                                         <div class="col-lg-4 col-md-6 col-sm-12 mb-2 mt-2">
+                        <div class="card h-100"
+                             style="
+                              background: var(--color-id-173);                                  color: var(--text-dark);                                                                  border-color: var(--color-id-71);                                  padding-top: 24px;                                  padding-bottom: 24px;                                                                                                  border-top-left-radius: 48px;                                  border-bottom-left-radius: 16px;                                  border-top-right-radius: 16px;                                  border-bottom-right-radius: 16px;                                  border-left-width: 3px;                                  border-right-width: 3px;                                  border-bottom-width: 3px;                                  border-top-width: 3px;                                  box-shadow: 0px 4px 8px 0px var(--color-id-114);                                  border-style: outset; ">
+                            <div class="totals-block__card">
+                                                                    <div class="totals-block__card-left">
+                                        <div
+                                                class="totals-block__icon-preview style-bg-primary-alpha-10 style-border-radius-default style-text-primary"
+                                                style="
+                                                 background: var(--color-id-173);                                                                                                                                                                                                                         ">
+                        <span class="totals-block__icon style-text-primary far fa-clipboard-list" style="
+                                font-size: 38px;
+                                transform: rotate(0deg);
+                                color: var(--color-id-75);
+                                text-shadow: Array;
+                                border-radius: 0px;
+                                "></span>
+                                        </div>
+                                    </div>
+                                                                <div class="totals-block__card-right">
+                                                                            <style>
+                                            #block_96 .totals-block__count a {
+                                                color: var(--color-id-71) !important;
+                                            }
+                                        </style>
+                                                                        <div class="totals-block__count">
+                                        <h2 class="totals-block__count-value style-text-primary"
+                                            style=" color: var(--color-id-71);  font-size: 29px; line-height: 29px; ">
+                                                                                                                                               {{ user["spent"] }}
+                                                                                                                                                                                </h2>
+                                    </div>
+                                    <div class="totals-block__card-name">
+                                                                                    <p><span style="color: var(--color-id-75)"><strong style="font-weight: bold">Spent balance</strong></span></p>
+                                                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                                                                    <div class="col-lg-4 col-md-6 col-sm-12 mb-2 mt-2">
+                        <div class="card h-100"
+                             style="
+                              background: var(--color-id-173);                                  color: var(--text-dark);                                                                  border-color: var(--color-id-71);                                  padding-top: 24px;                                  padding-bottom: 24px;                                                                                                  border-top-left-radius: 48px;                                  border-bottom-left-radius: 16px;                                  border-top-right-radius: 16px;                                  border-bottom-right-radius: 16px;                                  border-left-width: 3px;                                  border-right-width: 3px;                                  border-bottom-width: 3px;                                  border-top-width: 3px;                                  box-shadow: 0px 4px 8px 0px var(--color-id-114);                                  border-style: outset; ">
+                            <div class="totals-block__card">
+                                                                    <div class="totals-block__card-left">
+                                        <div
+                                                class="totals-block__icon-preview style-bg-primary-alpha-10 style-border-radius-default style-text-primary"
+                                                style="
+                                                 background: var(--color-id-173);                                                                                                                                                                                                                         ">
+                        <span class="totals-block__icon style-text-primary far fa-users" style="
+                                font-size: 38px;
+                                transform: rotate(0deg);
+                                color: var(--color-id-75);
+                                text-shadow: Array;
+                                border-radius: 0px;
+                                "></span>
+                                        </div>
+                                    </div>
+                                                                <div class="totals-block__card-right">
+                                                                            <style>
+                                            #block_96 .totals-block__count a {
+                                                color: var(--color-id-71) !important;
+                                            }
+                                        </style>
+                                                                        <div class="totals-block__count">
+                                        <h2 class="totals-block__count-value style-text-primary"
+                                            style=" color: var(--color-id-71);  font-size: 29px; line-height: 29px; ">
+                                                                                                                                     {{totalorders}}
+                                                                                    </h2>
+                                    </div>
+                                    <div class="totals-block__card-name">
+                                                                                    <p><span style="color: var(--color-id-75)"><strong style="font-weight: bold">Panel orders</strong></span></p>
+                                                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                                                                    <div class="col-lg-4 col-md-6 col-sm-12 mb-2 mt-2">
+                        <div class="card h-100"
+                             style="
+                              background: var(--color-id-173);                                  color: var(--text-dark);                                                                  border-color: var(--color-id-71);                                  padding-top: 24px;                                  padding-bottom: 24px;                                                                                                  border-top-left-radius: 48px;                                  border-bottom-left-radius: 16px;                                  border-top-right-radius: 16px;                                  border-bottom-right-radius: 16px;                                  border-left-width: 3px;                                  border-right-width: 3px;                                  border-bottom-width: 3px;                                  border-top-width: 3px;                                  box-shadow: 0px 4px 8px 0px var(--color-id-114);                                  border-style: outset; ">
+                            <div class="totals-block__card">
+                                                                    <div class="totals-block__card-left">
+                                        <div
+                                                class="totals-block__icon-preview style-bg-primary-alpha-10 style-border-radius-default style-text-primary"
+                                                style="
+                                                 background: var(--color-id-173);                                                                                                                                                                                                                         ">
+                        <span class="totals-block__icon style-text-primary far fa-clipboard-list-check" style="
+                                font-size: 38px;
+                                transform: rotate(0deg);
+                                color: var(--color-id-75);
+                                text-shadow: Array;
+                                border-radius: 0px;
+                                "></span>
+                                        </div>
+                                    </div>
+                                                                <div class="totals-block__card-right">
+                                                                            <style>
+                                            #block_96 .totals-block__count a {
+                                                color: var(--color-id-71) !important;
+                                            }
+                                        </style>
+                                                                        <div class="totals-block__count">
+                                        <h2 class="totals-block__count-value style-text-primary"
+                                            style=" color: var(--color-id-71);  font-size: 29px; line-height: 29px; ">
+                                                                                                                                              {{ user["balance"] }}
+                                                                                                                                                                                </h2>
+                                    </div>
+                                    <div class="totals-block__card-name">
+                                                                                    <p><span style="color: var(--color-id-75)"><strong style="font-weight: bold">Account balance</strong></span></p>
+                                                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                                                                   
+                                                                                                    </div>
+</div></div></div><div id="block_31"><div class="block-bg"></div><div class="container"><div class="new_order-block ">
+  <div class="row">
+    <div class="col-lg-7 mb-3 mb-lg-0">
+      <div class="component_form_group component_card component_radio_button">
+        <div class="card ">
+        
+
+                           <form  action="/" method="post" id="order-form">
+                                                       
+                         {% if error %}
+                     <div class="alert alert-dismissible alert-danger">
+                        {{ errorText }}
+                     </div>
+                     {% endif %}
+                     {% if data["order"]["success"] == 1 %}
+      <div class="alert alert-dismissible alert-success">
+          <strong> {{ lang["neworder.success.id"] }}: </strong> {{ data['order']['id'] }} <br>
+          <strong> {{ lang["neworder.success.service"] }}: </strong> {{ data['order']['service'] }} <br>
+          <strong> {{ lang["neworder.success.link"] }}: </strong> {{ data['order']['link'] }} <br>
+          <strong> {{ lang["neworder.success.quantity"] }}: </strong> {{ data['order']['quantity'] }} <br>
+          <strong> {{ lang["neworder.success.charge"] }}: </strong> {{ data['order']['price'] }} <br>
+          <strong> {{ lang["neworder.success.balance"] }}: </strong>{{ data['order']['balance'] }} <br>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">✕</span></button>
+
+      </div>
+    {% endif %}
+    
+    
+    {% if data["order"]["success"] == 2 %}
+      <div class="alert alert-dismissible alert-success">
+ <strong> {{ lang["neworder.success.id"] }}: </strong> {{ data['order']['id'] }} <br>
+ <strong> {{ lang["neworder.success.service"] }}: </strong> {{ data['order']['service'] }} <br>
+ <strong> {{ lang["neworder.success.username"] }}: </strong> {{ data['order']['link'] }} <br>
+ <strong> {{ lang["neworder.success.quantity"] }}: </strong> {{ data['order']['min'] }} - {{ data['order']['max'] }} <br>
+ <strong> {{ lang["neworder.success.posts"] }}: </strong> {{ data['order']['posts'] }} <br>
+ <strong> {{ lang["neworder.success.delay"] }}: </strong>{{ data['order']['delay'] }} <br>
+       </div>
+    {% endif %}
+
+                         
+                         
+                           
+                         
+                        
+                         
+                    <div class="mb-3">
+                 <label for="orderform-category" class="control-label">Category</label>
+                     
+<select class="form-control" id="neworder_category" name="categories" data-select="true" data-select-search="true" data-select-search-placeholder="Search" data-select-container="#select-category-container" tabindex="-1" aria-hidden="true">
+{{ category_html_simplify }}
+
+</select>
+<div id="select-category-container" class="position-relative"></div>
+</div>
+                                     
+                      
+                              <div class="mb-3">
+                                 <label for="orderform-service" class="control-label">Service</label>
+                                 	<select class="form-control" id="neworder_services" name="services" data-select="true" data-select-search="true" data-select-search-placeholder="Search" data-select-container="#select-service-container" tabindex="-1" aria-hidden="true">
+<option value="1">No services found in this category</option>
+</select>
+<div id="select-service-container" class="position-relative"></div>
+    </div>
+       
+          
+                      <div id="neworder_fields"></div>
+
+
+
+
+
+
+           <div class="mb-3">
+                                 <label for="charge" class="control-label">Charge</label>
+                                 <input type="text" class="form-control" id="charge" value="" readonly>
+                              </div>
+                                 <button type="submit" class="btn btn-primary d-block w-100">Submit</button>
+                              </form>
+                        </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+        
+        
+        
+        
+      
+            
+
+     
+
+
+
+{% include 'footer.twig' %}
+
+
+  <script type="text/javascript" >
+     window.modules.layouts = {"auth":0};   </script>
+  <script type="text/javascript" >
+     window.modules.signin = [];   </script>
+  <script type="text/javascript" >
+      </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.27.6/js/jquery.tablesorter.js"></script>
+<script type="text/javascript" >
+window.modules.siteOrder = {"fields":[]}; </script>
+<script type="text/javascript" >
+window.modules.select = [];   </script>
+<script src="public/script.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollArea = document.getElementById('service_descriptions');
+    
+    // Example content to ensure scrolling
+    for (let i = 0; i < 20; i++) {
+        const p = document.createElement('p');
+        p.textContent = 'Item ' + (i + 1);
+        scrollArea.appendChild(p);
+    }
+
+    // Check if scrolling works
+    scrollArea.addEventListener('scroll', function() {
+        console.log('Scrolling...');
+    });
+});
+</script>

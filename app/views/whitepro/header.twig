@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+{% for lang in site['languages'] %}
+{% if lang['active'] %}
+<html lang="{{ lang['code'] }}">
+{% endif %}
+{% endfor %}
+	<head>
+	     <base href="{{ site['url'] }}/">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>{% if pagetitle %}  {{ pagetitle }}  {% else %} {{ title }} {% endif %}</title>
+		<meta name="keywords" content="{% if pagekeywords %} {{ pagekeywords }} {% else %} {{ site["keywords"]}}  {% endif %}">
+  <meta name="description" content="{% if pagedescription %} {{ pagedescription }} {% else %} {{ site['description'] }}  {% endif %}">
+  <meta property="og:description" content="{% if pagedescription %} {{ pagedescription }} {% else %} {{ site['description'] }}  {% endif %}" />
+  {% if site['favicon'] %}
+    <link rel="shortcut icon" type="image/ico" href="{{ site['favicon'] }}" />
+  {% endif %}
+	    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		  <![endif]-->
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+    <link rel="stylesheet" href="https://cdn.smmspot.net/snfollows/assets/ri/remixicon.css">
+                    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
+                    <link rel="stylesheet" type="text/css" href="https://demo.officialrentalpanel.com/public/whitepro/0fje9a2dzqaxhwd5.css">
+					<link rel="stylesheet" type="text/css" href="https://demo.officialrentalpanel.com/public/whitepro/q9xs9h0el2qxfh8n.css">
+					<link rel="stylesheet" type="text/css" href="https://demo.officialrentalpanel.com/public/whitepro/bootstrap-datetimepicker.min.css">
+					<link rel="stylesheet" type="text/css" href="https://cdn.mypanel.link/css/font-awesome/css/all.min.css">
+					<link rel="stylesheet" type="text/css" href="https://demo.officialrentalpanel.com/public/whitepro/c3gyq3shygmabbke.css">
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+					
+<style>
+.badge {
+  background-color: #00BFFF;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  border-radius: 5px;
+}
+</style>
+
+	</head>
+                                                    
+                                                    
+	
+	
+	
+	{% if user['auth'] %}				
+		
+	  <body id="appDashboard">
+  <div class="appAuth">
+    <div class="appSidebar">
+      <div class="sbLogo">
+        <a href="/">
+          {% if site["logo"] %} <img src="{{ site['logo'] }}" class="sb-logo" alt="{{ site["site_name"]}}">
+{% endif %}
+
+
+        </a>
+      </div>
+      <div class="sbUsrWr">
+        <a href="/account" class="sbUsr">
+          <div class="avtWr">
+            <img src="https://cdn.smmspot.net/snfollows/assets/img/avatar.png" alt="Avatar">
+          </div>
+          <div class="riWr">
+            <div class="sbName">{{ user["username"]  }}</div>
+          </div>
+          <div class="goWr ms-auto">
+            <i class="ri-arrow-right-line"></i>
+          </div>
+        </a>
+      </div>
+			<div class="sbMenuWr">
+              <ul class="sbMenu">
+  
+              
+              
+              {% for menu in menus %}
+              {% if menu['slug'] == "/tickets" %}
+               <li class="mItem">
+                <a href="{{menu["slug"]}}" class="mLink  {% if active_menu == menu["active"] %}active{% endif %} "  >
+                                   {% if menu['icon'] %}    <span class="mIcon">
+                    <i class="{{menu["icon"]}}"></i>
+                  </span>{% endif %}
+                                    <span class="mText">{{menu["name"]}} {% if ticketCount %}<span class="badge" style="background-color: #f0ad4e">{{ ticketCount }}</span> {% endif %}</span>
+                </a>
+              </li>	
+              {% elseif  menu['slug'] == "/refill" %}
+{% if site["refillavailable"] %} 
+              
+               <li class="mItem">
+                <a href="{{menu["slug"]}}" class="mLink  {% if active_menu == menu["active"] %}active{% endif %} "  >
+                                   {% if menu['icon'] %}    <span class="mIcon">
+                    <i class="{{menu["icon"]}}"></i>
+                  </span>{% endif %}
+                                    <span class="mText">{{menu["name"]}}</span>
+                </a>
+              </li>	
+              {% endif %} 
+ 
+{% else %} {% if menu["type"] == 2 %} 
+                            <li class="mItem">
+                <a href="{{menu["slug"]}}" class="mLink  {% if active_menu == menu["active"] %}active{% endif %} "  >
+                                   {% if menu['icon'] %}    <span class="mIcon">
+                    <i class="{{menu["icon"]}}"></i>
+                  </span>{% endif %}
+                                    <span class="mText">{{menu["name"]}}</span>
+                </a>
+              </li>	
+              {% endif %}   {% endif %}  
+              {% endfor %}
+              <li class="mItem mSMoreItem">
+            <a href="#" class="mSMore">
+              <span class="mText">Show More</span>
+
+              <span class="mIcon"><i class="ri-arrow-down-s-fill"></i></span>
+            </a>
+            <ul class="subMenu">
+              <li class="mItem">
+                <a class="mLink">
+                  <span class="mIcon"><i class="ri-dashboard-2-line"></i></span>
+                  <span class="mText">Hidden button</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+<div class="appHeader">
+      <div class="container-fluid">
+              <div class="container-fluid">
+        <button class="menu-btn" onclick="authMenuToggle();">
+          <i class="ri-menu-line"></i>
+          <i class="ri-close-line"></i>
+        </button>
+        <div class="row apHdRw">
+          <div class="col-auto">
+            <div style="width:10px"></div>
+          </div>
+          <div class="col d-none d-md-block">
+            <h2 class="apPgTi">{{ site["site_name"]  }}</h2>
+            <p class="apPgTx"></p>
+          </div>
+          <div class="col-auto ms-auto">
+            <div class="btn-group">
+                                     
+                           {% if site_currency_converter == "1" %}
+                           <button class="btn btn-danger dropdown-toggle btn-rounded apHdCr" type="button" id="changeCurrencyDd"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                 <span>
+                  <i class="fas fa-dollar-sign"></i>
+                </span>
+                <span class="d-none d-md-block">Currency</span>
+              </button>
+                           <ul class="dropdown-menu" id="currencies-list">
+												{{ currencies_dropdown }}		
+												</ul>{% else %}
+
+
+
+{% endif %}
+
+                        </div>
+</div>
+				
+			<div class="col-auto" style="display:none;">
+            <a href="/" target="_blank" class="apHdIt">
+              <div class="colIc">
+                <div class="icon">
+                  <i class="fab fa-whatsapp"></i>
+                </div>
+              </div>
+              <div class="colTx d-none d-md-block">
+                <div class="title">WhatsApp Us</div>
+                <div class="text">Get Instant Support</div>
+              </div>
+            </a>
+          </div>
+
+
+          <div class="col-auto">
+            <div class="btn-group">
+              <button type="button" class="btn dropdown-toggle btn-rounded apHdIt" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="colIc">
+                  <div class="icon avatar">
+                    <img src="https://cdn.smmspot.net/snfollows/assets/img/avatar.png" alt="Avatar">
+                  </div>
+                </div>
+                <div class="colTx d-none d-md-block">
+                  <div class="title">My Profile</div>
+                  <div class="text">See Account</div>
+                </div>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/account">Account</a></li>
+                <li><a class="dropdown-item" href="/api">API</a></li>
+                <li><a class="dropdown-item" href="/addfunds">Add Funds</a></li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li><a class="dropdown-item danger-color" href="/logout">Log out</a></li>
+               </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div>	
+
+
+															
+
+							
+	
+	
+	
+	
+	
+													
+{% else %}
+
+
+	<!-- Main variables *content* -->
+
+
+
+  		<body>
+  <div class="mobile-header">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col">
+          <a href="/">
+            <img src="{{ site['logo'] }}" class="mobile-logo" width="180" height="44" alt="{{ site["site_logo"]}}">
+          </a>
+        </div>
+        <div class="col-auto">
+          <button class="menu-btn" onclick="noAuthMenuToggle();">
+            <i class="ri-menu-line"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <header id="noAuthHeader">
+    <button class="close-menu" onclick="noAuthMenuToggle();">
+      <i class="ri-close-line"></i>
+    </button>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-auto">
+          <a href="/" class="hdLogoL">
+            <img src="{{ site['logo'] }}" width="180" height="44" alt="" >
+          </a>
+        </div>
+		<div class="col-lg">
+          <ul class="hdMn">
+						
+            <li class="hdMnIt">
+              <a href="/" class="hdMnLi active">Home</a>
+            </li>
+            <li class="hdMnIt">
+              <a href="/services" class="hdMnLi">Services</a>
+            </li>
+            <li class="hdMnIt">
+              <a href="/api" class="hdMnLi">API</a>
+            </li>
+            <li class="hdMnIt">
+              <a href="/blog" class="hdMnLi">Blog</a>
+            </li>
+          
+						
+          </ul>
+        </div>
+        <div class="col-lg-auto">
+          <a href="/" class="btn btn-login-header btlrh btn-rounded me-3">Login</a>
+          <a href="/signup" class="btn btn-primary btlrh btn-rounded btn-icon">
+            <span>Register</span>
+            <span class="icon icon-circle"><i class="ri-arrow-right-line"></i></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endif %}

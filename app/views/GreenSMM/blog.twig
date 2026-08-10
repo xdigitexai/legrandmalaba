@@ -1,0 +1,41 @@
+{% include 'header.twig' %}
+
+<main id="notLogin">
+    
+<section id="blog_post">
+    
+    <div class="container">
+        <div class="row mb-5">
+            
+            {% for blog in blogs %}
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                <div class="blog_wraper">
+                    <div class="blog_img">
+                        {% if blog["image_file"] %} 
+                  <a href="/blog/{{ blog["blog_get"] }}">
+                                                <img src="{{blog["image_file"]}}" class="img-fluid" alt="{{ blog["title"] }}"></a>{% endif %} 
+                                            </div>
+                    <div class="blog_content">
+                        <h4>{{ blog["title"] }}</h4>
+                        <div class="blog_content">
+                            <p><span style="color: inherit; font-family: inherit; font-size: 30px;">{{ blog["content"] }}</p>
+                        </div>
+                    </div>
+                    <div class="blog_btn_wrap">
+                        <a href="/blog/{{ blog["blog_get"] }}" class="btn btn-primary">Read More &gt;&gt;</a>
+                    </div>
+                </div>
+            </div>
+             {% endfor %}           
+                    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+                    </div>
+    </div>
+
+</section>
+
+
+{% include 'footer.twig' %}

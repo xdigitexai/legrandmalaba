@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+{% for lang in site['languages'] %}
+{% if lang['active'] %}
+<html lang="{{ lang['code'] }}">
+{% endif %}
+{% endfor %}
+<head>
+  <base href="{{ site['url'] }}">
+  <title>{% if pagetitle %}  {{ pagetitle }}  {% else %} {{ title }} {% endif %} </title>
+  <meta property="og:title" content="{% if pagetitle %}  {{ pagetitle }}  {% else %} {{ title }} {% endif %}" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="{% if pagekeywords %} {{ pagekeywords }} {% else %} {{ site["keywords"]}}  {% endif %}">
+  <meta name="description" content="{% if pagedescription %} {{ pagedescription }} {% else %} {{ site['description'] }}  {% endif %}">
+  <meta property="og:description" content="{% if pagedescription %} {{ pagedescription }} {% else %} {{ site['description'] }}  {% endif %}" />
+
+
+
+
+  {% if site['favicon'] %}
+    <link rel="shortcut icon" type="image/ico" href="{{ site['favicon'] }}" />
+  {% endif %}
+
+{{ headerCode }}
+
+
+<script src="/cdn/theme/SmmEngage/users/sweetalert.min.js"></script>
+<script src="/cdn/theme/SmmEngage/users/jquery-3.3.1.slim.min.js"></script>
+
+
+
+
+
+		 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+	 	 <link rel="stylesheet" type="text/css" href="/cdn/theme/SmmEngage/users/mbdesmezapxmafud_jzrcur_hnkdrp.css">
+	 	 <link rel="stylesheet" type="text/css" href="/cdn/theme/SmmEngage/users/z2sjk9wo7nudoaj5_j43ffq.css">
+	 	 <link rel="stylesheet" type="text/css" href="https://cdn.mypanel.link/libs/bootstrap-datetimepicker/4.17.47/bootstrap-datetimepicker.min.css">
+	 	 <link rel="stylesheet" type="text/css" href="/cdn/theme/SmmEngage/users/tp2jssyocan4ndm1_gcyj50_xd8a5t.css">
+	 	 <link rel="stylesheet" type="text/css" href="https://cdn.mypanel.link/css/font-awesome/css/all.min.css">
+         <link rel="stylesheet" type="text/css" href="/cdn/theme/SmmEngage/users/noandservicestyle_dvckaw_s2dyjw.css">
+         <link rel="stylesheet" type="text/css" href="/cdn/theme/SmmEngage/users/4g3dwcb2uecqmocp_ekquzu_rwkeiz_egr0ie.css">
+
+
+
+
+</head>
+
+{% if user['auth'] %}
+
+
+ <body  class="dashboard" id="body" >
+	 	 <script>
+		 if (localStorage.getItem('bigoBdCurrentMode')) {
+			 const bodyFire2 = document.getElementById('body');
+			 bodyFire2.classList.add('nightmode');
+		 }
+	 </script>
+	 <section id="parentContainer">
+		 <div class="sidebar">
+			 <div id="closerSidebar">
+			 </div>
+			 <button class="closeBtn" onclick="toogleSidebar()"><i class="fas fa-times"></i></button>
+			 <div class="sidebar_logo">
+           
+<a target="_self" href="/">{% if site["logo"] %}
+<img style="max-width:200px;" src="{{ site['logo'] }}" alt="" title="">
+{% else %}<span style="text-transform: "><span style="font-size: 24px"><span style="letter-spacing: 1.0px"><span style="line-height: 120px"><strong style="font-weight: bold">{{ site["site_name"] }}</strong></span></span></span></span>{% endif %}</a>
+
+            </div>
+			 <div class="sidebar_user">
+				 <div class="user_avtar">
+                    <img src="/cdn/theme/SmmEngage/img/user.png" class="img-fluid" alt="">
+                </div>
+                				 <div class="user_info">
+					 <div class="balance">{{ user["balance"] }}</div>
+					 					 <div class="username">{{ user["username"]  }}</div>
+				 </div>
+			 </div>
+			 <div class="sidebar_menu">
+             	 <a  {% if active_menu == "analytics" %} class="menu_item active {% endif %}" class="menu_item"   href="/analytics" >
+					 					 <div class="menu_icon"><i class="fas fa-shopping-cart"></i></div>
+					 					 <div class="menu_text">Completed Orders</div>
+				 </a>
+
+				 				 				 <a  {% if active_menu == "neworder" %} class="menu_item active {% endif %}" class="menu_item"   href="/" >
+					 					 <div class="menu_icon"><i class="fas fa-shopping-cart"></i></div>
+					 					 <div class="menu_text">New order</div>
+				 </a>
+				  
+				 				 				 <a   {% if active_menu == "massorder" %} class="menu_item active {% endif %}" class="menu_item" href="/massorder" >
+					 					 <div class="menu_icon"><i class="fas fa-ambulance"></i></div>
+					 					 <div class="menu_text">Mass order</div>
+				 </a>
+				  
+				 				 				 <a  {% if active_menu == "orders" %} class="menu_item active {% endif %}" class="menu_item" href="/orders" >
+					 					 <div class="menu_icon"><i class="fas fa-history"></i></div>
+					 					 <div class="menu_text">Orders</div>
+				 </a>
+				  
+				 				 				 <a  {% if active_menu == "services" %} class="menu_item active {% endif %}" class="menu_item" href="/services" >
+					 					 <div class="menu_icon"><i class="fas fa-server"></i></div>
+					 					 <div class="menu_text">Services</div>
+				 </a>
+				  
+				 				 				 <a  {% if active_menu == "addfunds" %} class="menu_item active {% endif %}" class="menu_item" href="/addfunds" >
+					 					 <div class="menu_icon"><i class="far fa-credit-card"></i></div>
+					 					 <div class="menu_text">Add funds</div>
+				 </a>
+
+				 				 				 <a  {% if active_menu == "tickets" %} class="menu_item active {% endif %}" class="menu_item" href="/tickets" >
+					 					 <div class="menu_icon"><i class="fas fa-headset"></i></div>
+					 					 <div class="menu_text">Support Box</div>
+			<div class="menu_name">
+               <span class="badge" style="background-color: #ffb500">{{ ticketCount }}</span>
+            </div>
+          </a>		 					 
+				 </a>
+				  
+				  
+				 <button id="moreMenu" onclick="moreMenuToggle()">
+					 <span>More</span> <i class="far fa-arrow-circle-down"></i>
+				 </button>
+ 
+				 <div id="moreMenuContainer">
+			
+					 					 					 					 <a  {% if active_menu == "api" %} class="menu_item active {% endif %}" class="menu_item" href="/api" >
+						 						 <div class="menu_icon"><i class="fas fa-code"></i></div>
+						 						 <div class="menu_text">API</div>
+					 </a>                                                      
+					 					 					 					 <a  {% if active_menu == "refer" %} class="menu_item active {% endif %}" class="menu_item" href="/refer" >
+						 						 <div class="menu_icon"><i class="fas fa-share-alt"></i></div>
+						 						 <div class="menu_text">Affiliates</div>
+					 </a>                                                    
+					 
+					 
+					 
+					             {% if blogPage %}    
+            <a {% if active_menu == "blog" %} class="menu_item active"  {% endif %} class="menu_item" href="/blog">
+                <div class="menu_icon"><i class="menu-icon far fa-file-alt"></div> 
+                <div class="menu-text">{{ lang['blog.title'] }}</div>
+                </a>
+            {% endif %}
+					 
+					 					 					 					 <a  {% if active_menu == "child-panels" %} class="menu_item active {% endif %}" class="menu_item" href="/child-panels" >
+						 						 <div class="menu_icon"><i class="fab fa-mailchimp"></i></div>
+						 						 <div class="menu_text">Child panel</div>
+					 </a>
+					 					 					 					 <a  {% if active_menu == "updates" %} class="menu_item active {% endif %}" class="menu_item" href="/updates" >
+						 						 <div class="menu_icon"><i class="fas fa-cloud-upload-alt"></i></div>
+						 						 <div class="menu_text">Updates</div>
+					 </a>
+					 					  
+				 </div>
+			 </div>
+		 </div>
+		 <div class="parentContent">
+			 <div class="backdrop"></div>
+			 <div class="top_bar">
+				 <div class="top_left">
+					 <button id="toggleSidebarBtn" onclick="toogleSidebar()">
+						 <i class="far fa-chevron-circle-left onIcon"></i>
+						 <i class="fas fa-bars offIcon"></i>
+					 </button>
+					 <div class="logo_for_phone">
+						 <a target="_self" href="/">{% if site["logo"] %}
+<img style="max-width:200px;" src="{{ site['logo'] }}" alt="" title="">
+{% else %}<span style="text-transform: "><span style="font-size: 24px"><span style="letter-spacing: 1.0px"><span style="line-height: 120px"><strong style="font-weight: bold">{{ site["site_name"] }}</strong></span></span></span></span>{% endif %}</a>
+
+					 </div>
+				 </div>
+				 
+				 <div class="top_right">
+					 <button id="toggleModes" onclick="toggleThemeMode()">
+						 <i class="far fa-moon" id="moon"></i>
+						 <i class="far fa-sun" id="sun"></i>
+					 </button>
+ 
+					 <script>
+						 if (localStorage.getItem('bigoBdCurrentMode')) {
+							 const toggleModes = document.getElementById('toggleModes');
+							 toggleModes.classList.toggle('nightmodeActive');
+						 }
+					 </script>
+ {% if site_currency_converter == "1" %}
+<div class="balance-dropdown-container component_balance_dropdown">
+    <div class="balance-dropdown">
+        <div class="balance-dropdown__name balance-dropdown__toggle" data-toggle="dropdown" aria-expanded="false">
+          <i class="fas fa-dollar-sign" aria-hidden="true"></i>
+        </div>
+        <ul class="balance-dropdown__container dropdown-menu" id="currencies-list">
+            {{ currencies_dropdown }}
+        </ul>
+    </div>
+</div>
+{% else %}
+<br>
+{% endif %}
+
+ 
+					 <div class="dropdown user_top_main">
+						 <button class="btn btn-user dropdown-toggle" type="button" data-bs-toggle="dropdown"
+							 aria-expanded="false">
+							 <img src="/cdn/theme/SmmEngage/img/user.png" class="img-fluid img-avatar"
+								 alt="">
+						 </button>
+						 <ul class="dropdown-menu" id="userProMenu">
+							 <div class="user_hipe">
+								 <div class="user_avatar">
+									 <img src="/cdn/theme/SmmEngage/img/user.png" class="hipe_avatar"
+										 alt="">
+								 </div>
+								 <div class="user_infos">
+									 <p><a href="/account" class="user_name">{{ user["username"]  }}</a></p>
+									 <a href="/addfunds" class="user_balance">{{ user["balance"]  }}</a>
+								 </div>
+							 </div>
+							 <div class="linesperator"></div>
+							 <li>
+								 <a href="/account" class="user_menu"><span class="icon"><i
+											 class="fas fa-user-circle"></i></span> Account</a>
+							 </li>
+ 
+							 <li>
+								 <a href="/addfunds" class="user_menu">
+									 <span class="icon"><i class="far fa-credit-card"></i></span> Add Fund
+								 </a>
+							 </li>
+							 <li>
+								 <a href="/terms" class="user_menu">
+									 <span class="icon"><i class="far fa-clipboard"></i></span> Terms & Conditions
+								 </a>
+							 </li>
+							 <div class="linesperator"></div>
+							 <li>
+								 <a href="/logout" class="user_menu logout">
+									 <span class="icon"><i class="fas fa-sign-out"></i></span> Logout
+								 </a>
+							 </li>
+						 </ul>
+					 </div>
+				 </div>
+			 </div>
+		     
+
+{% endif %}
+
+{% if user['auth'] == 0 %}
+
+   <!---------   
+
+=== Theme Author : Tanmoy Sarkar
+=== Theme Designed By: SmmEngage
+=== Contact Whatsapp: +8801782447728
+
+ -------------> 
+
+	<body  class="new_v2" >
+	 			 <header class="sticky-top">
+				 <nav class="navbar navbar-expand-lg bg-body-tertiary">
+					 <div class="container">
+						 <a class="navbar-brand" href="/">
+							 <div class="nav-bar-logo">
+							 
+{% if site["logo"] %}
+<img style="max-width:200px;"  src="{{ site['logo'] }}" alt="" title="">
+{% else %}<span style="text-transform: "><span style="font-size: 24px"><span style="letter-spacing: 1.0px"><span style="line-height: 50px"><strong style="font-weight: bold">{{ site["site_name"] }}</strong></span></span></span></span>{% endif %}</a>
+</div>
+						 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+							 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+							 aria-expanded="false" aria-label="Toggle navigation">
+							 <i class="fas fa-bars"></i>
+						 </button>
+						 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+							 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+								 								 								 <li class="nav-item">
+									 <a {% if active_menu == "/" %} class="nav-link active {% endif %}" class="nav-link   nav-link " aria-current="page"
+										 href="/" >
+										 										 Login in
+									 </a>
+								 </li>
+								 								 								 								 <li class="nav-item">
+									 <a {% if active_menu == "about-us" %} class="nav-link active {% endif %}" class="nav-link " aria-current="page"
+										 href="/about-us" >
+										 										 About Us
+									 </a>
+								 </li>
+								 								 								 								 <li class="nav-item">
+									 <a {% if active_menu == "services" %} class="nav-link active {% endif %}" class="nav-link " aria-current="page"
+										 href="/services" >
+										 										 Services
+									 </a>
+								 </li>
+								 								 								 					<!----			 <li class="nav-item">
+									 <a class="nav-link " aria-current="page"
+										 href="/blog" >
+										 										 Blog
+									 </a>
+								 </li>  ------>
+								 								 								 						 <li class="nav-item">
+									 <a {% if active_menu == "contact-us" %} class="nav-link active {% endif %}" class="nav-link " aria-current="page"
+										 href="/contact-us" >
+										 										 Contact Us
+									 </a>
+								 </li>  
+								 								 								  
+								 								 								 <li class="nav-item signup_btn_wrap">
+									 <a class="nav-link signup_btn" href="/signup">Sign Up</a>
+								 </li>
+							 </ul>
+ 
+						 </div>
+					 </div>
+				 </nav>
+			 </header>
+
+
+{% endif %}
+

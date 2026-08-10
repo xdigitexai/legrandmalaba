@@ -1,0 +1,419 @@
+<footer>
+               <div class="container">
+                 <div class="row">
+                    <div class="col-md-12">
+                       <div class="footer-list">
+                          <a href="/">
+                             <div class="footer-logo" onclick="javascript:location.href='/'">
+                              {{ site["site_name"] }}
+                                                     </div>
+                          </a>
+                          <div class="footer-link">
+                                                  <div class="footer-link-item"><a href="/">Sign in</a></div>
+                                                  <div class="footer-link-item"><a href="/services">Services</a></div>
+                                                  <div class="footer-link-item"><a href="/api">API</a></div>
+                                                  <div class="footer-link-item"><a href="/signup">Sign up</a></div>
+                                                  <div class="footer-link-item"><i class="navbar-icon far fa-image"></i><a href="#">Contact Us</a></div>
+                                               </div>
+                          <div class="footer-btn">
+                             <a class="btn btn-blue" href="signup">Register</a>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+               </div>
+               </footer>
+	
+  
+	<script>
+					if( (self.parent && !(self.parent===self))
+						&&(self.parent.frames.length!=0)){
+						self.parent.location=document.location
+					}
+					</script>
+		
+			<script>window.modules=window.modules||{};window.modules.siteOrder=window.modules.siteOrder||{"fields":[]};window.modules.select=window.modules.select||[];window.modules.signin=window.modules.signin||[];window.modules.layouts=window.modules.layouts||{};</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.27.6/js/jquery.tablesorter.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.0.0/sweetalert2.all.min.js" defer ></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+			<script src="https://cdn.apanel.link/toolkit.js" defer></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" defer ></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.14/js/bootstrap-select.min.js"  defer integrity="sha512-CJXg3iK9v7yyWvjk2npXkQjNQ4C1UES1rQaNB7d7ZgEVX2a8/2BmtDmtTclW4ial1wQ41cU34XPxOw+6xJBmTQ=="  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		    <script src="https://cdn.apanel.link/application.v24.01.22.v4.js" defer></script>
+		
+	       
+		
+<script>
+function fn60sec() {
+var xhttp = new XMLHttpRequest();xhttp.onreadystatechange = function() 
+{if (this.readyState == 4 && this.status == 200) {console.log("Yes");}};xhttp.open("GET", "check-auth", true);xhttp.setRequestHeader("Content-type", "application/json");xhttp.send();
+}
+(function() {
+setInterval(fn60sec, 120*1000);
+$(".placeorder-btn").click(function(e) {
+var href= e.currentTarget.dataset.href;
+window.location.href = href;
+});
+
+})();
+</script>
+<script>
+	$( document ).ready(function() {
+		//$("textarea").height( $("textarea")[0].scrollHeight );	
+	});
+	$( function() {
+			$( "#field-orderform-fields-expiry" ).datetimepicker({
+				format: "YYYY-MM-DD",
+				minDate: new Date()
+			});
+	} );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@lottiefiles/lottie-player@2.0.2/dist/lottie-player.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+	
+<script>
+     var htmlcontent = document.querySelector("HTML");
+     function colorApp() {
+        let getmode = localStorage.getItem("lightMode")
+        if(getmode == "auto"){
+           var getauto = window.matchMedia("(prefers-color-scheme: dark)").matches
+           if (getauto == true){
+              htmlcontent.setAttribute("class", "dark")
+           } else {
+              htmlcontent.setAttribute("class", "light")
+           }
+        } else {
+           if (getmode == "dark") {
+              htmlcontent.setAttribute("class", "dark");
+           } else {
+              htmlcontent.setAttribute("class", "light");
+           }
+        }
+     }
+     colorApp()
+    </script>
+
+    <script>
+     const items = document.querySelectorAll(".accordion button");
+     
+     function toggleAccordion() {
+     const itemToggle = this.getAttribute('aria-expanded');
+     
+     for (i = 0; i < items.length; i++) {
+      items[i].setAttribute('aria-expanded', 'false');
+     }
+     
+     if (itemToggle == 'false') {
+      this.setAttribute('aria-expanded', 'true');
+     }
+     }
+     
+     items.forEach(item => item.addEventListener('click', toggleAccordion));
+     </script>
+                      
+     
+     
+     
+     
+          
+                         <script>
+     var darkbtn = document.querySelector(".dark-btn");
+     var lightbtn = document.querySelector(".light-btn");
+     var lightdarkbtn = document.querySelector(".auto-btn");
+     var dizin = window.location.pathname;
+     
+     function change_light() {
+       var app = document.getElementsByTagName("HTML")[0];
+       localStorage.lightMode = "light";
+       app.setAttribute("class", "light");
+       darkbtn.classList.remove("active");
+       lightbtn.classList.add("active");
+       lightdarkbtn.classList.remove("active");
+     }
+     
+     function change_dark() {
+       var app = document.getElementsByTagName("HTML")[0];
+       localStorage.lightMode = "dark";
+       app.setAttribute("class", "dark");
+       darkbtn.classList.add("active");
+       lightbtn.classList.remove("active");
+       lightdarkbtn.classList.remove("active");
+     }
+     
+     function change_auto() {
+       let systemdark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+       var app = document.getElementsByTagName("HTML")[0];
+       localStorage.lightMode = "auto";
+       if (systemdark == true) {
+       app.setAttribute("class", "dark");
+       } else {
+       app.setAttribute("class", "light");
+       }
+       darkbtn.classList.remove("active");
+       lightbtn.classList.remove("active");
+       lightdarkbtn.classList.add("active");
+     }
+     
+     function selectColor() {
+       let mode = localStorage.getItem('lightMode');
+       if (mode == "dark") {
+       darkbtn.classList.add("active");
+       } else if (mode == "light") {
+       lightbtn.classList.add("active");
+       } else if (mode == "auto") {
+       lightdarkbtn.classList.add("active");
+       }
+     }
+     selectColor()
+     
+     </script>
+
+
+<script>
+   $(".sidebar-btn").click(function(){
+      $(".page-sidebar").toggleClass("active");
+      $(".sidebar-bg").toggleClass("active");
+   });
+
+if( document.getElementById("overlay")){
+   document.getElementById("overlay").addEventListener("click",function(){
+      document.querySelector(".page-sidebar").classList.remove("active")
+      document.querySelector(".sidebar-bg").classList.remove("active")
+         });
+}
+
+</script>
+
+<script>
+$(".curency_btn").click(function(){
+
+    var $currenciesList = $("#currencies-list");
+    if ($currenciesList.hasClass("active")) {
+        $currenciesList.removeClass("active");
+    } else {
+        $currenciesList.addClass("active");
+    }
+});
+
+$(".header-detail-button.active-account-detail").click(function(){
+    var $accountDetailBox = $(".account-detail-box");
+    if ($accountDetailBox.hasClass("active")) {
+        $accountDetailBox.removeClass("active");
+    } else {
+        $accountDetailBox.addClass("active");
+    }
+});
+// $(".currency-btn-mobile").click(function(){
+//     var $currenciesList = $("#currencies-list");
+//     if ($currenciesList.hasClass("active")) {
+//         $currenciesList.removeClass("active");
+//     } else {
+//         $currenciesList.addClass("active");
+//     }
+// });
+
+$(document).click(function(event){
+    if (!$(event.target).closest(".curency_btn").length) {
+        $("#currencies-list").removeClass("active");
+    }
+
+    if (!$(event.target).closest(".header-detail-button.active-account-detail").length) {
+        $(".account-detail-box").removeClass("active");
+    }
+});
+
+
+
+</script>
+      <script>
+          $('.order-link').click(function(){
+               let val=$(this).attr('data-url');
+               /* alert(val) */
+     window.navigator.clipboard.writeText(val);
+     $('#notification').addClass('show');
+     setTimeout(()=>{
+          $('#notification').removeClass('show');
+     },4000);
+          });
+          $('#notification.show').mouseenter(function(){
+           $('#notification').removeClass('show');
+          })
+          
+     
+         
+       </script>
+
+
+
+<script>
+   var post_data = "actionType=notifications&apiKey=Press regenerate button in the settings to generate your api key.";
+   var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function () {
+     if (this.readyState == 4 && this.status == 200) {
+       var response = JSON.parse(this.responseText);
+       var c = new Date();
+       var months = [
+         "January",
+         "February",
+         "March",
+         "April",
+         "May",
+         "June",
+         "July",
+         "August",
+         "September",
+         "October",
+         "November",
+         "December",
+       ];
+       var cc = c.getDate() + " " + months[c.getMonth()];
+       var content = "";
+       if (typeof response.data !== "undefined") {
+         var d = response.data;
+         if (d.length > 0) {
+           for (a = 0; a < d.length; a++) {
+             var f = d[a];
+             console.log(f);
+ 
+             var subject = "";
+             if (typeof f.subject !== "undefined") {
+               subject = f.subject;
+             }
+ 
+             var date = "";
+             if (typeof f.date !== "undefined") {
+               date = f.date;
+             }
+ 
+             var c = new Date(date);
+             var months = [
+               "January",
+               "February",
+               "March",
+               "April",
+               "May",
+               "June",
+               "July",
+               "August",
+               "September",
+               "October",
+               "November",
+               "December",
+             ];
+             var date =
+               c.getDate() + " " + months[c.getMonth()] + " " + c.getFullYear();
+ 
+             var message = "";
+             if (typeof f.message !== "undefined") {
+               message = f.message;
+             }
+ 
+             var id = "";
+             if (typeof f.id !== "undefined") {
+               id = f.id;
+             }
+ 
+             if (message.length > 0) {
+               content =
+                 content +
+                 ' <li class="singleNewsBlock"><div class="type-date"><p class="date">   ' +
+                 date +
+                 ' </p></div><br><div class="news-desc">' +
+                 "<p><b>" +
+                 subject +
+                 "</b></p><p>" +
+                 message +
+                 "</p></div></li>";
+             }
+           }
+         }
+       }
+ 
+       if (content.length == 0) {
+         content =
+           '<li><h4>Notification<span class="date">' +
+           cc +
+           "</span></h4><p>No Notification Found</p></li>";
+       }
+ 
+       document.getElementById("news_updates_div").innerHTML = content;
+       //news_updates_div
+     }
+   };
+   xhttp.open("POST", "api", true);
+   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+   xhttp.send(post_data);
+ </script>
+ <script>
+  $(document).ready(function(){
+    let locate = window.location.search; // Use .search to get the query string
+    console.log(locate);
+    
+    if (locate.includes("order=")) { // Use .includes() to check if the parameter is present
+        $('.order-alert-content').removeClass('close');
+        $('.order-alert-box').removeClass('close');
+    }else{
+		
+		if( document.getElementById("error_div") ){
+			var htmlviv = document.getElementById("error_div").innerHTML;
+			if( htmlviv.length > 5 ){
+				document.getElementById("error_div").style.display = 'block';
+			}
+		}
+	}
+});
+
+          function alertclose(){
+               $('.order-alert-content').addClass('close');
+               $('.order-alert-box').addClass('close');
+          }
+
+
+
+          $('.order_btn').click(function(){
+            let id=$(this).attr('data-id');
+            $('.modal_container[data-id="'+ id +'"]').toggleClass("show-modal");
+          });
+
+          $('.modal_close').click(function(){
+            let id=$(this).attr('data-id');
+            $('.modal_container[data-id="'+ id +'"]').toggleClass("show-modal");
+          })
+     </script>
+     
+  <script>
+$(document).ready(function () {
+   
+    const $searchInput = $('#searchServices'); 
+
+    $searchInput.on('keyup', function () {
+        const searchValue = $searchInput.val().toLowerCase(); 
+
+     
+        const $serviceBoxes = $('.select-service');
+        $serviceBoxes.each(function () {
+            const category = $(this).data('category');
+            if (category !== undefined && category.toLowerCase().includes(searchValue)) {
+                // If it's a match, display it
+                $(this).css('display', 'flex');
+            } else {
+                // If not, hide it
+                $(this).css('display', 'none');
+            }
+        });
+    });
+});
+</script>
+  
+  
+  
+
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.27.6/js/jquery.tablesorter.js"></script>
+  <script src="public/script.js"></script>
+
+  {{ footerCode }}
+  

@@ -1,0 +1,200 @@
+{% include 'header.twig' %}
+<div class="content">
+        <!-- page and other top info -->
+        <div id="page_info">
+
+        </div>
+        <!-- // page and other top info -->
+        <section id="child_panel">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card_v2">
+                    <div class="card-body">
+                        <div class="row">   
+                            <div class="col-md-3">
+                                <div class="card card_v2 child_step">
+                                    <div class="card-body">
+                                        <div class="child_panel_step">
+                                            <div class="left_item">
+                                                <h6>Step 1</h6>
+                                                <p>Enter Your Domain</p>
+                                            </div>
+                                            <div class="right_item">
+                                                <div class="child_item_icons">
+                                                    <i class="fas fa-globe"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card card_v2 child_step">
+                                    <div class="card-body">
+                                        <div class="child_panel_step">
+                                            <div class="left_item">
+                                                <h6>Step 2</h6>
+                                                <p>Select Your Website Currency</p>
+                                            </div>
+                                            <div class="right_item">
+                                                <div class="child_item_icons">
+                                                    <i class="far fa-coins"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card card_v2 child_step">
+                                    <div class="card-body">
+                                        <div class="child_panel_step">
+                                            <div class="left_item">
+                                                <h6>Step 3</h6>
+                                                <p>Enter your username</p>
+                                            </div>
+                                            <div class="right_item">
+                                                <div class="child_item_icons">
+                                                    <i class="fad fa-users"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card card_v2 child_step">
+                                    <div class="card-body">
+                                        <div class="child_panel_step">
+                                            <div class="left_item">
+                                                <h6>Step 4</h6>
+                                                <p>Enter Your Password</p>
+                                            </div>
+                                            <div class="right_item">
+                                                <div class="child_item_icons">
+                                                    <i class="fas fa-user-lock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card_v2">
+                <div class="card-body">
+                    {% if error %}
+      <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ errorText }}
+      </div>
+    {% endif %}  
+
+    {% if data["childpanel"]["success"] == 1 %}
+      <div class="alert alert-dismissible alert-success">
+          <strong> Order Id: </strong> {{ data['childpanel']['id'] }} <br>
+          <strong> Service: </strong> {{ data['childpanel']['service'] }} <br>
+          <strong> Domain: </strong> {{ data['childpanel']['link'] }} <br>
+          <strong> Quantity: </strong> {{ data['childpanel']['quantity'] }} <br>
+          <strong> Charge: </strong> {{ data['childpanel']['price'] }} <br>
+      </div>
+    {% endif %}
+                                    <form name="contact-form" action="child-panels" method="post">
+                    <div class="row">
+                        <div class="col-md-12">
+                                                    </div>
+                        <div class="col-md-6">
+                            <div class="first">
+                                <div class="form-group">
+                                    <label for="domain" class="control-label">child_panels.form.domain</label>
+                                    <input type="text" class="form-control" id="domain" name="panel_domain"
+                                            value="">
+                                </div>
+                                <div class="alert alert-warning dns_info">
+                                    <br>
+                                    <div class="mb-3">child_panels.form.ns.info</div>
+                                    <ul style="padding-left: 20px">
+                                                                                    <li><p><b>{{ site['ns1'] }}</b> <span class="copy" onclick="copyToClipboard('{{ site['ns1'] }}');"><i class="fas fa-copy"></i></span></p>
+</li><li><p><b>{{ site['ns2'] }}</b> <span class="copy" onclick="copyToClipboard('{{ site['ns2'] }}');"><i class="fas fa-copy"></i></span></p></li>
+                                                                            </ul>
+                                </div>
+                            </div>
+                            <div class="form-group mt-1">
+                                <label class="control-label"
+                                        for="createorderform-currency">child_panels.form.currency</label>
+                                <select class="form-control" name="panel_currency" required>
+{{ child_panel_currencies }}
+</select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"
+                                        for="createorderform-username">child_panels.form.username</label>
+                                <input
+                                        type="text" id="createorderform-username" class="form-control"
+                                        name="admin_username" aria-required="true"
+                                        value="">
+                            </div>
+    
+                            <div class="form-group">
+                                <label class="control-label"
+                                        for="createorderform-password">child_panels.form.password</label>
+                                <input
+                                        type="password" id="createorderform-password" class="form-control"
+                                        name="admin_password" aria-required="true">
+                            </div>
+    
+                            <div class="form-group">
+                                <label class="control-label"
+                                        for="createorderform-password_confirm">child_panels.form.confirm</label>
+                                <input
+                                        type="password" id="createorderform-password_confirm" class="form-control"
+                                        name="admin_confirm_password" aria-required="true">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="price" class="control-label">child_panels.form.price</label>
+                                <input type="text" class="form-control" id="price" value="{{site_base_currency_symbol}}{{" "}}{{site["childpanel_price"]}}" readonly>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary w-100">Submit Order</button>
+                        </div>
+                    </div>
+                    </form>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Child Panel Faq's -->
+
+      </div>
+    </div>
+  </main>
+  
+  
+ <div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container ludd">
+		{% if contentText2 %}
+<div class="card mb-4">
+{{ contentText2 }}
+</div>
+{% endif %}
+</div>
+
+{% include 'footer.twig' %}

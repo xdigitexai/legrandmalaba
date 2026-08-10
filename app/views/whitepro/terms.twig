@@ -1,0 +1,34 @@
+{% include 'header.twig' %}
+<br>
+<br>
+    <section class="">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col-md">
+                  <h3 class="card-title">Terms & Conditions</h3>
+
+                 
+                
+                  
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+            {% if contentText %}
+{{ contentText }}
+{% endif %}
+           {% if contentText2 %}
+{{ contentText2 }}
+{% endif %}
+                </div>
+            </div>
+        </div>
+
+
+ 
+
+{% include 'footer.twig' %}

@@ -1,0 +1,17 @@
+DirectoryIndex index.php
+RewriteEngine On
+AddHandler application/x-httpd-php .php
+
+# --- SEO & verification: passthrough (serve as static files) ---
+RewriteRule ^sitemap\.xml$                 - [L]
+RewriteRule ^robots\.txt$                  - [L]
+RewriteRule ^googlea425e3df16599d0f\.html$ - [L]
+
+# --- Route all other requests through index.php ---
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$                         index.php?path=$1 [QSA,L]
+
+
+php_value memory_limit 512M
+php_value max_execution_time 120

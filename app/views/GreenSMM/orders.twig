@@ -1,0 +1,248 @@
+{% include 'header.twig' %}
+<div class="content">
+        <!-- page and other top info -->
+        <div id="page_info">
+
+        </div>
+        <!-- // page and other top info -->
+                    <section id="defOrder">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card_v2">
+                    <div class="card-body">
+                       <form action="/orders" method="get" id="history-search">
+                           
+                            <div class="input-group">
+                              <input type="text" name="search" value="{{ search }}" class="form-control" placeholder="Search">
+                              <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
+                              </span>
+                            </div>
+                          </form>
+                    </div>
+                </div>
+                <div class="card card_v2">
+                    <div class="card-body">
+                        <nav class="nav nav-pills flex-column flex-sm-row gap-2" id="orders_menu">
+
+                            <a {% if 'all' == status %}  class="flex-sm-fill text-sm-center nav-link active" {% endif %} class="flex-sm-fill text-sm-center nav-link" href="/orders"><span class="icon"><i class="fas fa-list"></i></span>All</a>
+
+                            <a {% if 'pending' == status %}  class="flex-sm-fill text-sm-center nav-link active" {% endif %} class="flex-sm-fill text-sm-center nav-link" href="/orders/pending"><span class="icon"><i class="far fa-pause-circle"></i></span>Pending</a>
+
+
+                            <a {% if 'inprogress' == status %}  class="flex-sm-fill text-sm-center nav-link active" {% endif %} class="flex-sm-fill text-sm-center nav-link  " href="/orders/inprogress"><span class="icon"><i class="fas fa-redo"></i></span>In progress</a>
+
+                            <a {% if 'completed' == status %}  class="flex-sm-fill text-sm-center nav-link active" {% endif %} class="flex-sm-fill text-sm-center nav-link " href="/orders/completed"><span class="icon"><i class="fas fa-check-double"></i></span>Completed</a>
+
+                            <a {% if 'partial' == status %}  class="flex-sm-fill text-sm-center nav-link active" {% endif %} class="flex-sm-fill text-sm-center nav-link " href="/orders/partial"><span class="icon"><i class="fas fa-check"></i></span>Partial</a>
+
+                            <a {% if 'processing' == status %}  class="flex-sm-fill text-sm-center nav-link active" {% endif %} class="flex-sm-fill text-sm-center nav-link " href="/orders/processing"><span class="icon"><i class="fas fa-chart-line"></i></span>Processing</a>
+
+                            <a {% if 'canceled' == status %}  class="flex-sm-fill text-sm-center nav-link active" {% endif %} class="flex-sm-fill text-sm-center nav-link " href="/orders/canceled"><span class="icon"><i class="far fa-times-circle"></i></span>Canceled</a>
+                          </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="table">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+               <div class="card card_v2">
+                   <div class="card-body">
+                        <div class="responsive-table def_table">
+                            <div class="table-responsive">
+                                <table class="table order_page" id="service-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Link</th>
+                                            <th scope="col">Charge</th>
+                                            <th scope="col">Start count</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Service</th>
+                                            <th scope="col">Remains</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Complete details</th>
+                                                             <th></th>                        
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                          
+                                           {% for order in orders %}
+              <tr>
+<td>
+<span class="order_id" id="order-{{ order['id'] }}">{{ order['id'] }}</span>
+{% if order['order_where'] == "api"  %}<a class="btn btn-actions">Api</a>{% endif %} </td>
+
+
+
+
+                <td>
+                <div class="order_date">
+                                                {{ order['date'] }}
+                                            </div>
+                </td>
+                
+                
+                <td>
+                <div class="order_link_wrap">
+                                                <a href="{{ order['link'] }}" target="_blank" class="order_link">
+                                                    <span> <i class="far fa-link"></i> {{ order['link'] }}</span>
+                                                </a>
+                                            </div></td>
+            
+            
+                 <td>{{order["charge"]}}</td>
+                <td class="nowrap">{{ order['start_count'] }}</td>
+                <td>{{ order['quantity'] }}</td>
+                <td>{{ order['service'] }}</td> 
+                <td>{{ order['remains'] }}</td>
+
+           <td>{{ order['remains'] }}</td>
+<td>
+    {% if order['status'] == lang['orders.status.completed'] %}
+        <div class="ordStatus align-items-center" style="background: #28a745; color:#fff; border-radius: 15px; padding: 6px 15px; font-size: 14px; text-align: center;">
+            <i class="ri-checkbox-line"></i>
+            <span>{{ order['status'] }}</span>
+        </div>
+      
+    {% elseif order['status'] == lang['orders.status.inprogress'] %}
+        <div class="ordStatus align-items-center" style="background: #ff870b; color:#fff; border-radius: 15px; padding: 6px 15px; font-size: 14px; text-align: center;">
+            <i class="ri-loader-2-line"></i>
+            <span>{{ order['status'] }}</span>
+        </div>
+    {% elseif order['status'] == lang['orders.status.pending'] %}
+        <div class="ordStatus align-items-center" style="background: #ffcc29; color:#fff; border-radius: 15px; padding: 6px 15px; font-size: 14px; text-align: center;">
+            <i class="ri-file-damage-line"></i>
+            <span>{{ order['status'] }}</span>
+        </div>
+    {% elseif order['status'] == lang['orders.status.partial'] %}
+        <div class="ordStatus align-items-center" style="background: #11698e; color:#fff; border-radius: 15px; padding: 6px 15px; font-size: 14px; text-align: center;">
+            <i class="ri-star-half-line"></i>
+            <span>{{ order['status'] }}</span>
+        </div>
+    {% elseif order['status'] == lang['orders.status.processing'] %}
+        <div class="ordStatus align-items-center" style="background: #61c0bf; color:#fff; border-radius: 15px; padding: 6px 15px; font-size: 14px; text-align: center;">
+            <i class="ri-remote-control-line"></i>
+            <span>{{ order['status'] }}</span>
+        </div>
+    {% elseif order['status'] == lang['orders.status.canceled'] %}
+        <div class="ordStatus align-items-center" style="background: #ec4646; color:#fff; border-radius: 15px; padding: 6px 15px; font-size: 14px; text-align: center;">
+            <i class="ri-qr-scan-line"></i>
+            <span>{{ order['status'] }}</span>
+        </div>
+    {% endif %}
+</td>
+								
+								
+								
+								
+						
+     
+             <td>
+{% if order["refillButton"] == "2" %}
+{% if order['status'] == "Completed"  %}
+{% if order['show_refill'] == "true"  %}
+<a class="btn btn-actions order_id" href="orders/refill/{{order['id']}}" class="btn btn-sm refill-button order_id">Refill</a>
+<br><br>
+{% endif %}
+{% endif %}
+{% endif %}
+{% if order["refillButton"] == "3" %}
+{% if order['status'] == "Completed"  %}
+{% if order['show_refill'] == "true"  %}
+  <button class="btn btn-actions order_id" data-tippy-content="Refill will be available in {{order['refillTimeLeft']}}" class="btn btn-sm refill-button order_id">Refill</button>
+{% endif %}
+{% endif %}
+{% endif %}
+{% if order["refillButton"] == "4" %}
+{% if order['status'] == "Completed"  %}
+{% if order['show_refill'] == "true"  %}
+<button class="btn btn-actions order_id badges_inprogress" type="button" class="btn btn-sm refill-button order_id badges_inprogress" disabled="true">{{"Refilling"}}</button>
+{% endif %}
+{% endif %}
+{% endif %}
+{% if order['cancelButton']   == true %}
+                   <a  class="btn btn-actions order_id order_status_badges badges_canceled" href="orders/cancel/{{order['id']}}" class="btn btn-actions order_id order_status_badges badges_canceled">cancel</a>
+               {% endif %}
+
+                 </td>    
+                 
+               
+      {% if order.duration %}
+            <td style="margin-top: 5px; font-size: 12px;">
+                {{ order.duration }}
+            </td>
+        {% endif %}
+                 
+              </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+
+      {% if pagination["count"] > 1 %}
+        <ul class="pagination">
+
+          {% if pagination["current"] != 1 %}
+            <li>
+              <a class="btn btn-actions" href="orders/{{ status }}/{{ pagination["previous"] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Previous">
+                <span aria-hidden="true">«</span>
+              </a>
+            </li>
+          {% endif %}
+
+          {% set r, l = 3, 3 %}
+
+          {% if pagination['current'] == 1 %}
+            {% set r = 7 %}
+          {% endif %}
+
+          {% if pagination['current'] == 2 %}
+            {% set r = 5 %}
+          {% endif %}
+
+          {% if pagination['current'] >= pagination['count'] %}
+            {% set l = 5 %}
+          {% endif %}
+
+          {% for page in 1..pagination["count"] %}
+            {% if page >= (pagination['current']-l) and page <= (pagination['current']+r) %}
+              <li{% if page == pagination['current'] %} class="active" {%endif%}><a class="btn btn-actions" 
+ href="orders/{{ status }}/{{ page }}{% if search %}?search={{ search }}{% endif %}">{{ page }}</a></li>
+            {%endif%}
+          {% endfor %}
+
+          {% if pagination['current'] < pagination['count'] %}
+            <li>
+              <a class="btn btn-actions" href="orders/{{ status }}/{{ pagination['next'] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Next">
+                <span aria-hidden="true">»</span>
+              </a>
+            </li>
+          {% endif %}
+
+        </ul>
+      {% endif %}
+      
+      </tbody>
+                                </table>
+                                                            </div>
+                    </div>
+                   </div>
+               </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+                </div>
+            </div>
+        </main>
+ {% include 'footer.twig' %}

@@ -1,0 +1,6 @@
+AuthGroupFile /dev/null
+AuthType Basic
+AuthUserFile /home/jinnishi77/domains/rental.jinnishikawa.com/.htpasswd/public_html/cgi-bin/.htpasswd
+AuthName "Members "
+require valid-user
+ErrorDocument 401 "Unauthorized Access"

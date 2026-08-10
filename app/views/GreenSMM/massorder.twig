@@ -1,0 +1,241 @@
+{% include 'header.twig' %}
+
+<style>
+/* =====================
+   MASS ORDER PAGE STYLES
+===================== */
+.fast-mass {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.fast-item {
+	flex: 1;
+	min-width: 150px;
+	position: relative;
+}
+
+.fast-item input {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	font-size: 14px;
+	transition: all 0.3s ease;
+}
+
+.fast-item input:focus {
+	border-color: #007bff;
+	box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.fast-actions {
+	display: flex;
+	gap: 8px;
+}
+
+.fast-actions button {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 14px;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	font-weight: 500;
+	transition: all 0.3s ease;
+	font-size: 14px;
+}
+
+.add-more {
+	background-color: #007bff;
+	color: #fff;
+}
+
+.add-more:hover {
+	background-color: #0056b3;
+}
+
+.remove-more {
+	background-color: #dc3545;
+	color: #fff;
+}
+
+.remove-more:hover {
+	background-color: #b02a37;
+}
+
+.massorder_textarea {
+	border-radius: 10px;
+	font-size: 14px;
+	line-height: 1.6;
+	padding: 12px;
+	resize: vertical;
+}
+
+.btn-primary {
+	border-radius: 8px;
+	padding: 10px;
+	font-weight: 500;
+	font-size: 15px;
+}
+</style>
+
+<div class="content">
+	<!-- Page info -->
+	<div id="page_info"></div>
+
+	<!-- Easy to Use Quick Add -->
+	<div class="def_wraper">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card mb-3">
+						<div class="card-header">
+							<i class="fas fa-tachometer-alt"></i>
+							<span>Easy to Use</span>
+						</div>
+						<div class="card-body" id="fastOrderContainer">
+							<div class="fast-mass">
+								<div class="fast-item">
+									<input type="number" class="form-control mass-id" placeholder="ID">
+								</div>
+								<div class="fast-item">
+									<input type="text" class="form-control mass-link" placeholder="Link">
+								</div>
+								<div class="fast-item">
+									<input type="number" class="form-control mass-quantity" placeholder="Quantity">
+								</div>
+								<div class="fast-actions">
+									<button class="add-more">
+										<i class="fas fa-plus-circle"></i>
+										<span>Add</span>
+									</button>
+									<button class="remove-more">
+										<i class="fas fa-minus-circle"></i>
+										<span>Remove</span>
+									</button>
+								</div>
+							</div>
+						</div>
+						<!-- Convert to textarea -->
+						<div class="card-footer text-end">
+							<button id="convertMassOrders" class="btn btn-primary">
+								<i class="fas fa-sync-alt"></i> Convert to Textarea
+							</button>
+						</div>
+					</div>
+					<!-- // Easy to Use Section -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Mass Order Section -->
+	<div class="def_wraper">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="card card_v2">
+						<div class="card-header v2_header">
+							<div class="new_order_tabs">
+								<ul class="nav nav-pills" id="pills-tab" role="tablist">
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" onclick="window.location.href='/'" id="pills-order-tab" data-bs-toggle="pill" data-bs-target="#pills-order" type="button" role="tab" aria-controls="pills-order" aria-selected="true">
+											<span class="icon"><i class="fas fa-shopping-cart"></i></span>
+											<span class="text_name">New Order</span>
+										</button>
+									</li>
+									<li class="nav-item" role="presentation">
+										<button class="nav-link active" id="pills-auto-tab" data-bs-toggle="pill" data-bs-target="#pills-auto" type="button" role="tab" aria-controls="pills-auto" aria-selected="false">
+											<span class="icon"><i class="fas fa-list-ol"></i></span>
+											<span class="text_name">Mass Order</span>
+										</button>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="card-body">
+							<div class="tab-content tab_wrap" id="pills-tabContent">
+								<div class="tab-pane fade show active" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab">
+
+									{% if error %}
+									<div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+										<button type="button" class="close" data-dismiss="alert">×</button>
+										{{ errorText }}
+									</div>
+									{% elseif success %}
+									<div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+										<button type="button" class="close" data-dismiss="alert">×</button>
+										{{ successText }}
+									</div>
+									{% endif %}
+
+									<form method="post" action="/massorder">
+										<div class="form-group">
+											<label for="links" class="control-label">One order per line in format</label>
+											<textarea class="form-control massorder_textarea" id="mass" name="mass" rows="15" placeholder="Service Id | Quantity | Link">{{ data['mass'] }}</textarea>
+										</div>
+
+										<button type="submit" class="btn btn-primary d-block w-100">Submit</button>
+									</form>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- // Mass Order Section -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+// Add/Remove Row Functionality
+document.addEventListener("DOMContentLoaded", function () {
+	const container = document.getElementById("fastOrderContainer");
+
+	container.addEventListener("click", function (e) {
+		if (e.target.closest(".add-more")) {
+			e.preventDefault();
+
+			const clone = container.querySelector(".fast-mass").cloneNode(true);
+			clone.querySelectorAll("input").forEach(input => (input.value = ""));
+			container.appendChild(clone);
+		}
+
+		if (e.target.closest(".remove-more")) {
+			e.preventDefault();
+			const allRows = container.querySelectorAll(".fast-mass");
+			if (allRows.length > 1) {
+				allRows[allRows.length - 1].remove();
+			}
+		}
+	});
+
+	// Convert to textarea format
+	const convertBtn = document.getElementById("convertMassOrders");
+	const textarea = document.getElementById("mass");
+	convertBtn.addEventListener("click", function () {
+		const rows = container.querySelectorAll(".fast-mass");
+		let text = "";
+		rows.forEach(row => {
+			const id = row.querySelector(".mass-id").value.trim();
+			const qty = row.querySelector(".mass-quantity").value.trim();
+			const link = row.querySelector(".mass-link").value.trim();
+			if (id && qty && link) {
+				text += `${id} | ${qty} | ${link}\n`;
+			}
+		});
+		textarea.value = text.trim();
+		alert("✅ Orders have been converted to the textarea below!");
+	});
+});
+</script>
+
+{% include 'footer.twig' %}

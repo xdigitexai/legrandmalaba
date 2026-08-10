@@ -1,0 +1,198 @@
+{% include 'header.twig' %}
+
+
+       <!-- Main variables *content* -->
+        <main class="auth">
+                    <div class="about_us_effect">
+            <img
+              src="https://smmxz.sacloud.site/images/about-us-page-left-image.png"
+              class="img-fluid about_us_img_left"
+              alt=""
+            />
+            <img
+              src="https://smmxz.sacloud.site/images/about-us-page-right-image.png"
+              class="img-fluid about_us_img_right"
+              alt=""
+            />
+          </div>
+          		    <!-- Ticket Page -->
+<section id="auth_banner">
+  <div class="container-fluid">
+    <div class="row d-flex align-items-center">
+      <div class="col-lg-6 col-md-6 col-12">
+        <div class="banner_content">
+          <h2>Support Ticket</h2>
+          <p>
+          Create support ticket by slecting right subject you will get solutions of your order from from SMMXZ Support Team. Please Make sure that you describe your problem Correctly. Stay with smmxz we always try our best for your services.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-12">
+        <div class="banner_image">
+          <img
+            src="https://smmxz.sacloud.site/dashboard/support-ticket-right-image.png"
+            class="img-fluid"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+     <section id="ticketPage">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="card card_auth_1 mb-3">
+                    <div class="card-header d-flex flex-column justify-content-center">
+                        <h3>Create Ticket</h3>
+                        <p>
+                            You can create support ticket here.
+                        </p>
+                    </div>
+                    <div class="card-body">
+                     
+                       
+                      	<form method="post" action="" id="ticketsend"class="">
+                      	        
+                          <div class="alert alert-dismissible alert-danger ticket-danger " style="display: none">
+                            <button type="button" class="close">×</button>
+                            <div></div>
+                          </div>
+                          
+                          	{% if error %}
+                                <div class="alert alert-dismissible alert-danger ">
+                                  {{ errorText }}
+                                </div>
+                              {% elseif success %}
+                                <div class="alert alert-dismissible alert-success">
+                                  {{ successText }}
+                                </div>
+                              {% endif %}
+                              
+                          <div class="siginInRow form-group">
+                            <label class="control-label">Subject</label>
+                          	<select id="subject" name="subject" class="form-control fg-control" data-class="form-control fg-control">
+                                                                                 {% for subjects in orders %}
+                       <option value"{{ subjects['subject'] }}">{{ subjects['subject'] }}</option>
+                      {% endfor %}
+                                                                                          </select>
+                          </div>
+                         
+                         
+                             <div class="siginInRow form-group ticket-textarea" >
+                              <label class="control-label">Message</label>    
+                             <textarea class="form-control" rows="4" cols="50" id="message" name="message" style="min-height: 100px; display: block;">{{ data['message'] }}</textarea>
+                            </div>    
+                            
+                         
+                         
+                         
+                             <button type="submit" class="btn btn-primary d-blc w-100" id="sendTicket">Submit ticket</button>
+                          </span>
+                        </form>
+
+
+
+                 </div>
+                </div>
+            </div>
+      
+      
+       <div class="col-lg-6 col-md-6 col-12">
+              <div class="card card_auth_1 mb-3">
+                  <div class="card-header d-flex flex-column justify-content-center">
+                      <h3>Ticket History</h3>
+                      <p>
+                          See your support ticket history here.
+                      </p>
+                  </div>
+                  <div class="card-body">
+
+                <form action="/tickets" class="mb-3" method="get" id="history-search">
+                      <div class="search_inputs ">
+                          <div class="search">
+                              <input
+                                type="text"
+                                class="search_input"
+                                placeholder="Search"
+                                name="search"
+                                data-search-service="#service-table"
+                                id="filterServicesInput"
+                              />
+                              <button type="submit" class="icon" data-filter-serch-btn="true">
+                                <iconify-icon icon="material-symbols:search"></iconify-icon>
+                              </button>
+                          </div>
+                      </div>
+                  </form>
+                  
+
+                         {% for ticket in ticketList %}
+                                        <div class="ticket_history">
+                                                                                          <a href="tickets/{{ ticket['ticket_id'] }}">
+                                      <div class="tickets_his_item ">
+                                          <div class="tickets_his_id">
+                                              <h5>{{ ticket['ticket_id'] }}</h5>
+                                          </div>
+                                          <div class="tickets_his_sub">
+                                                                                            <h5>{{ ticket['subject'] }}</h5>
+                                                                                        </div>
+                                          <div class="tickets_his_status">
+                                              <h5 class="ticket_Pending">{{ ticket['status'] }}</h5>
+                                          </div>
+                                          <div class="tickets_his_lastUpdate">
+                                              <h5>{{ ticket['lastupdate_time'] }}</h5>
+                                          </div>
+                                      </div>
+                                  </a> {% endfor %}
+                                                                                  <div class="my-3">
+                                                        </div>
+                      </div>
+
+                      <div class="d-flex justify-content-center">
+                                              </div>
+
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script type="text/javascript"  src="https://storage.perfectcdn.com/libs/jquery/1.12.4/jquery.min.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/6lea6p5h1se0ydlc.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/lpckws4jmmcjpzoh.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/41oyxac8gg4eoke6.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/dmabhtcke4de93dz.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/ob5eq3/t05xwla9gwo8usgw.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/ob5eq3/9kqdad0glwb7ykdp.js" >
+							</script>
+					<script type="text/javascript" >
+				                window.modules.layouts = {"theme_id":1,"auth":1,"live":true,"csrftoken":"i42_6JiehV0GM-TMb-SDfo4nIGMt2F_Q01XS8Rpa_Bbz-M-M1du3DHZpk7lXi_Md7RVuVH-sN4KVMYqoTxOeLg=="};
+                			</script>
+					<script type="text/javascript" >
+				                window.modules.alerts = {"alerts":[]};
+                			</script>
+					<script type="text/javascript" >
+							</script>
+		
+        <!-- Footer Scripts -->
+                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+                <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

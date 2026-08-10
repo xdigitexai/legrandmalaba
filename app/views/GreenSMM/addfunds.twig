@@ -1,0 +1,239 @@
+{% include 'header.twig' %}
+<style>
+    .dashboard .btn-primary{
+        width:100%;
+    }
+</style>
+
+<div class="content">
+        <!-- page and other top info -->
+        <div id="page_info">
+
+        </div>
+        <!-- // page and other top info -->
+        <!-- New Orders Part -->
+<div class="def_wraper">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-6">
+              
+							
+									    
+									    <div class="card card_v2">
+                  <div class="card-body">
+                      <div id="newOrderTabsWrap">
+                          <ul class="nav nav-pills tab_btn_wrap mb-3" id="pills-tab" role="tablist">
+                                                            <li class="nav-item" role="presentation">
+                                  <button class="nav-link active" id="pills-order-tab" data-bs-toggle="pill"
+                                      data-bs-target="#pills-order" type="button" role="tab"
+                                      aria-controls="pills-order" aria-selected="true"><i
+                                          class="far fa-credit-card"></i> Add Fund</button>
+                              </li>
+                                                         <!------   <li class="nav-item" role="presentation">
+                                  <button class="nav-link" id="pills-favorite-tab" data-bs-toggle="pill"
+                                      data-bs-target="#pills-favorite" type="button" role="tab"
+                                      aria-controls="pills-favorite" aria-selected="false"> <i
+                                          class="fas fa-redo-alt"></i> Fund History</button>
+                              </li>---------->
+                          </ul>
+                      </div>
+                      <div class="tab-content tab_wrap" id="pills-tabContent">
+                                                    <div class="tab-pane fade show active" id="pills-order" role="tabpanel"
+                              aria-labelledby="pills-order-tab">
+										
+
+
+										<form method="post" id="addfundsForm" action="/addfunds">
+
+											<div class="form-group">
+												<label for="method" class="control-label">{{ lang['addfunds.method'] }}</label>
+												<select class="form-control" id="payment_method" name="payment_type">
+													{% for method in site["paymentMethods"] %}
+														<option value="{{ method['id'] }}">{{ method['name'] }}</option>
+													{% endfor %}
+												</select>
+											</div>
+											<div id="addfunds_fields"></div>
+										</form>
+										<div id="formSubmitResponseMessage"></div>
+										<div id="formSubmitResponseContent"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					
+					 </div>
+					 <div class="col-md-6">
+  <div class="card card_v2">
+    <div class="card-header v2_header">
+      <div id="def_side_title">
+        <div class="icon">
+          <i class="fas fa-exclamation-circle text-primary"></i>
+        </div>
+        <div class="name">
+          Attention
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body text-center">
+
+      <!-- Description text -->
+      <p class="text-start">
+        Before placing any order, please make sure your account has sufficient balance.  
+        You can easily <strong>add funds using your preferred e-wallet</strong> such as 
+        <strong>GCash, PayMaya</strong>, or other supported payment gateways.
+      </p>
+
+      <p class="text-start">
+        Go to the <strong>“Add Funds”</strong> section in your dashboard, select your 
+        e-wallet method, enter the desired amount, and follow the instructions 
+        to complete your payment.
+      </p>
+
+      <!-- Note section -->
+      <div class="alert alert-warning text-start mt-3" role="alert">
+        <i class="fas fa-exclamation-triangle me-2"></i>
+        <strong>Note:</strong> Double-check your payment reference and wait for the 
+        confirmation. Funds are usually credited instantly, but sometimes processing 
+        may take a few minutes.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="col-md-6">
+             <div class="card card_v2">
+                <div class="card-header v2_header">
+								<div class="component_content_card component_content_button component_content_headers">
+									<div class="table-wr table-responsive">
+										<table class="table">
+											<thead>
+												<tr>
+													<th><font size="3" color="red"><b>ID</b></font></th>
+													<th><font size="3" color="red"><b>Date</b></font></th>
+													<th><font size="3" color="red"><b>Method</b></font></th>
+													<th><font size="3" color="red"><b>Amount</b></font></th>
+												</tr>
+											</thead>
+											<tbody>
+											    
+												{% for payment in payments %}
+													<tr>
+														<td>{{ payment['id'] }}</td>
+														<td>{{ payment['date'] }}
+														</td>
+														<td>{{ payment['name'] }}</td>
+														<td>
+															{{ payment['amount'] }}
+														</td>
+													</tr>
+
+												{% endfor %}
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				<div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container ludd">
+ {% if contentText2 %}
+ <div class="super-lud mt-2 mb-4 ">	
+{{ contentText2 }}
+</div>
+{% endif %}
+</div>
+
+
+			{% include 'footer.twig' %}
+
+			<script>
+				var paymentMethods = {{ site["paymentMethodsJSON"] }};
+			</script>
+			<script>
+				const addfundsRoute = "/addfunds";
+function addfundsInit() {
+var addfundsForm = $("#addfundsForm");
+var fields = $("#addfunds_fields");
+var selectedMethod = $("#payment_method").val();
+var instructions = paymentMethods[selectedMethod][0].instructions;
+$.ajax({
+url: addfundsRoute,
+data: "action=getForm&selectedMethod=" + selectedMethod,
+type: "POST",
+success: function (json) {
+if (json.success == true) {
+if (instructions.length > 0) {
+var methodInstruction = '<div class="form-group"><label class="control-label">Instructions</label><div class="panel-body border-solid border-rounded">' + instructions + '</div></div>';
+} else {
+var methodInstruction = "";
+} fields.html(methodInstruction + json.content);
+extraFeeInit(selectedMethod);
+}
+}
+});
+}
+
+function extraFeeInit(method) {
+var fee = parseFloat(paymentMethods[method][0].fee).toFixed(2);
+var fields = $("#fee_fields");
+if (fee > 0) {
+fields.html('<div class="form-group"><label class="control-label">Extra fee</label><input type="text" class="form-control" id="methodExtraFee" disabled value="0.00"/></div><div class="form-group"><label class="control-label">Total Amount</label><input type="text" id="totalAmount" class="form-control" disabled value="0.00" /></div>');
+}
+}
+function preparePrice(t) {
+n = 2;
+var r = (t = $.trim(t.toString().replace(",", "."))).split(".");
+return void 0 !== r[1] && (r[1] = r[1].replace(/0+$/g, ""), r[1].length > n && (n = 2 < r[1].length ? 2 : r[1].length)),
+1e3 <= (t =( t = parseFloat(t)).toFixed(n)) && (t = t.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, "$1" + "")),
+t = t.toString().replace(/\.(\d+)$/g, "." + "$1");
+return t.toFixed(n)
+}
+$(document).ready(function () {
+$(document).on("keyup", "#paymentAmount", function () {
+var selectedMethod = $("#payment_method").val();
+var amount = parseFloat($(this).val());
+var feePercentage = parseFloat(paymentMethods[selectedMethod][0].fee);
+var feeInput = $("#methodExtraFee");
+var totalAmountInput = $("#totalAmount");
+var fee = amount * (feePercentage / 100);
+feeInput.val(preparePrice(fee));
+totalAmountInput.val(preparePrice(amount + fee));
+});
+addfundsInit();
+});
+$("#payment_method").change(function () {
+addfundsInit();
+});
+
+$("#addfundsForm").submit(function (e) {
+e.preventDefault();
+var data = $(this).serialize();
+
+$.ajax({
+url: addfundsRoute,
+data: data,
+type: "POST",
+success: function (json) {
+if (json.success == true) {
+var msgDiv = $("#formSubmitResponseMessage");
+msgDiv.html('<div class="alert alert-success alert-dismissible fade show mt-2" role="alert">' + json.message + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
+var contentDiv = $("#formSubmitResponseContent");
+contentDiv.html(json.content);
+} else {
+var msgDiv = $("#formSubmitResponseMessage");
+msgDiv.html('<div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">' + json.message + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
+}
+}
+
+});
+});
+			</script>

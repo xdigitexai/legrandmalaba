@@ -1,0 +1,5 @@
+[19-Jul-2026 21:16:40 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/tipmrnhl/malabora.site/app/helper/app.php:34
+Stack trace:
+#0 /home/tipmrnhl/malabora.site/app/helper/app.php(39): themeExtras('stylesheets')
+#1 {main}
+  thrown in /home/tipmrnhl/malabora.site/app/helper/app.php on line 34

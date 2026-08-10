@@ -1,0 +1,288 @@
+{% include 'header.twig' %}
+			  <style>
+			  .refill-button {
+  background-color: #007bff; /* Blue background color */
+  color: #fff; /* White text color */
+  border: none; /* No border */
+  padding: 8px 16px; /* Padding */
+  text-align: center; /* Center text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Make it inline-block */
+  font-size: 14px; /* Font size */
+  cursor: pointer; /* Add pointer cursor */
+  margin-bottom: 10px; /* Add margin below button */
+}
+
+.refill-button:disabled {
+  background-color: #6c757d; /* Dark gray background color for disabled state */
+  cursor: not-allowed; /* Change cursor to not-allowed */
+}
+
+
+
+</style>
+
+        			 <!-- Main variables *content* -->
+			 <main  id="content" >
+				 <div id="defaultOrder">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-12">
+               <div id="orders_filter">
+                <div class="card custom__card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle w-100 orderFilter" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                      Filter
+                                    </button>
+
+                                    <ul class="dropdown-menu w-100">
+                                       <li>
+            
+	  
+        <li class="nav-item" >
+		<a {% if 'all' == status %}  class="nav-link active" {% endif %} class="nav-link" href="orders"><i class="fas fa-list"></i> All</a>
+		</li>
+        <li class="nav-item"><a {% if 'pending' == status %}  class="nav-link active" {% endif %} class="nav-link" href="orders/pending"><i class="far fa-pause-circle"></i> {{ lang['orders.status.pending'] }}</a></li>
+        <li class="nav-item"><a {% if 'inprogress' == status %}  class="nav-link active" {% endif %} class="nav-link" href="orders/inprogress"><i class="fas fa-redo"></i> {{ lang['orders.status.inprogress'] }}</a></li>
+        <li class="nav-item"><a {% if 'completed' == status %}  class="nav-link active" {% endif %} class="nav-link" href="orders/completed"><i class="fas fa-check-double"></i> {{ lang['orders.status.completed'] }}</a></li>
+        <li class="nav-item"><a {% if 'partial' == status %}  class="nav-link active" {% endif %} class="nav-link" href="orders/partial"><i class="fas fa-check"></i> {{ lang['orders.status.partial'] }}</a></li>
+        <li class="nav-item"><a {% if 'processing' == status %}  class="nav-link active" {% endif %} class="nav-link" href="orders/processing"><i class="fas fa-chart-line"></i> {{ lang['orders.status.processing'] }}</a></li>
+        <li class="nav-item"><a {% if 'canceled' == status %}  class="nav-link active" {% endif %} class="nav-link" href="orders/canceled"><i class="far fa-times-circle"></i> {{ lang['orders.status.canceled'] }}</a></li>
+       
+      </ul>
+                                  </div>
+                            </div>
+                            <div class="col-md-10">
+                                <form action="/orders" method="get" id="history-search">
+                                    <div class="input-group">
+                                      <input type="text" name="search" class="form-control" value=""
+                                             placeholder="Search">
+                                      <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                      </span>
+                                    </div>
+                                  </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card custom__card">
+                    <div class="card-body">
+                        <div class="responsive-table def_table">
+                            <div class="table-responsive">
+                                <table class="table order_page" id="service-table">
+                                    <thead>
+                                        <tr>
+              <th>{{ lang['orders.id'] }}</th>
+              <th>{{ lang['orders.date'] }}</th>
+              <th width="20%">{{ lang['orders.link'] }}</th>
+              <th>{{ lang['orders.charge'] }}</th>
+              <th class="nowrap">{{ lang['orders.start.count'] }}</th>
+              <th>{{ lang['orders.quantity'] }}</th>
+              <th width="20%">{{ lang['orders.service'] }}</th>
+              <th>Status</th>
+              <th>Remains</th>
+              <th>Complete details</th>
+<th></th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for order in orders %}
+              <tr>
+<td>
+<span id="order-{{ order['id'] }}">{{ order['id'] }}</span>
+                                        <a>
+                                            <span
+                                                data-clip="true"
+                                                title="Order Id copied"
+                                                data-clipboard-action="copy"
+                                                data-clipboard-target="#order-{{ order['id'] }}"
+                                                class="fas fa-clone"></span>
+                                        </a>
+
+                                        
+{% if order['order_where'] == "api"  %}<a class="btn btn-actions">Api</a>{% endif %} </td>
+                <td>{{ order['date'] }}</td>
+                <td width="20%"><a target="_blank" href="{{ order['link'] }}">{{ order['link'] }}</a></td>
+<td><div style="width:90px;">{{order["charge"]}}</div></td>
+                <td class="nowrap">{{ order['start_count'] }}</td>
+                <td>{{ order['quantity'] }}</td>
+               <td>
+  <div style="width: 300px;"> <span class="label-id">{{ order['service_id'] }}</span>-{{ order['service'] }}</a>
+  </div>
+</td>
+
+
+
+
+                
+                                        <td>{% if order['status'] == lang['orders.status.completed'] %}
+								<div class="ordStatus align-items-center" style="background: #28a745; color:#000; border-radius: 15px; padding: 5px 15px; font-size: 12px; text-align: center;">
+								   <i class="ri-checkbox-line"></i>
+								   <span style="color:#000">{{order['status']}}</span>
+								</div>
+								{% endif %}
+								
+              {% if order['status'] == lang['orders.status.inprogress'] %}
+								<div class="ordStatus align-items-center" style="background: #ff870b; color:#000; border-radius: 15px; padding: 5px 15px; font-size: 12px; text-align: center;">
+								   <i class="ri-loader-2-line"></i>
+								   <span style="color:#000">{{order['status']}}</span>
+								</div>
+								{% endif %}
+                
+                {% if order['status'] == lang['orders.status.pending'] %}
+								<div class="ordStatus align-items-center" style="background: #ffcc29; color:#000; border-radius: 15px; padding: 5px 15px; font-size: 12px; text-align: center;">
+								   <i class="ri-file-damage-line"></i>
+								   <span style="color:#000">{{order['status']}}</span>
+								</div>
+								{% endif %}
+								
+								{% if order['status'] == lang['orders.status.partial'] %}
+								<div class="ordStatus align-items-center" style="background: #11698e; color:#000; border-radius: 15px; padding: 5px 15px; font-size: 12px; text-align: center;">
+								   <i class="ri-star-half-line"></i>
+								   <span style="color:#000">{{order['status']}}</span>
+								</div>
+								{% endif %}
+								
+									{% if order['status'] == lang['orders.status.processing'] %}
+								<div class="ordStatus align-items-center" style="background: #61c0bf; color:#000; border-radius: 15px; padding: 5px 15px; font-size: 12px; text-align: center;">
+								   <i class="ri-remote-control-line"></i>
+								   <span style="color:#000">{{order['status']}}</span>
+								</div>
+								{% endif %}
+								
+								
+									{% if order['status'] == lang['orders.status.canceled'] %}
+								<div class="ordStatus align-items-center" style="background: #ec4646; color:#000; border-radius: 15px; padding: 5px 15px; font-size: 12px; text-align: center;">
+								   <i class="ri-qr-scan-line"></i>
+								   <span style="color:#000">{{order['status']}}</span>
+								</div>
+								{% endif %}
+								
+								</td>
+                <td>{{ order['remains'] }}</td>
+                  {% if order.duration %}
+            <td style="margin-top: 5px; font-size: 12px;">
+                {{ order.duration }}
+            </td>
+        {% endif %}
+           
+<td>
+{% if order["refillButton"] == "2" %}
+{% if order['status'] == "Completed"  %}
+
+{% if order['show_refill'] == "true"  %}
+<a href="orders/refill/{{order['id']}}" class="btn btn-sm refill-button">Refill</a>
+<br><br>
+{% endif %}
+{% endif %}
+{% endif %}
+{% if order["refillButton"] == "3" %}
+
+{% if order['status'] == "Completed"  %}
+
+{% if order['show_refill'] == "true"  %}
+  <button data-tippy-content="Refill will be available in {{order['refillTimeLeft']}}" class="btn btn-sm refill-button">Refill</button>
+{% endif %}
+{% endif %}
+{% endif %}
+{% if order["refillButton"] == "4" %}
+
+
+
+{% if order['status'] == "Completed"  %}
+
+{% if order['show_refill'] == "true"  %}
+<button type="button" class="btn btn-sm refill-button" disabled="true">{{"Refilling"}}</button>
+{% endif %}
+{% endif %}
+{% endif %}
+
+{% if order['cancelButton']   == true %}
+         
+
+
+                   <a href="orders/cancel/{{order['id']}}" class="btn btn-actions bg-danger">cancel</a>
+               {% endif %}
+
+                 </td>
+              </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+
+      {% if pagination["count"] > 1 %}
+        <ul class="pagination">
+
+          {% if pagination["current"] != 1 %}
+            <li>
+              <a class="btn btn-actions" href="orders/{{ status }}/{{ pagination["previous"] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Previous">
+                <span aria-hidden="true">«</span>
+              </a>
+            </li>
+          {% endif %}
+
+          {% set r, l = 3, 3 %}
+
+          {% if pagination['current'] == 1 %}
+            {% set r = 7 %}
+          {% endif %}
+
+          {% if pagination['current'] == 2 %}
+            {% set r = 5 %}
+          {% endif %}
+
+          {% if pagination['current'] >= pagination['count'] %}
+            {% set l = 5 %}
+          {% endif %}
+
+          {% for page in 1..pagination["count"] %}
+            {% if page >= (pagination['current']-l) and page <= (pagination['current']+r) %}
+              <li{% if page == pagination['current'] %} class="active" {%endif%}><a class="btn btn-actions" 
+ href="orders/{{ status }}/{{ page }}{% if search %}?search={{ search }}{% endif %}">{{ page }}</a></li>
+            {%endif%}
+          {% endfor %}
+
+          {% if pagination['current'] < pagination['count'] %}
+            <li>
+              <a class="btn btn-actions" href="orders/{{ status }}/{{ pagination['next'] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Next">
+                <span aria-hidden="true">»</span>
+              </a>
+            </li>
+          {% endif %}
+
+        </ul>
+      {% endif %}
+
+    </div>
+   </div></div>
+   </div></div></div></div></div>
+   </div</div></div>
+   </div></div></div>
+   </div>
+ <div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container-fluid">
+ {% if contentText2 %}
+ <div class="card mb-4">	
+{{ contentText2 }}
+</div>
+{% endif %}
+</div>
+
+{% include 'footer.twig' %}
+
+                
+
+                       

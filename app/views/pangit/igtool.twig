@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Info Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .container {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 250px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result-box {
+            display: none;
+            padding: 15px;
+            background-color: white;
+            border-radius: 4px;
+            margin-top: 15px;
+            border: 1px solid #ddd;
+        }
+        .result-item {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Check Spam Settings</h2>
+        <div class="input-group">
+            <input type="text" id="usernameInputSpam" placeholder="Enter Instagram username">
+            <button onclick="fetchSpamInfo()">Check Spam Settings</button>
+        </div>
+        <div id="spamResultBox" class="result-box">
+            <div class="result-item">Username: <span id="spamResultUsername"></span></div>
+            <div class="result-item">Spam Setting: <span id="spamResultSpamSetting"></span></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Check Follower Count</h2>
+        <div class="input-group">
+            <input type="text" id="usernameInputFollower" placeholder="Enter Instagram username">
+            <button onclick="fetchFollowerCount()">Check Followers</button>
+        </div>
+        <div id="followerResultBox" class="result-box">
+            <div class="result-item">Username: <span id="followerResultUsername"></span></div>
+            <div class="result-item">Followers: <span id="followerResultFollowers"></span></div>
+        </div>
+    </div>
+
+    <script>
+           document.addEventListener('contextmenu', function(e) {
+         e.preventDefault();
+      });
+        document.addEventListener('keydown', disableShortcuts);
+    function disableShortcuts(e) {
+         if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+           e.preventDefault();
+         }
+         if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
+           e.preventDefault();
+         }
+         if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) {
+            e.preventDefault();
+         }
+         if (e.key === 'F12') {
+             e.preventDefault();
+         }
+     }
+    const encodedAPIKey = "MTE4ZTRkYzViOW1zaGVlMmFlYTI2YzYwZTkxMHAxYzVjZjlqc241ZWFiMTkxNjYzMjE="; 
+    const apiKey = atob(encodedAPIKey); 
+    const API_HOST = "instagram-scraper-api2.p.rapidapi.com";
+
+    function fetchSpamInfo() {
+      const username = document.getElementById('usernameInputSpam').value.trim();
+      if (!username) {
+          alert("Please enter a username.");
+         return;
+        }
+     const spamResultBox = document.getElementById('spamResultBox');
+     const spamResultUsername = document.getElementById('spamResultUsername');
+     const spamResultSpamSetting = document.getElementById('spamResultSpamSetting');
+        spamResultBox.style.display = 'none';
+      spamResultUsername.textContent = '';
+       spamResultSpamSetting.textContent = '';
+      const url = `https://${API_HOST}/v1/info?username_or_id_or_url=${username}`;
+
+      fetch(url, {
+          method: 'GET',
+          headers: {
+           'x-rapidapi-key': apiKey,
+           'x-rapidapi-host': API_HOST,
+           'x-cache-control': 'no-cache'
+         }
+      })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+               return response.json();
+          })
+          .then(data => {
+            if (data && data.data) {
+                 spamResultBox.style.display = 'block';
+                 spamResultUsername.textContent = username;
+                spamResultSpamSetting.textContent = data.data.spam_follower_setting_enabled
+                    ? 'Enabled'
+                    : 'Disabled';
+            } else {
+                throw new Error("Invalid data received from API.");
+            }
+          })
+           .catch(error => {
+             spamResultBox.style.display = 'block';
+              spamResultUsername.textContent = 'Error';
+              spamResultSpamSetting.textContent = `Error: ${error.message}`;
+          });
+      }
+
+      function fetchFollowerCount() {
+        const username = document.getElementById('usernameInputFollower').value.trim();
+          if (!username) {
+              alert("Please enter a username.");
+              return;
+           }
+       const followerResultBox = document.getElementById('followerResultBox');
+       const followerResultUsername = document.getElementById('followerResultUsername');
+       const followerResultFollowers = document.getElementById('followerResultFollowers');
+
+        followerResultBox.style.display = 'none';
+       followerResultUsername.textContent = '';
+        followerResultFollowers.textContent = '';
+
+        const url = `https://${API_HOST}/v1/info?username_or_id_or_url=${username}`;
+         fetch(url, {
+            method: 'GET',
+            headers: {
+                 'x-rapidapi-key': apiKey,
+                'x-rapidapi-host': API_HOST,
+                'x-cache-control': 'no-cache'
+            }
+          })
+         .then(response => {
+           if (!response.ok) {
+             throw new Error(`HTTP error! Status: ${response.status}`);
+           }
+           return response.json();
+          })
+        .then(data => {
+            if (data && data.data) {
+                followerResultBox.style.display = 'block';
+                followerResultUsername.textContent = username;
+                followerResultFollowers.textContent = data.data.follower_count || 'Unknown';
+            } else {
+                throw new Error("Invalid data received from API.");
+          }
+        })
+        .catch(error => {
+             followerResultBox.style.display = 'block';
+             followerResultUsername.textContent = 'Error';
+            followerResultFollowers.textContent = `Error: ${error.message}`;
+        });
+      }
+    </script>
+</body>
+</html>

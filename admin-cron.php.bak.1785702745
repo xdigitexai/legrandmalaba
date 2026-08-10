@@ -1,0 +1,101 @@
+<?php
+session_start();
+if (empty($_SESSION['msmbilisim_adminlogin'])) {
+    header('Location: login.php');
+    exit;
+}
+require_once __DIR__ . '/config/database.php';
+
+$cronDir  = __DIR__ . '/cron';
+$cronDir2 = __DIR__ . '/cronjobs';
+$basePath = __DIR__;
+
+$allCrons = [];
+foreach ([$cronDir, $cronDir2] as $dir) {
+    if (!is_dir($dir)) continue;
+    $label = basename(dirname($dir)) . '/' . basename($dir);
+    foreach (glob($dir . '/*.php') as $file) {
+        $allCrons[] = ['path' => $file, 'name' => basename($file), 'dir' => $dir, 'label' => $label];
+    }
+}
+sort($allCrons);
+
+$output = '';
+$runFile = $_POST['run_file'] ?? '';
+if ($runFile) {
+    $safe = realpath($runFile);
+    $allowed = array_merge(
+        array_map('realpath', glob($cronDir . '/*.php')),
+        array_map('realpath', glob($cronDir2 . '/*.php'))
+    );
+    if ($safe && in_array($safe, $allowed)) {
+        $cmd = '/usr/local/bin/php ' . escapeshellarg($safe) . ' 2>&1';
+        $output = shell_exec($cmd) ?: '(no output)';
+    } else {
+        $output = 'ERROR: Invalid file.';
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual Cron Runner | Legrand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#0f172a,#1e293b);color:#f1f5f9;min-height:100vh;padding:30px}
+.container{max-width:900px;margin:0 auto}
+h1{font-size:28px;font-weight:800;margin-bottom:8px;background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{color:#94a3b8;font-size:14px;margin-bottom:30px}
+.back-link{display:inline-block;margin-bottom:20px;color:#818cf8;text-decoration:none;font-size:14px;font-weight:600}
+.back-link:hover{color:#a5b4fc}
+.cron-list{display:flex;flex-direction:column;gap:16px;margin-bottom:30px}
+.cron-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;transition:all .2s}
+.cron-card:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15)}
+.cron-info{flex:1}
+.cron-name{font-weight:600;font-size:16px;color:#e2e8f0}
+.cron-path{font-size:12px;color:#64748b;margin-top:3px}
+.cron-dir{font-size:11px;color:#475569;margin-top:2px}
+.btn-run{padding:10px 24px;background:linear-gradient(135deg,#6366f1,#a855f7);border:none;border-radius:10px;color:#fff;font-size:14px;font-weight:600;cursor:pointer;transition:all .3s;white-space:nowrap}
+.btn-run:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(99,102,241,0.4)}
+.btn-run:active{transform:translateY(0)}
+.output-box{background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px;margin-top:20px;max-height:500px;overflow-y:auto}
+.output-box h3{font-size:16px;font-weight:700;margin-bottom:12px;color:#818cf8}
+.output-box pre{font-family:'Courier New',monospace;font-size:13px;color:#a5f3fc;white-space:pre-wrap;word-break:break-word;line-height:1.6}
+@media(max-width:600px){.cron-card{flex-direction:column;align-items:flex-start;gap:12px}.btn-run{width:100%}}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.php" class="back-link">← Retour au tableau de bord</a>
+<h1>Manual Cron Runner</h1>
+<p class="subtitle">Execute cron jobs manually. Use as backup when automated cron fails.</p>
+
+<form method="post">
+<div class="cron-list">
+<?php foreach ($allCrons as $cron): ?>
+<div class="cron-card">
+<div class="cron-info">
+<div class="cron-name"><?= htmlspecialchars($cron['name']) ?></div>
+<div class="cron-path"><?= htmlspecialchars($cron['path']) ?></div>
+<div class="cron-dir"><?= htmlspecialchars($cron['label']) ?></div>
+</div>
+<button type="submit" name="run_file" value="<?= htmlspecialchars($cron['path']) ?>" class="btn-run">Run Now</button>
+</div>
+<?php endforeach; ?>
+</div>
+</form>
+
+<?php if ($output !== ''): ?>
+<div class="output-box">
+<h3>Execution Result</h3>
+<pre><?= htmlspecialchars($output) ?></pre>
+</div>
+<?php endif; ?>
+
+</div>
+</body>
+</html>

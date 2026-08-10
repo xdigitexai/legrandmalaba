@@ -1,0 +1,564 @@
+
+{% include 'header.twig' %}
+
+        
+            <!-- #### Without Login Header -->
+			
+		
+		<!-- Main variables *content* -->
+        <main class="no_auth">
+          		    <!-- Banner Section -->
+<section id="banner">
+  <div class="banner_bg_effect">
+    <img
+      src="https://smmxz.sacloud.site/images/login-left-shadows.png"
+      class="img-fluid bg_banner_left_effect"
+      alt=""
+    />
+    <img
+      src="https://smmxz.sacloud.site/images/login-right-shadows.png"
+      class="img-fluid bg_banner_right_effect"
+      alt=""
+    />
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="text-center">
+          <div class="banner_content">
+            <h1>Register Today</h1>
+            <p>
+              Sed gravida orci nulla, ac cursus enim interdum vitae. Aenean
+              ullamcorper ullamcorper turpis ac ultrices.
+            </p>
+          </div>
+          <div class="login_box_area">
+            <span class="login_top_image">
+              <div class="login_image_left">
+                <img
+                  src="https://smmxz.sacloud.site/images/login-effect.png"
+                  class="img-fluid main_effect"
+                  alt=""
+                />
+                <img
+                  src="https://smmxz.sacloud.site/images/login-mail-charecters.png"
+                  class="img-fluid main_image"
+                  alt=""
+                />
+              </div>
+              <div class="login_image_right">
+                <img
+                  src="https://smmxz.sacloud.site/images/login-female-charecters.png"
+                  class="img-fluid main_image"
+                  alt=""
+                />
+                <img
+                  src="https://smmxz.sacloud.site/images/login-effect.png"
+                  class="img-fluid main_effect"
+                  alt=""
+                />
+              </div>
+            </span>
+            <div class="banner_login_part">
+              <h2>Account Sign Up</h2>
+
+              {% if contentText %}
+<div class="card mb-4">
+{{ contentText }}
+</div>
+{% endif %}
+                    <div class="component_card">
+                        <div class="card">
+					 {% if errorText %}
+        <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          {{ errorText }}
+        </div>
+      {% endif %}
+      {% if successText %}
+        <div class="alert alert-dismissible alert-success">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          {{ successText }}
+        </div>
+      {% endif %}
+              <form  action="" method="post" id="loginForm">
+                
+                
+
+                                <div class="form-group has_icon mb-3">
+                    <div class="icon">
+                    <img
+                                                src="https://smmxz.sacloud.site/images/username-icon.png"
+                                                class="img-fluid icon"
+                        alt=""
+                    />
+                    </div>
+
+                                    <input
+                    type="text"
+                    name="username"
+                    class="form-control"
+                    placeholder="Username"
+                    value="" 
+                    id="username"
+                    />
+                                    
+                </div>
+                                <div class="form-group has_icon mb-3">
+                    <div class="icon">
+                    <img
+                                                src="https://smmxz.sacloud.site/images/signup-email.png"
+                                                class="img-fluid icon"
+                        alt=""
+                    />
+                    </div>
+
+                                    <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="Email"
+                    value="" 
+                    id="email"
+                    />
+                                    
+                </div>
+                 {% if settings['name_fileds']  ==  1 %} 
+                                <div class="form-group has_icon mb-3">
+                    <div class="icon">
+                    <img
+                                                src="https://smmxz.sacloud.site/images/username-icon.png"
+                                                class="img-fluid icon"
+                        alt=""
+                    />
+                    </div>
+
+                                    <input
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    placeholder="First name"
+                    value="{{ data['name'] }}" 
+                    id="firstname"
+                    />
+                                    
+                </div>{% endif %}
+                                <div class="form-group has_icon mb-3">
+                    <div class="icon">
+                    <img
+                                                src="https://smmxz.sacloud.site/images/username-icon.png"
+                                                class="img-fluid icon"
+                        alt=""
+                    />
+                    </div>
+
+                                    <input
+                    type="text"
+                    name="RegistrationForm[last_name]"
+                    class="form-control"
+                    placeholder="Last name"
+                    value="" 
+                    id="last_name"
+                    />
+                                    
+                </div>{% if settings['skype_feilds']  ==  1 %} 
+                                <div class="form-group has_icon mb-3">
+                    <div class="icon">
+                    <img
+                                                src="https://smmxz.sacloud.site/images/whatsapp-icon.png"
+                                                class="img-fluid icon"
+                        alt=""
+                    />
+                    </div>
+
+                                    <input
+                    type="text"
+                    name="telephone"
+                    class="form-control"
+                    placeholder="Skype"
+                    value="{{ data['telephone'] }}" 
+                    id="skype"
+                    />
+                                    
+                </div>{% endif %}
+                                <div class="form-group has_icon mb-3">
+                    <div class="icon">
+                    <img
+                                                src="https://smmxz.sacloud.site/images/password-icon.png"
+                                                class="img-fluid icon"
+                        alt=""
+                    />
+                    </div>
+
+                                    <input type="password" class="form-control" id="password"
+                        value="" name="password"
+                        placeholder="Password">
+                        <div class="pass_eye">
+                            <button class="pss-btn-sh" type="button" id="pwdBtn"
+                            onclick="passwordShowHide('pwdBtn','password')">
+                                <span class="eye-close">  <iconify-icon icon="ph:eye-slash-duotone"></iconify-icon></span>
+                                <span class="eye-open"> <iconify-icon icon="ph:eye"></iconify-icon> </span>
+                            </button>
+                        </div>
+                                    
+                </div>
+                                <div class="form-group has_icon mb-3">
+                    <div class="icon">
+                    <img
+                                                src="https://smmxz.sacloud.site/images/password-icon.png"
+                                                class="img-fluid icon"
+                        alt=""
+                    />
+                    </div>
+
+                                    <input type="password" class="form-control" id="confirm"
+                        value="" name="password_again"
+                        placeholder="Confirm password">
+                    <div class="pass_eye">
+                        <button class="pss-btn-sh" type="button" id="pwdBtn2"
+                            onclick="passwordShowHide('pwdBtn2','password_again')">
+                            <span class="eye-close">  <iconify-icon icon="ph:eye-slash-duotone"></iconify-icon> </span>
+                            <span class="eye-open"> <iconify-icon icon="ph:eye"></iconify-icon> </span>
+                        </button>
+                    </div>
+                                    
+                </div>
+                 {% if captcha %}
+                                                    <div class="mb-2">
+                        <div class="g-recaptcha form-group" data-sitekey="{{ captchaKey }}"></div>
+                    </div> {% endif %}
+                           
+             <div class="checkbox">
+            <label>
+              <input type="checkbox" name="terms" value="1"> {{ lang['signup.accept_terms_text'] }}
+            </label>
+          </div>
+                <button class="w-100 btn btn-primary btn_has_icon mb-3" type="submit">
+                  <span class="btn_text">Sign up</span>
+                  <div class="btn_icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/arrow-right-primary.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                </button>
+                <div class="text-center text-white">
+                    Already have an account? <a href="/">Sign in</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #### Banner Section -->
+
+        </main>
+
+      
+
+
+                <!-- Footer -->
+        <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-12">
+              <div class="footer_info">
+                <div class="logo">
+                    <a href="/">
+                                              <img src="{{ site["logo"] }}" class="img-fluid" alt="{{ site["site_name"] }}" />
+                                        </a>
+                </div>
+                <div class="footer_contact">
+                  <a href="tel:14155551234" class="footer_c_item">
+                    <div class="icon">
+                      <img src="https://smmxz.sacloud.site/images/phone-icon.png" class="img-fluid" alt="" />
+                    </div>
+                    <div class="text">Call Us: +1 (415) 555-1234</div>
+                  </a>
+                  <a href="mailto:info@{{ site["site_name"] }}.com" class="footer_c_item">
+                    <div class="icon">
+                      <img src="https://smmxz.sacloud.site/images/email-icon.png" class="img-fluid" alt="" />
+                    </div>
+                    <div class="text">info@{{ site["site_name"] }}.com</div>
+                  </a>
+                </div>
+                <div class="ss_media">
+                  <a href="https://www.facebook.com/SMMXZ" target="_blank" class="ss_btn_icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/facebook-footer-icon.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </a>
+                  <a href="https://x.com/smmxzweb" target="_blank" class="ss_btn_icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/twitter-footer-icon.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </a>
+                  <a href="https://www.pinterest.com/smmxzweb/" target="_blank" class="ss_btn_icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/pinterest-footer-icon.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </a>
+                  <a href="https://www.instagram.com/smmxzpanel" target="_blank" class="ss_btn_icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/instagram-footer-icon.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </a>
+                  <a href="https://www.youtube.com/@smmxz" target="_blank" class="ss_btn_icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/youtube-footer-icon.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </a>
+                  <a href="https://www.linkedin.com/company/smmxz/" target="_blank" class="ss_btn_icon">
+                    <img
+                      src="https://smmxz.sacloud.site/images/linkedin-footer-icon.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+              <div class="footer_links_wrap">
+                <h4>Quick Links</h4>
+                <ul class="footer_links">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/about-us">About Us</a></li>
+                  <li><a href="/services">Our Services</a></li>
+                  <li><a href="/blog">Read Our Blog</a></li>
+                  <li><a href="/api">API</a></li>
+                  <li><a href="/contact-us">Contact Us</a></li>
+                  <li><a href="/faq">FAQ</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+              <div class="footer_links_wrap">
+                <h4>Our Services</h4>
+                <ul class="footer_links">
+                  <li><a href="/facebook-smm-panel">Facebook SMM Panel</a></li>
+                  <li><a href="/instagram-smm-panel">Instagram Services</a></li>
+                  <li><a href="/youtube-smm-panel">YouTube Services</a></li>
+                  <li><a href="/spotify-smm-panel">Spotify Services</a></li>
+                  <li><a href="/telegram-smm-panel">Telegram Services</a></li>
+                  <li><a href="/tiktok-smm-panel">TikTok Services</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+              <div class="footer_links_wrap">
+                <h4>Our Service Area</h4>
+                <ul class="footer_links">
+                  <!-- <li><a href="/terms">Terms & Conditions</a></li> -->
+                  <!-- <li><a href="/privacy-policy">Privacy Policy</a></li>
+                  <li><a href="/refund-policy">Refund Policy</a></li>
+                   -->
+                   <li><a href="/smm-panel-bangladesh">SMM Panel in Bangladesh</a></li>
+                   <li><a href="/smm-panel-india">SMM Panel in india</a></li>
+                   <li><a href="/smm-panel-turkey">SMM Panel in Turkey</a></li>
+                   <li><a href="/smm-panel-pakistan">SMM Panel in Pakistan</a></li>
+                  <li><a href="/smm-panel-indonesia">SMM Panel in Indonesia</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <hr class="shades">
+          
+          <div class="row my-4">
+            <div class="col-lg-3 col-md-6 col-12">
+              <div class="footer_links_wrap">
+                <h4>Our Facebook Services</h4>
+                <ul class="footer_links">
+                  <li><a href="/buy-facebook-followers">Buy Facebook Followers</a></li>
+                  <li><a href="/buy-facebook-likes">Buy Facebook Likes</a></li>
+                  <li><a href="/buy-facebook-comments">Buy Facebook Comments</a></li>
+                  <li><a href="/buy-facebook-group-members">Buy Facebook Group Members</a></li>
+                  <li><a href="/buy-facebook-reviews">Buy Facebook Reviews</a></li>
+                  <li><a href="/buy-facebook-shares">Buy Facebook Share</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+              <div class="footer_links_wrap">
+                <h4>Our Instagram Services</h4>
+                <ul class="footer_links">
+                  <li><a href="/buy-instagram-followers">Buy Instagram Followers</a></li>
+                  <li><a href="/buy-instagram-likes">Buy Instagram Likes</a></li>
+                  <li><a href="/buy-instagram-comments">Buy Instagram Comments</a></li>
+                  <li><a href="/buy-instagram-reels-views">Buy Instagram Reels Views</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+              <div class="footer_links_wrap">
+                <h4>Our YouTube Services</h4>
+                <ul class="footer_links">
+                  <li><a href="/buy-youtube-subscribers">Buy YouTube Subscribers</a></li>
+                  <li><a href="/buy-youtube-likes">Buy YouTube Likes</a></li>
+                  <li><a href="/buy-youtube-video-comments">Buy YouTube Video Comments</a></li>
+                  <li><a href="/buy-youtube-views">Buy YouTube Views</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+              <div class="footer_links_wrap">
+                <h4>Our TikTok Services</h4>
+                <ul class="footer_links">
+                  <li><a href="/buy-tiktok-followers">Buy TikTok Followers</a></li>
+                  <li><a href="/buy-tiktok-likes">Buy TikTok Likes</a></li>
+                  <li><a href="/buy-tiktok-comments">Buy TikTok Comments</a></li>
+                  <li><a href="/buy-tiktok-views">Buy TikTok Views</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <hr />
+           <div class="footer_bottom_text d-flex flex-md-row justify-content-md-between flex-column justify-content-center">
+            <p class="copyright_text">
+              &copy; Copyright 2024 {{ site["site_name"] }} | All Rights Reserved
+            </p>
+            <div class="flex bottom_footer_links">
+              <a href="/terms">Terms & Conditions</a>
+              <a href="/privacy-policy">Privacy Policy</a>
+              <a href="/refund-policy">Refund Policy</a>
+            </div>
+           </div>
+          </div>
+        </div>
+        </footer>
+        <!-- #### Footer -->
+        		
+
+
+
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/libs/jquery/1.12.4/jquery.min.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/6lea6p5h1se0ydlc.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/lpckws4jmmcjpzoh.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/41oyxac8gg4eoke6.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/global/dmabhtcke4de93dz.js" >
+							</script>
+					<script type="text/javascript"  src="https://accounts.google.com/gsi/client" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/ob5eq3/t05xwla9gwo8usgw.js" >
+							</script>
+					<script type="text/javascript"  src="https://storage.perfectcdn.com/ob5eq3/9kqdad0glwb7ykdp.js" >
+							</script>
+					<script type="text/javascript"  src="https://www.google.com/recaptcha/api.js?hl=en" >
+							</script>
+					<script type="text/javascript" >
+				                window.modules.layouts = {"theme_id":1,"auth":0,"live":true,"csrftoken":"9IdEadExd32rVmN8UUhwkn_hkUpUJhAIZ9qwubABrg6ixT1fpQQtBJM8AAYGPBSlTYOkeD1eYDEw7sDP9kn8Pw=="};
+                			</script>
+					<script type="text/javascript" >
+				                window.modules.signup = [];
+                			</script>
+					<script type="text/javascript" >
+							</script>
+		
+        <!-- Footer Scripts -->
+                   <!-- Jquery -->
+          <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+                <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+        
+        
+  <!-- Point system codes -->
+  
+               
+              <script>
+                  const swiper = new Swiper(".testimonialSlider", {
+                    // Default parameters
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                    autoplay: {
+                      delay: 3000,
+                    },
+                    // Navigation arrows
+                    navigation: {
+                      nextEl: ".swiper-next",
+                      prevEl: ".swiper-prev",
+                    },
+                    // Responsive breakpoints
+                    breakpoints: {
+                      // when window width is >= 320px
+                      320: {
+                        slidesPerView: 1,
+                        spaceBetween: 0,
+                      },
+                      // when window width is >= 480px
+                      480: {
+                        slidesPerView: 1,
+                        spaceBetween: 0,
+                      },
+                      // when window width is >= 1200px
+                      1200: {
+                        slidesPerView: 2,
+                        spaceBetween: 40,
+                      },
+                    },
+                  });
+
+                  
+      const swiperDifference = new Swiper(".differenceSlider", {
+        // Default parameters
+        slidesPerView: 3,
+        spaceBetween: 40,
+        autoplay: {
+          delay: 3000,
+        },
+        // Navigation arrows
+        navigation: {
+          nextEl: ".differenceSlider-next",
+          prevEl: ".differenceSlider-prev",
+        },
+        // Responsive breakpoints
+        breakpoints: {
+          // when window width is >= 320px (mobile)
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          // when window width is >= 768px (tablets)
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          // when window width is >= 1024px (large screens)
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 40,
+          },
+        },
+      });
+                </script>
+         
+
+                        
+            
+            
+
+            
+	</body>
+</html>

@@ -1,0 +1,148 @@
+{% include 'header.twig' %}
+<main>
+  <div class="container-fluid mt-4">
+    <div class="row">
+      <!-- Welcome + Support Hours -->
+      <div class="col-lg-7">
+        <div class="card card-bg userCard h-100">
+          <div class="row">
+            <div class="ud-card" style="max-width: 550px">
+              <h5>Welcome to the <span class="primary-color">support</span> section!</h5> 
+              <p>Please be sure to check the <a href="/faq">Frequently asked questions</a> section before opening a support ticket. You will find many answers you are looking for in this section.</p>
+            </div>
+            <img src="https://storage.perfectcdn.com/a3vltc/jpoo0ueikyy6975o.png" class="ud-img">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5 d-none d-md-block">
+        <div class="card card-bg rankCard h-100" style="overflow: hidden">
+          <div class="row">
+            <div class="rc-card">
+              <h5 class="mb-4"><strong>Support Hours:</strong> 09.00 - 18.00</h5>
+              <p class="pb-3">Support requests can take <strong>1-3 hours</strong> to respond.</p>
+              <span class="alert alert-success">You have <strong>0</strong> unread support requests.</span>
+            </div>
+            <img src="https://storage.perfectcdn.com/a3vltc/j7sdqm0ssogw5he5.png" class="rc-img-2">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ticket Content -->
+    <div class="row mt-4">
+      <div class="col-lg-7">
+        <div class="page overflow-hidden">
+          <div class="page-body pb-4 pb-xl-6">
+            <div class="card mb-2">
+              <div class="card-head d-flex align-items-center justify-content-between">
+                <div class="card-head-title">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <div class="card-head-icon">
+                        <i class="ri-chat-1-line"></i>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <h4 id="ticket-id">#{{ messageList['ticket']['ticket_id'] }} - {{ messageList['ticket']['subject'] }}</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-body pt-3 pb-3">
+                <div class="schat-body">
+                  <div class="schat-chat-body">
+                    <div class="schat-body-content">
+                      <ul class="chat">
+                        {% if messageList %}
+                          {% for message in messageList %}
+                            {% if message["support"] == 1 %}
+                              <!-- User Message -->
+                              <li class="user">
+                                <div class="l">
+                                  <div class="answer">
+                                    {{ message["message"] }}<br>
+                                    <small class="pt-2">{{ user["username"] }} {{ message["time"] }}</small>
+                                  </div>
+                                </div>
+                                <div class="r">
+                                  <span class="avatar">{{ user["username"]|first|lower }}</span>
+                                </div>
+                              </li>
+                            {% else %}
+                              <!-- Support Reply -->
+                              <li class="admin">
+                                <div class="l">
+                                  <div class="answer bg-light">
+                                    {{ message["message"] }}<br>
+                                    <small class="pt-2">Support {{ message["time"] }}</small>
+                                  </div>
+                                </div>
+                                <div class="r">
+                                  <span class="avatar">S</span>
+                                </div>
+                              </li>
+                            {% endif %}
+                          {% endfor %}
+                        {% endif %}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- Reply Box -->
+                  {% if messageList['ticket']['canmessage'] == 2 %}
+                    <div class="schat-input mt-3">
+                      <form method="post" action="tickets/{{ messageList['ticket']['ticket_id'] }}">
+                        <div class="schat-msg-input d-flex align-items-center">
+                          <textarea style="height: 80px;" id="message" rows="3" class="form-control" name="message">{{ data["message"] }}</textarea>
+                          <button class="btn btn-primary btn-sm btn-round ms-2" type="submit">
+                            <span class="d-none d-md-inline-block">Submit</span>
+                            <i class="ri-send-plane-fill fw-400 ms-md-2"></i>
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ticket Info -->
+      <div class="col-lg-5">
+        <div class="page overflow-hidden">
+          <div class="page-body pb-4 pb-xl-6">
+            <div class="card mb-2">
+              <div class="card-body">
+                <div class="scd-item">
+                  <div class="title">Priority</div>
+                  <div class="text">{{ messageList['ticket']['priority'] ?? 'Normal' }}</div>
+                </div>
+                <div class="scd-item">
+                  <div class="title">Response Time</div>
+                  <div class="text">1-3 Hour</div>
+                </div>
+                <div class="scd-item">
+                  <div class="title">Department</div>
+                  <div class="text">{{ messageList['ticket']['department'] ?? 'Customer Support' }}</div>
+                </div>
+                <a href="/tickets" class="btn btn-primary btn-100 mt-4">Back to Support page</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script type="text/javascript">
+  let ticketUrl = window.location.href.split('/');
+  let ticketID = ticketUrl[ticketUrl.length - 1];
+  document.querySelector('#ticket-id').innerHTML = '#' + ticketID + ' - {{ messageList["ticket"]["subject"] }}';
+</script>
+
+{% include 'footer.twig' %}

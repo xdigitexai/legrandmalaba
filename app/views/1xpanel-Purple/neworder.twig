@@ -1,0 +1,809 @@
+{% include 'header.twig' %}
+<!-- Main variables *content* -->
+		<div class="container">
+            <div id="new-order-cats" style="display: none">
+                <div class="swiper-wrapper">
+                    <div><button class="nwo-cat-btn" data-change-cat=""></button></div>
+                    <div><button class="nwo-cat-btn" data-change-cat="Instagram"></button></div>
+                    <div><button class="nwo-cat-btn" data-change-cat="Threads"></button></div>
+                    <div><button class="nwo-cat-btn" data-change-cat="TikTok"></button></div>
+                    <div><button class="nwo-cat-btn" data-change-cat="Twitter"></button></div>
+                    <div><button class="nwo-cat-btn" data-change-cat="YouTube"></button></div>
+                    <div><button class="nwo-cat-btn" data-change-cat="Game"></button></div>
+                    <div><button class="nwo-cat-btn" data-change-cat="Telegram"></button></div>
+                    <div><button class="nwo-cat-btn" data-change-cat="Facebook"></button></div>
+                    <div><button class="nwo-cat-btn" data-change-cat="Spotify"></button></div>
+                    <div><button class="nwo-cat-btn" data-change-cat="Twitch"></button></div>
+                    <div><button class="nwo-cat-btn" data-change-cat="Reddit"></button></div>
+                    <div><button class="nwo-cat-btn" data-change-cat="Snapchat"></button></div>
+                    <div><button class="nwo-cat-btn" data-change-cat="LinkedIn"></button></div>
+                    <div><button class="nwo-cat-btn" data-change-cat="Subscription"></button></div>
+                </div>
+            </div>
+        </div>
+	<main>
+         <div class="container-fluid">
+						
+
+			
+			 <div class="row">
+				<div class="col-lg-7">
+					 <div class="page">
+						<div class="page-body pb-4 pb-xl-6 mt-4">
+                          	<div class="row top-buttons mb-3">
+                            	<div class="col-lg-auto col-6">
+                                  	<button onclick="modalOpen(`newsPopup`)"class="btn btn-dark">
+                                      <i class="fa fa-bullhorn pr-2"></i> <span>Site news</span>
+                                    </button>
+                                </div>
+                                <div class="col-lg-auto col-6">
+                                  	<button onclick="modalOpen(`readBefore`)" class="btn btn-dark">
+                                        <i class="fab fa-readme pr-2"></i> <span>Read before order</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                                <div class="neworder-top">
+                                                                      <div class="form-group">
+                                      <div class="search-dropdown" id="new-order-search" style="position: relative;" data-lang-placeholder="Search" >
+                                        <div class="input-wrapper" style="position: relative;">
+                                              <button type="button" class="input-wrapper__prepend" onclick="focusInputField()"><span style="color:white;position: absolute;top: 50%;transform: translateY(-50%);padding: 0px 2px;background: none;border: none;left: 12px;" ></span></button>
+                                             
+                                          </button>
+                                          <input type="text" class="form-control" id="unique-input" value="" placeholder="search for a service...">
+                                          <button type="button" class="input-wrapper__append" onclick="clearInput()"><span class="fas fa-times"></span></button>
+                    <div class="search-results" id="unique-dropdown" style="display: none;"></div>
+
+<style>
+/* Container styling */
+#unique-dropdown {
+    position: absolute; /* So it appears relative to parent input */
+    top: 100%; /* Right below the input */
+    left: 0;
+    width: 100%; /* Match input width */
+    max-height: 300px; /* Scroll if too tall */
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    padding: 8px 0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Each item in the dropdown */
+#unique-dropdown .result-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#unique-dropdown .result-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Hidden initially */
+#unique-dropdown.hidden {
+    display: none;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+/* Show dropdown */
+#unique-dropdown.visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                    
+                                                                      <button type="button" class="btn btn-primary" id="neworder-filter-btn">
+                                        <i class="fas fa-search mr-lg-2"></i>
+                                        <span>Services Search</span> 
+                                    </button>
+                                </div>
+						<div class="neworder-filter hidden" style="display: none; opacity: 0;">
+							<div id="new-order-cats">
+								  <button class="nwo-cat-btn default" data-change-cat="">
+									<span class="noc-icon">
+									  <i class="far fa-ellipsis-h"></i>
+									</span>
+								  </button>
+								  <button class="nwo-cat-btn telegram" data-change-cat="Telegram">
+									<span class="noc-icon">
+									  <i class="fab fa-telegram-plane"></i>
+									</span>
+								  </button>
+								  <button class="nwo-cat-btn instagram" data-change-cat="Instagram">
+									<span class="noc-icon">
+									  <i class="fab fa-instagram"></i>
+									</span>
+								  </button>
+								  <button class="nwo-cat-btn twitter" data-change-cat="Twitter">
+									<span class="noc-icon">
+									  <i class="fab fa-twitter"></i>
+									</span>
+								  </button>
+								  <button class="nwo-cat-btn facebook" data-change-cat="Facebook">
+									<span class="noc-icon">
+									  <i class="fab fa-facebook-f"></i>
+									</span>
+								  </button><button class="nwo-cat-btn tiktok" data-change-cat="TikTok">
+									<span class="noc-icon">
+									  <i class="fab fa-tiktok"></i>
+									</span>
+								  </button>
+								  <button class="nwo-cat-btn youtube" data-change-cat="Youtube">
+									<span class="noc-icon">
+									  <i class="fab fa-youtube"></i>
+									</span>
+								  </button>
+								  <button class="nwo-cat-btn twitch" data-change-cat="Twitch">
+									<span class="noc-icon">
+									  <i class="fab fa-twitch"></i>
+									</span>
+								  </button>
+								  <button class="nwo-cat-btn spotify" data-change-cat="Spotify">
+									<span class="noc-icon">
+									  <i class="fab fa-spotify"></i>
+									</span>
+								  </button>
+								  <button class="nwo-cat-btn threads" data-change-cat="Threads">
+									<span class="noc-icon">
+									  <i class="fa fa-at"></i>
+									</span>
+								  </button>
+							  </div>
+						</div>
+						<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const filterBtn = document.getElementById("neworder-filter-btn");
+    const filterPanel = document.querySelector(".neworder-filter");
+    const catButtons = document.querySelectorAll(".nwo-cat-btn");
+    const input = document.getElementById("template-input");
+
+    // Ensure the filter panel is hidden initially
+    filterPanel.style.display = "none";
+    filterPanel.style.opacity = "0";
+    filterPanel.style.transition = "opacity 0.3s ease";
+
+    // Toggle filter panel
+    filterBtn.addEventListener("click", () => {
+        if (filterPanel.style.display === "none") {
+            filterPanel.style.display = "block";
+            setTimeout(() => { filterPanel.style.opacity = "1"; }, 10);
+        } else {
+            filterPanel.style.opacity = "0";
+            setTimeout(() => { filterPanel.style.display = "none"; }, 300);
+        }
+    });
+
+    // Category buttons click
+    catButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            // Remove active class from all
+            catButtons.forEach(b => b.classList.remove("active"));
+            // Add active class to clicked button
+            btn.classList.add("active");
+
+            // Put selected category into the input
+            const selectedCat = btn.getAttribute("data-change-cat");
+            input.value = selectedCat;
+
+            // Optional: here you can filter services list
+            console.log("Selected category:", selectedCat);
+        });
+    });
+
+    // Search icon click focuses input
+    const searchBtn = document.querySelector(".search-dropdown button");
+    if (searchBtn) {
+        searchBtn.addEventListener("click", () => input.focus());
+    }
+});
+</script>
+
+<style>
+/* Highlight active category */
+.nwo-cat-btn.active {
+    background-color: #007bff;
+    color: #fff;
+}
+</style>
+
+						
+						   <div class="card mb-2">
+							  <div class="card-head d-flex neworder-card align-items-center justify-content-between">
+									
+												<div class="card-head-title">
+													<div class="d-flex">
+													  <div class="card-head-icon mr-2">
+														<i class="ri-wallet-3-line"></i>
+													  </div>
+                                                      <h4><button id="news-btn">New order</button></h4>
+													</div>
+									</div>
+                                	<a href="/massorder" class="btn btn-secondary  mass-bttns"><div class="mass-icon"><i class="ri-shopping-basket-2-line"></i></div><span>Mass order</span></a>
+							  </div>
+							  <div class="card-body pt-3 pb-3">
+      <div class="contents">
+         <div class="defaultcontent">
+            <form  action="/" method="post" id="order-form">
+                <ul class="nav cstmnav gap-2 mt-2">
+    <li>
+        <a href="https://www.instagram.com" target="_blank" class="btn-instagram">
+            <i class="ri-instagram-line mr-1"></i>Instagram
+        </a>
+    </li>
+    <li>
+        <a href="https://www.facebook.com" target="_blank" class="btn-facebook">
+            <i class="ri-facebook-line mr-1"></i>Facebook
+        </a>
+    </li>
+    <li>
+        <a href="https://www.youtube.com" target="_blank" class="btn-youtube">
+            <i class="ri-youtube-line mr-1"></i>YouTube
+        </a>
+    </li>
+    <li>
+        <a href="https://t.me" target="_blank" class="btn-telegram">
+            <i class="ri-telegram-line mr-1"></i>Telegram
+        </a>
+    </li>
+    <li>
+  <button type="button" data-change-cat="Philippines" class="btn-philippines nwo-cat-btn">
+    <i class="ri-flag-line"></i>  Philippine Based
+  </button>
+</li>
+    <li>
+        <a href="https://www.tiktok.com" target="_blank" class="btn-tiktok">
+            <i class="ri-tiktok-line mr-1"></i>Tiktok
+        </a>
+    </li>
+</ul>
+        
+              <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const navItems = document.querySelectorAll(".cstmnav li a");
+    const catButtons = document.querySelectorAll(".nwo-cat-btn");
+
+    const platformClassMap = {
+        'btn-instagram': 'Instagram',
+        'btn-facebook': 'Facebook',
+        'btn-youtube': 'Youtube',
+        'btn-telegram': 'Telegram',
+        'btn-tiktok': 'TikTok',
+        'btn-twitter': 'Twitter',
+        'btn-spotify': 'Spotify',
+        'btn-twitch': 'Twitch',
+        'btn-reddit': 'Reddit',
+        'btn-snapchat': 'Snapchat',
+        'btn-linkedin': 'LinkedIn',
+        'btn-threads': 'Threads'
+    };
+
+    navItems.forEach(nav => {
+        nav.addEventListener("click", function(e) {
+            e.preventDefault(); // prevent external redirect
+
+            // Remove active class from nav
+            navItems.forEach(n => n.classList.remove("active"));
+            this.classList.add("active");
+
+            // Detect category
+            const platform = Object.keys(platformClassMap).find(cls => this.classList.contains(cls));
+            const categoryName = platformClassMap[platform];
+
+            // Find and "click" the corresponding category button
+            catButtons.forEach(btn => {
+                if (btn.getAttribute("data-change-cat") === categoryName) {
+                    btn.click(); // trigger the actual click
+                }
+            });
+        });
+    });
+});
+</script>
+				<div class="alert alert-success alert-fav hidden" style="border-radius: 15px">You have not added any services to favorites. You can add the desired service to your favourites, using the <a href="/services">Services List.</a></div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Select all the buttons/links inside your nav
+    const navItems = document.querySelectorAll(".cstmnav li a, .cstmnav li button");
+
+    navItems.forEach(item => {
+        item.addEventListener("click", function () {
+            // Remove active class from all
+            navItems.forEach(i => i.classList.remove("active"));
+
+            // Add active to the clicked one
+            this.classList.add("active");
+
+            // Optional: Show/hide alert/fav section
+            if (this.classList.contains("btn-fav")) {
+                document.querySelector(".alert-fav").classList.remove("hidden");
+            } else {
+                document.querySelector(".alert-fav").classList.add("hidden");
+            }
+        });
+    });
+});
+</script>
+
+                                                                                  {% if error %}
+      <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">✕</button>
+{{ errorText }}
+      </div>
+    {% endif %}
+
+     {% if data["order"]["success"] == 1 %}
+      <div class="alert alert-dismissible alert-success">
+          <strong> {{ lang["neworder.success.id"] }}: </strong> {{ data['order']['id'] }} <br>
+          <strong> {{ lang["neworder.success.service"] }}: </strong> {{ data['order']['service'] }} <br>
+          <strong> {{ lang["neworder.success.link"] }}: </strong> {{ data['order']['link'] }} <br>
+          <strong> {{ lang["neworder.success.quantity"] }}: </strong> {{ data['order']['quantity'] }} <br>
+          <strong> {{ lang["neworder.success.charge"] }}: </strong> {{ data['order']['price'] }} <br>
+          <strong> {{ lang["neworder.success.balance"] }}: </strong>{{ data['order']['balance'] }} <br>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">✕</span></button>
+
+      </div>
+    {% endif %}
+    
+    
+    {% if data["order"]["success"] == 2 %}
+      <div class="alert alert-dismissible alert-success">
+ <strong> {{ lang["neworder.success.id"] }}: </strong> {{ data['order']['id'] }} <br>
+ <strong> {{ lang["neworder.success.service"] }}: </strong> {{ data['order']['service'] }} <br>
+ <strong> {{ lang["neworder.success.username"] }}: </strong> {{ data['order']['link'] }} <br>
+ <strong> {{ lang["neworder.success.quantity"] }}: </strong> {{ data['order']['min'] }} - {{ data['order']['max'] }} <br>
+ <strong> {{ lang["neworder.success.posts"] }}: </strong> {{ data['order']['posts'] }} <br>
+ <strong> {{ lang["neworder.success.delay"] }}: </strong>{{ data['order']['delay'] }} <br>
+       </div>
+    {% endif %}
+
+									                                  
+                                  
+          <div class="form-group nPlatform">
+            	<label for="orderform-platform" class="control-label">Platform</label>
+                   <select
+                           class="form-control"
+                           id="orderform-platform"
+                           name="OrderForm[platform]"
+                           data-select="true"
+                           data-select-search="true"
+                  data-select-search-placeholder="Search"
+                  			              >
+               <option value="" data-icon="<i class='ri-list-unordered'></i>">All Platforms</option>
+               <option value="Instagram" data-icon="<i class='fab fa-instagram'></i>">Instagram</option>
+               <option value="TikTok" data-icon="<i class='fab fa-tiktok'></i>">TikTok</option>
+               <option value="Twitter" data-icon="<i class='fab fa-twitter'></i>">Twitter</option>
+               <option value="Youtube" data-icon="<i class='fab fa-youtube'></i>">Youtube</option>
+               <option value="Telegram" data-icon="<i class='fab fa-telegram'></i>">Telegram</option>
+                <option value="Facebook" data-icon="<i class='fab fa-facebook-f'></i>">Facebook</option>
+                <option value="Spotify" data-icon="<i class='fab fa-spotify'></i>">Spotify</option>
+                <option value="Twitch" data-icon="<i class='fab fa-twitch'></i>">Twitch</option>
+                <option value="Reddit" data-icon="<i class='fab fa-reddit'></i>">Reddit</option>
+                <option value="Snapchat" data-icon="<i class='fab fa-snapchat'></i>">Snapchat</option>
+                <option value="LinkedIn" data-icon="<i class='fab fa-linkedin'></i>">LinkedIn</option>
+           </select>
+          </div>  					                                                                                <form method="post" action="">
+<div class="component_button_forms">
+<div class="form-group">
+<label for="orderformorderform-service" class="control-label">{{ lang["neworder.category"] }}</label>
+<select class="form-control" id="neworder_category" name="categories" data-select="true" data-select-search="true" data-select-search-placeholder="Search" data-select-container="#select-category-container" tabindex="-1" aria-hidden="true">
+{{ category_html_simplify }}
+
+</select>
+<div id="select-category-container" class="position-relative"></div>
+</div>
+</div>
+
+
+<div class="form-group">
+<label for="orderform-service" class="control-label">{{ lang["neworder.service"] }}</label>
+<select class="form-control" id="neworder_services" name="services" data-select="true" data-select-search="true" data-select-search-placeholder="Search" data-select-container="#select-service-container" tabindex="-1" aria-hidden="true">
+<option value="1">No services found in this category</option>
+</select>
+<div id="select-service-container" class="position-relative"></div>
+</div>
+<div id="neworder_fields"></div>
+
+
+<div class="form-group" id="charge_div">
+<label for="charge" class="control-label">{{ lang["neworder.charge"] }}</label>
+<input type="text" class="form-control" id="charge" readonly>
+</div>
+<button type="submit" class="btn btn-block btn-primary">{{ lang["neworder.button"] }}</button>
+</form>
+           </div>
+        </div>
+							  </div>
+						   </div>
+						</div>
+					 </div>
+				</div>
+				<div class="col-lg-5">
+					 <div class="page overflow-hidden">
+						<div class="page-body pb-4 pb-xl-6 mt-4">
+                          	<div class="row right-buttons mb-3">
+                            	<div class="col-lg-auto col-6">
+                                  	<button onclick="modalOpen(`newsPopup`)"class="btn btn-dark">
+                                      <i class="fa fa-bullhorn pr-2"></i> <span>Site news</span>
+                                    </button>
+                                </div>
+                                <div class="col-lg-auto col-6">
+                                  	<button onclick="modalOpen(`readBefore`)" class="btn btn-dark">
+                                        <i class="fab fa-readme pr-2"></i> <span>Read before order</span>
+                                    </button>
+                                </div>
+                            </div>
+						   <div class="card mb-2">
+							  <div class="card-head d-flex align-items-center p-4">
+									<h4 class="px-3"><div id="s_name"></div></h4>
+							  </div>
+							  <div class="card-body">
+								<div class="row row-cols-md-2">
+
+									<div class="col-6 mb-4">
+									  <div class="form-label">Quality</div>
+									  <div class="desc-list">
+										<div class="icon">
+										  <i class="ri-star-line"></i>
+										</div>
+										<div class="text"><span data-id="serviceQuality">Premium Services</span></div>
+									  </div>
+									</div>
+									<div class="col-6 mb-4">
+									  <div class="form-label">Speed</div>
+									  <div class="desc-list">
+										<div class="icon">
+										  <i class="ri-shield-flash-line"></i>
+										</div>
+										<div class="text"><span data-id="serviceSpeed">Fast</span></div>
+									  </div>
+									</div>
+									<div class="col-6 mb-4">
+									  <div class="form-label">Guarantee</div>
+									  <div class="desc-list">
+										<div class="icon">
+										  <i class="ri-check-line"></i>
+										</div>
+										<div class="text"><span data-id="serviceRefill">100% Guarantee</span></div>
+									  </div>
+									</div>
+									<div class="col-6 mb-4">
+									  <div class="form-label">Link</div>
+									  <div class="desc-list">
+										<div class="icon">
+										  <i class="ri-links-fill"></i>
+										</div>
+										<div class="text"><span data-id="serviceLink">Account Link</span></div>
+									  </div>
+									</div>	
+
+									<div class="col-6 mb-4">
+									  <div class="form-label">Cancel Button</div>
+									  <div class="desc-list">
+										<div class="icon">
+										  <i class="ri-indeterminate-circle-line"></i>
+										</div>
+										<div class="text"><span id="cancel_text">Yes</span></div>
+									  </div>
+									</div>
+                                  
+									<div class="col-6 mb-4">
+									  <div class="form-label">Refill Button</div>
+									  <div class="desc-list">
+										<div class="icon">
+										  <i class="ri-recycle-line"></i>
+										</div>
+										<div class="text"><span id="refill_text">No</span></div>
+									  </div>
+									</div>
+								  </div>
+									<div class="desc-list description" id="srv-desc" data-id="serviceDesc"  style="height: auto; padding: 10px; font-size: 13px;line-height: 24px">        
+                                      <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const descBox = document.getElementById("srv-desc");
+    descBox.innerHTML = `
+        <p>
+            Our premium services provide top quality with fast delivery and a 100% guarantee.
+            Designed for reliability, they help you grow your brand safely and effectively.
+        </p>
+    `;
+});
+</script>
+								  </div>
+							  </div>
+						   </div>
+						</div>
+					 </div>
+				</div>
+			 </div>
+         </div>
+      </main>
+
+<div class="modal-wrapper modal-rank" id="modalBronze">
+	<div class="mbo-wrapper">
+		<div class="modal-box">
+			<div class="m-header">
+				<div class="service-modal-id" style="background: #ad8a56">
+					<span id="serviceModalID">Bronze</span>
+				</div>						
+				<button class="m-close"><i class="ri-close-line"></i></button>
+			</div>
+			<div class="m-body">
+				<div id="serviceModalText">
+					<ul class="rank-features">
+						<li class="rf-item alert alert-success">24/7 Support System</li>
+						<li class="rf-item alert alert-danger">Free Child Panel </li>
+						<li class="rf-item alert alert-danger">3% discount</li>
+						<li class="rf-item alert alert-danger">VIP call support</li>
+						<li class="rf-item alert alert-danger">Priority processing of orders
+</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal-wrapper modal-rank" id="modalSilver">
+	<div class="mbo-wrapper">
+		<div class="modal-box">
+			<div class="m-header">
+				<div class="service-modal-id" style="background: #ad8a56">
+					<span id="serviceModalID">Silver</span>
+				</div>						
+				<button class="m-close"><i class="ri-close-line"></i></button>
+			</div>
+			<div class="m-body">
+				<div id="serviceModalText">
+					<ul class="rank-features">
+						<li class="rf-item alert alert-success">24/7 Support System</li>
+						<li class="rf-item alert alert-danger">Request a New Service</li>
+						<li class="rf-item alert alert-danger">Discount on Services</li>
+						<li class="rf-item alert alert-danger">VIP call support</li>
+						<li class="rf-item alert alert-danger">API Discounts</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal-wrapper modal-rank" id="modalGold">
+	<div class="mbo-wrapper">
+		<div class="modal-box">
+			<div class="m-header">
+				<div class="service-modal-id" style="background: #c9b037">
+					<span id="serviceModalID">Gold</span>
+				</div>						
+				<button class="m-close"><i class="ri-close-line"></i></button>
+			</div>
+			<div class="m-body">
+				<div id="serviceModalText">
+					<ul class="rank-features">
+						<li class="rf-item alert alert-success">24/7 Support System</li>
+						<li class="rf-item alert alert-danger">Request a New Service</li>
+						<li class="rf-item alert alert-danger">Discount on Services</li>
+						<li class="rf-item alert alert-danger">VIP call support</li>
+						<li class="rf-item alert alert-danger">API Discounts</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal-wrapper modal-rank" id="modalDia">
+	<div class="mbo-wrapper">
+		<div class="modal-box">
+			<div class="m-header">
+				<div class="service-modal-id" style="background: #b9f2ff">
+					<span id="serviceModalID">Diamond</span>
+				</div>						
+				<button class="m-close"><i class="ri-close-line"></i></button>
+			</div>
+			<div class="m-body">
+				<div id="serviceModalText">
+					<ul class="rank-features">
+						<li class="rf-item alert alert-success">24/7 Support System</li>
+						<li class="rf-item alert alert-danger">Request a New Service</li>
+						<li class="rf-item alert alert-danger">Discount on Services</li>
+						<li class="rf-item alert alert-danger">VIP call support</li>
+						<li class="rf-item alert alert-danger">API Discounts</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal-wrapper modal-rank" id="modalPlat">
+	<div class="mbo-wrapper">
+		<div class="modal-box">
+			<div class="m-header">
+				<div class="service-modal-id" style="background: #b4b4b4">
+					<span id="serviceModalID">Platinium</span>
+				</div>						
+				<button class="m-close"><i class="ri-close-line"></i></button>
+			</div>
+			<div class="m-body">
+				<div id="serviceModalText">
+					<ul class="rank-features">
+						<li class="rf-item alert alert-success">24/7 Support System</li>
+						<li class="rf-item alert alert-danger">Request a New Service</li>
+						<li class="rf-item alert alert-danger">Discount on Services</li>
+						<li class="rf-item alert alert-danger">VIP call support</li>
+						<li class="rf-item alert alert-danger">API Discounts</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+          <div class="modal-wrapper modal-rank" id="vipRank">
+	<div class="mbo-wrapper" style="white-space: unset">
+		<div class="modal-box">
+			<div class="m-header" style="padding: 30px 30px 0">
+				<div class="service-modal-id" style="background: var(--color-6); font-size: 18px">
+                  <span id="serviceModalID"><i class="far fa-gem pb-2" style="font-size: 26px"></i> <br /><span>Child Panel</span></span>
+				</div>						
+				<button class="m-close"><i class="ri-close-line"></i></button>
+			</div>
+			<div class="m-body text-center">
+										<p style="display: none;" id="spent">0</p>
+					<span class="primary-color"><strong style="font-size:26px">$0</strong> / <span style="font-size: 18px">$1000</span></span>
+					<div class="progress" style="margin: 15px 0;">
+					<div id="statusProgress" class="progress-bar" role="progressbar" style="width:0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="1000"></div>
+						<span id="placePercent"></span>
+					</div>    
+              
+             		<p>Get Free Child panel by becoming a VIP!<br />Get Child panel For <strong>$4.99$</strong> Per Month.</p>
+				 
+				<a href="/child-panel" class="btn btn-primary mt-4">Get Child panel</a>
+              			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal-wrapper modal-rank" id="readBefore">
+	<div class="mbo-wrapper" style="white-space: unset">
+		<div class="modal-box">
+			<div class="m-header" style="padding: 30px 30px 0">
+				<div class="service-modal-id" style="background: var(--color-6); font-size: 18px">
+                  <span id="serviceModalID"><i class="fab fa-readme pr-2"></i> <span>Read Before Order</span></span>
+				</div>						
+				<button class="m-close"><i class="ri-close-line"></i></button>
+			</div>
+			<div class="m-body text-center">
+				<p class="green-txt">Please read the following carefully before placing an order (the user is responsible for not reading it)</p>
+                <p>📍 Very important: Please avoid mixing cheap and expensive premium services
+If you submit for a link from a cheap premium service and then submit from another quality service and then request a refill, it is possible that nothing will be sent.</p>
+              <p>📍 If the order link changes or is not available, it will not be possible to track any order and we will not support orders. To check everything, the first thing to check is the order link.</p>
+              <p>📍 Do Not Place Multiple Orders For The
+		Same Link At The Same Time, Wait Until The First Order Will Be Completed / Canceled Or Partial</p>
+				<p>📍 The system is working according to the start count and marks your orders as completed after you will receive enough quantity. So, Don't ask us to cancel or anything else with the reason:" views/Likes/subs... come from my real users, my fans, another sellers etc. Please keep attention!</p>
+				<p>📍 If you change the link while you work, your order will be changed to a completed state, in which case we will not refund the cost.</p>
+              <p>📍 Do not use join request links for member orders, we will not have any support, cancellation or refund for these links (due to the possibility of abuse by users).</p>
+				<p>📍 No refill / refund if order start count goes down ever</p>
+				<p>📍 When the service is busy, the starting speed of the process changes.</p>
+				<p>📍 If the service title has emoji ⛔️, it means that the cancel button is active, and emoji ♻️ means that the refill button is active.</p>
+			</div>
+		</div>
+	</div>
+</div> 
+
+<div class="modal-wrapper modal-rank" id="newsPopup">
+	<div class="mbo-wrapper" style="white-space: unset">
+		<div class="modal-box">
+			<div class="m-header" style="padding: 30px 30px 0">
+				<div class="service-modal-id" style="background: var(--color-6); font-size: 18px">
+                  <span id="serviceModalID"><i class="fa fa-bullhorn pr-2"></i> <span>Site news</span></span>
+				</div>						
+				<button class="m-close"><i class="ri-close-line"></i></button>
+			</div>
+			<div class="m-body text-center">
+				<a href="https://t.me/smmvei123" target="_blank" class="btn btn-primary mb-3">
+                  <i class="fab fa-telegram-plane pr-2"></i>Our Telegram Channel
+                </a>
+<a href="https://t.me/smmvei123" target="_blank" class="btn btn-success mb-3">
+                  <i class="fab fa-searchengin-plane pr-2"></i>Our Telegram Serach Update Channel
+                </a>
+              <a href="https://t.me/smmvei123" target="_blank" class="btn btn-primary mb-3">
+                  <i class="fab fa-slideshare-plane pr-2"></i>Our Manual Service Channel
+               
+                </a>              
+			</div>
+		</div>
+	</div>
+</div>
+
+{% include 'footer.twig' %}
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Function to open modal
+    window.modalOpen = function(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden"; // prevent background scroll
+        }
+    }
+
+    // Close modal buttons
+    const closeButtons = document.querySelectorAll(".modal-wrapper .m-close");
+    closeButtons.forEach(btn => {
+        btn.addEventListener("click", function() {
+            const modal = this.closest(".modal-wrapper");
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; // restore scroll
+        });
+    });
+
+    // Close modal when clicking outside the modal box
+    const modals = document.querySelectorAll(".modal-wrapper");
+    modals.forEach(modal => {
+        modal.addEventListener("click", function(e) {
+            if(e.target === this){
+                modal.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        });
+    });
+});
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const newOrderCats = document.getElementById('new-order-cats');
+
+    if (newOrderCats) {
+      const orderFormCats = document.getElementById('neworder_category');
+      const originalOptions = Array.from(orderFormCats.options); // Backup original options
+
+      const categoryButtons = document.querySelectorAll('.nwo-cat-btn');
+      
+      categoryButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const selectedCategory = btn.getAttribute('data-change-cat'); // Get clicked category value
+          
+          // Reset active class for all buttons
+          categoryButtons.forEach(button => button.classList.remove('active'));
+          btn.classList.add('active'); // Highlight active button
+
+          if (selectedCategory === "") {
+            // Reset dropdown to show all options
+            orderFormCats.innerHTML = originalOptions.map(opt => opt.outerHTML).join('');
+          } else {
+            // Filter options based on category
+            const filteredOptions = originalOptions.filter(option =>
+              option.textContent.toLowerCase().includes(selectedCategory.toLowerCase())
+            );
+
+            // Update dropdown
+            if (filteredOptions.length > 0) {
+              orderFormCats.innerHTML = filteredOptions.map(opt => opt.outerHTML).join('');
+            } else {
+              orderFormCats.innerHTML = '<option value="">No options available</option>';
+            }
+          }
+
+          // Trigger change event for additional logic
+          const event = new Event('change');
+          orderFormCats.dispatchEvent(event);
+        });
+      });
+    }
+  });
+</script>

@@ -1,0 +1,181 @@
+{% include 'header.twig' %}
+
+<style>
+/* === Confirm Email Page === */
+.confirm-email-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 75vh;
+  background: #f9fafc;
+}
+
+.confirm-email-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  padding: 40px 50px;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+}
+
+.confirm-email__header h3 {
+  font-weight: 700;
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.confirm-email__description {
+  color: #666;
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+
+.confirm-email__actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.confirm-email__actions .btn {
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 10px 18px;
+  font-size: 14px;
+}
+
+.btn-resend {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: #fff !important;
+  border: none;
+}
+
+.btn-change {
+  background: linear-gradient(135deg, #ffb300, #4caf50);
+  color: #fff !important;
+  border: none;
+}
+
+.btn-resend:hover, .btn-change:hover {
+  opacity: 0.9;
+}
+
+.alert {
+  max-width: 600px;
+  margin: 10px auto;
+}
+
+/* Modal Styling */
+.modal-content {
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+.modal-header {
+  background: #21c5fb;
+  color: #fff;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+.modal-title {
+  font-weight: 600;
+}
+.modal-footer .btn {
+  border-radius: 8px;
+  padding: 8px 16px;
+}
+</style>
+
+{% if error %}
+<div class="alert alert-danger alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{ errorText }}
+</div>
+{% elseif success %}
+<div class="alert alert-success alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{ successText }}
+</div>
+{% endif %}
+
+<div class="confirm-email-wrapper">
+  <div class="confirm-email-card">
+
+    <div class="confirm-email__header">
+      <h3>Confirm Email</h3>
+    </div>
+
+    <div class="confirm-email__description">
+      Please check your inbox and click the link to confirm your email address.
+    </div>
+
+    <div class="confirm-email__actions">
+      {% if settings["resend_max"] == user["resend_max"] %}
+        <div style="color:#e74c3c;">
+          You’ve reached your limit of {{ user["resend_max"] }} confirmation emails.
+        </div>
+      {% else %}
+        <a href="confirm_email/resend" class="btn btn-resend">Resend Email</a>
+      {% endif %}
+
+      {% if user["change_email"] == 2 %}
+        <button class="btn btn-change" id="changeEmailLink" data-toggle="modal" data-target="#changeEmailModal">
+          Change Email
+        </button>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+
+<!-- Change Email Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="changeEmailModal" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="post" action="confirm_email/">
+        <div class="modal-header">
+          <h4 class="modal-title">Change Email</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          {% if error %}
+          <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ errorText }}
+          </div>
+          {% elseif success %}
+          <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ successText }}
+          </div>
+          {% endif %}
+
+          <div class="form-group">
+            <label>Current Email</label>
+            <input class="form-control" value="{{ user['email'] }}" disabled>
+          </div>
+
+          <div class="form-group">
+            <label>New Email</label>
+            <input type="email" class="form-control" name="newemail" value="{{ data['newemail'] }}">
+          </div>
+
+          <div class="form-group">
+            <label>Current Password</label>
+            <input type="password" class="form-control" name="password" value="{{ data['password'] }}">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Change Email</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% include 'footer.twig' %}

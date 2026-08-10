@@ -1,0 +1,220 @@
+{% include 'header.twig' %}
+
+<link href="https://cdn.tsm-storage.site/theme/TSM%20[%20SMMSUN%202%20]/css/4g3dwcb2uecqmocp_ekquzu.css" rel="stylesheet">
+
+<!-- ADDED: Font Awesome CSS for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<style>
+.table-view {display: none; }
+.responsive-table {overflow-x: auto; }
+.responsive-table table {min-width: 600px; width: 100%;}
+.mt-6 {
+    margin-top: 1.5rem;
+}
+.flex {
+    display: flex;
+    overflow-x: auto;
+}
+.space-x-1 > :not([hidden]) ~ :not([hidden]) {
+    margin-left: 0.25rem;
+}
+</style>
+
+<div class="wrapper-content">
+    <div class="wrapper-content__header"></div>
+    <div class="wrapper-content__body">
+        <div class="min-h-screen bg-gray-100 p-3">
+            <div class="mb-1 mt-2">
+                <div class="flex items-center text-2xl font-bold text-gray-800">
+                    <i class="fas fa-server mr-2 style-text-primary"></i>
+                    <span class="style-text-primary" style="color:black">Order/Service Analytics</span>
+                </div>
+                <p class="mt-1 text-sm font-bold text-gray-600 uppercase" style="color: black">
+                    Explore all recent order completions with real-time average processing times, enabling faster checks and helping you effortlessly discover the best-performing services on {{ site['site_name'] }}.
+                </p>
+            </div>
+            
+            <div class="mb-3 flex justify-end">
+                <form action="/analytics" method="get" id="dateForm" class="mr-2">
+                    <input
+                        type="date"
+                        name="date"
+                        id="datePicker"
+                        value="<?php echo isset($_GET['date']) ? htmlspecialchars($_GET['date']) : date('Y-m-d'); ?>"
+                        class="px-3 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        onchange="document.getElementById('dateForm').submit()">
+                </form>
+                <button id="toggleView" class="px-3.5 py-2 style-bg-primary text-white rounded-md hover:opacity-90 focus:outline-none">
+                    <i class="fas fa-table"></i> 
+                </button>
+            </div>
+            
+            <div class="mb-6">
+                <div class="mx-auto">
+                    <form action="/analytics" method="get" id="history-search">
+                        <div class="flex">
+                            <input class="w-full px-3 py-1.5 border border-gray-300 rounded-l-lg focus:outline-none" type="text" name="search" value="" placeholder="Search For Service or Order IDs">
+                            <button type="submit" class="px-4 py-1.5 style-bg-primary text-white rounded-r-lg hover:opacity-90 focus:outline-none">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- CARD VIEW -->
+            <div id="cardView" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mb-6" style="display: grid;">
+                {% set today = "now"|date("Y-m-d") %} 
+                {% for order in orders %}
+                <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+                    <div class="flex justify-between items-center p-2 pl-4 pr-4 border-b border-gray-200">
+                        <div class="w-12 h-7 flex items-center justify-center style-bg-primary rounded-lg">
+                            <span class="text-black font-bold text-xs">#{{ order['id'] }}</span>
+                        </div>
+                        {% if order['date']|date("Y-m-d") == today %}
+                        <div class="px-3 h-7 flex items-center justify-center bg-green-100 rounded-md">
+                            <span class="text-green-500 font-bold text-xs">Today's order</span>
+                        </div>
+                        {% endif %}
+                        <div style="font-size: 13px !important;" class="px-3 py-1 bg-gray-100 rounded-lg text-sm style-text-primary">
+                            <b><i class="fas fa-calendar mr-1"></i>
+                            <span>{{ order['date'] }}</span></b>
+                        </div>
+                    </div>
+                    
+                    <div class="p-2 pl-4 pr-4">
+                        <div class="text-md font-semibold text-gray-800 mb-2">
+                            <span class="text-lg font-bold style-text-primary">{{ order['service_id'] }}</span> - {{ order['service'] }}
+                            {% if order['status'] == lang['orders.status.completed'] %}
+                            {% endif %}
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-600">
+                            <div class="flex items-center">
+                                <i class="fa fa-star mr-1"></i>
+                                <span>Quantity: <b>{{ order['quantity'] }}</b></span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-clock mr-1"></i>
+                                <span>Completion time: <b>{{ order.duration }}</b></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-2 pl-4 pr-4 border-t border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <div class="text-lg font-bold style-text-primary">
+                                {{ order["charge"] }}
+                            </div> 
+                            <a href="{{ site['url'] }}/?category_id={{order['category_id']}}&service_id={{ order['service_id'] }}" 
+                                class="text-md h-7 font-bold style-bg-primary rounded-lg px-3 flex items-center justify-center hover:opacity-90">
+                                <span class="text-black font-bold">Create Order</span>
+                            </a> 
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- ADDED: TABLE VIEW -->
+            <div id="tableView" class="responsive-table mb-6" style="display: none;">
+                <table class="min-w-full bg-white">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="py-2 px-4 border-b text-left">Order ID</th>
+                            <th class="py-2 px-4 border-b text-left">Service</th>
+                            <th class="py-2 px-4 border-b text-left">Date</th>
+                            <th class="py-2 px-4 border-b text-left">Quantity</th>
+                            <th class="py-2 px-4 border-b text-left">Duration</th>
+                            <th class="py-2 px-4 border-b text-left">Charge</th>
+                            <th class="py-2 px-4 border-b text-left">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <td class="py-2 px-4 border-b">#{{ order['id'] }}</td>
+                            <td class="py-2 px-4 border-b">{{ order['service_id'] }}</span> - {{ order['service'] }}</td>
+                            <td class="py-2 px-4 border-b">{{ order['date'] }}</td>
+                            <td class="py-2 px-4 border-b">{{ order['quantity'] }}</td>
+                            <td class="py-2 px-4 border-b">{{ order.duration }}</td>
+                            <td class="py-2 px-4 border-b">{{ order["charge"] }}</td>
+                            <td class="py-2 px-4 border-b">
+                                <a href="{{ site['url'] }}/?category_id={{order['category_id']}}&service_id={{ order['service_id'] }}" 
+                                    class="text-md font-bold style-bg-primary rounded-lg px-3 py-1 flex items-center justify-center hover:opacity-90">
+                                    <span class="text-black">Order</span>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% if pagination["count"] > 1 %}
+            <div class="mt-6 flex overflow-x-auto">
+                <ul class="pagination">
+                    {% if pagination["current"] != 1 %}
+                        <li>
+                            <a class="btn btn-actions" href="analytics/{{ status }}/{{ pagination["previous"] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Previous">
+                                <span aria-hidden="true">«</span>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% for page in 1..pagination["count"] %}
+                        <li{% if page == pagination['current'] %} class="active"{% endif %}>
+                            <a class="btn btn-actions" href="analytics/{{ status }}/{{ page }}{% if search %}?search={{ search }}{% endif %}">{{ page }}</a>
+                        </li>
+                    {% endfor %}
+
+                    {% if pagination['current'] < pagination['count'] %}
+                        <li>
+                            <a class="btn btn-actions" href="analytics/{{ status }}/{{ pagination['next'] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Next">
+                                <span aria-hidden="true">»</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- MOVED: JavaScript to the bottom and wrapped in DOMContentLoaded -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleViewButton = document.getElementById('toggleView');
+    const cardView = document.getElementById('cardView');
+    const tableView = document.getElementById('tableView');
+    const savedView = localStorage.getItem('viewPreference');
+    
+    if (savedView === 'table') {
+        cardView.style.display = 'none';
+        tableView.style.display = 'block';
+        toggleViewButton.innerHTML = '<i class="fas fa-th-large"></i> ';
+    } else {
+        cardView.style.display = 'grid';
+        tableView.style.display = 'none';
+        toggleViewButton.innerHTML = '<i class="fas fa-table"></i> ';
+    }
+    
+    toggleViewButton.addEventListener('click', () => {
+        if (cardView.style.display === 'none') {
+            cardView.style.display = 'grid';
+            tableView.style.display = 'none';
+            toggleViewButton.innerHTML = '<i class="fas fa-table"></i> ';
+            localStorage.setItem('viewPreference', 'card'); 
+        } else {
+            cardView.style.display = 'none';
+            tableView.style.display = 'block';
+            toggleViewButton.innerHTML = '<i class="fas fa-th-large"></i> ';
+            localStorage.setItem('viewPreference', 'table'); 
+        }
+    });
+});
+</script>
+
+{% include 'footer.twig' %}

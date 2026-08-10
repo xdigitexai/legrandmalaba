@@ -1,0 +1,140 @@
+{% include 'header.twig' %}
+
+
+
+	<div class="paddingbody"></div>
+		<div class="container-fluid container-fluid-spacious">
+			<div class="row">
+				
+				<div class="col-md-8 col-md-offset-0">
+					
+					
+					{% if error %}
+      <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ errorText }}
+      </div>
+    {% endif %}  
+
+     {% if data["childpanel"]["success"] == 1 %}
+      <div class="alert alert-dismissible alert-success">
+<p>You have successfully ordered your Child Panel.</p>
+<strong> Order ID: </strong> {{ data['childpanel']['id'] }} <br>
+<strong> Domain: </strong> {{ data['childpanel']['link'] }} <br>
+<strong> Quantity: </strong> {{ data['childpanel']['quantity'] }} <br>
+<strong> Charged: </strong> {{ data['childpanel']['price'] }} <br>
+<strong> Remaining balance: </strong> {{ data['childpanel']['balance'] }} <br>
+</div>
+{% endif %}
+					<form action="child-panels" method="post" class="component_form_group"  style="[childpanel-form_css]" >
+						
+						<div class="">
+							<div class="form-group">
+								<label for="domain" class="control-label">Domain</label>
+								<input type="text" class="form-control" id="domain" name="CreateOrderForm[domain]" value="">
+							</div>
+							<div class="component_alert_dns">
+								<div class="">
+									<div class="alert alert-info">
+										<div>Kindly set following nameservers</div>
+										<ul style="padding-left: 20px">
+						<li><p><b>{{ site['ns1'] }}</b> <span class="copy" onclick="copyToClipboard('{{ site['ns1'] }}');"><i class="fas fa-copy"></i></span></p></li>    
+                        <li><p><b>{{ site['ns2'] }}</b> <span class="copy" onclick="copyToClipboard('{{ site['ns2'] }}');"><i class="fas fa-copy"></i></span></p></li>
+											<br>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label" for="createorderform-currency">Currency</label>
+								<select id="createorderform-currency" class="form-control" name="CreateOrderForm[currency]" aria-required="true">
+									<option value="USD">United States Dollars (USD)</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label class="control-label" for="createorderform-username">Admin Username</label>
+								  <input type="text" class="form-control" name="admin_username" placeholder="Username" required>
+							</div>
+							<div class="form-group">
+								<label class="control-label" for="createorderform-password">Admin Password</label>
+							<input type="text" id="childpanel_admin_password" name="admin_password" class="form-control"  placeholder="password"required >
+							</div>
+							<div class="form-group">
+								<label class="control-label" for="createorderform-password_confirm">Confirm Password</label>
+							<input type="text" id="childpanel_admin_confirm_password" class="form-control" name="admin_confirm_password" placeholder="confirm password" required>
+							</div>
+							<div class="form-group">
+								<label for="price" class="control-label">Price Per month</label>
+								<input type="text" class="form-control" value="{{site_base_currency_symbol}}{{" "}}{{site["childpanel_price"]}}" readonly>
+							</div>
+						</div>
+						<input type="hidden" name="_csrf" value="">
+						<div class="component_button_submit">
+							<div class="">
+								<button class="btn btn-block btn-primary" type="submit">
+								Submit order
+								</button>
+							</div>
+						</div>
+					</form>
+					
+					
+				</div>
+			</div>
+			
+			<br>
+		
+		
+		
+		
+		
+<div class="col" style="margin-top:-10px">
+
+<div class="orders-history__margin-table">
+<div class="table-bg component_table ">
+<br>
+<div class="table-wr table-responsive custom-table">
+
+            <table class="table ">
+              <thead>
+            <tr>
+              <th>#</th>
+              <th>Domain</th>
+              <th>Panel Currency</th>
+              <th class="nowrap">Purchased On</th>
+              <th class="nowrap">Status</th>
+   <th>Renewal Date</th>
+            </tr>
+          </thead>
+          <tbody>
+
+{% for logs in chilpanel_logs %}
+<tr>
+<td>{{ logs['id'] }}</td>
+<td>{{ logs['domain'] }}</td>
+<td>{{ logs['child_panel_currency'] }}</td>
+<td class="nowrap">{{ logs['created_on'] }}</td>
+<td class="nowrap">
+{{ logs["child_panel_status"] }}
+</td>
+<td>{{logs["renewal_date"] }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+      </div>
+  </div></div></div>
+
+   </div></div></div></div>
+</div>
+ <div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container ludd">
+		{% if contentText2 %}
+<div class="card mb-4">
+{{ contentText2 }}
+</div>
+{% endif %}
+</div>
+
+{% include 'footer.twig' %}

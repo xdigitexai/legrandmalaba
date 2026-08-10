@@ -1,0 +1,234 @@
+{% include 'header.twig' %}
+
+<style>
+#servicesList {
+    --primary-color: #fb981e;
+    --secondary-color: #4EDF79;
+    --text-color: #2d3748;
+    --background-gradient: linear-gradient(267deg, var(--secondary-color) 3.42%, var(--primary-color) 91.65%);
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.services-list-item {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1.25rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--card-shadow);
+    border: 1px solid #e2e8f0;
+    position: relative;
+    overflow: hidden;
+}
+
+.services-list-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.services-list-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: var(--background-gradient);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.services-list-item:hover::before {
+    opacity: 1;
+}
+
+.services-list-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.services-item-top {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 1.125rem;
+}
+
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: 0.5rem;
+}
+
+.status-completed { background-color: #48bb78; }
+.status-inprogress { background-color: #ecc94b; }
+.status-pending { background-color: #ecc94b; }
+.status-partial { background-color: #f56565; }
+.status-processing { background-color: #4299e1; }
+.status-canceled { background-color: #a0aec0; }
+
+.services-item-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.services-item-feature {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    background-color: #f7fafc;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-color);
+    border: 1px solid #e2e8f0;
+    transition: background-color 0.2s ease;
+}
+
+.services-item-feature i {
+    color: var(--primary-color);
+    width: 16px;
+    text-align: center;
+}
+
+.services-list-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.75rem;
+    min-width: 160px;
+}
+
+.services-item-price {
+    background: var(--background-gradient);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+}
+
+.services-item-date {
+    font-size: 0.875rem;
+    color: #718096;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+}
+
+@media (max-width: 768px) {
+    .services-list-item {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .services-list-right {
+        align-items: stretch;
+        min-width: auto;
+    }
+    
+    .services-item-price {
+        width: 100%;
+    }
+    
+    .services-item-feature {
+        font-size: 0.8125rem;
+    }
+}
+.page-title {
+	display: flex;
+	gap: 10px;
+	font-size: 18px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	align-items: center
+	margin-right:20px;
+}
+</style>
+<div class="content">
+    <!-- page and other top info -->
+    <div id="page_info"></div>
+    <!-- // page and other top info -->
+  <h1 style="font-size: 30px; align-text: center; margin:4px"> <b>Order/Service Analytics</b></h1>
+  <hr>
+    <section id="defOrder">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card_v2">
+                        <div class="card-body">
+                            <form action="/orders1" method="get" id="history-search">
+                                <div class="input-group">
+                                    <input type="text" name="search" value="{{ search }}" class="form-control" placeholder="Search">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                 
+    </section>
+
+
+   <section id="servicesList" class="services-list">
+    {% for order in orders %}
+    <div class="services-list-item select-service">
+        <div class="services-list-left">
+            <div class="services-item-top">
+                {{ order['service_id'] }} - {{ order['service'] }} 
+                {% if order['status'] == lang['orders.status.completed'] %}
+                    ⭕ Completed
+                {% elseif order['status'] == lang['orders.status.inprogress'] %}
+                    ⏳ In Progress
+                {% elseif order['status'] == lang['orders.status.pending'] %}
+                    ⏳ Pending
+                {% elseif order['status'] == lang['orders.status.partial'] %}
+                    ⚠️ Partial
+                {% elseif order['status'] == lang['orders.status.processing'] %}
+                    🔄 Processing
+                {% elseif order['status'] == lang['orders.status.canceled'] %}
+                    ❌ Canceled
+                {% endif %}
+            </div>
+            <div class="services-item-bottom">
+                <span class="services-item-feature"><i class="fa fa-circle-info"></i>ID: <b>{{ order['id'] }}</b></span>
+                <span class="services-item-feature"><i class="fa fa-star"></i>Quantity: <b>{{ order['quantity'] }}</b></span>
+                <span class="services-item-feature avg"><i class="fa fa-clock"></i>Completion Time: <b>{{ order.duration }}</b></span>
+                
+                
+            </div>
+        </div>
+        <div class="services-list-right">
+            <div class="services-item-price">
+                <b>{{ order["charge"] }}</b>
+            </div>
+            <div class="services-item-btn">
+                <span class="services-item-feature"><i class="fa fa-calendar-days"></i><b>{{ order['date'] }}</b></span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+</div>
+{% include 'footer.twig' %}

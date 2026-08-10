@@ -1,0 +1,288 @@
+{% include 'header.twig' %}
+
+
+        
+        
+        
+        
+        
+        
+        {% if PageText %} 
+      <div id="block_107">
+    <div class="text-block-with-card ">
+        <div class="bg"></div>
+        <div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="component_card_1">
+                        <div class="card">
+                            <div class="text-block__description">
+        {{ contentText }}
+      </div>
+    </div>
+</div>
+    </div>
+  </div></div></div></div>
+{% endif %} 
+      <!-- Main variables *content* -->
+
+<main id="content">
+    <div class="container-fluid">
+        <div class="content">
+            <!-- page and other top info -->
+            <div id="page_info"></div>
+            <!-- // page and other top info -->
+            <!-- New Orders Part -->
+            <div class="def_wraper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card card_v2 mb-3">
+                                <div class="card-body">
+                                    <h6 class="text-center text-bold">
+                                        How to Deposit Through method payment
+                                    </h6>
+                                    <div class="text-center">
+                                        <a href="{{ site["site_video"] }}" target="_blank" class="btn btn-primary" style="padding: 10px 30px; font-size:16px;">WATCH VIDEO</a>
+                                    </div>
+                                </div>
+                            </div>
+     
+        {% if error %}
+          <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            {{ errorText }}
+          </div>
+        {% endif %}
+        {% if success %}
+          <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            {{ successText }}
+          </div>
+		  
+        {% endif %}
+                                  <div class="card card_v2">
+                                <div class="card-body">
+                                    <div id="newOrderTabsWrap">
+                                        <ul class="nav nav-pills tab_btn_wrap mb-3" id="pills-tab" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link active" id="pills-order-tab" data-bs-toggle="pill"
+                                                    data-bs-target="#pills-order" type="button" role="tab"
+                                                    aria-controls="pills-order" aria-selected="true"><i
+                                                        class="far fa-credit-card"></i> Add Fund</button>
+                                                  
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-content tab_wrap" id="pills-tabContent">
+                                        <div class="tab-pane fade show active" id="pills-order" role="tabpanel"
+                                            aria-labelledby="pills-order-tab">
+                                               <form method="post" id="addfundsForm" action="/addfunds">			
+                                      <div class="form-group">
+												<label for="method" class="control-label">{{ lang['addfunds.method'] }}</label>
+												<select class="form-control" id="payment_method" name="payment_type">
+													{% for method in site["paymentMethods"] %}
+														<option value="{{ method['id'] }}">{{ method['name'] }}</option>
+													{% endfor %}
+												</select>
+											</div>
+											<div id="addfunds_fields"></div>
+											
+										</form>
+										<div id="formSubmitResponseMessage"></div>
+										<div id="formSubmitResponseContent"></div>
+                   
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                                                      
+            
+                        <div class="col-md-6">
+                            <div class="card card_v2">
+                                <div class="card-header v2_header">
+                                    <div class="component_content_card component_content_button component_content_headers">
+                                        <div class="table-wr table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th><font size="3" color="red"><b>ID</b></font></th>
+                                                        <th><font size="3" color="red"><b>Date</b></font></th>
+                                                        <th><font size="3" color="red"><b>Method</b></font></th>
+                                                        <th><font size="3" color="red"><b>Amount</b></font></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+            {% for payment in payments %}
+              <tr>
+                <td>{{ payment['id'] }} </td>
+                <td>{{ payment['date'] }}</td>
+                
+                <td class="width-40">{{ payment['name'] }}</td>
+                
+<td> {{ payment['amount'] }}  </td>  
+                
+              </tr>
+            {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				<div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container ludd">
+ {% if contentText2 %}
+ <div class="card mt-4 mb-4 ">	
+{{ contentText2 }}
+</div>
+{% endif %}
+</div>
+</div>
+							</div>
+						</div>
+					
+
+			{% include 'footer.twig' %}
+			
+			
+			
+			 <script>
+        function searchID() {
+    var service = $('#input_service').val();
+    let errorSender = document.getElementById('error_search');
+    let errorMsg = `<div class="alert alert-dismissible alert-danger">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        Oops.. Wrong Services Id. Check services id and try again.
+                    </div>`;
+    try {
+        console.log('Searching for service ID:', service);
+        console.log('Available services:', window.modules.siteOrder);
+        var selectSerCatID = window.modules.siteOrder.services[service].cid;
+        console.log('Found category ID:', selectSerCatID);
+        if (selectSerCatID) {
+            errorSender.innerHTML = '';
+            $(function () {
+                var orderCat = document.getElementById('orderform-category');
+                var orderSer = document.getElementById('orderform-service');
+                orderCat.querySelector('[selected]').removeAttribute('selected');
+                orderCat.querySelector('[value="' + selectSerCatID + '"]').setAttribute('selected', 'selected');
+                orderCat.value = selectSerCatID;
+                var event = document.createEvent('HTMLEvents');
+                event.initEvent('change', true, false);
+                orderCat.dispatchEvent(event);
+                setTimeout(() => {
+                    let controlSel = orderSer.querySelector('[selected]');
+                    if (controlSel) {
+                        controlSel.removeAttribute('selected');
+                    }
+                    orderSer.querySelector('[value="' + service + '"]').setAttribute('selected', 'selected');
+                    orderSer.value = service;
+                    orderSer.dispatchEvent(event);
+                }, 1000);
+                $('#pills-tab li:first-child button').tab('show');
+            });
+        }
+    } catch (err) {
+        console.error('Error:', err);
+        errorSender.innerHTML = errorMsg;
+    }
+}
+
+    </script>
+			
+			
+			
+			
+
+			<script>
+				var paymentMethods = {{ site["paymentMethodsJSON"] }};
+			</script>
+			<script>
+				const addfundsRoute = "/addfunds";
+function addfundsInit() {
+var addfundsForm = $("#addfundsForm");
+var fields = $("#addfunds_fields");
+var selectedMethod = $("#payment_method").val();
+var instructions = paymentMethods[selectedMethod][0].instructions;
+$.ajax({
+url: addfundsRoute,
+data: "action=getForm&selectedMethod=" + selectedMethod,
+type: "POST",
+success: function (json) {
+if (json.success == true) {
+if (instructions.length > 0) {
+var methodInstruction = '<div class="form-group"><label class="control-label">Instructions</label><div class="panel-body border-solid border-rounded">' + instructions + '</div></div>';
+} else {
+var methodInstruction = "";
+} fields.html(methodInstruction + json.content);
+extraFeeInit(selectedMethod);
+}
+}
+});
+}
+
+function extraFeeInit(method) {
+var fee = parseFloat(paymentMethods[method][0].fee).toFixed(2);
+var fields = $("#fee_fields");
+if (fee > 0) {
+fields.html('<div class="form-group"><label class="control-label">Extra fee</label><input type="text" class="form-control" id="methodExtraFee" disabled value="0.00"/></div><div class="form-group"><label class="control-label">Total Amount</label><input type="text" id="totalAmount" class="form-control" disabled value="0.00" /></div>');
+}
+}
+function preparePrice(t) {
+n = 2;
+var r = (t = $.trim(t.toString().replace(",", "."))).split(".");
+return void 0 !== r[1] && (r[1] = r[1].replace(/0+$/g, ""), r[1].length > n && (n = 2 < r[1].length ? 2 : r[1].length)),
+1e3 <= (t =( t = parseFloat(t)).toFixed(n)) && (t = t.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, "$1" + "")),
+t = t.toString().replace(/\.(\d+)$/g, "." + "$1");
+return t.toFixed(n)
+}
+$(document).ready(function () {
+$(document).on("keyup", "#paymentAmount", function () {
+var selectedMethod = $("#payment_method").val();
+var amount = parseFloat($(this).val());
+var feePercentage = parseFloat(paymentMethods[selectedMethod][0].fee);
+var feeInput = $("#methodExtraFee");
+var totalAmountInput = $("#totalAmount");
+var fee = amount * (feePercentage / 100);
+feeInput.val(preparePrice(fee));
+totalAmountInput.val(preparePrice(amount + fee));
+});
+addfundsInit();
+});
+$("#payment_method").change(function () {
+addfundsInit();
+});
+
+$("#addfundsForm").submit(function (e) {
+e.preventDefault();
+var data = $(this).serialize();
+
+$.ajax({
+url: addfundsRoute,
+data: data,
+type: "POST",
+success: function (json) {
+if (json.success == true) {
+var msgDiv = $("#formSubmitResponseMessage");
+msgDiv.html('<div class="alert alert-success alert-dismissible fade show mt-2" role="alert">' + json.message + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
+var contentDiv = $("#formSubmitResponseContent");
+contentDiv.html(json.content);
+} else {
+var msgDiv = $("#formSubmitResponseMessage");
+msgDiv.html('<div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">' + json.message + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
+}
+}
+
+});
+});
+			</script>

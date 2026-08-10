@@ -1,0 +1,241 @@
+{% include 'header.twig' %}
+      
+      
+      
+       <!-- Account Page Content  -->
+<div id="accountpage">
+    <div class="container-fluid">
+                <div class="row">
+                    
+                     {% if error %}
+        <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ errorText }}
+        </div>
+      {% endif %}
+      {% if success %}
+        <div class="alert alert-dismissible alert-success">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ successText }}
+        </div>
+      {% endif %}
+      
+            <div class="col-md-6">
+                <div class="card card_v2 mb-3">
+                    <div class="card-body">
+                            <div id="def_side_title">
+                                <div class="icon">
+                                    <i class="fal fa-user-circle"></i>
+                                </div>
+                                <div class="name">
+                                User Profile Image
+                                </div>
+                            </div>
+                            <div class="img text-center">
+                                <img src="https://res.cloudinary.com/dmentewxe/image/upload/v1707732955/Rental-Panel/smmpanelbdlab/growfollows-v2/img/11_avatar-512_uswxm5.png" id="proFile" class="mb-2" width="150" height='150' alt="">
+                                <p class="text-danger" style="font-size:10px">Recommended Size : 150px X 150px and under 500kb</p>
+                            </div>
+                       <!--  <div class="mb-3">
+                             <label for="file">Upload Image</label>
+                             <input type="file" class="form-control" id="file">
+                         </div>
+                         <p class="text-danger" id="errormsg"></p>
+                         <button class="btn btn-primary w-100" id="uploadButton" onclick="uploadProfileImage()">Save Changes</button> -->
+                    </div>
+                </div>
+
+                <div class="card card_v2 mb-3">
+                    <div class="card-body">
+                            <div id="def_side_title">
+                                <div class="icon">
+                                    <i class="fal fa-user-circle"></i>
+                                </div>
+                                <div class="name">
+                                User Infos
+                                </div>
+                            </div>
+                         <div class="mb-3">
+                             <label for="">Nom d'utilisateur</label>
+                             <input type="text" class="form-control" id="username" value="{{ user['username'] }}" readonly>
+                         </div>
+                         <div class="mb-3">
+                            <label for="">E-mail Address</label>
+                            <input type="text" class="form-control" id="username" value="{{ user['email'] }}" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card_v2 mb-3">
+                    <div class="card-body">
+
+                            <div id="def_side_title">
+                                <div class="icon">
+                                    <i class="far fa-lock"></i>
+                                </div>
+                                <div class="name">
+                                Account Password Manager
+                                </div>
+                            </div>
+                           
+                           	<form method="post" action="account">                 
+                                <div class="mb-3">
+                                    <label for="current">Current password</label>
+                                    <input type="password" class="form-control" id="current" name="current_password">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="new">New password</label>
+                                    <input type="password" class="form-control" id="new" name="password">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="confirm">Confirm new password</label>
+                                    <input type="password" class="form-control" id="confirm" name="confirm_password">
+                                </div>
+                               
+                               
+                                <button type="submit" class="btn btn-primary d-block w-100">Change password</button>
+                            </form>
+                            
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="card card_v2 mb-3">
+                    <div class="card-body">
+                            <div id="def_side_title">
+                                <div class="icon">
+                                    <i class="fad fa-key"></i>
+                                </div>
+                                <div class="name">
+                                 Clé API Generator
+                                </div>
+                            </div>
+                           
+                                	<form  action="/account/newapikey" method="post">
+                                <div class="form-group">
+                                  <label for="key" class="control-label">API key</label>
+                                                                      <input type="text" class="form-control" id="api_key" value="********************************" readonly>
+                                                                  </div>
+                      
+                              
+                              
+                                <button type="submit" class="btn btn-primary d-block w-100">Generate new</button>
+                              </form>
+                        <br>
+                        <div class="alert alert-danger">
+                            When you click on "Generate new" it will Generate new key. This key is very sensitive informations of your account please avoid share this key. Thank you.
+                        </div>
+                    </div>
+                  </div>
+                
+                <div class="card card_v2 mb-3">
+                    <div class="card-body">
+                            <div id="def_side_title">
+                                <div class="icon">
+                                    <i class="far fa-clock"></i>
+                                </div>
+                                <div class="name">
+                                    Language
+                                </div>
+                            </div>
+                           <form method="post" action="account/change_lang">
+                                <div class="form-group">
+                                  <label for="timezone" class="control-label">{{ lang['account.changelang.title'] }}</label>
+                                 <select class="form-control" name="lang">
+												  {% for language in site['languages'] %}
+												  <option {% if language["code"] == user["lang"] %} selected {% endif %} value="{{ language["code"] }}">{{ language["name"] }}</option>
+												  {% endfor %}
+											  </select>
+                                </div>
+                      
+                               
+                               
+                                <button type="submit" class="btn btn-primary d-block w-100">Save</button>
+                              </form>
+                    </div>
+                  </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //Account Page Content  -->
+
+
+<!-- <script>
+    function uploadProfileImage(){
+        
+        let file = document.getElementById("file").files[0];
+        let saveBtn = document.getElementById('uploadButton');
+        let errormsg = document.getElementById('errormsg');
+        saveBtn.innerText = 'Uploading....';
+        saveBtn.setAttribute('disabled', 'true');
+
+        if(file.size > 500000){
+            saveBtn.innerText = "Save Changes"
+            errormsg.innerText = 'Maximum file upload size is 500kb';
+            saveBtn.removeAttribute('disabled');
+            return;
+         }
+
+        const formData = new FormData();
+        
+let profileApiUri = 'https://growfollows.xyz/perfectapp/api/upload/profile';
+        let user = "unlock";
+        let userid = "4829";
+    
+        formData.append('username', user);
+        formData.append('user_id', userid);
+        formData.append('file', document.getElementById("file").files[0]);
+        
+       
+
+        fetch('https://growfollows.xyz/perfectapp/api/upload/profile', {
+        method: 'POST',
+        body: formData,
+        })
+        .then((res) => res.json())
+        .then(data => {
+            if(data.success){
+                file.value = '';
+                document.getElementById('proFile').setAttribute('src', data.img_link); 
+                saveBtn.removeAttribute('disabled');
+                window.location.reload();
+            }
+        })
+        .catch((err) => console.log(err));
+    }
+
+
+    setTimeout(function(){
+        let pro_user = "unlock";
+        let proUser_id = "4829";
+      fetch('https://growfollows.xyz/perfectapp/api/profile/image', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }, 
+        body: JSON.stringify({
+          'username' : pro_user,
+          'user_id' : proUser_id
+        }),
+    }).then((res) => res.json())
+  .then((data) => {
+    if(data.success){
+        document.getElementById('proFile').setAttribute('src', data.img_url);
+        
+    }else{
+        let defImg = 'https://ui-avatars.com/api/?name=User&background=6366f1&color=fff&size=128';
+        document.getElementById('proFile').setAttribute('src', defImg); 
+    }
+  })
+  .catch((err) => console.log(err));
+    }, 10)
+</script> -->
+                </div>
+            </div>
+        </main>
+{% include 'footer.twig' %}

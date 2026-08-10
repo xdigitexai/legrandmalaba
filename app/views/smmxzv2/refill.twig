@@ -1,0 +1,146 @@
+{% include 'header.twig' %}
+<div class="content">
+        <div id="page_info">
+
+        </div>
+                    <section id="defOrder">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card_v2">
+                    <div class="card-body">
+                       <form action="" method="get" id="history-search">
+                           
+                            <div class="input-group">
+                              <input type="text" name="search" value="{{ search }}" class="form-control" placeholder="Search">
+                              <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
+                              </span>
+                            </div>
+                          </form>
+                    </div>
+                </div>
+                
+                <div class="card card_v2">
+                    <div class="card-body">
+                        <nav class="nav nav-pills flex-column flex-sm-row gap-2" id="orders_menu">
+
+                            <a {% if 'all' == status %}  class="flex-sm-fill text-sm-center nav-link active" {% endif %} class="flex-sm-fill text-sm-center nav-link" href="refill"><span class="icon"><i class="fas fa-list"></i></span>All</a>
+
+                            <a {% if 'Pending' == status %}  class="flex-sm-fill text-sm-center nav-link active" {% endif %} class="flex-sm-fill text-sm-center nav-link" href="refill/Pending"><span class="icon"><i class="far fa-pause-circle"></i></span>Pending</a>
+
+
+                            <a {% if 'Refilling' == status %}  class="flex-sm-fill text-sm-center nav-link active" {% endif %} class="flex-sm-fill text-sm-center nav-link  " href="refill/Refilling"><span class="icon"><i class="fas fa-redo"></i></span>Refilling</a>
+
+                            <a {% if 'Completed' == status %}  class="flex-sm-fill text-sm-center nav-link active" {% endif %} class="flex-sm-fill text-sm-center nav-link " href="refill/Completed"><span class="icon"><i class="fas fa-check-double"></i></span>Completed</a>
+
+                            <a {% if 'Rejected' == status %}  class="flex-sm-fill text-sm-center nav-link active" {% endif %} class="flex-sm-fill text-sm-center nav-link " href="refill/Rejected"><span class="icon"><i class="fas fa-check"></i></span>Rejected</a>
+
+                            <a {% if 'Error' == status %}  class="flex-sm-fill text-sm-center nav-link active" {% endif %} class="flex-sm-fill text-sm-center nav-link " href="refill/Error"><span class="icon"><i class="fas fa-chart-line"></i></span>Error</a>
+                          </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="table">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+               <div class="card card_v2">
+                   <div class="card-body">
+                        <div class="responsive-table def_table">
+                            <div class="table-responsive">
+                                <table class="table order_page" id="service-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Refill ID</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Order ID</th>
+                                            <th scope="col">Link</th>
+                                            <th scope="col">Service</th>
+                                            <th scope="col">Status</th>
+                                            
+                                                                                     
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                          
+                                           {% for order in orders %}
+              <tr>
+<td><span class="order_id" id="order-{{ order['refill_id'] }}">{{ order['refill_id'] }}</span></td>
+<td><div class="order_date">{{ order['date'] }}</div></td>
+<td><div class="order_link_wrap"><a href="orders/?search={{order['id']}}">{{ order['id'] }}</a></div></td>
+<td><div class="order_link_wrap"><a href="{{ order['link'] }}" target="_blank" class="order_link"><span> <i class="far fa-link"></i> {{ order['link'] }}</span></a></div></td>
+<td>{{ order["service_id"] }} - {{ order['service'] }}</td>             
+            <td><div style=" line-height:{% if order['refill_status'] == "Pending" %}1 {% endif %}; cursor:pointer; padding:3px 5px;  text-align:center; border-radius:20px; color:white; background:#{% if order['refill_status'] == "Completed"  %}0e7f00 {% elseif order['refill_status'] == "Refilling" %}260bc1  {% elseif order['refill_status'] == "Pending" %}42b7af {% elseif order['refill_status'] == "Error" %}42b7af {% elseif order['refill_status'] == "Rejected" %}702283 {% else %}f25800 {% endif %} ;" >{{ order['refill_status'] }}</div></td>
+                
+                 
+              </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+
+      {% if pagination["count"] > 1 %}
+        <ul class="pagination">
+
+          {% if pagination["current"] != 1 %}
+            <li>
+              <a class="btn btn-actions" href="orders/{{ status }}/{{ pagination["previous"] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Previous">
+                <span aria-hidden="true">«</span>
+              </a>
+            </li>
+          {% endif %}
+
+          {% set r, l = 3, 3 %}
+
+          {% if pagination['current'] == 1 %}
+            {% set r = 7 %}
+          {% endif %}
+
+          {% if pagination['current'] == 2 %}
+            {% set r = 5 %}
+          {% endif %}
+
+          {% if pagination['current'] >= pagination['count'] %}
+            {% set l = 5 %}
+          {% endif %}
+
+          {% for page in 1..pagination["count"] %}
+            {% if page >= (pagination['current']-l) and page <= (pagination['current']+r) %}
+              <li{% if page == pagination['current'] %} class="active" {%endif%}><a class="btn btn-actions" 
+ href="orders/{{ status }}/{{ page }}{% if search %}?search={{ search }}{% endif %}">{{ page }}</a></li>
+            {%endif%}
+          {% endfor %}
+
+          {% if pagination['current'] < pagination['count'] %}
+            <li>
+              <a class="btn btn-actions" href="orders/{{ status }}/{{ pagination['next'] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Next">
+                <span aria-hidden="true">»</span>
+              </a>
+            </li>
+          {% endif %}
+
+        </ul>
+      {% endif %}
+      
+      </tbody>
+                                </table>
+                                                            </div>
+                    </div>
+                   </div>
+               </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+                </div>
+            </div>
+        </main>
+
+ {% include 'footer.twig' %}

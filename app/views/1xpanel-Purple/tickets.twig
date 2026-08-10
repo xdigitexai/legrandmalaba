@@ -1,0 +1,376 @@
+{% include 'header.twig' %}
+
+{% if settings['ticket_system'] == 1 %}
+<main>
+         <div class="container-fluid mt-4">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card card-bg userCard">
+						<div class="row">
+							<div class="ud-card" style="max-width: 850px">
+								<h5>Welcome to the <span class="primary-color">Support</span> Section!</h5> 
+								<p><p style="">📍 If you use <font color="#9c00ff"><b>SMM Premium Services</b></font>, request a telegram support group through Telegram and track your problems this way. 👉&nbsp;<a href="https://t.me/HostlyPhilippines" target="_blank"><font color="#94bd7b">Click here to request a group</font></a><br></p>
+                              
+							</div>
+							<img src="https://storage.perfectcdn.com/a3vltc/jpoo0ueikyy6975o.png" class="ud-img">
+						</div>
+					</div>
+				</div>
+			</div>
+           
+			 <div class="row">
+               <div class="col-lg-12">
+				<div class="card card-tickets mt-3">
+                  <i class="fal fa-comment-alt-smile"></i>
+                  <div class="card-text">
+                   <a href="/terms">Before opening a ticket check out </a><span class="primary-color"><a href="/terms"><font color="#ff00ff">FAQs</font></a></span><a href="https://1xpanel.com/faq"> to get an answer to your question/concerns faster.</a> </div>
+                  <a href="/terms" class="btn btn-primary btn-sm">
+                     See FAQs               
+                    <i class="fal fa-long-arrow-right pl-1"></i>
+                  </a>
+                  </div>
+                  
+                  <div class="card mt-3 mb-4 p-4">
+    <h3 class="text-danger mb-3">
+        <i class="fas fa-info-circle me-2"></i> Important Support Information
+    </h3>
+
+    <p class="mb-2"><i class="fas fa-robot me-2"></i> 
+        <strong>AI Support (Robot)</strong> is designed to resolve your requests instantly.
+    </p>
+
+    <p class="mb-2"><i class="fas fa-clock me-2"></i> 
+        <strong>24/7 Active:</strong> The bot is available 24/7 and can handle your support requests instantly.
+    </p>
+
+    <p class="mb-3"><i class="fas fa-bolt me-2"></i> 
+        <strong>Instant Order Assistance:</strong> Use the following commands for quick resolution:
+    </p>
+
+    <div class="border rounded bg-light p-3 mb-3">
+        <p class="mb-1"><code>order_id cancel</code> – Cancel your order</p>
+        <p class="mb-1"><code>order_id speed</code> – Speed up order processing</p>
+        <p class="mb-1"><code>order_id refill</code> – Request a refill</p>
+        <p class="mb-0"><code>order_id fake comp</code> – Report fake completion</p>
+    </div>
+
+    <div class="alert alert-danger mb-3">
+        <i class="fas fa-times-circle me-1"></i> Your request was not understood. Please ensure correct use.
+    </div>
+
+    <p class="mb-3">
+        To get instant support, please send us a message from the
+        <a href="https://t.me/BoostBayan_Bot">"AI Support (Robot)"</a> section.
+    </p>
+
+    <div>
+        <a href="https://www.facebook.com/KaiGvanci/" class="btn btn-primary btn-sm me-2">
+            <i class="fas fa-user-shield"></i> Admin Contact
+        </a>
+        <a href="https://t.me/HostlyPhilippines" class="btn btn-danger btn-sm">
+            <i class="fas fa-headset"></i> Human Support
+        </a>
+    </div>
+</div>
+               </div>
+				<div class="col-lg-7">
+					 <div class="page overflow-hidden">
+						<div class="page-body pb-4 pb-xl-6 mt-4">
+						   <div class="card mb-2">
+							  <div class="card-head d-flex align-items-center justify-content-between">
+									<div class="card-head-title">
+										<div class="row align-items-center">
+											<div class="col-auto">
+											  <div class="card-head-icon">
+												<i class="ri-chat-1-line"></i>
+											  </div>
+											</div>
+											<div class="col">
+											  <h4>Create a ticket</h4>
+											</div>
+										</div>
+									</div>
+							  </div>
+							  <div class="card-body pt-3 pb-3">
+                                    {% if error %}
+        <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ errorText }}
+        </div>
+      {% elseif success %}
+        <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ successText }}
+        </div>
+      {% endif %}
+							      
+			<form  method="post" action="" id="ticketsend">
+			    
+			    <div class="form-group subject-panel">
+    <label for="subject">Subjects</label>
+    <select class="form-control" id="subject" name="subject">
+        <option value="Order">Order</option>
+        <option value="Refill">Refill</option>
+        <option value="Speedup">Speedup</option>
+        <option value="Other">Other</option>
+    </select>
+</div>
+								       
+									<div class="form-group subject-panel">
+									  
+									  <label for="ordernumbers">Support Type [ Robot ]</label>
+									 <select  type="text" class="form-control" id="subject" name="subject">
+                                  {% for subjects in orders %}
+                   <option value"{{ subjects['subject'] }}">{{ subjects['subject'] }}</option>
+                  {% endfor %}
+                              </select>
+                              </div>
+									<div class="form-group mb-3">
+									  <label for="message">Message</label>
+									   <textarea rows="7" id="message" name="message" class="form-control">{{ data['message'] }}</textarea>
+									   </div>
+								
+									<button type="submit" class="btn btn-primary btn-block mt-4 mb-3">Submit ticket</button>
+									</form>
+                                    <script>
+                                       var element2 = document.getElementById("payment-group").style="display:none";
+                                       function handleOrderType(selectObject) {
+                                       var element = document.getElementById("order-group");
+                                       var element2 = document.getElementById("payment-group");
+                                       var optional = document.getElementById("optional");
+                                       if (selectObject.value == "Order" || selectObject.value == "VIP-Order") {
+                                       element.style.display = "block";
+                                       element2.style.display = "none";
+                                       optional.style.display = "inline";
+                                       } else if (selectObject.value == "Payment" || selectObject.value == "VIP-Payment") {
+                                       element.style.display = "none";
+                                       element2.style.display = "block";
+                                       optional.style.display = "none";
+                                       } else if (selectObject.value == "Other" || selectObject.value == "VIP-Other" ) {
+                                       element.style.display = "none";
+                                       element2.style.display = "none";
+                                       optional.style.display = "none";
+                                       }
+                                       }
+                                       
+                                       function createTicket(e) {
+                                       if (e.preventDefault) e.preventDefault();
+                                       
+                                       var subject = document.getElementById("subject").value;
+                                       var message = "";
+                                       if (subject == "Order" || subject == "VIP-Order") {
+                                       message = "Order ID: " + document.getElementById("orderid").value + "\n" + "Request: " + document.getElementById("want").value  + "\n" + document.getElementById("message").value;
+                                       } else if (subject == "Payment" || subject == "VIP-Payment") {
+                                             message = "Request: " + document.getElementById("payment").value + "\n" + "Payment / Transaction ID(s): " + document.getElementById("p-trans").value + "\n" + "Payment / Email ID(s): " + document.getElementById("p-id").value + "\n" + "Add Amount (in USD): " + document.getElementById("p-amount").value + document.getElementById("message").value;
+                                       
+                                       } else {
+                                       message = document.getElementById("message").value;
+                                       }
+                                       
+                                       document.getElementById("hmessage").value = message;
+                                       
+                                       return true;
+                                       }
+                                       
+                                       var form = document.getElementById("ticketsend");
+                                       if (form.attachEvent) {
+                                       form.attachEvent("submit", createTicket);
+                                       } else {
+                                       form.addEventListener("submit", createTicket);
+                                       }
+                                    </script>
+							  </div>
+						   </div>
+						</div>
+					 </div> 
+				</div>
+				<div class="col-lg-5">
+					 <div class="page overflow-hidden">
+						<div class="page-body pb-4 pb-xl-6 mt-4">
+						   <div class="card mb-2">
+							  <div class="card-head d-flex align-items-center justify-content-between">
+									<div class="card-head-title">
+										<div class="row align-items-center">
+											<div class="col-auto">
+											  <div class="card-head-icon">
+												<i class="ri-coupon-3-line"></i>
+											  </div>
+											</div>
+											<div class="col">
+											  <h4>Support requests</h4>
+											</div>
+										</div>
+									</div>
+							  </div>
+							  <div class="card-body">
+  {% if ticketList %}
+    <div class="pnd-tlist">
+      {% for ticket in ticketList %}
+        <a href="tickets/{{ ticket['ticket_id'] }}">
+          <div class="d-flex tickets align-items-center">
+            <div class="avatar me-3">
+              <div class="tickets-img">
+                <span>U</span>
+              </div>
+            </div>
+            <div class="user-name">
+              <h6 class="font-weight-bold">
+                #{{ ticket['ticket_id'] }} - {{ ticket['subject'] }}
+              </h6>
+              <span class="d-block">
+                <span class="ticketstatus completed">{{ ticket['status'] }}</span>
+              </span>
+              <span class="date">{{ ticket['lastupdate_time'] }}</span>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="nothing-found">
+      <div class="card card-bg">
+        <div class="card-body p-4 p-lg-5 text-center">
+          <div style="font-size: 64px;">
+            <i class="ri-mail-send-fill"></i>
+          </div>
+          <p>
+            {% if user['lang'] == "ar" %}
+              ليس لديك تذكرة دعم نشطة.
+            {% else %}
+              You do not have an active support ticket.
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+						   </div>
+						</div>
+					 </div>
+				</div>
+			 </div>
+         </div>
+      </main>
+
+{% endif %}
+
+<div id="block_81">
+  <div class="tickets-list">
+    <div class="bg"></div>
+    <div class="divider-top"></div>
+    <div class="divider-bottom"></div>
+    <div class="container">
+      <div class="row tickets-list__alignment">
+
+{% if pagination["count"] > 1 %}
+  <ul class="pagination">
+    {% if pagination["current"] != 1 %}
+      <li>
+        <a href="tickets/{{ id }}/{{ pagination["previous"] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Previous">
+          <span aria-hidden="true">«</span>
+        </a>
+      </li>
+    {% endif %}
+
+    {% set r, l = 3, 3 %}
+
+    {% if pagination['current'] == 1 %}
+      {% set r = 7 %}
+    {% endif %}
+
+    {% if pagination['current'] == 2 %}
+      {% set r = 5 %}
+    {% endif %}
+
+    {% if pagination['current'] >= pagination['count'] %}
+      {% set l = 5 %}
+    {% endif %}
+
+    {% for page in 1..pagination["count"] %}
+      {% if page >= (pagination['current']-l) and page <= (pagination['current']+r) %}
+        <li{% if page == pagination['current'] %} class="active" {%endif%}><a href="tickets/{{ id }}/{{ page }}{% if search %}?search={{ search }}{% endif %}">{{ page }}</a></li>
+      {%endif%}
+    {% endfor %}
+
+    {% if pagination['current'] < pagination['count'] %}
+      <li>
+        <a style="background-color:red" href="ticket/{{ id }}/{{ pagination['next'] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Next">
+          <span aria-hidden="true">»</span>
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+  </div></div></div>    
+</div>
+</div>
+
+<div class="divider-top"></div>
+<div class="divider-bottom"></div>
+<div class="container">
+  {% if contentText2 %}
+    <div class="card mb-4">
+      {{ contentText2 }}
+    </div>
+  {% endif %}
+</div>
+
+{% include 'footer.twig' %}
+
+<script>
+  document.getElementById("payment-group").style.display = "none";
+
+  function handleOrderType(selectObject) {
+    var element = document.getElementById("order-group");
+    var element2 = document.getElementById("payment-group");
+    var optional = document.getElementById("optional");
+
+    if (selectObject.value == "Order") {
+      element.style.display = "block";
+      element2.style.display = "none";
+      optional.style.display = "block";
+    } else if (selectObject.value == "Payment" ) {
+      element.style.display = "none";
+      element2.style.display = "block";
+      optional.style.display = "none";
+    } else if (selectObject.value == "Other") {
+      element.style.display = "none";
+      element2.style.display = "none";
+      optional.style.display = "none";
+    }else{
+      element.style.display = "none";
+      element2.style.display = "none";
+      optional.style.display = "none";
+    }
+  }
+
+  function createTicket(e) {
+    if (e.preventDefault) e.preventDefault();
+
+    var subject = document.getElementById("subject").value;
+    var message = "";
+    if (subject == "Order") {
+      subject = subject + " : " + document.getElementById("orderid").value
+      message = "Order ID: " + document.getElementById("orderid").value + " " + "Request: " + document.getElementById("want").value + " , Message : " + document.getElementById("message").value;
+    } else if (subject == "Payment") {
+      subject = subject + " : " + document.getElementById("payment").value
+      message = "Payment : " + document.getElementById("payment").value + " , " + "Transaction ID : " + document.getElementById("PaymentID").value + " , " + "WhatsApp Number : " + document.getElementById("whatsappNumber").value + " , " + "Amount : " + document.getElementById("addamount").value + " , Message :  " + document.getElementById("message").value;
+    } else {
+      message = document.getElementById("message").value;
+    }
+
+    document.getElementById("hmessage").value = message;
+    document.getElementById("hsubject").value = subject;
+
+    return true;
+  }
+
+  function form_submit(){
+    var form = document.getElementById("ticketsend");
+    createTicket(form);
+    form.submit();
+  }
+</script>

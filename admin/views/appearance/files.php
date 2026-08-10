@@ -1,0 +1,52 @@
+
+ <div class="col-md-8">
+<div class="p-b">                
+<div class="pull-left">
+                  <form action="/admin/appearance/files" method="POST" enctype="multipart/form-data">
+<div class="form-group">
+<div class="input-group">
+<input class="form-control" type="file" name="logo" accept="image/*"> 
+<span class="input-group-btn">
+ <button style="padding: 7.3px 20px;" type="submit" class="btn btn-primary w-100">Upload File</button>           
+ </span></div></div
+</form>  </div> 
+            </div>
+
+                        <div id="filesContainer">
+                <table class="table files__table">
+    <thead>
+    <tr>
+        <th class="p-l" colspan="2">File</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+<?php foreach( $fileList as $file ){ ?>
+
+    <tr>
+        <td>
+            <div class="files__table-preview">
+                <img src="<?=$file['link']?>" onerror="this.style.display='none'">
+            </div
+        </td>
+        <td class="p-l">
+            <a href="<?=$file['link']?>" target="_blank">
+                <?php
+                $m2 = str_ireplace(site_url(),"",$file["link"]);
+                echo $m2;
+
+                ?>
+                        </a>
+        </td>
+        <td class="p-r text-right">
+            <a class="btn btn-default btn-xs delete-file " href="/admin/appearance/files/delete/<?=$file['id']?>">Delete</a>        </td>
+    </tr>
+<?php } ?>
+    </tbody>
+</table>
+
+<nav>
+    </nav>            </div>
+        </div>
+    </div>
+</div>

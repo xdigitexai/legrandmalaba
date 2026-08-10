@@ -1,0 +1,766 @@
+{% include 'header.twig' %}
+
+
+
+
+
+<div class="page-content">
+  
+	<!-- Main variables *content* -->
+<div class="page-container">
+<div class="ticket-page">
+<div class="ticket-list">
+
+<span class="page-title"><i class="fi fi-rr-headphones"></i> Your support requests</span>
+
+    </div>
+<div class="ticket-content">
+<div class="ticket-create">
+<lottie-player src="https://cdn.fsksoft.com/ticket.json" class="ticket-img" background="transparent" speed="1" style="width: 400px;" loop="" autoplay=""></lottie-player>
+<span>Welcome {{ user["username"] }}</span>
+<button type="button" class="btn btn-blue" 
+onclick="openModalID()">Create support request</button>
+</div>
+
+<div class="modal_container ticket" id="modal-container01">
+<div class="modal_content">
+<div class="modal_close close-modal01" title="Close" onclick="openModalID()">
+    <span>Support request</span>
+    <i class="fa fa-times"></i>
+</div>
+<div class="modal-content">
+    
+     {% if error %}
+        <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ errorText }}
+        </div>
+      {% elseif success %}
+        <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ successText }}
+        </div>
+      {% endif %}
+      
+   <form method="post" action="" id="ticketsend" onSubmit="form_submit()">
+				   
+								   
+	   <div class="ticketsecbox">
+		   <button class="ticketsec" type="button" onclick="handleOrderType(this)" value="Order">Order</button>
+		   <button class="ticketsec" type="button" onclick="handleOrderType(this)" value="Payment">Payment</button>
+		   <button class="ticketsec" type="button" onclick="handleOrderType(this)" value="Api">Api</button>
+		   <button class="ticketsec" type="button" onclick="handleOrderType(this)" value="ChildPanel">ChildPanel</button>
+		   <button class="ticketsec" type="button" onclick="handleOrderType(this)" value="Request">Request</button>
+		   <button class="ticketsec" type="button" onclick="handleOrderType(this)" value="Real Followers">Real Followers</button>
+		   <button class="ticketsec" type="button" onclick="handleOrderType(this)" value="Blue Badge Verification">  Blue Badge Verification</button>
+		 
+    
+		   <button class="ticketsec" type="button" onclick="handleOrderType(this)">Other</button>
+	    </div>
+
+	    <div class="form-group d-none" >
+		<label for="subject" class="control-label">Subject</label>
+		<select class="form-control" id="subject" name="subject" onchange="handleOrderType(this)">
+			<option value="Order" selected="">Order</option>
+			<option value="Payment">Payment</option>
+			<option value="Api">Api</option>
+			<option value="Child Panel">Child Panel</option>
+			<option value="Request">Withdraw Balance  In Easypaisa & Jazzcash (Read refund policy at Terms and conditions page) </option>
+			<option value="Real Followers">Request</option>
+			<option value="Blue Badge Verification">Which kind of service did you need</option>
+			<option value="Other">Others</option>
+		</select>
+	</div>
+	   <div class="form-group" id="order-group" style="display: none;">
+		   <label>Order ID: [For multiple orders, please separate them using comma. (example: 31851525,31851511,31851509)]</label>
+		   <input type="text" class="form-control" id="orderid">
+		   <label style="margin-top:15px">Request</label>
+		   <select class="form-control" name="want" id="want">
+			   <option value="Refill">Refill</option>
+			   <option value="Cancel">Cancel</option>
+			   <option value="Speed-up">Speed Up</option>
+			   <option value="Restart">Restart</option>
+			   <option value="Not-Started">Not Started</option>
+			   <option value="Mark-as-completed-without-done">Mark as completed without done</option>
+			   <option value="Other">Mark as completed 
+I wanted to reorder</option>
+		   </select>
+	   </div>
+	   <div class="form-group" id="payment-group" style="display: none;">
+		   <label>Payment</label>
+		   <select class="form-control" name="payment" id="payment">
+			   <option value="🇮🇳PayTm Business  [ Auto  ][ 1$ = 84 INR ]  [ Mini =10 INR] [Max = 20,000 inr ]">🇮🇳PayTm Business  [ Auto  ][ 1$ = 84 INR ]  [ Mini =10 INR] [Max = 20,000 inr ]</option><option value="🇵🇰  Easypaisa Auto  [ 1$ =277 PKR ] [  5% Bonus from 100$]  ">🇵🇰  Easypaisa Auto  [ 1$ =277 PKR ] [  5% Bonus from 100$]  </option><option value="🇵🇰 Jazzcash Auto [ 1$ =277 PKR ] [ 100$ 3% Bonus ] ">🇵🇰 Jazzcash Auto [ 1$ =277 PKR ] [ 100$ 3% Bonus ] </option><option value="🇵🇰Upaisa  ,Pakistan Mobile Wallet And Pakistan Banks  [ Minimum 10 PKR ]  [1% Tax ][ 1$ = 270 PKR ]  All kind of Cards ">🇵🇰Upaisa  ,Pakistan Mobile Wallet And Pakistan Banks  [ Minimum 10 PKR ]  [1% Tax ][ 1$ = 270 PKR ]  All kind of Cards </option><option value="[Debit / Credit  Card ] [ Visa / Master Card ]  [ Worldwide - Any Type of Cards ]  [ 5% Bonus from 100$]">[Debit / Credit  Card ] [ Visa / Master Card ]  [ Worldwide - Any Type of Cards ]  [ 5% Bonus from 100$]</option><option value="Perfect Money USD  [ 5%  bonus from 1$  ] [ Minimum 1$ ] ">Perfect Money USD  [ 5%  bonus from 1$  ] [ Minimum 1$ ] </option><option value=" Auto Binance Pay [  USDT ]       Worldwide   [  5% Bonus from 1$]  "> Auto Binance Pay [  USDT ]       Worldwide   [  5% Bonus from 1$]  </option><option value="Coinbase Commerce (BTC-ETM, LTC-BUSD -USD ] ">Coinbase Commerce (BTC-ETM, LTC-BUSD -USD ] </option><option value="Payoneer [ Auto ]  [5% Bonus from 100$ ]">Payoneer [ Auto ]  [5% Bonus from 100$ ]</option><option value="Perfect Money EURO  [ 5% bonus ] ">Perfect Money EURO  [ 5% bonus ] </option><option value="Skrill [ Credit and Debit card ] ">Skrill [ Credit and Debit card ] </option><option value="Wise.com [ Manuel Minimum 50$] ">Wise.com [ Manuel Minimum 50$] </option><option value="Cashmaal  [ 5% Fees ]">Cashmaal  [ 5% Fees ]</option>
+			   <option value="Other">Other</option>
+		   </select>
+		   <label style="margin-top:15px">Payment / Transaction ID(s):</label>
+		   <input type="text" class="form-control" name="transaction_id" id="PaymentID">
+		   <label style="margin-top:15px">Payment Username(s):</label>
+		   <input type="text" class="form-control" name="payment_email" id="emailID">
+		   <label style="margin-top:15px">Add Amount</label>
+		   <input type="number" class="form-control" name="payment_amount" id="addamount">
+	   </div>
+	   <div class="form-group message">
+		   <label for="message" class="control-label">Message</label>
+		   <textarea class="form-control" rows="7" id="message" name="raw_message" ></textarea>
+	   </div>
+	   <input id="hmessage" name="message" type="hidden"  />
+	   
+	   <input type="hidden" name="_csrf"  value="9d8204b03091543ca6e88410618b738e_8a84991447441f1e5c6296df3d39b872" />
+	   <input type="hidden" name="add_ticket" value="add_ticket" />
+
+	   <p id="upload_status"></p>
+								<input class="form-control" id="inp" type="file">
+
+								<br><br>
+	   <button type="submit" class="btn btn-blue search-modal-btn">Submit ticket</button>
+   </form>
+   
+</div>
+<div class="modal-bottom-btn">
+    <button class="btn btn-border close-modal01" onclick="openModalID()">Close</button>
+    <button type="submit" class="btn btn-blue search-modal-btn" >Send</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script>
+function openModalID(){
+document.querySelector(".modal_container").classList.toggle("show-modal")
+}
+</script>
+
+</div>
+
+<div id="optional"></div>
+<script>
+	document.getElementById("payment-group").style.display = "none";
+
+	function handleOrderType(selectObject) {
+		var element = document.getElementById("order-group");
+		var element2 = document.getElementById("payment-group");
+		var optional = document.getElementById("optional");
+		let ticket=document.getElementById("subject");
+	    let tickets_sets=ticket.querySelectorAll("option");
+	    // for(let i=0;i<tickets_sets.lenght;i++){
+	    
+
+	    // }
+	    tickets_sets.forEach((item)=>{
+
+		  if(selectObject.innerText == item.getAttribute("value") ){
+		    
+			console.log("work")
+			item.setAttribute("selected","true");
+		  }
+		  else{
+		console.log("note")
+			item.removeAttribute("selected")
+		  }
+	    })
+
+		if (selectObject.getAttribute("value") == "Order" || selectObject.getAttribute("value") == "VIP-Order") {
+			element.style.display = "block";
+			element2.style.display = "none";
+			optional.style.display = "block";
+		} else if (selectObject.getAttribute("value") == "Payment" || selectObject.getAttribute("value") == "VIP-Payment") {
+			element.style.display = "none";
+			element2.style.display = "block";
+			optional.style.display = "none";
+		} else if (selectObject.getAttribute("value") == "Other" || selectObject.getAttribute("value") == "VIP-Other") {
+			element.style.display = "none";
+			element2.style.display = "none";
+			optional.style.display = "none";
+		} else {
+			element.style.display = "none";
+			element2.style.display = "none";
+			optional.style.display = "none";
+		}
+	}
+
+	function createTicket(e) {
+		if (e.preventDefault) e.preventDefault();
+
+		var subject = document.getElementById("subject").value;
+		var message = "";
+		if (subject == "Order" || subject == "VIP-Order") {
+			message = "Order ID: " + document.getElementById("orderid").value + " " + "Request: " + document.getElementById("want").value + " " + document.getElementById("message").value;
+		} else if (subject == "Payment" || subject == "VIP-Payment") {
+			message = "Payment : " + document.getElementById("payment").value + " " + "Transaction ID : " + document.getElementById("PaymentID").value + " " + "Payment Email ID : " + document.getElementById("emailID").value + " " + "Amount : " + document.getElementById("addamount").value + " " + document.getElementById("message").value;
+		} else {
+			message = document.getElementById("message").value;
+		}
+
+		document.getElementById("hmessage").value = message;
+
+		return false;
+	}
+
+	function form_submit() {
+
+		console.log('eee');
+
+		//return false;
+
+		var form = document.getElementById("ticketsend");
+		createTicket(form);
+		form.submit();
+	}
+</script>
+
+
+<script>
+	function readFile() {
+
+		if (!this.files || !this.files[0]) return;
+
+		document.getElementById("upload_status").innerHTML = 'Please wait! We are uploading your image.';
+
+		const FR = new FileReader();
+
+		FR.addEventListener("load", function (evt) {
+			var message_old_value = document.getElementsByName("message")[0].value;
+			console.log(evt.target.result);
+			var post_data = "key=officialrentalpanel352080&image=" + encodeURIComponent(evt.target.result);
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					var response_back = JSON.parse(this.responseText);
+
+					if (typeof response_back.image !== 'undefined') {
+						document.getElementsByName("message")[0].value = message_old_value + ' ' + response_back.image;
+
+
+
+						var elementExists = document.getElementById("message");
+						if (elementExists) {
+							document.getElementById("message").value = document.getElementById("message").value + " " + response_back.image;
+						}
+
+						document.getElementById("upload_status").innerHTML = 'Image is uploaded. You can create ticket';
+					} else {
+						document.getElementById("upload_status").innerHTML = 'Image uploading failed. Try again after refreshing page';
+
+					}
+
+
+
+				}
+			};
+			xhttp.open("POST", "https://panelupdates.com/uploader/api", true);
+			xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			xhttp.send(post_data);
+
+		});
+
+		FR.readAsDataURL(this.files[0]);
+
+	}
+
+	var input = document.getElementById('inp');
+	input.addEventListener("change", readFile);
+
+</script>
+	
+      
+	<script>
+					if( (self.parent && !(self.parent===self))
+						&&(self.parent.frames.length!=0)){
+						self.parent.location=document.location
+					}
+					</script>
+<script>
+     var htmlcontent = document.querySelector("HTML");
+     function colorApp() {
+        let getmode = localStorage.getItem("lightMode")
+        if(getmode == "auto"){
+           var getauto = window.matchMedia("(prefers-color-scheme: dark)").matches
+           if (getauto == true){
+              htmlcontent.setAttribute("class", "dark")
+           } else {
+              htmlcontent.setAttribute("class", "light")
+           }
+        } else {
+           if (getmode == "dark") {
+              htmlcontent.setAttribute("class", "dark");
+           } else {
+              htmlcontent.setAttribute("class", "light");
+           }
+        }
+     }
+     colorApp()
+    </script>
+
+    <script>
+     const items = document.querySelectorAll(".accordion button");
+     
+     function toggleAccordion() {
+     const itemToggle = this.getAttribute('aria-expanded');
+     
+     for (i = 0; i < items.length; i++) {
+      items[i].setAttribute('aria-expanded', 'false');
+     }
+     
+     if (itemToggle == 'false') {
+      this.setAttribute('aria-expanded', 'true');
+     }
+     }
+     
+     items.forEach(item => item.addEventListener('click', toggleAccordion));
+     </script>
+                      
+     
+     
+     
+     
+          
+                         <script>
+     var darkbtn = document.querySelector(".dark-btn");
+     var lightbtn = document.querySelector(".light-btn");
+     var lightdarkbtn = document.querySelector(".auto-btn");
+     var dizin = window.location.pathname;
+     
+     function change_light() {
+       var app = document.getElementsByTagName("HTML")[0];
+       localStorage.lightMode = "light";
+       app.setAttribute("class", "light");
+       darkbtn.classList.remove("active");
+       lightbtn.classList.add("active");
+       lightdarkbtn.classList.remove("active");
+     }
+     
+     function change_dark() {
+       var app = document.getElementsByTagName("HTML")[0];
+       localStorage.lightMode = "dark";
+       app.setAttribute("class", "dark");
+       darkbtn.classList.add("active");
+       lightbtn.classList.remove("active");
+       lightdarkbtn.classList.remove("active");
+     }
+     
+     function change_auto() {
+       let systemdark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+       var app = document.getElementsByTagName("HTML")[0];
+       localStorage.lightMode = "auto";
+       if (systemdark == true) {
+       app.setAttribute("class", "dark");
+       } else {
+       app.setAttribute("class", "light");
+       }
+       darkbtn.classList.remove("active");
+       lightbtn.classList.remove("active");
+       lightdarkbtn.classList.add("active");
+     }
+     
+     function selectColor() {
+       let mode = localStorage.getItem('lightMode');
+       if (mode == "dark") {
+       darkbtn.classList.add("active");
+       } else if (mode == "light") {
+       lightbtn.classList.add("active");
+       } else if (mode == "auto") {
+       lightdarkbtn.classList.add("active");
+       }
+     }
+     selectColor()
+     
+     </script>
+
+
+<script>
+   $(".sidebar-btn").click(function(){
+      $(".page-sidebar").toggleClass("active");
+      $(".sidebar-bg").toggleClass("active");
+   });
+
+if( document.getElementById("overlay")){
+   document.getElementById("overlay").addEventListener("click",function(){
+      document.querySelector(".page-sidebar").classList.remove("active")
+      document.querySelector(".sidebar-bg").classList.remove("active")
+         });
+}
+
+</script>
+
+<script>
+$(".curency_btn").click(function(){
+
+    var $currenciesList = $("#currencies-list");
+    if ($currenciesList.hasClass("active")) {
+        $currenciesList.removeClass("active");
+    } else {
+        $currenciesList.addClass("active");
+    }
+});
+
+$(".header-detail-button.active-account-detail").click(function(){
+    var $accountDetailBox = $(".account-detail-box");
+    if ($accountDetailBox.hasClass("active")) {
+        $accountDetailBox.removeClass("active");
+    } else {
+        $accountDetailBox.addClass("active");
+    }
+});
+// $(".currency-btn-mobile").click(function(){
+//     var $currenciesList = $("#currencies-list");
+//     if ($currenciesList.hasClass("active")) {
+//         $currenciesList.removeClass("active");
+//     } else {
+//         $currenciesList.addClass("active");
+//     }
+// });
+
+$(document).click(function(event){
+    if (!$(event.target).closest(".curency_btn").length) {
+        $("#currencies-list").removeClass("active");
+    }
+
+    if (!$(event.target).closest(".header-detail-button.active-account-detail").length) {
+        $(".account-detail-box").removeClass("active");
+    }
+});
+
+
+
+</script>
+      <script>
+          $('.order-link').click(function(){
+               let val=$(this).attr('data-url');
+               /* alert(val) */
+     window.navigator.clipboard.writeText(val);
+     $('#notification').addClass('show');
+     setTimeout(()=>{
+          $('#notification').removeClass('show');
+     },4000);
+          });
+          $('#notification.show').mouseenter(function(){
+           $('#notification').removeClass('show');
+          })
+          
+     
+         
+       </script>
+
+
+
+<script>
+   var post_data = "actionType=notifications&apiKey=Press regenerate button in the settings to generate your api key.";
+   var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function () {
+     if (this.readyState == 4 && this.status == 200) {
+       var response = JSON.parse(this.responseText);
+       var c = new Date();
+       var months = [
+         "January",
+         "February",
+         "March",
+         "April",
+         "May",
+         "June",
+         "July",
+         "August",
+         "September",
+         "October",
+         "November",
+         "December",
+       ];
+       var cc = c.getDate() + " " + months[c.getMonth()];
+       var content = "";
+       if (typeof response.data !== "undefined") {
+         var d = response.data;
+         if (d.length > 0) {
+           for (a = 0; a < d.length; a++) {
+             var f = d[a];
+             console.log(f);
+ 
+             var subject = "";
+             if (typeof f.subject !== "undefined") {
+               subject = f.subject;
+             }
+ 
+             var date = "";
+             if (typeof f.date !== "undefined") {
+               date = f.date;
+             }
+ 
+             var c = new Date(date);
+             var months = [
+               "January",
+               "February",
+               "March",
+               "April",
+               "May",
+               "June",
+               "July",
+               "August",
+               "September",
+               "October",
+               "November",
+               "December",
+             ];
+             var date =
+               c.getDate() + " " + months[c.getMonth()] + " " + c.getFullYear();
+ 
+             var message = "";
+             if (typeof f.message !== "undefined") {
+               message = f.message;
+             }
+ 
+             var id = "";
+             if (typeof f.id !== "undefined") {
+               id = f.id;
+             }
+ 
+             if (message.length > 0) {
+               content =
+                 content +
+                 ' <li class="singleNewsBlock"><div class="type-date"><p class="date">   ' +
+                 date +
+                 ' </p></div><br><div class="news-desc">' +
+                 "<p><b>" +
+                 subject +
+                 "</b></p><p>" +
+                 message +
+                 "</p></div></li>";
+             }
+           }
+         }
+       }
+ 
+       if (content.length == 0) {
+         content =
+           '<li><h4>Notification<span class="date">' +
+           cc +
+           "</span></h4><p>No Notification Found</p></li>";
+       }
+ 
+       document.getElementById("news_updates_div").innerHTML = content;
+       //news_updates_div
+     }
+   };
+   xhttp.open("POST", "api", true);
+   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+   xhttp.send(post_data);
+ </script>
+ <script>
+  $(document).ready(function(){
+    let locate = window.location.search; // Use .search to get the query string
+    console.log(locate);
+    
+    if (locate.includes("order=")) { // Use .includes() to check if the parameter is present
+        $('.order-alert-content').removeClass('close');
+        $('.order-alert-box').removeClass('close');
+    }else{
+		
+		if( document.getElementById("error_div") ){
+			var htmlviv = document.getElementById("error_div").innerHTML;
+			if( htmlviv.length > 5 ){
+				document.getElementById("error_div").style.display = 'block';
+			}
+		}
+	}
+});
+
+          function alertclose(){
+               $('.order-alert-content').addClass('close');
+               $('.order-alert-box').addClass('close');
+          }
+
+
+
+          $('.order_btn').click(function(){
+            let id=$(this).attr('data-id');
+            $('.modal_container[data-id="'+ id +'"]').toggleClass("show-modal");
+          });
+
+          $('.modal_close').click(function(){
+            let id=$(this).attr('data-id');
+            $('.modal_container[data-id="'+ id +'"]').toggleClass("show-modal");
+          })
+     </script>
+     
+  <script>
+$(document).ready(function () {
+   
+    const $searchInput = $('#searchServices'); 
+
+    $searchInput.on('keyup', function () {
+        const searchValue = $searchInput.val().toLowerCase(); 
+
+     
+        const $serviceBoxes = $('.select-service');
+        $serviceBoxes.each(function () {
+            const category = $(this).data('category');
+            if (category !== undefined && category.toLowerCase().includes(searchValue)) {
+                // If it's a match, display it
+                $(this).css('display', 'flex');
+            } else {
+                // If not, hide it
+                $(this).css('display', 'none');
+            }
+        });
+    });
+});</script>
+
+
+
+
+        <div class="col-lg-12  ">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="tickets-list__margin-search component_card">
+                                <div class="card mt-2 mb-2">
+                                    <div class="component_form_group">
+                                        <div class="">
+                                            <form action="/tickets" method="get" id="history-search">
+                                                <div class="input-group">
+                                                    <input type="text" name="search" style="width:0%;"class="form-control" value="{{ search }}" placeholder="Search tickets">
+                                                    <div class="input-group-append component_button_search">
+                                                        <button class="btn btn-primary" type="submit">
+                                                            <span class="fas fa-search"></span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+              	<div id="block_31">
+			<div class="tickets-list">
+				<div class="bg"></div>
+				<div class="divider-top"></div>
+				<div class="divider-bottom"></div>
+				<div class="container-fluid">
+					<div class="row px-lg-4 tickets-list__alignment">
+						<div class="col-lg-12">
+							<div class="row">
+								<div class="col">
+									<div class="tickets-list__margin-table">
+										<div class="table-bg component_table ">
+											<div class="table-wr ">
+												
+												<div class="table-responsive table-responsive__search ">
+													<table class="table">
+														<thead>
+															<tr>
+																	<th>{{ lang['tickets.id'] }}</th>
+																	<th>{{ lang['tickets.subject'] }}</th>
+																	<th>{{ lang['tickets.status'] }}</th>
+																	<th class="nowrap">{{ lang['tickets.updated'] }}</th>
+															</tr>
+														</thead>
+														<tbody>
+																{% for ticket in ticketList %}
+																	<tr>
+																		<td>{{ ticket['ticket_id'] }}</td>
+																		{% if ticket["support_new"] == 2 %}
+																			<td>
+																				<a href="tickets/{{ ticket['ticket_id'] }}">
+																					<strong>{{ ticket['subject'] }}</strong>
+																				</a>
+																			</td>
+																		{% else %}
+																			<td>
+																				<a href="tickets/{{ ticket['ticket_id'] }}">{{ ticket['subject'] }}</a>
+																			</td>
+																		{% endif %}
+																		<td>{{ ticket['status'] }}</td>
+																		<td>
+																			<span class="nowrap">{{ ticket['lastupdate_time'] }}</span>
+																		</td>
+																	</tr>
+																{% endfor %}
+														</tbody>
+													</table>
+													<div></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12">
+											<nav class="component_pagination">
+												<div class=""></div>
+											</nav>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+<div class="container-fluid">
+					<div class="row px-lg-4 ticket-form__alignment">
+						<div class="col-lg-8">
+							<div class="component_card">
+							    {% if contentText2 %}
+<div class="card mt-3 mb-3">
+{{ contentText2 }}
+</div>
+{% endif %}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% include 'footer.twig' %}
+
+				<script>
+					document.getElementById("payment-group").style.display = "none";
+				  
+					function handleOrderType(selectObject) {
+					  var element = document.getElementById("order-group");
+					  var element2 = document.getElementById("payment-group");
+					  var optional = document.getElementById("optional");
+				  
+					  if (selectObject.value == "Order") {
+						element.style.display = "block";
+						element2.style.display = "none";
+						optional.style.display = "block";
+					  } else if (selectObject.value == "Payment" ) {
+						element.style.display = "none";
+						element2.style.display = "block";
+						optional.style.display = "none";
+					  } else if (selectObject.value == "Other") {
+						element.style.display = "none";
+						element2.style.display = "none";
+						optional.style.display = "none";
+					  }else{
+						element.style.display = "none";
+						element2.style.display = "none";
+						optional.style.display = "none";
+					  }
+					}
+				  
+					function createTicket(e) {
+					  if (e.preventDefault) e.preventDefault();
+				  
+					  var subject = document.getElementById("subject").value;
+					  var message = "";
+					  if (subject == "Order") {
+						subject = subject + " : " + document.getElementById("orderid").value
+						message = "Order ID: " + document.getElementById("orderid").value + " " + "Request: " + document.getElementById("want").value + " , Message : " + document.getElementById("message").value;
+					  } else if (subject == "Payment") {
+						subject = subject + " : " + document.getElementById("payment").value
+						message = "Payment : " + document.getElementById("payment").value + " , " + "Transaction ID : " + document.getElementById("PaymentID").value + " , " + "Payment Email ID : " + document.getElementById("emailID").value + " , " + "Amount : " + document.getElementById("addamount").value + " , Message :  " + document.getElementById("message").value;
+					  } else {
+						message = document.getElementById("message").value;
+					  }
+					  
+					  document.getElementById("hmessage").value = message;
+					  document.getElementById("hsubject").value = subject;
+				  
+					  return true;
+					}
+					
+					function form_submit(){
+					  var form = document.getElementById("ticketsend");
+					  createTicket(form);
+					  form.submit();
+					}
+					</script>
+				
+{% include 'footer.twig' %}

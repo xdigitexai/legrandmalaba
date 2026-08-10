@@ -1,0 +1,62 @@
+{% include 'header.twig' %}
+
+<div class="component_navbar" ></div>
+    <div class="component_navbar_sub "></div>
+    <div class="wrapper-content">
+
+    <div class="wrapper-content__header">
+          </div>
+    <div class="wrapper-content__body">
+      <!-- Main variables *content* -->
+      <div id="block_93">
+    <div class="new_order-block ">
+        <div class="bg"></div>
+        <div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+<div class="container">
+        <div class="row justify-content-center">
+        <div class="col-lg-8">
+        {% if contentText %}
+<div class="card mt-2 mb-2">
+{{ contentText }}
+</div>
+{% endif %}</div></div></div>
+{% for blog in blogs %}
+       <div class="container">
+           <div class="row justify-content-center">
+        <div class="col-lg-8">
+        </div></div>
+        <div class="row">
+                <div class="col-md-8 offset-md-2">
+              <div class="component_card component_button_more component_blog_headers h-100">
+              <div class="card h-100 mt-2">
+                        <h4 style="padding-bottom:10px;">{{ blog["title"] }}</h4> 
+{% if blog["image_file"] %} 
+                  <a href="/blog/{{ blog["blog_get"] }}"style="display:flex;justify-content: center;">
+					<img src="{{blog["image_file"]}}" alt="{{ blog["title"] }}" class="img-responsive">
+                  </a>{% endif %} 
+                                      
+                                                        <div class="block-blog__content">
+                      
+                    </div><br>
+                                                        <div class="block-blog__actions mt-auto">
+                      <a href="/blog/{{ blog["blog_get"] }} " class="btn btn-big-primary" style="width:100%;color:#fff;">
+                        Read more
+                      </a></div>
+                        
+ </div></div></div></div></div>
+<div class="mb-3"></div>
+{% endfor %} 
+<div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container">
+             <div class="row justify-content-center">
+        <div class="col-lg-8">
+		{% if contentText2 %}
+<div class="card mt-2">
+{{ contentText2 }}
+</div>
+{% endif %}
+</div></div></div>
+
+{% include 'footer.twig' %}
